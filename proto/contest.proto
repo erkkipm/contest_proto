@@ -1,0 +1,70 @@
+syntax = "proto3";
+// Текущий пакет - указывает пространство имен для сервиса и сообщений.
+package contest;
+
+//import "google/protobuf/timestamp.proto";
+
+// Настройки для генерации GO кода. Используется при генерации файлов на GO
+option go_package = "github.com/erkkipm/contest_proto;contestV1";
+//option go_package = "github.com/wpcodevo/golang-mongodb/pb";
+
+// Сервис для входа и регистрации
+service Contest {
+  // Добавление заявки
+  rpc Add(AddRequest) returns (AddResponse);
+  // Добавление изменения в заявке
+  rpc Edit(EditRequest) returns (EditResponse);
+  // Удаление заявки
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
+}
+
+
+//service Permissions {
+//  rpc GetUserPermissions(GetUserPermissionsRequest) returns (GetUserPermissionsResponse);
+//}
+
+//service UserInfo {
+//  rpc GetUserInfo(GetUserInfoRequest) returns (GetUserInfoResponse);
+//}
+
+message AddRequest {
+  string email = 1; // e-mail при регистрации
+  string phone = 2; // Телефон при регистрации
+  string password = 3; // Пароль при регистрации
+  string app_id = 4; // Идентификатор приложения
+  //  google.protobuf.Timestamp created_at = 3;
+  //  google.protobuf.Timestamp updated_at = 4;
+}
+
+message AddResponse {
+  int64 user_id = 1;  // Идентификатор зарегистрированного юзера
+  bool success = 2; // Статус регистрации
+  string message = 3; // Сообщение
+}
+
+message EditRequest {
+  string email = 1; // e-mail при входе
+  string password = 2; // Пароль при входе
+  string app_id = 3; // Идентификатор приложения для входа
+}
+
+message EditResponse {
+  string token = 1; // Токен для входа в приложение
+}
+
+message DeleteRequest {
+  string name = 1; // Имя юзера
+  string email = 2; // e-mail юзера
+}
+
+message DeleteResponse {
+  int64 user_id = 1;  // Идентификатор юзера
+}
+
+message GetContestRequest {
+  int64 user_id = 1; // Идентификатор юзера
+}
+
+message GetContestResponse {
+  bool is_admin = 1; // Признак администратора
+}
