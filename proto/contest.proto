@@ -12,6 +12,8 @@ option go_package = "github.com/erkkipm/contest_proto;contestV1";
 service Contest {
   // Добавление заявки
   rpc Add(AddRequest) returns (AddResponse);
+  // Добавление заявки
+  rpc AddRate(AddRateRequest) returns (AddRateResponse);
   // Добавление изменения в заявке
   rpc Edit(EditRequest) returns (EditResponse);
   // Удаление заявки
@@ -28,12 +30,14 @@ service Contest {
 //}
 
 message AddRequest {
-  string email = 1; // e-mail при регистрации
-  string phone = 2; // Телефон при регистрации
-  string password = 3; // Пароль при регистрации
-  string app_id = 4; // Идентификатор приложения
-  //  google.protobuf.Timestamp created_at = 3;
-  //  google.protobuf.Timestamp updated_at = 4;
+  string competition = 1;
+  string author = 2;
+  string song_own = 3;
+  string song_remake = 4;
+  bool active = 5;
+  string rate_book = 6;
+  string status = 7;
+  string owner = 8;
 }
 
 message AddResponse {
@@ -42,7 +46,26 @@ message AddResponse {
   string message = 3; // Сообщение
 }
 
+message AddRateResponse {
+  int64 user_id = 1;  // Идентификатор зарегистрированного юзера
+  bool success = 2; // Статус регистрации
+  string message = 3; // Сообщение
+}
+
+message AddRateRequest {
+  string competition = 1;
+  string author = 2;
+  string song_own = 3;
+  string song_remake = 4;
+  bool active = 5;
+  string rate_book = 6;
+  string status = 7;
+  string owner = 8;
+}
+
 message EditRequest {
+  string id = 1; // Идентификатор заявки
+
   string email = 1; // e-mail при входе
   string password = 2; // Пароль при входе
   string app_id = 3; // Идентификатор приложения для входа
