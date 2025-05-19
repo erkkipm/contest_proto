@@ -12,7 +12,7 @@ service ContestService {
   // Добавление новой заявки
   rpc AddContest (AddContestRequest) returns (AddContestResponse);
   // Добавление новой персоны
-  rpc AddPerson (AddPersonRequest) returns (AddPeersonResponse);
+  rpc AddPerson (AddPersonRequest) returns (AddPersonResponse);
 }
 
 // Country
@@ -66,7 +66,7 @@ message AddPersonRequest {
   google.protobuf.Timestamp expires = 14;
 }
 
-message AddPeersonResponse {
+message AddPersonResponse {
   string id = 1;
   string first_name = 2;
   string last_name = 3;

@@ -34,7 +34,7 @@ type ContestServiceClient interface {
 	// Добавление новой заявки
 	AddContest(ctx context.Context, in *AddContestRequest, opts ...grpc.CallOption) (*AddContestResponse, error)
 	// Добавление новой персоны
-	AddPerson(ctx context.Context, in *AddPersonRequest, opts ...grpc.CallOption) (*AddPeersonResponse, error)
+	AddPerson(ctx context.Context, in *AddPersonRequest, opts ...grpc.CallOption) (*AddPersonResponse, error)
 }
 
 type contestServiceClient struct {
@@ -55,9 +55,9 @@ func (c *contestServiceClient) AddContest(ctx context.Context, in *AddContestReq
 	return out, nil
 }
 
-func (c *contestServiceClient) AddPerson(ctx context.Context, in *AddPersonRequest, opts ...grpc.CallOption) (*AddPeersonResponse, error) {
+func (c *contestServiceClient) AddPerson(ctx context.Context, in *AddPersonRequest, opts ...grpc.CallOption) (*AddPersonResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddPeersonResponse)
+	out := new(AddPersonResponse)
 	err := c.cc.Invoke(ctx, ContestService_AddPerson_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -74,7 +74,7 @@ type ContestServiceServer interface {
 	// Добавление новой заявки
 	AddContest(context.Context, *AddContestRequest) (*AddContestResponse, error)
 	// Добавление новой персоны
-	AddPerson(context.Context, *AddPersonRequest) (*AddPeersonResponse, error)
+	AddPerson(context.Context, *AddPersonRequest) (*AddPersonResponse, error)
 	mustEmbedUnimplementedContestServiceServer()
 }
 
@@ -88,7 +88,7 @@ type UnimplementedContestServiceServer struct{}
 func (UnimplementedContestServiceServer) AddContest(context.Context, *AddContestRequest) (*AddContestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddContest not implemented")
 }
-func (UnimplementedContestServiceServer) AddPerson(context.Context, *AddPersonRequest) (*AddPeersonResponse, error) {
+func (UnimplementedContestServiceServer) AddPerson(context.Context, *AddPersonRequest) (*AddPersonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddPerson not implemented")
 }
 func (UnimplementedContestServiceServer) mustEmbedUnimplementedContestServiceServer() {}

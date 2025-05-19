@@ -454,7 +454,7 @@ func (x *AddPersonRequest) GetExpires() *timestamppb.Timestamp {
 	return nil
 }
 
-type AddPeersonResponse struct {
+type AddPersonResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	FirstName     string                 `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
@@ -474,20 +474,20 @@ type AddPeersonResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *AddPeersonResponse) Reset() {
-	*x = AddPeersonResponse{}
+func (x *AddPersonResponse) Reset() {
+	*x = AddPersonResponse{}
 	mi := &file_proto_contest_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *AddPeersonResponse) String() string {
+func (x *AddPersonResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*AddPeersonResponse) ProtoMessage() {}
+func (*AddPersonResponse) ProtoMessage() {}
 
-func (x *AddPeersonResponse) ProtoReflect() protoreflect.Message {
+func (x *AddPersonResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_contest_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -499,103 +499,103 @@ func (x *AddPeersonResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use AddPeersonResponse.ProtoReflect.Descriptor instead.
-func (*AddPeersonResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use AddPersonResponse.ProtoReflect.Descriptor instead.
+func (*AddPersonResponse) Descriptor() ([]byte, []int) {
 	return file_proto_contest_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *AddPeersonResponse) GetId() string {
+func (x *AddPersonResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *AddPeersonResponse) GetFirstName() string {
+func (x *AddPersonResponse) GetFirstName() string {
 	if x != nil {
 		return x.FirstName
 	}
 	return ""
 }
 
-func (x *AddPeersonResponse) GetLastName() string {
+func (x *AddPersonResponse) GetLastName() string {
 	if x != nil {
 		return x.LastName
 	}
 	return ""
 }
 
-func (x *AddPeersonResponse) GetMiddleName() string {
+func (x *AddPersonResponse) GetMiddleName() string {
 	if x != nil {
 		return x.MiddleName
 	}
 	return ""
 }
 
-func (x *AddPeersonResponse) GetPhone() []string {
+func (x *AddPersonResponse) GetPhone() []string {
 	if x != nil {
 		return x.Phone
 	}
 	return nil
 }
 
-func (x *AddPeersonResponse) GetEmail() []string {
+func (x *AddPersonResponse) GetEmail() []string {
 	if x != nil {
 		return x.Email
 	}
 	return nil
 }
 
-func (x *AddPeersonResponse) GetLogin() string {
+func (x *AddPersonResponse) GetLogin() string {
 	if x != nil {
 		return x.Login
 	}
 	return ""
 }
 
-func (x *AddPeersonResponse) GetCity() string {
+func (x *AddPersonResponse) GetCity() string {
 	if x != nil {
 		return x.City
 	}
 	return ""
 }
 
-func (x *AddPeersonResponse) GetCountry() string {
+func (x *AddPersonResponse) GetCountry() string {
 	if x != nil {
 		return x.Country
 	}
 	return ""
 }
 
-func (x *AddPeersonResponse) GetActive() bool {
+func (x *AddPersonResponse) GetActive() bool {
 	if x != nil {
 		return x.Active
 	}
 	return false
 }
 
-func (x *AddPeersonResponse) GetOwnerId() string {
+func (x *AddPersonResponse) GetOwnerId() string {
 	if x != nil {
 		return x.OwnerId
 	}
 	return ""
 }
 
-func (x *AddPeersonResponse) GetCreated() *timestamppb.Timestamp {
+func (x *AddPersonResponse) GetCreated() *timestamppb.Timestamp {
 	if x != nil {
 		return x.Created
 	}
 	return nil
 }
 
-func (x *AddPeersonResponse) GetUpdated() *timestamppb.Timestamp {
+func (x *AddPersonResponse) GetUpdated() *timestamppb.Timestamp {
 	if x != nil {
 		return x.Updated
 	}
 	return nil
 }
 
-func (x *AddPeersonResponse) GetExpires() *timestamppb.Timestamp {
+func (x *AddPersonResponse) GetExpires() *timestamppb.Timestamp {
 	if x != nil {
 		return x.Expires
 	}
@@ -2080,8 +2080,8 @@ const file_proto_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\v \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xc6\x03\n" +
-	"\x12AddPeersonResponse\x12\x0e\n" +
+	"\aexpires\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xc5\x03\n" +
+	"\x11AddPersonResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
 	"first_name\x18\x02 \x01(\tR\tfirstName\x12\x1b\n" +
@@ -2258,11 +2258,11 @@ const file_proto_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\x0f \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires2\x98\x01\n" +
+	"\aexpires\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires2\x97\x01\n" +
 	"\x0eContestService\x12C\n" +
 	"\n" +
-	"AddContest\x12\x19.models.AddContestRequest\x1a\x1a.models.AddContestResponse\x12A\n" +
-	"\tAddPerson\x12\x18.models.AddPersonRequest\x1a\x1a.models.AddPeersonResponseB,Z*github.com/erkkipm/contest_proto;contestV1b\x06proto3"
+	"AddContest\x12\x19.models.AddContestRequest\x1a\x1a.models.AddContestResponse\x12@\n" +
+	"\tAddPerson\x12\x18.models.AddPersonRequest\x1a\x19.models.AddPersonResponseB,Z*github.com/erkkipm/contest_proto;contestV1b\x06proto3"
 
 var (
 	file_proto_contest_proto_rawDescOnce sync.Once
@@ -2281,7 +2281,7 @@ var file_proto_contest_proto_goTypes = []any{
 	(*Country)(nil),               // 0: models.Country
 	(*Person)(nil),                // 1: models.Person
 	(*AddPersonRequest)(nil),      // 2: models.AddPersonRequest
-	(*AddPeersonResponse)(nil),    // 3: models.AddPeersonResponse
+	(*AddPersonResponse)(nil),     // 3: models.AddPersonResponse
 	(*AddContestRequest)(nil),     // 4: models.AddContestRequest
 	(*AddContestResponse)(nil),    // 5: models.AddContestResponse
 	(*Team)(nil),                  // 6: models.Team
@@ -2304,9 +2304,9 @@ var file_proto_contest_proto_depIdxs = []int32{
 	14, // 6: models.AddPersonRequest.created:type_name -> google.protobuf.Timestamp
 	14, // 7: models.AddPersonRequest.updated:type_name -> google.protobuf.Timestamp
 	14, // 8: models.AddPersonRequest.expires:type_name -> google.protobuf.Timestamp
-	14, // 9: models.AddPeersonResponse.created:type_name -> google.protobuf.Timestamp
-	14, // 10: models.AddPeersonResponse.updated:type_name -> google.protobuf.Timestamp
-	14, // 11: models.AddPeersonResponse.expires:type_name -> google.protobuf.Timestamp
+	14, // 9: models.AddPersonResponse.created:type_name -> google.protobuf.Timestamp
+	14, // 10: models.AddPersonResponse.updated:type_name -> google.protobuf.Timestamp
+	14, // 11: models.AddPersonResponse.expires:type_name -> google.protobuf.Timestamp
 	14, // 12: models.AddContestRequest.created:type_name -> google.protobuf.Timestamp
 	14, // 13: models.AddContestRequest.updated:type_name -> google.protobuf.Timestamp
 	14, // 14: models.AddContestRequest.expires:type_name -> google.protobuf.Timestamp
@@ -2354,7 +2354,7 @@ var file_proto_contest_proto_depIdxs = []int32{
 	4,  // 56: models.ContestService.AddContest:input_type -> models.AddContestRequest
 	2,  // 57: models.ContestService.AddPerson:input_type -> models.AddPersonRequest
 	5,  // 58: models.ContestService.AddContest:output_type -> models.AddContestResponse
-	3,  // 59: models.ContestService.AddPerson:output_type -> models.AddPeersonResponse
+	3,  // 59: models.ContestService.AddPerson:output_type -> models.AddPersonResponse
 	58, // [58:60] is the sub-list for method output_type
 	56, // [56:58] is the sub-list for method input_type
 	56, // [56:56] is the sub-list for extension type_name
