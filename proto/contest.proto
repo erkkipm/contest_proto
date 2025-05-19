@@ -1,6 +1,6 @@
 syntax = "proto3";
 // Текущий пакет - указывает пространство имен для сервиса и сообщений.
-package models;
+package contest;
 
 // Настройки для генерации GO кода. Используется при генерации файлов на GO
 option go_package = "github.com/erkkipm/contest_proto;contestV1";

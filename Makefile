@@ -1,39 +1,26 @@
-# Каталоги
-GEN_DIR    := ./gen/go
-PROTO_DIR  := ./proto
-# Имя proto-файла
-PROTO      := contest.proto
-# Протокол-буферный компилятор и пути поиска импортов
-PROTOC          := protoc
-PROTO_INCLUDES  := -I. -I/usr/local/Cellar/protobuf/29.3/include
-# Опции для Go-плагинов
-GO_OUT          := $(GEN_DIR)
-GO_OPTS         := --go_out=$(GO_OUT) --go_opt=paths=source_relative
-GRPC_OPTS       := --go-grpc_out=$(GO_OUT) --go-grpc_opt=paths=source_relative
+GEN_DIR = ./gen/go/
+PROTO_DIR = ./proto/
+PROTOC_INCLUDE = $(shell dirname $(shell which protoc))/../include
+GOOGLE_INCLUDE = /usr/local/include  # ← самый стабильный путь
 
 .PHONY: all
 all: install gen
 
 .PHONY: gen
 gen:
-	@echo "======= Генерация protobuf + gRPC-кода ========"
+	@echo "======= Генерация кода ========"
 	@rm -rf $(GEN_DIR)
 	@mkdir -p $(GEN_DIR)
-
-	$(PROTOC) \
-		$(PROTO_INCLUDES) \
-		$(GO_OPTS) \
-		$(GRPC_OPTS) \
-		$(PROTO_DIR)/$(PROTO) \
-	&& echo " ✅  Код сгенерирован в $(GEN_DIR)" \
-	|| echo " ❌  Ошибка генерации protobuf"
+	@protoc -I $(PROTO_DIR) -I $(PROTOC_INCLUDE) -I $(GOOGLE_INCLUDE) $(PROTO_DIR)*.proto \
+		--go_out=$(GEN_DIR) --go_opt=paths=source_relative \
+		--go-grpc_out=$(GEN_DIR) --go-grpc_opt=paths=source_relative \
+		--experimental_allow_proto3_optional \
+		&& echo " ✅  Код сгенерирован!" || echo " ❌  Код не сгенерирован!"
 
 .PHONY: install
 install:
-	@echo "Устанавливаем protoc-gen-go и protoc-gen-go-grpc"
 	@go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 	@go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+	@go get google.golang.org/protobuf
+	@brew upgrade protobuf
 	@protoc --version
-
-
-
