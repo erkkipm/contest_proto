@@ -1,5 +1,14 @@
 GEN_DIR = ./gen/go/
 PROTO_DIR = ./proto/
+# Имя proto-файла
+PROTO = contest.proto
+# Путь к protoc
+PROTOC = protoc
+# Каталоги для поиска импортов .proto
+# ВКЛЮЧАЕМ путь к timestamp.proto, найденный на твоей машине
+PROTO_INCLUDES = -I. -I/usr/local/Cellar/protobuf/29.3/include
+# Опции генерации Go-кода
+GO_OPTS = --go_out=. --go_opt=paths=source_relative
 
 .PHONY: all
 all: install gen
@@ -7,12 +16,10 @@ all: install gen
 .PHONY: gen
 gen:
 	@echo "======= Генерация кода ========"
+
 	@rm -rf $(GEN_DIR)
 	@mkdir -p $(GEN_DIR)
-	@protoc -I $(PROTO_DIR) $(PROTO_DIR)*.proto \
-			--go_out=$(GEN_DIR) --go_opt=paths=source_relative \
-	       	  --go-grpc_out=$(GEN_DIR) --go-grpc_opt=paths=source_relative \
-	        --experimental_allow_proto3_optional \
+	@$(PROTOC) $(PROTO_INCLUDES) $(GO_OPTS) $(PROTO_DIR)$(PROTO)\
 	       && echo " ✅  Код сгенерирован!" || echo " ❌  Код не сгенерирован!"
 
 .PHONY: install
