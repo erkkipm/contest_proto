@@ -1,11 +1,19 @@
 syntax = "proto3";
-
+// Текущий пакет - указывает пространство имен для сервиса и сообщений.
 package models;
 
 // Настройки для генерации GO кода. Используется при генерации файлов на GO
 option go_package = "github.com/erkkipm/contest_proto;contestV1";
 
 import "google/protobuf/timestamp.proto";
+
+// Сервис для входа и регистрации
+service ContestService {
+  // Добавление новой заявки
+  rpc AddContest (AddContestRequest) returns (AddContestResponse);
+  // Добавление новой персоны
+  rpc AddPerson (AddPersonRequest) returns (AddPeersonResponse);
+}
 
 // Country
 message Country {
@@ -25,6 +33,74 @@ message Country {
 
 // Person and CreatePerson
 message Person {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string middle_name = 4;
+  repeated string phone = 5;
+  repeated string email = 6;
+  string login = 7;
+  string city = 8;
+  string country = 9;
+  bool active = 10;
+  string owner_id = 11;
+  google.protobuf.Timestamp created = 12;
+  google.protobuf.Timestamp updated = 13;
+  google.protobuf.Timestamp expires = 14;
+}
+
+message AddPersonRequest {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string middle_name = 4;
+  repeated string phone = 5;
+  repeated string email = 6;
+  string login = 7;
+  string city = 8;
+  string country = 9;
+  bool active = 10;
+  string owner_id = 11;
+  google.protobuf.Timestamp created = 12;
+  google.protobuf.Timestamp updated = 13;
+  google.protobuf.Timestamp expires = 14;
+}
+
+message AddPeersonResponse {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string middle_name = 4;
+  repeated string phone = 5;
+  repeated string email = 6;
+  string login = 7;
+  string city = 8;
+  string country = 9;
+  bool active = 10;
+  string owner_id = 11;
+  google.protobuf.Timestamp created = 12;
+  google.protobuf.Timestamp updated = 13;
+  google.protobuf.Timestamp expires = 14;
+}
+
+message AddContestRequest {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string middle_name = 4;
+  repeated string phone = 5;
+  repeated string email = 6;
+  string login = 7;
+  string city = 8;
+  string country = 9;
+  bool active = 10;
+  string owner_id = 11;
+  google.protobuf.Timestamp created = 12;
+  google.protobuf.Timestamp updated = 13;
+  google.protobuf.Timestamp expires = 14;
+}
+
+message AddContestResponse {
   string id = 1;
   string first_name = 2;
   string last_name = 3;
