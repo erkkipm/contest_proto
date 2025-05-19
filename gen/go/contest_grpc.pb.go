@@ -21,147 +21,147 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ContestService_AddContest_FullMethodName = "/contest.ContestService/AddContest"
-	ContestService_AddPerson_FullMethodName  = "/contest.ContestService/AddPerson"
+	Contest_AddContest_FullMethodName = "/contest.Contest/AddContest"
+	Contest_AddPerson_FullMethodName  = "/contest.Contest/AddPerson"
 )
 
-// ContestServiceClient is the client API for ContestService service.
+// ContestClient is the client API for Contest service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
 // Сервис для входа и регистрации
-type ContestServiceClient interface {
+type ContestClient interface {
 	// Добавление новой заявки
 	AddContest(ctx context.Context, in *AddContestRequest, opts ...grpc.CallOption) (*AddContestResponse, error)
 	// Добавление новой персоны
 	AddPerson(ctx context.Context, in *AddPersonRequest, opts ...grpc.CallOption) (*AddPersonResponse, error)
 }
 
-type contestServiceClient struct {
+type contestClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewContestServiceClient(cc grpc.ClientConnInterface) ContestServiceClient {
-	return &contestServiceClient{cc}
+func NewContestClient(cc grpc.ClientConnInterface) ContestClient {
+	return &contestClient{cc}
 }
 
-func (c *contestServiceClient) AddContest(ctx context.Context, in *AddContestRequest, opts ...grpc.CallOption) (*AddContestResponse, error) {
+func (c *contestClient) AddContest(ctx context.Context, in *AddContestRequest, opts ...grpc.CallOption) (*AddContestResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(AddContestResponse)
-	err := c.cc.Invoke(ctx, ContestService_AddContest_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Contest_AddContest_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *contestServiceClient) AddPerson(ctx context.Context, in *AddPersonRequest, opts ...grpc.CallOption) (*AddPersonResponse, error) {
+func (c *contestClient) AddPerson(ctx context.Context, in *AddPersonRequest, opts ...grpc.CallOption) (*AddPersonResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(AddPersonResponse)
-	err := c.cc.Invoke(ctx, ContestService_AddPerson_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Contest_AddPerson_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ContestServiceServer is the server API for ContestService service.
-// All implementations must embed UnimplementedContestServiceServer
+// ContestServer is the server API for Contest service.
+// All implementations must embed UnimplementedContestServer
 // for forward compatibility.
 //
 // Сервис для входа и регистрации
-type ContestServiceServer interface {
+type ContestServer interface {
 	// Добавление новой заявки
 	AddContest(context.Context, *AddContestRequest) (*AddContestResponse, error)
 	// Добавление новой персоны
 	AddPerson(context.Context, *AddPersonRequest) (*AddPersonResponse, error)
-	mustEmbedUnimplementedContestServiceServer()
+	mustEmbedUnimplementedContestServer()
 }
 
-// UnimplementedContestServiceServer must be embedded to have
+// UnimplementedContestServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedContestServiceServer struct{}
+type UnimplementedContestServer struct{}
 
-func (UnimplementedContestServiceServer) AddContest(context.Context, *AddContestRequest) (*AddContestResponse, error) {
+func (UnimplementedContestServer) AddContest(context.Context, *AddContestRequest) (*AddContestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddContest not implemented")
 }
-func (UnimplementedContestServiceServer) AddPerson(context.Context, *AddPersonRequest) (*AddPersonResponse, error) {
+func (UnimplementedContestServer) AddPerson(context.Context, *AddPersonRequest) (*AddPersonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddPerson not implemented")
 }
-func (UnimplementedContestServiceServer) mustEmbedUnimplementedContestServiceServer() {}
-func (UnimplementedContestServiceServer) testEmbeddedByValue()                        {}
+func (UnimplementedContestServer) mustEmbedUnimplementedContestServer() {}
+func (UnimplementedContestServer) testEmbeddedByValue()                 {}
 
-// UnsafeContestServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ContestServiceServer will
+// UnsafeContestServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ContestServer will
 // result in compilation errors.
-type UnsafeContestServiceServer interface {
-	mustEmbedUnimplementedContestServiceServer()
+type UnsafeContestServer interface {
+	mustEmbedUnimplementedContestServer()
 }
 
-func RegisterContestServiceServer(s grpc.ServiceRegistrar, srv ContestServiceServer) {
-	// If the following call pancis, it indicates UnimplementedContestServiceServer was
+func RegisterContestServer(s grpc.ServiceRegistrar, srv ContestServer) {
+	// If the following call pancis, it indicates UnimplementedContestServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&ContestService_ServiceDesc, srv)
+	s.RegisterService(&Contest_ServiceDesc, srv)
 }
 
-func _ContestService_AddContest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Contest_AddContest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddContestRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ContestServiceServer).AddContest(ctx, in)
+		return srv.(ContestServer).AddContest(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ContestService_AddContest_FullMethodName,
+		FullMethod: Contest_AddContest_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContestServiceServer).AddContest(ctx, req.(*AddContestRequest))
+		return srv.(ContestServer).AddContest(ctx, req.(*AddContestRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ContestService_AddPerson_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Contest_AddPerson_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddPersonRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ContestServiceServer).AddPerson(ctx, in)
+		return srv.(ContestServer).AddPerson(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ContestService_AddPerson_FullMethodName,
+		FullMethod: Contest_AddPerson_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContestServiceServer).AddPerson(ctx, req.(*AddPersonRequest))
+		return srv.(ContestServer).AddPerson(ctx, req.(*AddPersonRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// ContestService_ServiceDesc is the grpc.ServiceDesc for ContestService service.
+// Contest_ServiceDesc is the grpc.ServiceDesc for Contest service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var ContestService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "contest.ContestService",
-	HandlerType: (*ContestServiceServer)(nil),
+var Contest_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "contest.Contest",
+	HandlerType: (*ContestServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "AddContest",
-			Handler:    _ContestService_AddContest_Handler,
+			Handler:    _Contest_AddContest_Handler,
 		},
 		{
 			MethodName: "AddPerson",
-			Handler:    _ContestService_AddPerson_Handler,
+			Handler:    _Contest_AddPerson_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

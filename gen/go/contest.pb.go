@@ -1696,155 +1696,6 @@ func (x *RateBook) GetExpires() *timestamppb.Timestamp {
 	return nil
 }
 
-// Contest, CreateContest, FullContent
-type Contest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Date          *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
-	Competition   string                 `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
-	Author        string                 `protobuf:"bytes,4,opt,name=author,proto3" json:"author,omitempty"`
-	SongOwn       string                 `protobuf:"bytes,5,opt,name=song_own,json=songOwn,proto3" json:"song_own,omitempty"`
-	SongRemake    string                 `protobuf:"bytes,6,opt,name=song_remake,json=songRemake,proto3" json:"song_remake,omitempty"`
-	Sort          int32                  `protobuf:"varint,7,opt,name=sort,proto3" json:"sort,omitempty"`
-	RateBook      []string               `protobuf:"bytes,8,rep,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
-	Status        int32                  `protobuf:"varint,9,opt,name=status,proto3" json:"status,omitempty"`
-	Active        bool                   `protobuf:"varint,10,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,11,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=expires,proto3" json:"expires,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Contest) Reset() {
-	*x = Contest{}
-	mi := &file_contest_proto_msgTypes[12]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Contest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Contest) ProtoMessage() {}
-
-func (x *Contest) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[12]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Contest.ProtoReflect.Descriptor instead.
-func (*Contest) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{12}
-}
-
-func (x *Contest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *Contest) GetDate() *timestamppb.Timestamp {
-	if x != nil {
-		return x.Date
-	}
-	return nil
-}
-
-func (x *Contest) GetCompetition() string {
-	if x != nil {
-		return x.Competition
-	}
-	return ""
-}
-
-func (x *Contest) GetAuthor() string {
-	if x != nil {
-		return x.Author
-	}
-	return ""
-}
-
-func (x *Contest) GetSongOwn() string {
-	if x != nil {
-		return x.SongOwn
-	}
-	return ""
-}
-
-func (x *Contest) GetSongRemake() string {
-	if x != nil {
-		return x.SongRemake
-	}
-	return ""
-}
-
-func (x *Contest) GetSort() int32 {
-	if x != nil {
-		return x.Sort
-	}
-	return 0
-}
-
-func (x *Contest) GetRateBook() []string {
-	if x != nil {
-		return x.RateBook
-	}
-	return nil
-}
-
-func (x *Contest) GetStatus() int32 {
-	if x != nil {
-		return x.Status
-	}
-	return 0
-}
-
-func (x *Contest) GetActive() bool {
-	if x != nil {
-		return x.Active
-	}
-	return false
-}
-
-func (x *Contest) GetOwnerId() string {
-	if x != nil {
-		return x.OwnerId
-	}
-	return ""
-}
-
-func (x *Contest) GetCreated() *timestamppb.Timestamp {
-	if x != nil {
-		return x.Created
-	}
-	return nil
-}
-
-func (x *Contest) GetUpdated() *timestamppb.Timestamp {
-	if x != nil {
-		return x.Updated
-	}
-	return nil
-}
-
-func (x *Contest) GetExpires() *timestamppb.Timestamp {
-	if x != nil {
-		return x.Expires
-	}
-	return nil
-}
-
 type FullContent struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
 	Id                 string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -1871,7 +1722,7 @@ type FullContent struct {
 
 func (x *FullContent) Reset() {
 	*x = FullContent{}
-	mi := &file_contest_proto_msgTypes[13]
+	mi := &file_contest_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1883,7 +1734,7 @@ func (x *FullContent) String() string {
 func (*FullContent) ProtoMessage() {}
 
 func (x *FullContent) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[13]
+	mi := &file_contest_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1896,7 +1747,7 @@ func (x *FullContent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FullContent.ProtoReflect.Descriptor instead.
 func (*FullContent) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{13}
+	return file_contest_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *FullContent) GetId() string {
@@ -2220,24 +2071,7 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\x06 \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xdd\x03\n" +
-	"\aContest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
-	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12 \n" +
-	"\vcompetition\x18\x03 \x01(\tR\vcompetition\x12\x16\n" +
-	"\x06author\x18\x04 \x01(\tR\x06author\x12\x19\n" +
-	"\bsong_own\x18\x05 \x01(\tR\asongOwn\x12\x1f\n" +
-	"\vsong_remake\x18\x06 \x01(\tR\n" +
-	"songRemake\x12\x12\n" +
-	"\x04sort\x18\a \x01(\x05R\x04sort\x12\x1b\n" +
-	"\trate_book\x18\b \x03(\tR\brateBook\x12\x16\n" +
-	"\x06status\x18\t \x01(\x05R\x06status\x12\x16\n" +
-	"\x06active\x18\n" +
-	" \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\v \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xab\x06\n" +
+	"\aexpires\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xab\x06\n" +
 	"\vFullContent\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x122\n" +
@@ -2258,11 +2092,11 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\x0f \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires2\x9b\x01\n" +
-	"\x0eContestService\x12E\n" +
+	"\aexpires\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires2\x94\x01\n" +
+	"\aContest\x12E\n" +
 	"\n" +
 	"AddContest\x12\x1a.contest.AddContestRequest\x1a\x1b.contest.AddContestResponse\x12B\n" +
-	"\tAddPerson\x12\x19.contest.AddPersonRequest\x1a\x1a.contest.AddPersonResponseB,Z*github.com/erkkipm/contest_proto;contestV1b\x06proto3"
+	"\tAddPerson\x12\x19.contest.AddPersonRequest\x1a\x1a.contest.AddPersonResponseB3Z1github.com/erkkipm/contest_proto/gen/go;contestV1b\x06proto3"
 
 var (
 	file_contest_proto_rawDescOnce sync.Once
@@ -2276,7 +2110,7 @@ func file_contest_proto_rawDescGZIP() []byte {
 	return file_contest_proto_rawDescData
 }
 
-var file_contest_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_contest_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_contest_proto_goTypes = []any{
 	(*Country)(nil),               // 0: contest.Country
 	(*Person)(nil),                // 1: contest.Person
@@ -2290,76 +2124,71 @@ var file_contest_proto_goTypes = []any{
 	(*Project)(nil),               // 9: contest.Project
 	(*Rate)(nil),                  // 10: contest.Rate
 	(*RateBook)(nil),              // 11: contest.RateBook
-	(*Contest)(nil),               // 12: contest.Contest
-	(*FullContent)(nil),           // 13: contest.FullContent
-	(*timestamppb.Timestamp)(nil), // 14: google.protobuf.Timestamp
+	(*FullContent)(nil),           // 12: contest.FullContent
+	(*timestamppb.Timestamp)(nil), // 13: google.protobuf.Timestamp
 }
 var file_contest_proto_depIdxs = []int32{
-	14, // 0: contest.Country.created:type_name -> google.protobuf.Timestamp
-	14, // 1: contest.Country.updated:type_name -> google.protobuf.Timestamp
-	14, // 2: contest.Country.expires:type_name -> google.protobuf.Timestamp
-	14, // 3: contest.Person.created:type_name -> google.protobuf.Timestamp
-	14, // 4: contest.Person.updated:type_name -> google.protobuf.Timestamp
-	14, // 5: contest.Person.expires:type_name -> google.protobuf.Timestamp
-	14, // 6: contest.AddPersonRequest.created:type_name -> google.protobuf.Timestamp
-	14, // 7: contest.AddPersonRequest.updated:type_name -> google.protobuf.Timestamp
-	14, // 8: contest.AddPersonRequest.expires:type_name -> google.protobuf.Timestamp
-	14, // 9: contest.AddPersonResponse.created:type_name -> google.protobuf.Timestamp
-	14, // 10: contest.AddPersonResponse.updated:type_name -> google.protobuf.Timestamp
-	14, // 11: contest.AddPersonResponse.expires:type_name -> google.protobuf.Timestamp
-	14, // 12: contest.AddContestRequest.created:type_name -> google.protobuf.Timestamp
-	14, // 13: contest.AddContestRequest.updated:type_name -> google.protobuf.Timestamp
-	14, // 14: contest.AddContestRequest.expires:type_name -> google.protobuf.Timestamp
-	14, // 15: contest.AddContestResponse.created:type_name -> google.protobuf.Timestamp
-	14, // 16: contest.AddContestResponse.updated:type_name -> google.protobuf.Timestamp
-	14, // 17: contest.AddContestResponse.expires:type_name -> google.protobuf.Timestamp
+	13, // 0: contest.Country.created:type_name -> google.protobuf.Timestamp
+	13, // 1: contest.Country.updated:type_name -> google.protobuf.Timestamp
+	13, // 2: contest.Country.expires:type_name -> google.protobuf.Timestamp
+	13, // 3: contest.Person.created:type_name -> google.protobuf.Timestamp
+	13, // 4: contest.Person.updated:type_name -> google.protobuf.Timestamp
+	13, // 5: contest.Person.expires:type_name -> google.protobuf.Timestamp
+	13, // 6: contest.AddPersonRequest.created:type_name -> google.protobuf.Timestamp
+	13, // 7: contest.AddPersonRequest.updated:type_name -> google.protobuf.Timestamp
+	13, // 8: contest.AddPersonRequest.expires:type_name -> google.protobuf.Timestamp
+	13, // 9: contest.AddPersonResponse.created:type_name -> google.protobuf.Timestamp
+	13, // 10: contest.AddPersonResponse.updated:type_name -> google.protobuf.Timestamp
+	13, // 11: contest.AddPersonResponse.expires:type_name -> google.protobuf.Timestamp
+	13, // 12: contest.AddContestRequest.created:type_name -> google.protobuf.Timestamp
+	13, // 13: contest.AddContestRequest.updated:type_name -> google.protobuf.Timestamp
+	13, // 14: contest.AddContestRequest.expires:type_name -> google.protobuf.Timestamp
+	13, // 15: contest.AddContestResponse.created:type_name -> google.protobuf.Timestamp
+	13, // 16: contest.AddContestResponse.updated:type_name -> google.protobuf.Timestamp
+	13, // 17: contest.AddContestResponse.expires:type_name -> google.protobuf.Timestamp
 	1,  // 18: contest.Team.person:type_name -> contest.Person
-	14, // 19: contest.Team.created:type_name -> google.protobuf.Timestamp
-	14, // 20: contest.Team.updated:type_name -> google.protobuf.Timestamp
-	14, // 21: contest.Team.expires:type_name -> google.protobuf.Timestamp
-	14, // 22: contest.Artist.created:type_name -> google.protobuf.Timestamp
-	14, // 23: contest.Artist.updated:type_name -> google.protobuf.Timestamp
-	14, // 24: contest.Artist.expires:type_name -> google.protobuf.Timestamp
-	14, // 25: contest.Song.created:type_name -> google.protobuf.Timestamp
-	14, // 26: contest.Song.updated:type_name -> google.protobuf.Timestamp
-	14, // 27: contest.Song.expires:type_name -> google.protobuf.Timestamp
-	14, // 28: contest.Project.start:type_name -> google.protobuf.Timestamp
-	14, // 29: contest.Project.finish:type_name -> google.protobuf.Timestamp
-	14, // 30: contest.Project.created:type_name -> google.protobuf.Timestamp
-	14, // 31: contest.Project.updated:type_name -> google.protobuf.Timestamp
-	14, // 32: contest.Project.expires:type_name -> google.protobuf.Timestamp
-	14, // 33: contest.Rate.created:type_name -> google.protobuf.Timestamp
-	14, // 34: contest.Rate.updated:type_name -> google.protobuf.Timestamp
-	14, // 35: contest.Rate.expires:type_name -> google.protobuf.Timestamp
-	14, // 36: contest.RateBook.created:type_name -> google.protobuf.Timestamp
-	14, // 37: contest.RateBook.updated:type_name -> google.protobuf.Timestamp
-	14, // 38: contest.RateBook.expires:type_name -> google.protobuf.Timestamp
-	14, // 39: contest.Contest.date:type_name -> google.protobuf.Timestamp
-	14, // 40: contest.Contest.created:type_name -> google.protobuf.Timestamp
-	14, // 41: contest.Contest.updated:type_name -> google.protobuf.Timestamp
-	14, // 42: contest.Contest.expires:type_name -> google.protobuf.Timestamp
-	14, // 43: contest.FullContent.date:type_name -> google.protobuf.Timestamp
-	9,  // 44: contest.FullContent.competition:type_name -> contest.Project
-	1,  // 45: contest.FullContent.author:type_name -> contest.Person
-	11, // 46: contest.FullContent.rate_book:type_name -> contest.RateBook
-	8,  // 47: contest.FullContent.song_own:type_name -> contest.Song
-	7,  // 48: contest.FullContent.artist_song_own:type_name -> contest.Artist
-	10, // 49: contest.FullContent.rate_book_song_own:type_name -> contest.Rate
-	8,  // 50: contest.FullContent.song_remake:type_name -> contest.Song
-	7,  // 51: contest.FullContent.artist_song_remake:type_name -> contest.Artist
-	10, // 52: contest.FullContent.rate_book_song_remake:type_name -> contest.Rate
-	14, // 53: contest.FullContent.created:type_name -> google.protobuf.Timestamp
-	14, // 54: contest.FullContent.updated:type_name -> google.protobuf.Timestamp
-	14, // 55: contest.FullContent.expires:type_name -> google.protobuf.Timestamp
-	4,  // 56: contest.ContestService.AddContest:input_type -> contest.AddContestRequest
-	2,  // 57: contest.ContestService.AddPerson:input_type -> contest.AddPersonRequest
-	5,  // 58: contest.ContestService.AddContest:output_type -> contest.AddContestResponse
-	3,  // 59: contest.ContestService.AddPerson:output_type -> contest.AddPersonResponse
-	58, // [58:60] is the sub-list for method output_type
-	56, // [56:58] is the sub-list for method input_type
-	56, // [56:56] is the sub-list for extension type_name
-	56, // [56:56] is the sub-list for extension extendee
-	0,  // [0:56] is the sub-list for field type_name
+	13, // 19: contest.Team.created:type_name -> google.protobuf.Timestamp
+	13, // 20: contest.Team.updated:type_name -> google.protobuf.Timestamp
+	13, // 21: contest.Team.expires:type_name -> google.protobuf.Timestamp
+	13, // 22: contest.Artist.created:type_name -> google.protobuf.Timestamp
+	13, // 23: contest.Artist.updated:type_name -> google.protobuf.Timestamp
+	13, // 24: contest.Artist.expires:type_name -> google.protobuf.Timestamp
+	13, // 25: contest.Song.created:type_name -> google.protobuf.Timestamp
+	13, // 26: contest.Song.updated:type_name -> google.protobuf.Timestamp
+	13, // 27: contest.Song.expires:type_name -> google.protobuf.Timestamp
+	13, // 28: contest.Project.start:type_name -> google.protobuf.Timestamp
+	13, // 29: contest.Project.finish:type_name -> google.protobuf.Timestamp
+	13, // 30: contest.Project.created:type_name -> google.protobuf.Timestamp
+	13, // 31: contest.Project.updated:type_name -> google.protobuf.Timestamp
+	13, // 32: contest.Project.expires:type_name -> google.protobuf.Timestamp
+	13, // 33: contest.Rate.created:type_name -> google.protobuf.Timestamp
+	13, // 34: contest.Rate.updated:type_name -> google.protobuf.Timestamp
+	13, // 35: contest.Rate.expires:type_name -> google.protobuf.Timestamp
+	13, // 36: contest.RateBook.created:type_name -> google.protobuf.Timestamp
+	13, // 37: contest.RateBook.updated:type_name -> google.protobuf.Timestamp
+	13, // 38: contest.RateBook.expires:type_name -> google.protobuf.Timestamp
+	13, // 39: contest.FullContent.date:type_name -> google.protobuf.Timestamp
+	9,  // 40: contest.FullContent.competition:type_name -> contest.Project
+	1,  // 41: contest.FullContent.author:type_name -> contest.Person
+	11, // 42: contest.FullContent.rate_book:type_name -> contest.RateBook
+	8,  // 43: contest.FullContent.song_own:type_name -> contest.Song
+	7,  // 44: contest.FullContent.artist_song_own:type_name -> contest.Artist
+	10, // 45: contest.FullContent.rate_book_song_own:type_name -> contest.Rate
+	8,  // 46: contest.FullContent.song_remake:type_name -> contest.Song
+	7,  // 47: contest.FullContent.artist_song_remake:type_name -> contest.Artist
+	10, // 48: contest.FullContent.rate_book_song_remake:type_name -> contest.Rate
+	13, // 49: contest.FullContent.created:type_name -> google.protobuf.Timestamp
+	13, // 50: contest.FullContent.updated:type_name -> google.protobuf.Timestamp
+	13, // 51: contest.FullContent.expires:type_name -> google.protobuf.Timestamp
+	4,  // 52: contest.Contest.AddContest:input_type -> contest.AddContestRequest
+	2,  // 53: contest.Contest.AddPerson:input_type -> contest.AddPersonRequest
+	5,  // 54: contest.Contest.AddContest:output_type -> contest.AddContestResponse
+	3,  // 55: contest.Contest.AddPerson:output_type -> contest.AddPersonResponse
+	54, // [54:56] is the sub-list for method output_type
+	52, // [52:54] is the sub-list for method input_type
+	52, // [52:52] is the sub-list for extension type_name
+	52, // [52:52] is the sub-list for extension extendee
+	0,  // [0:52] is the sub-list for field type_name
 }
 
 func init() { file_contest_proto_init() }
@@ -2373,7 +2202,7 @@ func file_contest_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_contest_proto_rawDesc), len(file_contest_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   14,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
