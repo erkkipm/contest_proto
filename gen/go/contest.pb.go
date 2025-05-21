@@ -168,12 +168,13 @@ type Person struct {
 	Email         []string               `protobuf:"bytes,6,rep,name=email,proto3" json:"email,omitempty"`
 	Login         string                 `protobuf:"bytes,7,opt,name=login,proto3" json:"login,omitempty"`
 	City          string                 `protobuf:"bytes,8,opt,name=city,proto3" json:"city,omitempty"`
-	Country       string                 `protobuf:"bytes,9,opt,name=country,proto3" json:"country,omitempty"`
-	Active        bool                   `protobuf:"varint,10,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,11,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=expires,proto3" json:"expires,omitempty"`
+	Bio           string                 `protobuf:"bytes,9,opt,name=bio,proto3" json:"bio,omitempty"`
+	Country       string                 `protobuf:"bytes,10,opt,name=country,proto3" json:"country,omitempty"`
+	Active        bool                   `protobuf:"varint,11,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,12,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=expires,proto3" json:"expires,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -264,6 +265,13 @@ func (x *Person) GetCity() string {
 	return ""
 }
 
+func (x *Person) GetBio() string {
+	if x != nil {
+		return x.Bio
+	}
+	return ""
+}
+
 func (x *Person) GetCountry() string {
 	if x != nil {
 		return x.Country
@@ -316,12 +324,13 @@ type AddPersonRequest struct {
 	Email         []string               `protobuf:"bytes,6,rep,name=email,proto3" json:"email,omitempty"`
 	Login         string                 `protobuf:"bytes,7,opt,name=login,proto3" json:"login,omitempty"`
 	City          string                 `protobuf:"bytes,8,opt,name=city,proto3" json:"city,omitempty"`
-	Country       string                 `protobuf:"bytes,9,opt,name=country,proto3" json:"country,omitempty"`
-	Active        bool                   `protobuf:"varint,10,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,11,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=expires,proto3" json:"expires,omitempty"`
+	Bio           string                 `protobuf:"bytes,9,opt,name=bio,proto3" json:"bio,omitempty"`
+	Country       string                 `protobuf:"bytes,10,opt,name=country,proto3" json:"country,omitempty"`
+	Active        bool                   `protobuf:"varint,11,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,12,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=expires,proto3" json:"expires,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -408,6 +417,13 @@ func (x *AddPersonRequest) GetLogin() string {
 func (x *AddPersonRequest) GetCity() string {
 	if x != nil {
 		return x.City
+	}
+	return ""
+}
+
+func (x *AddPersonRequest) GetBio() string {
+	if x != nil {
+		return x.Bio
 	}
 	return ""
 }
@@ -1895,7 +1911,7 @@ const file_contest_proto_rawDesc = "" +
 	"\acreated\x18\n" +
 	" \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xba\x03\n" +
+	"\aexpires\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xcc\x03\n" +
 	"\x06Person\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
@@ -1906,14 +1922,15 @@ const file_contest_proto_rawDesc = "" +
 	"\x05phone\x18\x05 \x03(\tR\x05phone\x12\x14\n" +
 	"\x05email\x18\x06 \x03(\tR\x05email\x12\x14\n" +
 	"\x05login\x18\a \x01(\tR\x05login\x12\x12\n" +
-	"\x04city\x18\b \x01(\tR\x04city\x12\x18\n" +
-	"\acountry\x18\t \x01(\tR\acountry\x12\x16\n" +
-	"\x06active\x18\n" +
-	" \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\v \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xc4\x03\n" +
+	"\x04city\x18\b \x01(\tR\x04city\x12\x10\n" +
+	"\x03bio\x18\t \x01(\tR\x03bio\x12\x18\n" +
+	"\acountry\x18\n" +
+	" \x01(\tR\acountry\x12\x16\n" +
+	"\x06active\x18\v \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\f \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xd6\x03\n" +
 	"\x10AddPersonRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
@@ -1924,14 +1941,15 @@ const file_contest_proto_rawDesc = "" +
 	"\x05phone\x18\x05 \x03(\tR\x05phone\x12\x14\n" +
 	"\x05email\x18\x06 \x03(\tR\x05email\x12\x14\n" +
 	"\x05login\x18\a \x01(\tR\x05login\x12\x12\n" +
-	"\x04city\x18\b \x01(\tR\x04city\x12\x18\n" +
-	"\acountry\x18\t \x01(\tR\acountry\x12\x16\n" +
-	"\x06active\x18\n" +
-	" \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\v \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xc5\x03\n" +
+	"\x04city\x18\b \x01(\tR\x04city\x12\x10\n" +
+	"\x03bio\x18\t \x01(\tR\x03bio\x12\x18\n" +
+	"\acountry\x18\n" +
+	" \x01(\tR\acountry\x12\x16\n" +
+	"\x06active\x18\v \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\f \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xc5\x03\n" +
 	"\x11AddPersonResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +

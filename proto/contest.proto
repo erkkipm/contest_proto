@@ -41,12 +41,13 @@ message Person {
   repeated string email = 6;
   string login = 7;
   string city = 8;
-  string country = 9;
-  bool active = 10;
-  string owner_id = 11;
-  google.protobuf.Timestamp created = 12;
-  google.protobuf.Timestamp updated = 13;
-  google.protobuf.Timestamp expires = 14;
+  string bio = 9;
+  string country = 10;
+  bool active = 11;
+  string owner_id = 12;
+  google.protobuf.Timestamp created = 13;
+  google.protobuf.Timestamp updated = 14;
+  google.protobuf.Timestamp expires = 15;
 }
 
 message AddPersonRequest {
@@ -58,12 +59,13 @@ message AddPersonRequest {
   repeated string email = 6;
   string login = 7;
   string city = 8;
-  string country = 9;
-  bool active = 10;
-  string owner_id = 11;
-  google.protobuf.Timestamp created = 12;
-  google.protobuf.Timestamp updated = 13;
-  google.protobuf.Timestamp expires = 14;
+  string bio = 9;
+  string country = 10;
+  bool active = 11;
+  string owner_id = 12;
+  google.protobuf.Timestamp created = 13;
+  google.protobuf.Timestamp updated = 14;
+  google.protobuf.Timestamp expires = 15;
 }
 
 message AddPersonResponse {
