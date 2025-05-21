@@ -23,6 +23,8 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	Contest_AddContest_FullMethodName = "/contest.Contest/AddContest"
 	Contest_AddPerson_FullMethodName  = "/contest.Contest/AddPerson"
+	Contest_AddArtist_FullMethodName  = "/contest.Contest/AddArtist"
+	Contest_AddSong_FullMethodName    = "/contest.Contest/AddSong"
 )
 
 // ContestClient is the client API for Contest service.
@@ -35,6 +37,8 @@ type ContestClient interface {
 	AddContest(ctx context.Context, in *AddContestRequest, opts ...grpc.CallOption) (*AddContestResponse, error)
 	// Добавление новой персоны
 	AddPerson(ctx context.Context, in *AddPersonRequest, opts ...grpc.CallOption) (*AddPersonResponse, error)
+	AddArtist(ctx context.Context, in *AddArtistRequest, opts ...grpc.CallOption) (*AddArtistResponse, error)
+	AddSong(ctx context.Context, in *AddSongRequest, opts ...grpc.CallOption) (*AddSongResponse, error)
 }
 
 type contestClient struct {
@@ -65,6 +69,26 @@ func (c *contestClient) AddPerson(ctx context.Context, in *AddPersonRequest, opt
 	return out, nil
 }
 
+func (c *contestClient) AddArtist(ctx context.Context, in *AddArtistRequest, opts ...grpc.CallOption) (*AddArtistResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddArtistResponse)
+	err := c.cc.Invoke(ctx, Contest_AddArtist_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contestClient) AddSong(ctx context.Context, in *AddSongRequest, opts ...grpc.CallOption) (*AddSongResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddSongResponse)
+	err := c.cc.Invoke(ctx, Contest_AddSong_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ContestServer is the server API for Contest service.
 // All implementations must embed UnimplementedContestServer
 // for forward compatibility.
@@ -75,6 +99,8 @@ type ContestServer interface {
 	AddContest(context.Context, *AddContestRequest) (*AddContestResponse, error)
 	// Добавление новой персоны
 	AddPerson(context.Context, *AddPersonRequest) (*AddPersonResponse, error)
+	AddArtist(context.Context, *AddArtistRequest) (*AddArtistResponse, error)
+	AddSong(context.Context, *AddSongRequest) (*AddSongResponse, error)
 	mustEmbedUnimplementedContestServer()
 }
 
@@ -90,6 +116,12 @@ func (UnimplementedContestServer) AddContest(context.Context, *AddContestRequest
 }
 func (UnimplementedContestServer) AddPerson(context.Context, *AddPersonRequest) (*AddPersonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddPerson not implemented")
+}
+func (UnimplementedContestServer) AddArtist(context.Context, *AddArtistRequest) (*AddArtistResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddArtist not implemented")
+}
+func (UnimplementedContestServer) AddSong(context.Context, *AddSongRequest) (*AddSongResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddSong not implemented")
 }
 func (UnimplementedContestServer) mustEmbedUnimplementedContestServer() {}
 func (UnimplementedContestServer) testEmbeddedByValue()                 {}
@@ -148,6 +180,42 @@ func _Contest_AddPerson_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Contest_AddArtist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddArtistRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).AddArtist(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_AddArtist_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).AddArtist(ctx, req.(*AddArtistRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Contest_AddSong_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddSongRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).AddSong(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_AddSong_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).AddSong(ctx, req.(*AddSongRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Contest_ServiceDesc is the grpc.ServiceDesc for Contest service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -162,6 +230,14 @@ var Contest_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddPerson",
 			Handler:    _Contest_AddPerson_Handler,
+		},
+		{
+			MethodName: "AddArtist",
+			Handler:    _Contest_AddArtist_Handler,
+		},
+		{
+			MethodName: "AddSong",
+			Handler:    _Contest_AddSong_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

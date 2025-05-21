@@ -13,25 +13,11 @@ service Contest{
   rpc AddContest (AddContestRequest) returns (AddContestResponse);
   // Добавление новой персоны
   rpc AddPerson (AddPersonRequest) returns (AddPersonResponse);
+  rpc AddArtist (AddArtistRequest) returns (AddArtistResponse);
+  rpc AddSong (AddSongRequest) returns (AddSongResponse);
 }
 
-// Country
-message Country {
-  string id = 1;
-  string title = 2;
-  string short_title = 3;
-  string title_rus = 4;
-  string short_title_rus = 5;
-  string language = 6;
-  string kode = 7;
-  bool active = 8;
-  string owner_id = 9;
-  google.protobuf.Timestamp created = 10;
-  google.protobuf.Timestamp updated = 11;
-  google.protobuf.Timestamp expires = 12;
-}
-
-// Person and CreatePerson
+// Person
 message Person {
   string id = 1;
   string first_name = 2;
@@ -49,7 +35,6 @@ message Person {
   google.protobuf.Timestamp updated = 14;
   google.protobuf.Timestamp expires = 15;
 }
-
 message AddPersonRequest {
   string first_name = 2;
   string last_name = 3;
@@ -66,7 +51,6 @@ message AddPersonRequest {
   google.protobuf.Timestamp updated = 14;
   google.protobuf.Timestamp expires = 15;
 }
-
 message AddPersonResponse {
   string id = 1;
   string first_name = 2;
@@ -85,52 +69,22 @@ message AddPersonResponse {
   google.protobuf.Timestamp expires = 15;
 }
 
+// Contest
 message AddContestRequest {
   string id = 1;
-  string first_name = 2;
-  string last_name = 3;
-  string middle_name = 4;
-  repeated string phone = 5;
-  repeated string email = 6;
-  string login = 7;
-  string city = 8;
-  string country = 9;
   bool active = 10;
   string owner_id = 11;
   google.protobuf.Timestamp created = 12;
   google.protobuf.Timestamp updated = 13;
   google.protobuf.Timestamp expires = 14;
 }
-
 message AddContestResponse {
   string id = 1;
-  string first_name = 2;
-  string last_name = 3;
-  string middle_name = 4;
-  repeated string phone = 5;
-  repeated string email = 6;
-  string login = 7;
-  string city = 8;
-  string country = 9;
   bool active = 10;
   string owner_id = 11;
   google.protobuf.Timestamp created = 12;
   google.protobuf.Timestamp updated = 13;
   google.protobuf.Timestamp expires = 14;
-}
-
-
-// Team and CreateTeam
-message Team {
-  string id = 1;
-  repeated Person person = 2;
-  string artist = 3;
-  string status = 4;
-  bool active = 5;
-  string owner_id = 6;
-  google.protobuf.Timestamp created = 7;
-  google.protobuf.Timestamp updated = 8;
-  google.protobuf.Timestamp expires = 9;
 }
 
 
@@ -154,9 +108,46 @@ message Artist {
   google.protobuf.Timestamp updated = 16;
   google.protobuf.Timestamp expires = 17;
 }
+message AddArtistRequest {
+  string title = 2;
+  string short_title = 3;
+  repeated string type = 4;
+  string city = 5;
+  string country = 6;
+  string site = 7;
+  repeated string photo = 8;
+  string bio = 9;
+  repeated string socmedia = 10;
+  repeated string release = 11;
+  repeated string team = 12;
+  bool active = 13;
+  string owner_id = 14;
+  google.protobuf.Timestamp created = 15;
+  google.protobuf.Timestamp updated = 16;
+  google.protobuf.Timestamp expires = 17;
+}
+message AddArtistResponse {
+  string id = 1;
+  string title = 2;
+  string short_title = 3;
+  repeated string type = 4;
+  string city = 5;
+  string country = 6;
+  string site = 7;
+  repeated string photo = 8;
+  string bio = 9;
+  repeated string socmedia = 10;
+  repeated string release = 11;
+  repeated string team = 12;
+  bool active = 13;
+  string owner_id = 14;
+  google.protobuf.Timestamp created = 15;
+  google.protobuf.Timestamp updated = 16;
+  google.protobuf.Timestamp expires = 17;
+}
 
 
-// Song and CreateSong
+// Song
 message Song {
   string id = 1;
   repeated string artist = 2;
@@ -165,15 +156,53 @@ message Song {
   repeated string author_music = 5;
   repeated string arranger = 6;
   repeated string audio = 7;
-  repeated string video = 8;
-  repeated string pts = 9;
-  string release = 10;
-  string lyrics = 11;
-  bool active = 12;
-  string owner_id = 13;
-  google.protobuf.Timestamp created = 14;
-  google.protobuf.Timestamp updated = 15;
-  google.protobuf.Timestamp expires = 16;
+  repeated string clip = 8;
+  repeated string video = 9;
+  repeated string pts = 10;
+  string release = 11;
+  string lyrics = 12;
+  bool active = 13;
+  string owner_id = 14;
+  google.protobuf.Timestamp created = 15;
+  google.protobuf.Timestamp updated = 16;
+  google.protobuf.Timestamp expires = 17;
+}
+message AddSongRequest {
+  repeated string artist = 2;
+  string title = 3;
+  repeated string author_lyrics = 4;
+  repeated string author_music = 5;
+  repeated string arranger = 6;
+  repeated string audio = 7;
+  repeated string clip = 8;
+  repeated string video = 9;
+  repeated string pts = 10;
+  string release = 11;
+  string lyrics = 12;
+  bool active = 13;
+  string owner_id = 14;
+  google.protobuf.Timestamp created = 15;
+  google.protobuf.Timestamp updated = 16;
+  google.protobuf.Timestamp expires = 17;
+}
+message AddSongResponse {
+  string id = 1;
+  repeated string artist = 2;
+  string title = 3;
+  repeated string author_lyrics = 4;
+  repeated string author_music = 5;
+  repeated string arranger = 6;
+  repeated string audio = 7;
+  repeated string clip = 8;
+  repeated string video = 9;
+  repeated string pts = 10;
+  string release = 11;
+  string lyrics = 12;
+  bool active = 13;
+  string owner_id = 14;
+  google.protobuf.Timestamp created = 15;
+  google.protobuf.Timestamp updated = 16;
+  google.protobuf.Timestamp expires = 17;
 }
 
 
@@ -261,4 +290,17 @@ message FullContent {
   google.protobuf.Timestamp created = 16;
   google.protobuf.Timestamp updated = 17;
   google.protobuf.Timestamp expires = 18;
+}
+
+// Team
+message Team {
+  string id = 1;
+  repeated Person person = 2;
+  string artist = 3;
+  string status = 4;
+  bool active = 5;
+  string owner_id = 6;
+  google.protobuf.Timestamp created = 7;
+  google.protobuf.Timestamp updated = 8;
+  google.protobuf.Timestamp expires = 9;
 }

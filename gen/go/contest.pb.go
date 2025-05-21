@@ -24,140 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Country
-type Country struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	ShortTitle    string                 `protobuf:"bytes,3,opt,name=short_title,json=shortTitle,proto3" json:"short_title,omitempty"`
-	TitleRus      string                 `protobuf:"bytes,4,opt,name=title_rus,json=titleRus,proto3" json:"title_rus,omitempty"`
-	ShortTitleRus string                 `protobuf:"bytes,5,opt,name=short_title_rus,json=shortTitleRus,proto3" json:"short_title_rus,omitempty"`
-	Language      string                 `protobuf:"bytes,6,opt,name=language,proto3" json:"language,omitempty"`
-	Kode          string                 `protobuf:"bytes,7,opt,name=kode,proto3" json:"kode,omitempty"`
-	Active        bool                   `protobuf:"varint,8,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,9,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=expires,proto3" json:"expires,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Country) Reset() {
-	*x = Country{}
-	mi := &file_contest_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Country) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Country) ProtoMessage() {}
-
-func (x *Country) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Country.ProtoReflect.Descriptor instead.
-func (*Country) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *Country) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *Country) GetTitle() string {
-	if x != nil {
-		return x.Title
-	}
-	return ""
-}
-
-func (x *Country) GetShortTitle() string {
-	if x != nil {
-		return x.ShortTitle
-	}
-	return ""
-}
-
-func (x *Country) GetTitleRus() string {
-	if x != nil {
-		return x.TitleRus
-	}
-	return ""
-}
-
-func (x *Country) GetShortTitleRus() string {
-	if x != nil {
-		return x.ShortTitleRus
-	}
-	return ""
-}
-
-func (x *Country) GetLanguage() string {
-	if x != nil {
-		return x.Language
-	}
-	return ""
-}
-
-func (x *Country) GetKode() string {
-	if x != nil {
-		return x.Kode
-	}
-	return ""
-}
-
-func (x *Country) GetActive() bool {
-	if x != nil {
-		return x.Active
-	}
-	return false
-}
-
-func (x *Country) GetOwnerId() string {
-	if x != nil {
-		return x.OwnerId
-	}
-	return ""
-}
-
-func (x *Country) GetCreated() *timestamppb.Timestamp {
-	if x != nil {
-		return x.Created
-	}
-	return nil
-}
-
-func (x *Country) GetUpdated() *timestamppb.Timestamp {
-	if x != nil {
-		return x.Updated
-	}
-	return nil
-}
-
-func (x *Country) GetExpires() *timestamppb.Timestamp {
-	if x != nil {
-		return x.Expires
-	}
-	return nil
-}
-
-// Person and CreatePerson
+// Person
 type Person struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -181,7 +48,7 @@ type Person struct {
 
 func (x *Person) Reset() {
 	*x = Person{}
-	mi := &file_contest_proto_msgTypes[1]
+	mi := &file_contest_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -193,7 +60,7 @@ func (x *Person) String() string {
 func (*Person) ProtoMessage() {}
 
 func (x *Person) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[1]
+	mi := &file_contest_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -206,7 +73,7 @@ func (x *Person) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Person.ProtoReflect.Descriptor instead.
 func (*Person) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{1}
+	return file_contest_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Person) GetId() string {
@@ -316,7 +183,6 @@ func (x *Person) GetExpires() *timestamppb.Timestamp {
 
 type AddPersonRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	FirstName     string                 `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
 	LastName      string                 `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
 	MiddleName    string                 `protobuf:"bytes,4,opt,name=middle_name,json=middleName,proto3" json:"middle_name,omitempty"`
@@ -337,7 +203,7 @@ type AddPersonRequest struct {
 
 func (x *AddPersonRequest) Reset() {
 	*x = AddPersonRequest{}
-	mi := &file_contest_proto_msgTypes[2]
+	mi := &file_contest_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -349,7 +215,7 @@ func (x *AddPersonRequest) String() string {
 func (*AddPersonRequest) ProtoMessage() {}
 
 func (x *AddPersonRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[2]
+	mi := &file_contest_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -362,14 +228,7 @@ func (x *AddPersonRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddPersonRequest.ProtoReflect.Descriptor instead.
 func (*AddPersonRequest) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *AddPersonRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
+	return file_contest_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *AddPersonRequest) GetFirstName() string {
@@ -480,19 +339,20 @@ type AddPersonResponse struct {
 	Email         []string               `protobuf:"bytes,6,rep,name=email,proto3" json:"email,omitempty"`
 	Login         string                 `protobuf:"bytes,7,opt,name=login,proto3" json:"login,omitempty"`
 	City          string                 `protobuf:"bytes,8,opt,name=city,proto3" json:"city,omitempty"`
-	Country       string                 `protobuf:"bytes,9,opt,name=country,proto3" json:"country,omitempty"`
-	Active        bool                   `protobuf:"varint,10,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,11,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=expires,proto3" json:"expires,omitempty"`
+	Bio           string                 `protobuf:"bytes,9,opt,name=bio,proto3" json:"bio,omitempty"`
+	Country       string                 `protobuf:"bytes,10,opt,name=country,proto3" json:"country,omitempty"`
+	Active        bool                   `protobuf:"varint,11,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,12,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=expires,proto3" json:"expires,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *AddPersonResponse) Reset() {
 	*x = AddPersonResponse{}
-	mi := &file_contest_proto_msgTypes[3]
+	mi := &file_contest_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -504,7 +364,7 @@ func (x *AddPersonResponse) String() string {
 func (*AddPersonResponse) ProtoMessage() {}
 
 func (x *AddPersonResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[3]
+	mi := &file_contest_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -517,7 +377,7 @@ func (x *AddPersonResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddPersonResponse.ProtoReflect.Descriptor instead.
 func (*AddPersonResponse) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{3}
+	return file_contest_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *AddPersonResponse) GetId() string {
@@ -576,6 +436,13 @@ func (x *AddPersonResponse) GetCity() string {
 	return ""
 }
 
+func (x *AddPersonResponse) GetBio() string {
+	if x != nil {
+		return x.Bio
+	}
+	return ""
+}
+
 func (x *AddPersonResponse) GetCountry() string {
 	if x != nil {
 		return x.Country
@@ -618,17 +485,10 @@ func (x *AddPersonResponse) GetExpires() *timestamppb.Timestamp {
 	return nil
 }
 
+// Contest
 type AddContestRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	FirstName     string                 `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
-	LastName      string                 `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
-	MiddleName    string                 `protobuf:"bytes,4,opt,name=middle_name,json=middleName,proto3" json:"middle_name,omitempty"`
-	Phone         []string               `protobuf:"bytes,5,rep,name=phone,proto3" json:"phone,omitempty"`
-	Email         []string               `protobuf:"bytes,6,rep,name=email,proto3" json:"email,omitempty"`
-	Login         string                 `protobuf:"bytes,7,opt,name=login,proto3" json:"login,omitempty"`
-	City          string                 `protobuf:"bytes,8,opt,name=city,proto3" json:"city,omitempty"`
-	Country       string                 `protobuf:"bytes,9,opt,name=country,proto3" json:"country,omitempty"`
 	Active        bool                   `protobuf:"varint,10,opt,name=active,proto3" json:"active,omitempty"`
 	OwnerId       string                 `protobuf:"bytes,11,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
 	Created       *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=created,proto3" json:"created,omitempty"`
@@ -640,7 +500,7 @@ type AddContestRequest struct {
 
 func (x *AddContestRequest) Reset() {
 	*x = AddContestRequest{}
-	mi := &file_contest_proto_msgTypes[4]
+	mi := &file_contest_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -652,7 +512,7 @@ func (x *AddContestRequest) String() string {
 func (*AddContestRequest) ProtoMessage() {}
 
 func (x *AddContestRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[4]
+	mi := &file_contest_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -665,68 +525,12 @@ func (x *AddContestRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddContestRequest.ProtoReflect.Descriptor instead.
 func (*AddContestRequest) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{4}
+	return file_contest_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *AddContestRequest) GetId() string {
 	if x != nil {
 		return x.Id
-	}
-	return ""
-}
-
-func (x *AddContestRequest) GetFirstName() string {
-	if x != nil {
-		return x.FirstName
-	}
-	return ""
-}
-
-func (x *AddContestRequest) GetLastName() string {
-	if x != nil {
-		return x.LastName
-	}
-	return ""
-}
-
-func (x *AddContestRequest) GetMiddleName() string {
-	if x != nil {
-		return x.MiddleName
-	}
-	return ""
-}
-
-func (x *AddContestRequest) GetPhone() []string {
-	if x != nil {
-		return x.Phone
-	}
-	return nil
-}
-
-func (x *AddContestRequest) GetEmail() []string {
-	if x != nil {
-		return x.Email
-	}
-	return nil
-}
-
-func (x *AddContestRequest) GetLogin() string {
-	if x != nil {
-		return x.Login
-	}
-	return ""
-}
-
-func (x *AddContestRequest) GetCity() string {
-	if x != nil {
-		return x.City
-	}
-	return ""
-}
-
-func (x *AddContestRequest) GetCountry() string {
-	if x != nil {
-		return x.Country
 	}
 	return ""
 }
@@ -769,14 +573,6 @@ func (x *AddContestRequest) GetExpires() *timestamppb.Timestamp {
 type AddContestResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	FirstName     string                 `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
-	LastName      string                 `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
-	MiddleName    string                 `protobuf:"bytes,4,opt,name=middle_name,json=middleName,proto3" json:"middle_name,omitempty"`
-	Phone         []string               `protobuf:"bytes,5,rep,name=phone,proto3" json:"phone,omitempty"`
-	Email         []string               `protobuf:"bytes,6,rep,name=email,proto3" json:"email,omitempty"`
-	Login         string                 `protobuf:"bytes,7,opt,name=login,proto3" json:"login,omitempty"`
-	City          string                 `protobuf:"bytes,8,opt,name=city,proto3" json:"city,omitempty"`
-	Country       string                 `protobuf:"bytes,9,opt,name=country,proto3" json:"country,omitempty"`
 	Active        bool                   `protobuf:"varint,10,opt,name=active,proto3" json:"active,omitempty"`
 	OwnerId       string                 `protobuf:"bytes,11,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
 	Created       *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=created,proto3" json:"created,omitempty"`
@@ -788,7 +584,7 @@ type AddContestResponse struct {
 
 func (x *AddContestResponse) Reset() {
 	*x = AddContestResponse{}
-	mi := &file_contest_proto_msgTypes[5]
+	mi := &file_contest_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -800,7 +596,7 @@ func (x *AddContestResponse) String() string {
 func (*AddContestResponse) ProtoMessage() {}
 
 func (x *AddContestResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[5]
+	mi := &file_contest_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -813,68 +609,12 @@ func (x *AddContestResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddContestResponse.ProtoReflect.Descriptor instead.
 func (*AddContestResponse) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{5}
+	return file_contest_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *AddContestResponse) GetId() string {
 	if x != nil {
 		return x.Id
-	}
-	return ""
-}
-
-func (x *AddContestResponse) GetFirstName() string {
-	if x != nil {
-		return x.FirstName
-	}
-	return ""
-}
-
-func (x *AddContestResponse) GetLastName() string {
-	if x != nil {
-		return x.LastName
-	}
-	return ""
-}
-
-func (x *AddContestResponse) GetMiddleName() string {
-	if x != nil {
-		return x.MiddleName
-	}
-	return ""
-}
-
-func (x *AddContestResponse) GetPhone() []string {
-	if x != nil {
-		return x.Phone
-	}
-	return nil
-}
-
-func (x *AddContestResponse) GetEmail() []string {
-	if x != nil {
-		return x.Email
-	}
-	return nil
-}
-
-func (x *AddContestResponse) GetLogin() string {
-	if x != nil {
-		return x.Login
-	}
-	return ""
-}
-
-func (x *AddContestResponse) GetCity() string {
-	if x != nil {
-		return x.City
-	}
-	return ""
-}
-
-func (x *AddContestResponse) GetCountry() string {
-	if x != nil {
-		return x.Country
 	}
 	return ""
 }
@@ -914,115 +654,6 @@ func (x *AddContestResponse) GetExpires() *timestamppb.Timestamp {
 	return nil
 }
 
-// Team and CreateTeam
-type Team struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Person        []*Person              `protobuf:"bytes,2,rep,name=person,proto3" json:"person,omitempty"`
-	Artist        string                 `protobuf:"bytes,3,opt,name=artist,proto3" json:"artist,omitempty"`
-	Status        string                 `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
-	Active        bool                   `protobuf:"varint,5,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,6,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=expires,proto3" json:"expires,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Team) Reset() {
-	*x = Team{}
-	mi := &file_contest_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Team) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Team) ProtoMessage() {}
-
-func (x *Team) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Team.ProtoReflect.Descriptor instead.
-func (*Team) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *Team) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *Team) GetPerson() []*Person {
-	if x != nil {
-		return x.Person
-	}
-	return nil
-}
-
-func (x *Team) GetArtist() string {
-	if x != nil {
-		return x.Artist
-	}
-	return ""
-}
-
-func (x *Team) GetStatus() string {
-	if x != nil {
-		return x.Status
-	}
-	return ""
-}
-
-func (x *Team) GetActive() bool {
-	if x != nil {
-		return x.Active
-	}
-	return false
-}
-
-func (x *Team) GetOwnerId() string {
-	if x != nil {
-		return x.OwnerId
-	}
-	return ""
-}
-
-func (x *Team) GetCreated() *timestamppb.Timestamp {
-	if x != nil {
-		return x.Created
-	}
-	return nil
-}
-
-func (x *Team) GetUpdated() *timestamppb.Timestamp {
-	if x != nil {
-		return x.Updated
-	}
-	return nil
-}
-
-func (x *Team) GetExpires() *timestamppb.Timestamp {
-	if x != nil {
-		return x.Expires
-	}
-	return nil
-}
-
 // Artist and CreateArtist
 type Artist struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1049,7 +680,7 @@ type Artist struct {
 
 func (x *Artist) Reset() {
 	*x = Artist{}
-	mi := &file_contest_proto_msgTypes[7]
+	mi := &file_contest_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1061,7 +692,7 @@ func (x *Artist) String() string {
 func (*Artist) ProtoMessage() {}
 
 func (x *Artist) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[7]
+	mi := &file_contest_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1074,7 +705,7 @@ func (x *Artist) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Artist.ProtoReflect.Descriptor instead.
 func (*Artist) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{7}
+	return file_contest_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *Artist) GetId() string {
@@ -1196,7 +827,343 @@ func (x *Artist) GetExpires() *timestamppb.Timestamp {
 	return nil
 }
 
-// Song and CreateSong
+type AddArtistRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	ShortTitle    string                 `protobuf:"bytes,3,opt,name=short_title,json=shortTitle,proto3" json:"short_title,omitempty"`
+	Type          []string               `protobuf:"bytes,4,rep,name=type,proto3" json:"type,omitempty"`
+	City          string                 `protobuf:"bytes,5,opt,name=city,proto3" json:"city,omitempty"`
+	Country       string                 `protobuf:"bytes,6,opt,name=country,proto3" json:"country,omitempty"`
+	Site          string                 `protobuf:"bytes,7,opt,name=site,proto3" json:"site,omitempty"`
+	Photo         []string               `protobuf:"bytes,8,rep,name=photo,proto3" json:"photo,omitempty"`
+	Bio           string                 `protobuf:"bytes,9,opt,name=bio,proto3" json:"bio,omitempty"`
+	Socmedia      []string               `protobuf:"bytes,10,rep,name=socmedia,proto3" json:"socmedia,omitempty"`
+	Release       []string               `protobuf:"bytes,11,rep,name=release,proto3" json:"release,omitempty"`
+	Team          []string               `protobuf:"bytes,12,rep,name=team,proto3" json:"team,omitempty"`
+	Active        bool                   `protobuf:"varint,13,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,14,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=expires,proto3" json:"expires,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddArtistRequest) Reset() {
+	*x = AddArtistRequest{}
+	mi := &file_contest_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddArtistRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddArtistRequest) ProtoMessage() {}
+
+func (x *AddArtistRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddArtistRequest.ProtoReflect.Descriptor instead.
+func (*AddArtistRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *AddArtistRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *AddArtistRequest) GetShortTitle() string {
+	if x != nil {
+		return x.ShortTitle
+	}
+	return ""
+}
+
+func (x *AddArtistRequest) GetType() []string {
+	if x != nil {
+		return x.Type
+	}
+	return nil
+}
+
+func (x *AddArtistRequest) GetCity() string {
+	if x != nil {
+		return x.City
+	}
+	return ""
+}
+
+func (x *AddArtistRequest) GetCountry() string {
+	if x != nil {
+		return x.Country
+	}
+	return ""
+}
+
+func (x *AddArtistRequest) GetSite() string {
+	if x != nil {
+		return x.Site
+	}
+	return ""
+}
+
+func (x *AddArtistRequest) GetPhoto() []string {
+	if x != nil {
+		return x.Photo
+	}
+	return nil
+}
+
+func (x *AddArtistRequest) GetBio() string {
+	if x != nil {
+		return x.Bio
+	}
+	return ""
+}
+
+func (x *AddArtistRequest) GetSocmedia() []string {
+	if x != nil {
+		return x.Socmedia
+	}
+	return nil
+}
+
+func (x *AddArtistRequest) GetRelease() []string {
+	if x != nil {
+		return x.Release
+	}
+	return nil
+}
+
+func (x *AddArtistRequest) GetTeam() []string {
+	if x != nil {
+		return x.Team
+	}
+	return nil
+}
+
+func (x *AddArtistRequest) GetActive() bool {
+	if x != nil {
+		return x.Active
+	}
+	return false
+}
+
+func (x *AddArtistRequest) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *AddArtistRequest) GetCreated() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Created
+	}
+	return nil
+}
+
+func (x *AddArtistRequest) GetUpdated() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Updated
+	}
+	return nil
+}
+
+func (x *AddArtistRequest) GetExpires() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Expires
+	}
+	return nil
+}
+
+type AddArtistResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	ShortTitle    string                 `protobuf:"bytes,3,opt,name=short_title,json=shortTitle,proto3" json:"short_title,omitempty"`
+	Type          []string               `protobuf:"bytes,4,rep,name=type,proto3" json:"type,omitempty"`
+	City          string                 `protobuf:"bytes,5,opt,name=city,proto3" json:"city,omitempty"`
+	Country       string                 `protobuf:"bytes,6,opt,name=country,proto3" json:"country,omitempty"`
+	Site          string                 `protobuf:"bytes,7,opt,name=site,proto3" json:"site,omitempty"`
+	Photo         []string               `protobuf:"bytes,8,rep,name=photo,proto3" json:"photo,omitempty"`
+	Bio           string                 `protobuf:"bytes,9,opt,name=bio,proto3" json:"bio,omitempty"`
+	Socmedia      []string               `protobuf:"bytes,10,rep,name=socmedia,proto3" json:"socmedia,omitempty"`
+	Release       []string               `protobuf:"bytes,11,rep,name=release,proto3" json:"release,omitempty"`
+	Team          []string               `protobuf:"bytes,12,rep,name=team,proto3" json:"team,omitempty"`
+	Active        bool                   `protobuf:"varint,13,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,14,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=expires,proto3" json:"expires,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddArtistResponse) Reset() {
+	*x = AddArtistResponse{}
+	mi := &file_contest_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddArtistResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddArtistResponse) ProtoMessage() {}
+
+func (x *AddArtistResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddArtistResponse.ProtoReflect.Descriptor instead.
+func (*AddArtistResponse) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *AddArtistResponse) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *AddArtistResponse) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *AddArtistResponse) GetShortTitle() string {
+	if x != nil {
+		return x.ShortTitle
+	}
+	return ""
+}
+
+func (x *AddArtistResponse) GetType() []string {
+	if x != nil {
+		return x.Type
+	}
+	return nil
+}
+
+func (x *AddArtistResponse) GetCity() string {
+	if x != nil {
+		return x.City
+	}
+	return ""
+}
+
+func (x *AddArtistResponse) GetCountry() string {
+	if x != nil {
+		return x.Country
+	}
+	return ""
+}
+
+func (x *AddArtistResponse) GetSite() string {
+	if x != nil {
+		return x.Site
+	}
+	return ""
+}
+
+func (x *AddArtistResponse) GetPhoto() []string {
+	if x != nil {
+		return x.Photo
+	}
+	return nil
+}
+
+func (x *AddArtistResponse) GetBio() string {
+	if x != nil {
+		return x.Bio
+	}
+	return ""
+}
+
+func (x *AddArtistResponse) GetSocmedia() []string {
+	if x != nil {
+		return x.Socmedia
+	}
+	return nil
+}
+
+func (x *AddArtistResponse) GetRelease() []string {
+	if x != nil {
+		return x.Release
+	}
+	return nil
+}
+
+func (x *AddArtistResponse) GetTeam() []string {
+	if x != nil {
+		return x.Team
+	}
+	return nil
+}
+
+func (x *AddArtistResponse) GetActive() bool {
+	if x != nil {
+		return x.Active
+	}
+	return false
+}
+
+func (x *AddArtistResponse) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *AddArtistResponse) GetCreated() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Created
+	}
+	return nil
+}
+
+func (x *AddArtistResponse) GetUpdated() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Updated
+	}
+	return nil
+}
+
+func (x *AddArtistResponse) GetExpires() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Expires
+	}
+	return nil
+}
+
+// Song
 type Song struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -1206,15 +1173,16 @@ type Song struct {
 	AuthorMusic   []string               `protobuf:"bytes,5,rep,name=author_music,json=authorMusic,proto3" json:"author_music,omitempty"`
 	Arranger      []string               `protobuf:"bytes,6,rep,name=arranger,proto3" json:"arranger,omitempty"`
 	Audio         []string               `protobuf:"bytes,7,rep,name=audio,proto3" json:"audio,omitempty"`
-	Video         []string               `protobuf:"bytes,8,rep,name=video,proto3" json:"video,omitempty"`
-	Pts           []string               `protobuf:"bytes,9,rep,name=pts,proto3" json:"pts,omitempty"`
-	Release       string                 `protobuf:"bytes,10,opt,name=release,proto3" json:"release,omitempty"`
-	Lyrics        string                 `protobuf:"bytes,11,opt,name=lyrics,proto3" json:"lyrics,omitempty"`
-	Active        bool                   `protobuf:"varint,12,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,13,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=expires,proto3" json:"expires,omitempty"`
+	Clip          []string               `protobuf:"bytes,8,rep,name=clip,proto3" json:"clip,omitempty"`
+	Video         []string               `protobuf:"bytes,9,rep,name=video,proto3" json:"video,omitempty"`
+	Pts           []string               `protobuf:"bytes,10,rep,name=pts,proto3" json:"pts,omitempty"`
+	Release       string                 `protobuf:"bytes,11,opt,name=release,proto3" json:"release,omitempty"`
+	Lyrics        string                 `protobuf:"bytes,12,opt,name=lyrics,proto3" json:"lyrics,omitempty"`
+	Active        bool                   `protobuf:"varint,13,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,14,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=expires,proto3" json:"expires,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1298,6 +1266,13 @@ func (x *Song) GetAudio() []string {
 	return nil
 }
 
+func (x *Song) GetClip() []string {
+	if x != nil {
+		return x.Clip
+	}
+	return nil
+}
+
 func (x *Song) GetVideo() []string {
 	if x != nil {
 		return x.Video
@@ -1361,6 +1336,342 @@ func (x *Song) GetExpires() *timestamppb.Timestamp {
 	return nil
 }
 
+type AddSongRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Artist        []string               `protobuf:"bytes,2,rep,name=artist,proto3" json:"artist,omitempty"`
+	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	AuthorLyrics  []string               `protobuf:"bytes,4,rep,name=author_lyrics,json=authorLyrics,proto3" json:"author_lyrics,omitempty"`
+	AuthorMusic   []string               `protobuf:"bytes,5,rep,name=author_music,json=authorMusic,proto3" json:"author_music,omitempty"`
+	Arranger      []string               `protobuf:"bytes,6,rep,name=arranger,proto3" json:"arranger,omitempty"`
+	Audio         []string               `protobuf:"bytes,7,rep,name=audio,proto3" json:"audio,omitempty"`
+	Clip          []string               `protobuf:"bytes,8,rep,name=clip,proto3" json:"clip,omitempty"`
+	Video         []string               `protobuf:"bytes,9,rep,name=video,proto3" json:"video,omitempty"`
+	Pts           []string               `protobuf:"bytes,10,rep,name=pts,proto3" json:"pts,omitempty"`
+	Release       string                 `protobuf:"bytes,11,opt,name=release,proto3" json:"release,omitempty"`
+	Lyrics        string                 `protobuf:"bytes,12,opt,name=lyrics,proto3" json:"lyrics,omitempty"`
+	Active        bool                   `protobuf:"varint,13,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,14,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=expires,proto3" json:"expires,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddSongRequest) Reset() {
+	*x = AddSongRequest{}
+	mi := &file_contest_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddSongRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddSongRequest) ProtoMessage() {}
+
+func (x *AddSongRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddSongRequest.ProtoReflect.Descriptor instead.
+func (*AddSongRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *AddSongRequest) GetArtist() []string {
+	if x != nil {
+		return x.Artist
+	}
+	return nil
+}
+
+func (x *AddSongRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *AddSongRequest) GetAuthorLyrics() []string {
+	if x != nil {
+		return x.AuthorLyrics
+	}
+	return nil
+}
+
+func (x *AddSongRequest) GetAuthorMusic() []string {
+	if x != nil {
+		return x.AuthorMusic
+	}
+	return nil
+}
+
+func (x *AddSongRequest) GetArranger() []string {
+	if x != nil {
+		return x.Arranger
+	}
+	return nil
+}
+
+func (x *AddSongRequest) GetAudio() []string {
+	if x != nil {
+		return x.Audio
+	}
+	return nil
+}
+
+func (x *AddSongRequest) GetClip() []string {
+	if x != nil {
+		return x.Clip
+	}
+	return nil
+}
+
+func (x *AddSongRequest) GetVideo() []string {
+	if x != nil {
+		return x.Video
+	}
+	return nil
+}
+
+func (x *AddSongRequest) GetPts() []string {
+	if x != nil {
+		return x.Pts
+	}
+	return nil
+}
+
+func (x *AddSongRequest) GetRelease() string {
+	if x != nil {
+		return x.Release
+	}
+	return ""
+}
+
+func (x *AddSongRequest) GetLyrics() string {
+	if x != nil {
+		return x.Lyrics
+	}
+	return ""
+}
+
+func (x *AddSongRequest) GetActive() bool {
+	if x != nil {
+		return x.Active
+	}
+	return false
+}
+
+func (x *AddSongRequest) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *AddSongRequest) GetCreated() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Created
+	}
+	return nil
+}
+
+func (x *AddSongRequest) GetUpdated() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Updated
+	}
+	return nil
+}
+
+func (x *AddSongRequest) GetExpires() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Expires
+	}
+	return nil
+}
+
+type AddSongResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Artist        []string               `protobuf:"bytes,2,rep,name=artist,proto3" json:"artist,omitempty"`
+	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	AuthorLyrics  []string               `protobuf:"bytes,4,rep,name=author_lyrics,json=authorLyrics,proto3" json:"author_lyrics,omitempty"`
+	AuthorMusic   []string               `protobuf:"bytes,5,rep,name=author_music,json=authorMusic,proto3" json:"author_music,omitempty"`
+	Arranger      []string               `protobuf:"bytes,6,rep,name=arranger,proto3" json:"arranger,omitempty"`
+	Audio         []string               `protobuf:"bytes,7,rep,name=audio,proto3" json:"audio,omitempty"`
+	Clip          []string               `protobuf:"bytes,8,rep,name=clip,proto3" json:"clip,omitempty"`
+	Video         []string               `protobuf:"bytes,9,rep,name=video,proto3" json:"video,omitempty"`
+	Pts           []string               `protobuf:"bytes,10,rep,name=pts,proto3" json:"pts,omitempty"`
+	Release       string                 `protobuf:"bytes,11,opt,name=release,proto3" json:"release,omitempty"`
+	Lyrics        string                 `protobuf:"bytes,12,opt,name=lyrics,proto3" json:"lyrics,omitempty"`
+	Active        bool                   `protobuf:"varint,13,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,14,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=expires,proto3" json:"expires,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddSongResponse) Reset() {
+	*x = AddSongResponse{}
+	mi := &file_contest_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddSongResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddSongResponse) ProtoMessage() {}
+
+func (x *AddSongResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddSongResponse.ProtoReflect.Descriptor instead.
+func (*AddSongResponse) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *AddSongResponse) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *AddSongResponse) GetArtist() []string {
+	if x != nil {
+		return x.Artist
+	}
+	return nil
+}
+
+func (x *AddSongResponse) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *AddSongResponse) GetAuthorLyrics() []string {
+	if x != nil {
+		return x.AuthorLyrics
+	}
+	return nil
+}
+
+func (x *AddSongResponse) GetAuthorMusic() []string {
+	if x != nil {
+		return x.AuthorMusic
+	}
+	return nil
+}
+
+func (x *AddSongResponse) GetArranger() []string {
+	if x != nil {
+		return x.Arranger
+	}
+	return nil
+}
+
+func (x *AddSongResponse) GetAudio() []string {
+	if x != nil {
+		return x.Audio
+	}
+	return nil
+}
+
+func (x *AddSongResponse) GetClip() []string {
+	if x != nil {
+		return x.Clip
+	}
+	return nil
+}
+
+func (x *AddSongResponse) GetVideo() []string {
+	if x != nil {
+		return x.Video
+	}
+	return nil
+}
+
+func (x *AddSongResponse) GetPts() []string {
+	if x != nil {
+		return x.Pts
+	}
+	return nil
+}
+
+func (x *AddSongResponse) GetRelease() string {
+	if x != nil {
+		return x.Release
+	}
+	return ""
+}
+
+func (x *AddSongResponse) GetLyrics() string {
+	if x != nil {
+		return x.Lyrics
+	}
+	return ""
+}
+
+func (x *AddSongResponse) GetActive() bool {
+	if x != nil {
+		return x.Active
+	}
+	return false
+}
+
+func (x *AddSongResponse) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *AddSongResponse) GetCreated() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Created
+	}
+	return nil
+}
+
+func (x *AddSongResponse) GetUpdated() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Updated
+	}
+	return nil
+}
+
+func (x *AddSongResponse) GetExpires() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Expires
+	}
+	return nil
+}
+
 // Project and CreateProject
 type Project struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1381,7 +1692,7 @@ type Project struct {
 
 func (x *Project) Reset() {
 	*x = Project{}
-	mi := &file_contest_proto_msgTypes[9]
+	mi := &file_contest_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1393,7 +1704,7 @@ func (x *Project) String() string {
 func (*Project) ProtoMessage() {}
 
 func (x *Project) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[9]
+	mi := &file_contest_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1406,7 +1717,7 @@ func (x *Project) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Project.ProtoReflect.Descriptor instead.
 func (*Project) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{9}
+	return file_contest_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *Project) GetId() string {
@@ -1505,7 +1816,7 @@ type Rate struct {
 
 func (x *Rate) Reset() {
 	*x = Rate{}
-	mi := &file_contest_proto_msgTypes[10]
+	mi := &file_contest_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1517,7 +1828,7 @@ func (x *Rate) String() string {
 func (*Rate) ProtoMessage() {}
 
 func (x *Rate) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[10]
+	mi := &file_contest_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1530,7 +1841,7 @@ func (x *Rate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Rate.ProtoReflect.Descriptor instead.
 func (*Rate) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{10}
+	return file_contest_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *Rate) GetId() string {
@@ -1621,7 +1932,7 @@ type RateBook struct {
 
 func (x *RateBook) Reset() {
 	*x = RateBook{}
-	mi := &file_contest_proto_msgTypes[11]
+	mi := &file_contest_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1633,7 +1944,7 @@ func (x *RateBook) String() string {
 func (*RateBook) ProtoMessage() {}
 
 func (x *RateBook) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[11]
+	mi := &file_contest_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1646,7 +1957,7 @@ func (x *RateBook) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RateBook.ProtoReflect.Descriptor instead.
 func (*RateBook) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{11}
+	return file_contest_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *RateBook) GetId() string {
@@ -1738,7 +2049,7 @@ type FullContent struct {
 
 func (x *FullContent) Reset() {
 	*x = FullContent{}
-	mi := &file_contest_proto_msgTypes[12]
+	mi := &file_contest_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1750,7 +2061,7 @@ func (x *FullContent) String() string {
 func (*FullContent) ProtoMessage() {}
 
 func (x *FullContent) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[12]
+	mi := &file_contest_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1763,7 +2074,7 @@ func (x *FullContent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FullContent.ProtoReflect.Descriptor instead.
 func (*FullContent) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{12}
+	return file_contest_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *FullContent) GetId() string {
@@ -1892,26 +2203,120 @@ func (x *FullContent) GetExpires() *timestamppb.Timestamp {
 	return nil
 }
 
+// Team
+type Team struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Person        []*Person              `protobuf:"bytes,2,rep,name=person,proto3" json:"person,omitempty"`
+	Artist        string                 `protobuf:"bytes,3,opt,name=artist,proto3" json:"artist,omitempty"`
+	Status        string                 `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
+	Active        bool                   `protobuf:"varint,5,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,6,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=expires,proto3" json:"expires,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Team) Reset() {
+	*x = Team{}
+	mi := &file_contest_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Team) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Team) ProtoMessage() {}
+
+func (x *Team) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Team.ProtoReflect.Descriptor instead.
+func (*Team) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *Team) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Team) GetPerson() []*Person {
+	if x != nil {
+		return x.Person
+	}
+	return nil
+}
+
+func (x *Team) GetArtist() string {
+	if x != nil {
+		return x.Artist
+	}
+	return ""
+}
+
+func (x *Team) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *Team) GetActive() bool {
+	if x != nil {
+		return x.Active
+	}
+	return false
+}
+
+func (x *Team) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *Team) GetCreated() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Created
+	}
+	return nil
+}
+
+func (x *Team) GetUpdated() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Updated
+	}
+	return nil
+}
+
+func (x *Team) GetExpires() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Expires
+	}
+	return nil
+}
+
 var File_contest_proto protoreflect.FileDescriptor
 
 const file_contest_proto_rawDesc = "" +
 	"\n" +
-	"\rcontest.proto\x12\acontest\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9a\x03\n" +
-	"\aCountry\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1f\n" +
-	"\vshort_title\x18\x03 \x01(\tR\n" +
-	"shortTitle\x12\x1b\n" +
-	"\ttitle_rus\x18\x04 \x01(\tR\btitleRus\x12&\n" +
-	"\x0fshort_title_rus\x18\x05 \x01(\tR\rshortTitleRus\x12\x1a\n" +
-	"\blanguage\x18\x06 \x01(\tR\blanguage\x12\x12\n" +
-	"\x04kode\x18\a \x01(\tR\x04kode\x12\x16\n" +
-	"\x06active\x18\b \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\t \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xcc\x03\n" +
+	"\rcontest.proto\x12\acontest\x1a\x1fgoogle/protobuf/timestamp.proto\"\xcc\x03\n" +
 	"\x06Person\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
@@ -1930,8 +2335,26 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\f \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xd6\x03\n" +
-	"\x10AddPersonRequest\x12\x0e\n" +
+	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xc6\x03\n" +
+	"\x10AddPersonRequest\x12\x1d\n" +
+	"\n" +
+	"first_name\x18\x02 \x01(\tR\tfirstName\x12\x1b\n" +
+	"\tlast_name\x18\x03 \x01(\tR\blastName\x12\x1f\n" +
+	"\vmiddle_name\x18\x04 \x01(\tR\n" +
+	"middleName\x12\x14\n" +
+	"\x05phone\x18\x05 \x03(\tR\x05phone\x12\x14\n" +
+	"\x05email\x18\x06 \x03(\tR\x05email\x12\x14\n" +
+	"\x05login\x18\a \x01(\tR\x05login\x12\x12\n" +
+	"\x04city\x18\b \x01(\tR\x04city\x12\x10\n" +
+	"\x03bio\x18\t \x01(\tR\x03bio\x12\x18\n" +
+	"\acountry\x18\n" +
+	" \x01(\tR\acountry\x12\x16\n" +
+	"\x06active\x18\v \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\f \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xd7\x03\n" +
+	"\x11AddPersonResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
 	"first_name\x18\x02 \x01(\tR\tfirstName\x12\x1b\n" +
@@ -1949,71 +2372,23 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\f \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xc5\x03\n" +
-	"\x11AddPersonResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
-	"\n" +
-	"first_name\x18\x02 \x01(\tR\tfirstName\x12\x1b\n" +
-	"\tlast_name\x18\x03 \x01(\tR\blastName\x12\x1f\n" +
-	"\vmiddle_name\x18\x04 \x01(\tR\n" +
-	"middleName\x12\x14\n" +
-	"\x05phone\x18\x05 \x03(\tR\x05phone\x12\x14\n" +
-	"\x05email\x18\x06 \x03(\tR\x05email\x12\x14\n" +
-	"\x05login\x18\a \x01(\tR\x05login\x12\x12\n" +
-	"\x04city\x18\b \x01(\tR\x04city\x12\x18\n" +
-	"\acountry\x18\t \x01(\tR\acountry\x12\x16\n" +
-	"\x06active\x18\n" +
-	" \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\v \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xc5\x03\n" +
+	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xf8\x01\n" +
 	"\x11AddContestRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
-	"\n" +
-	"first_name\x18\x02 \x01(\tR\tfirstName\x12\x1b\n" +
-	"\tlast_name\x18\x03 \x01(\tR\blastName\x12\x1f\n" +
-	"\vmiddle_name\x18\x04 \x01(\tR\n" +
-	"middleName\x12\x14\n" +
-	"\x05phone\x18\x05 \x03(\tR\x05phone\x12\x14\n" +
-	"\x05email\x18\x06 \x03(\tR\x05email\x12\x14\n" +
-	"\x05login\x18\a \x01(\tR\x05login\x12\x12\n" +
-	"\x04city\x18\b \x01(\tR\x04city\x12\x18\n" +
-	"\acountry\x18\t \x01(\tR\acountry\x12\x16\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x16\n" +
 	"\x06active\x18\n" +
 	" \x01(\bR\x06active\x12\x19\n" +
 	"\bowner_id\x18\v \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xc6\x03\n" +
+	"\aexpires\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xf9\x01\n" +
 	"\x12AddContestResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
-	"\n" +
-	"first_name\x18\x02 \x01(\tR\tfirstName\x12\x1b\n" +
-	"\tlast_name\x18\x03 \x01(\tR\blastName\x12\x1f\n" +
-	"\vmiddle_name\x18\x04 \x01(\tR\n" +
-	"middleName\x12\x14\n" +
-	"\x05phone\x18\x05 \x03(\tR\x05phone\x12\x14\n" +
-	"\x05email\x18\x06 \x03(\tR\x05email\x12\x14\n" +
-	"\x05login\x18\a \x01(\tR\x05login\x12\x12\n" +
-	"\x04city\x18\b \x01(\tR\x04city\x12\x18\n" +
-	"\acountry\x18\t \x01(\tR\acountry\x12\x16\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x16\n" +
 	"\x06active\x18\n" +
 	" \x01(\bR\x06active\x12\x19\n" +
 	"\bowner_id\x18\v \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xc4\x02\n" +
-	"\x04Team\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12'\n" +
-	"\x06person\x18\x02 \x03(\v2\x0f.contest.PersonR\x06person\x12\x16\n" +
-	"\x06artist\x18\x03 \x01(\tR\x06artist\x12\x16\n" +
-	"\x06status\x18\x04 \x01(\tR\x06status\x12\x16\n" +
-	"\x06active\x18\x05 \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\x06 \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xec\x03\n" +
+	"\aexpires\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xec\x03\n" +
 	"\x06Artist\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1f\n" +
@@ -2033,7 +2408,46 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\x0e \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xed\x03\n" +
+	"\aexpires\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xe6\x03\n" +
+	"\x10AddArtistRequest\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1f\n" +
+	"\vshort_title\x18\x03 \x01(\tR\n" +
+	"shortTitle\x12\x12\n" +
+	"\x04type\x18\x04 \x03(\tR\x04type\x12\x12\n" +
+	"\x04city\x18\x05 \x01(\tR\x04city\x12\x18\n" +
+	"\acountry\x18\x06 \x01(\tR\acountry\x12\x12\n" +
+	"\x04site\x18\a \x01(\tR\x04site\x12\x14\n" +
+	"\x05photo\x18\b \x03(\tR\x05photo\x12\x10\n" +
+	"\x03bio\x18\t \x01(\tR\x03bio\x12\x1a\n" +
+	"\bsocmedia\x18\n" +
+	" \x03(\tR\bsocmedia\x12\x18\n" +
+	"\arelease\x18\v \x03(\tR\arelease\x12\x12\n" +
+	"\x04team\x18\f \x03(\tR\x04team\x12\x16\n" +
+	"\x06active\x18\r \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\x0e \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xf7\x03\n" +
+	"\x11AddArtistResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1f\n" +
+	"\vshort_title\x18\x03 \x01(\tR\n" +
+	"shortTitle\x12\x12\n" +
+	"\x04type\x18\x04 \x03(\tR\x04type\x12\x12\n" +
+	"\x04city\x18\x05 \x01(\tR\x04city\x12\x18\n" +
+	"\acountry\x18\x06 \x01(\tR\acountry\x12\x12\n" +
+	"\x04site\x18\a \x01(\tR\x04site\x12\x14\n" +
+	"\x05photo\x18\b \x03(\tR\x05photo\x12\x10\n" +
+	"\x03bio\x18\t \x01(\tR\x03bio\x12\x1a\n" +
+	"\bsocmedia\x18\n" +
+	" \x03(\tR\bsocmedia\x12\x18\n" +
+	"\arelease\x18\v \x03(\tR\arelease\x12\x12\n" +
+	"\x04team\x18\f \x03(\tR\x04team\x12\x16\n" +
+	"\x06active\x18\r \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\x0e \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\x81\x04\n" +
 	"\x04Song\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x16\n" +
 	"\x06artist\x18\x02 \x03(\tR\x06artist\x12\x14\n" +
@@ -2041,17 +2455,55 @@ const file_contest_proto_rawDesc = "" +
 	"\rauthor_lyrics\x18\x04 \x03(\tR\fauthorLyrics\x12!\n" +
 	"\fauthor_music\x18\x05 \x03(\tR\vauthorMusic\x12\x1a\n" +
 	"\barranger\x18\x06 \x03(\tR\barranger\x12\x14\n" +
-	"\x05audio\x18\a \x03(\tR\x05audio\x12\x14\n" +
-	"\x05video\x18\b \x03(\tR\x05video\x12\x10\n" +
-	"\x03pts\x18\t \x03(\tR\x03pts\x12\x18\n" +
-	"\arelease\x18\n" +
-	" \x01(\tR\arelease\x12\x16\n" +
-	"\x06lyrics\x18\v \x01(\tR\x06lyrics\x12\x16\n" +
-	"\x06active\x18\f \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\r \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xa1\x03\n" +
+	"\x05audio\x18\a \x03(\tR\x05audio\x12\x12\n" +
+	"\x04clip\x18\b \x03(\tR\x04clip\x12\x14\n" +
+	"\x05video\x18\t \x03(\tR\x05video\x12\x10\n" +
+	"\x03pts\x18\n" +
+	" \x03(\tR\x03pts\x12\x18\n" +
+	"\arelease\x18\v \x01(\tR\arelease\x12\x16\n" +
+	"\x06lyrics\x18\f \x01(\tR\x06lyrics\x12\x16\n" +
+	"\x06active\x18\r \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\x0e \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xfb\x03\n" +
+	"\x0eAddSongRequest\x12\x16\n" +
+	"\x06artist\x18\x02 \x03(\tR\x06artist\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12#\n" +
+	"\rauthor_lyrics\x18\x04 \x03(\tR\fauthorLyrics\x12!\n" +
+	"\fauthor_music\x18\x05 \x03(\tR\vauthorMusic\x12\x1a\n" +
+	"\barranger\x18\x06 \x03(\tR\barranger\x12\x14\n" +
+	"\x05audio\x18\a \x03(\tR\x05audio\x12\x12\n" +
+	"\x04clip\x18\b \x03(\tR\x04clip\x12\x14\n" +
+	"\x05video\x18\t \x03(\tR\x05video\x12\x10\n" +
+	"\x03pts\x18\n" +
+	" \x03(\tR\x03pts\x12\x18\n" +
+	"\arelease\x18\v \x01(\tR\arelease\x12\x16\n" +
+	"\x06lyrics\x18\f \x01(\tR\x06lyrics\x12\x16\n" +
+	"\x06active\x18\r \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\x0e \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\x8c\x04\n" +
+	"\x0fAddSongResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x16\n" +
+	"\x06artist\x18\x02 \x03(\tR\x06artist\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12#\n" +
+	"\rauthor_lyrics\x18\x04 \x03(\tR\fauthorLyrics\x12!\n" +
+	"\fauthor_music\x18\x05 \x03(\tR\vauthorMusic\x12\x1a\n" +
+	"\barranger\x18\x06 \x03(\tR\barranger\x12\x14\n" +
+	"\x05audio\x18\a \x03(\tR\x05audio\x12\x12\n" +
+	"\x04clip\x18\b \x03(\tR\x04clip\x12\x14\n" +
+	"\x05video\x18\t \x03(\tR\x05video\x12\x10\n" +
+	"\x03pts\x18\n" +
+	" \x03(\tR\x03pts\x12\x18\n" +
+	"\arelease\x18\v \x01(\tR\arelease\x12\x16\n" +
+	"\x06lyrics\x18\f \x01(\tR\x06lyrics\x12\x16\n" +
+	"\x06active\x18\r \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\x0e \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xa1\x03\n" +
 	"\aProject\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1f\n" +
@@ -2110,11 +2562,23 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\x0f \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires2\x94\x01\n" +
+	"\aexpires\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xc4\x02\n" +
+	"\x04Team\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12'\n" +
+	"\x06person\x18\x02 \x03(\v2\x0f.contest.PersonR\x06person\x12\x16\n" +
+	"\x06artist\x18\x03 \x01(\tR\x06artist\x12\x16\n" +
+	"\x06status\x18\x04 \x01(\tR\x06status\x12\x16\n" +
+	"\x06active\x18\x05 \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\x06 \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\aexpires2\x96\x02\n" +
 	"\aContest\x12E\n" +
 	"\n" +
 	"AddContest\x12\x1a.contest.AddContestRequest\x1a\x1b.contest.AddContestResponse\x12B\n" +
-	"\tAddPerson\x12\x19.contest.AddPersonRequest\x1a\x1a.contest.AddPersonResponseB3Z1github.com/erkkipm/contest_proto/gen/go;contestV1b\x06proto3"
+	"\tAddPerson\x12\x19.contest.AddPersonRequest\x1a\x1a.contest.AddPersonResponse\x12B\n" +
+	"\tAddArtist\x12\x19.contest.AddArtistRequest\x1a\x1a.contest.AddArtistResponse\x12<\n" +
+	"\aAddSong\x12\x17.contest.AddSongRequest\x1a\x18.contest.AddSongResponseB3Z1github.com/erkkipm/contest_proto/gen/go;contestV1b\x06proto3"
 
 var (
 	file_contest_proto_rawDescOnce sync.Once
@@ -2128,85 +2592,101 @@ func file_contest_proto_rawDescGZIP() []byte {
 	return file_contest_proto_rawDescData
 }
 
-var file_contest_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_contest_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_contest_proto_goTypes = []any{
-	(*Country)(nil),               // 0: contest.Country
-	(*Person)(nil),                // 1: contest.Person
-	(*AddPersonRequest)(nil),      // 2: contest.AddPersonRequest
-	(*AddPersonResponse)(nil),     // 3: contest.AddPersonResponse
-	(*AddContestRequest)(nil),     // 4: contest.AddContestRequest
-	(*AddContestResponse)(nil),    // 5: contest.AddContestResponse
-	(*Team)(nil),                  // 6: contest.Team
-	(*Artist)(nil),                // 7: contest.Artist
+	(*Person)(nil),                // 0: contest.Person
+	(*AddPersonRequest)(nil),      // 1: contest.AddPersonRequest
+	(*AddPersonResponse)(nil),     // 2: contest.AddPersonResponse
+	(*AddContestRequest)(nil),     // 3: contest.AddContestRequest
+	(*AddContestResponse)(nil),    // 4: contest.AddContestResponse
+	(*Artist)(nil),                // 5: contest.Artist
+	(*AddArtistRequest)(nil),      // 6: contest.AddArtistRequest
+	(*AddArtistResponse)(nil),     // 7: contest.AddArtistResponse
 	(*Song)(nil),                  // 8: contest.Song
-	(*Project)(nil),               // 9: contest.Project
-	(*Rate)(nil),                  // 10: contest.Rate
-	(*RateBook)(nil),              // 11: contest.RateBook
-	(*FullContent)(nil),           // 12: contest.FullContent
-	(*timestamppb.Timestamp)(nil), // 13: google.protobuf.Timestamp
+	(*AddSongRequest)(nil),        // 9: contest.AddSongRequest
+	(*AddSongResponse)(nil),       // 10: contest.AddSongResponse
+	(*Project)(nil),               // 11: contest.Project
+	(*Rate)(nil),                  // 12: contest.Rate
+	(*RateBook)(nil),              // 13: contest.RateBook
+	(*FullContent)(nil),           // 14: contest.FullContent
+	(*Team)(nil),                  // 15: contest.Team
+	(*timestamppb.Timestamp)(nil), // 16: google.protobuf.Timestamp
 }
 var file_contest_proto_depIdxs = []int32{
-	13, // 0: contest.Country.created:type_name -> google.protobuf.Timestamp
-	13, // 1: contest.Country.updated:type_name -> google.protobuf.Timestamp
-	13, // 2: contest.Country.expires:type_name -> google.protobuf.Timestamp
-	13, // 3: contest.Person.created:type_name -> google.protobuf.Timestamp
-	13, // 4: contest.Person.updated:type_name -> google.protobuf.Timestamp
-	13, // 5: contest.Person.expires:type_name -> google.protobuf.Timestamp
-	13, // 6: contest.AddPersonRequest.created:type_name -> google.protobuf.Timestamp
-	13, // 7: contest.AddPersonRequest.updated:type_name -> google.protobuf.Timestamp
-	13, // 8: contest.AddPersonRequest.expires:type_name -> google.protobuf.Timestamp
-	13, // 9: contest.AddPersonResponse.created:type_name -> google.protobuf.Timestamp
-	13, // 10: contest.AddPersonResponse.updated:type_name -> google.protobuf.Timestamp
-	13, // 11: contest.AddPersonResponse.expires:type_name -> google.protobuf.Timestamp
-	13, // 12: contest.AddContestRequest.created:type_name -> google.protobuf.Timestamp
-	13, // 13: contest.AddContestRequest.updated:type_name -> google.protobuf.Timestamp
-	13, // 14: contest.AddContestRequest.expires:type_name -> google.protobuf.Timestamp
-	13, // 15: contest.AddContestResponse.created:type_name -> google.protobuf.Timestamp
-	13, // 16: contest.AddContestResponse.updated:type_name -> google.protobuf.Timestamp
-	13, // 17: contest.AddContestResponse.expires:type_name -> google.protobuf.Timestamp
-	1,  // 18: contest.Team.person:type_name -> contest.Person
-	13, // 19: contest.Team.created:type_name -> google.protobuf.Timestamp
-	13, // 20: contest.Team.updated:type_name -> google.protobuf.Timestamp
-	13, // 21: contest.Team.expires:type_name -> google.protobuf.Timestamp
-	13, // 22: contest.Artist.created:type_name -> google.protobuf.Timestamp
-	13, // 23: contest.Artist.updated:type_name -> google.protobuf.Timestamp
-	13, // 24: contest.Artist.expires:type_name -> google.protobuf.Timestamp
-	13, // 25: contest.Song.created:type_name -> google.protobuf.Timestamp
-	13, // 26: contest.Song.updated:type_name -> google.protobuf.Timestamp
-	13, // 27: contest.Song.expires:type_name -> google.protobuf.Timestamp
-	13, // 28: contest.Project.start:type_name -> google.protobuf.Timestamp
-	13, // 29: contest.Project.finish:type_name -> google.protobuf.Timestamp
-	13, // 30: contest.Project.created:type_name -> google.protobuf.Timestamp
-	13, // 31: contest.Project.updated:type_name -> google.protobuf.Timestamp
-	13, // 32: contest.Project.expires:type_name -> google.protobuf.Timestamp
-	13, // 33: contest.Rate.created:type_name -> google.protobuf.Timestamp
-	13, // 34: contest.Rate.updated:type_name -> google.protobuf.Timestamp
-	13, // 35: contest.Rate.expires:type_name -> google.protobuf.Timestamp
-	13, // 36: contest.RateBook.created:type_name -> google.protobuf.Timestamp
-	13, // 37: contest.RateBook.updated:type_name -> google.protobuf.Timestamp
-	13, // 38: contest.RateBook.expires:type_name -> google.protobuf.Timestamp
-	13, // 39: contest.FullContent.date:type_name -> google.protobuf.Timestamp
-	9,  // 40: contest.FullContent.competition:type_name -> contest.Project
-	1,  // 41: contest.FullContent.author:type_name -> contest.Person
-	11, // 42: contest.FullContent.rate_book:type_name -> contest.RateBook
-	8,  // 43: contest.FullContent.song_own:type_name -> contest.Song
-	7,  // 44: contest.FullContent.artist_song_own:type_name -> contest.Artist
-	10, // 45: contest.FullContent.rate_book_song_own:type_name -> contest.Rate
-	8,  // 46: contest.FullContent.song_remake:type_name -> contest.Song
-	7,  // 47: contest.FullContent.artist_song_remake:type_name -> contest.Artist
-	10, // 48: contest.FullContent.rate_book_song_remake:type_name -> contest.Rate
-	13, // 49: contest.FullContent.created:type_name -> google.protobuf.Timestamp
-	13, // 50: contest.FullContent.updated:type_name -> google.protobuf.Timestamp
-	13, // 51: contest.FullContent.expires:type_name -> google.protobuf.Timestamp
-	4,  // 52: contest.Contest.AddContest:input_type -> contest.AddContestRequest
-	2,  // 53: contest.Contest.AddPerson:input_type -> contest.AddPersonRequest
-	5,  // 54: contest.Contest.AddContest:output_type -> contest.AddContestResponse
-	3,  // 55: contest.Contest.AddPerson:output_type -> contest.AddPersonResponse
-	54, // [54:56] is the sub-list for method output_type
-	52, // [52:54] is the sub-list for method input_type
-	52, // [52:52] is the sub-list for extension type_name
-	52, // [52:52] is the sub-list for extension extendee
-	0,  // [0:52] is the sub-list for field type_name
+	16, // 0: contest.Person.created:type_name -> google.protobuf.Timestamp
+	16, // 1: contest.Person.updated:type_name -> google.protobuf.Timestamp
+	16, // 2: contest.Person.expires:type_name -> google.protobuf.Timestamp
+	16, // 3: contest.AddPersonRequest.created:type_name -> google.protobuf.Timestamp
+	16, // 4: contest.AddPersonRequest.updated:type_name -> google.protobuf.Timestamp
+	16, // 5: contest.AddPersonRequest.expires:type_name -> google.protobuf.Timestamp
+	16, // 6: contest.AddPersonResponse.created:type_name -> google.protobuf.Timestamp
+	16, // 7: contest.AddPersonResponse.updated:type_name -> google.protobuf.Timestamp
+	16, // 8: contest.AddPersonResponse.expires:type_name -> google.protobuf.Timestamp
+	16, // 9: contest.AddContestRequest.created:type_name -> google.protobuf.Timestamp
+	16, // 10: contest.AddContestRequest.updated:type_name -> google.protobuf.Timestamp
+	16, // 11: contest.AddContestRequest.expires:type_name -> google.protobuf.Timestamp
+	16, // 12: contest.AddContestResponse.created:type_name -> google.protobuf.Timestamp
+	16, // 13: contest.AddContestResponse.updated:type_name -> google.protobuf.Timestamp
+	16, // 14: contest.AddContestResponse.expires:type_name -> google.protobuf.Timestamp
+	16, // 15: contest.Artist.created:type_name -> google.protobuf.Timestamp
+	16, // 16: contest.Artist.updated:type_name -> google.protobuf.Timestamp
+	16, // 17: contest.Artist.expires:type_name -> google.protobuf.Timestamp
+	16, // 18: contest.AddArtistRequest.created:type_name -> google.protobuf.Timestamp
+	16, // 19: contest.AddArtistRequest.updated:type_name -> google.protobuf.Timestamp
+	16, // 20: contest.AddArtistRequest.expires:type_name -> google.protobuf.Timestamp
+	16, // 21: contest.AddArtistResponse.created:type_name -> google.protobuf.Timestamp
+	16, // 22: contest.AddArtistResponse.updated:type_name -> google.protobuf.Timestamp
+	16, // 23: contest.AddArtistResponse.expires:type_name -> google.protobuf.Timestamp
+	16, // 24: contest.Song.created:type_name -> google.protobuf.Timestamp
+	16, // 25: contest.Song.updated:type_name -> google.protobuf.Timestamp
+	16, // 26: contest.Song.expires:type_name -> google.protobuf.Timestamp
+	16, // 27: contest.AddSongRequest.created:type_name -> google.protobuf.Timestamp
+	16, // 28: contest.AddSongRequest.updated:type_name -> google.protobuf.Timestamp
+	16, // 29: contest.AddSongRequest.expires:type_name -> google.protobuf.Timestamp
+	16, // 30: contest.AddSongResponse.created:type_name -> google.protobuf.Timestamp
+	16, // 31: contest.AddSongResponse.updated:type_name -> google.protobuf.Timestamp
+	16, // 32: contest.AddSongResponse.expires:type_name -> google.protobuf.Timestamp
+	16, // 33: contest.Project.start:type_name -> google.protobuf.Timestamp
+	16, // 34: contest.Project.finish:type_name -> google.protobuf.Timestamp
+	16, // 35: contest.Project.created:type_name -> google.protobuf.Timestamp
+	16, // 36: contest.Project.updated:type_name -> google.protobuf.Timestamp
+	16, // 37: contest.Project.expires:type_name -> google.protobuf.Timestamp
+	16, // 38: contest.Rate.created:type_name -> google.protobuf.Timestamp
+	16, // 39: contest.Rate.updated:type_name -> google.protobuf.Timestamp
+	16, // 40: contest.Rate.expires:type_name -> google.protobuf.Timestamp
+	16, // 41: contest.RateBook.created:type_name -> google.protobuf.Timestamp
+	16, // 42: contest.RateBook.updated:type_name -> google.protobuf.Timestamp
+	16, // 43: contest.RateBook.expires:type_name -> google.protobuf.Timestamp
+	16, // 44: contest.FullContent.date:type_name -> google.protobuf.Timestamp
+	11, // 45: contest.FullContent.competition:type_name -> contest.Project
+	0,  // 46: contest.FullContent.author:type_name -> contest.Person
+	13, // 47: contest.FullContent.rate_book:type_name -> contest.RateBook
+	8,  // 48: contest.FullContent.song_own:type_name -> contest.Song
+	5,  // 49: contest.FullContent.artist_song_own:type_name -> contest.Artist
+	12, // 50: contest.FullContent.rate_book_song_own:type_name -> contest.Rate
+	8,  // 51: contest.FullContent.song_remake:type_name -> contest.Song
+	5,  // 52: contest.FullContent.artist_song_remake:type_name -> contest.Artist
+	12, // 53: contest.FullContent.rate_book_song_remake:type_name -> contest.Rate
+	16, // 54: contest.FullContent.created:type_name -> google.protobuf.Timestamp
+	16, // 55: contest.FullContent.updated:type_name -> google.protobuf.Timestamp
+	16, // 56: contest.FullContent.expires:type_name -> google.protobuf.Timestamp
+	0,  // 57: contest.Team.person:type_name -> contest.Person
+	16, // 58: contest.Team.created:type_name -> google.protobuf.Timestamp
+	16, // 59: contest.Team.updated:type_name -> google.protobuf.Timestamp
+	16, // 60: contest.Team.expires:type_name -> google.protobuf.Timestamp
+	3,  // 61: contest.Contest.AddContest:input_type -> contest.AddContestRequest
+	1,  // 62: contest.Contest.AddPerson:input_type -> contest.AddPersonRequest
+	6,  // 63: contest.Contest.AddArtist:input_type -> contest.AddArtistRequest
+	9,  // 64: contest.Contest.AddSong:input_type -> contest.AddSongRequest
+	4,  // 65: contest.Contest.AddContest:output_type -> contest.AddContestResponse
+	2,  // 66: contest.Contest.AddPerson:output_type -> contest.AddPersonResponse
+	7,  // 67: contest.Contest.AddArtist:output_type -> contest.AddArtistResponse
+	10, // 68: contest.Contest.AddSong:output_type -> contest.AddSongResponse
+	65, // [65:69] is the sub-list for method output_type
+	61, // [61:65] is the sub-list for method input_type
+	61, // [61:61] is the sub-list for extension type_name
+	61, // [61:61] is the sub-list for extension extendee
+	0,  // [0:61] is the sub-list for field type_name
 }
 
 func init() { file_contest_proto_init() }
@@ -2220,7 +2700,7 @@ func file_contest_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_contest_proto_rawDesc), len(file_contest_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   13,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
