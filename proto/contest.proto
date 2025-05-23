@@ -74,33 +74,37 @@ message AddContestRequest {
   string id = 1;
   google.protobuf.Timestamp date = 2;
   string competition = 3;
-  string author = 4;
-  string song_own = 5;
-  string song_remake = 6;
-  int32 sort = 7;
-  repeated string rate_book = 8;
-  int32 status = 9;
-  bool active = 10;
-  string owner_id = 11;
-  google.protobuf.Timestamp created = 12;
-  google.protobuf.Timestamp updated = 13;
-  google.protobuf.Timestamp expires = 14;
+  string project_id = 4;
+  string author_id = 5;
+  string artist_id = 6;
+  string song_own_id = 7;
+  string song_remake_id = 8;
+  int32 sort = 9;
+  repeated string rate_book = 10;
+  int32 status = 11;
+  bool active = 12;
+  string owner_id = 13;
+  google.protobuf.Timestamp created = 14;
+  google.protobuf.Timestamp updated = 15;
+  google.protobuf.Timestamp expires = 16;
 }
 message AddContestResponse {
   string id = 1;
   google.protobuf.Timestamp date = 2;
   string competition = 3;
-  string author = 4;
-  string song_own = 5;
-  string song_remake = 6;
-  int32 sort = 7;
-  repeated string rate_book = 8;
-  int32 status = 9;
-  bool active = 10;
-  string owner_id = 11;
-  google.protobuf.Timestamp created = 12;
-  google.protobuf.Timestamp updated = 13;
-  google.protobuf.Timestamp expires = 14;
+  string project_id = 4;
+  string author_id = 5;
+  string artist_id = 6;
+  string song_own_id = 7;
+  string song_remake_id = 8;
+  int32 sort = 9;
+  repeated string rate_book = 10;
+  int32 status = 11;
+  bool active = 12;
+  string owner_id = 13;
+  google.protobuf.Timestamp created = 14;
+  google.protobuf.Timestamp updated = 15;
+  google.protobuf.Timestamp expires = 16;
 }
 
 // Artist and CreateArtist
