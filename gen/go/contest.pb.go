@@ -489,6 +489,14 @@ func (x *AddPersonResponse) GetExpires() *timestamppb.Timestamp {
 type AddContestRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Date          *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
+	Competition   string                 `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
+	Author        string                 `protobuf:"bytes,4,opt,name=author,proto3" json:"author,omitempty"`
+	SongOwn       string                 `protobuf:"bytes,5,opt,name=song_own,json=songOwn,proto3" json:"song_own,omitempty"`
+	SongRemake    string                 `protobuf:"bytes,6,opt,name=song_remake,json=songRemake,proto3" json:"song_remake,omitempty"`
+	Sort          int32                  `protobuf:"varint,7,opt,name=sort,proto3" json:"sort,omitempty"`
+	RateBook      []string               `protobuf:"bytes,8,rep,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
+	Status        int32                  `protobuf:"varint,9,opt,name=status,proto3" json:"status,omitempty"`
 	Active        bool                   `protobuf:"varint,10,opt,name=active,proto3" json:"active,omitempty"`
 	OwnerId       string                 `protobuf:"bytes,11,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
 	Created       *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=created,proto3" json:"created,omitempty"`
@@ -535,6 +543,62 @@ func (x *AddContestRequest) GetId() string {
 	return ""
 }
 
+func (x *AddContestRequest) GetDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Date
+	}
+	return nil
+}
+
+func (x *AddContestRequest) GetCompetition() string {
+	if x != nil {
+		return x.Competition
+	}
+	return ""
+}
+
+func (x *AddContestRequest) GetAuthor() string {
+	if x != nil {
+		return x.Author
+	}
+	return ""
+}
+
+func (x *AddContestRequest) GetSongOwn() string {
+	if x != nil {
+		return x.SongOwn
+	}
+	return ""
+}
+
+func (x *AddContestRequest) GetSongRemake() string {
+	if x != nil {
+		return x.SongRemake
+	}
+	return ""
+}
+
+func (x *AddContestRequest) GetSort() int32 {
+	if x != nil {
+		return x.Sort
+	}
+	return 0
+}
+
+func (x *AddContestRequest) GetRateBook() []string {
+	if x != nil {
+		return x.RateBook
+	}
+	return nil
+}
+
+func (x *AddContestRequest) GetStatus() int32 {
+	if x != nil {
+		return x.Status
+	}
+	return 0
+}
+
 func (x *AddContestRequest) GetActive() bool {
 	if x != nil {
 		return x.Active
@@ -573,6 +637,14 @@ func (x *AddContestRequest) GetExpires() *timestamppb.Timestamp {
 type AddContestResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Date          *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
+	Competition   string                 `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
+	Author        string                 `protobuf:"bytes,4,opt,name=author,proto3" json:"author,omitempty"`
+	SongOwn       string                 `protobuf:"bytes,5,opt,name=song_own,json=songOwn,proto3" json:"song_own,omitempty"`
+	SongRemake    string                 `protobuf:"bytes,6,opt,name=song_remake,json=songRemake,proto3" json:"song_remake,omitempty"`
+	Sort          int32                  `protobuf:"varint,7,opt,name=sort,proto3" json:"sort,omitempty"`
+	RateBook      []string               `protobuf:"bytes,8,rep,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
+	Status        int32                  `protobuf:"varint,9,opt,name=status,proto3" json:"status,omitempty"`
 	Active        bool                   `protobuf:"varint,10,opt,name=active,proto3" json:"active,omitempty"`
 	OwnerId       string                 `protobuf:"bytes,11,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
 	Created       *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=created,proto3" json:"created,omitempty"`
@@ -617,6 +689,62 @@ func (x *AddContestResponse) GetId() string {
 		return x.Id
 	}
 	return ""
+}
+
+func (x *AddContestResponse) GetDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Date
+	}
+	return nil
+}
+
+func (x *AddContestResponse) GetCompetition() string {
+	if x != nil {
+		return x.Competition
+	}
+	return ""
+}
+
+func (x *AddContestResponse) GetAuthor() string {
+	if x != nil {
+		return x.Author
+	}
+	return ""
+}
+
+func (x *AddContestResponse) GetSongOwn() string {
+	if x != nil {
+		return x.SongOwn
+	}
+	return ""
+}
+
+func (x *AddContestResponse) GetSongRemake() string {
+	if x != nil {
+		return x.SongRemake
+	}
+	return ""
+}
+
+func (x *AddContestResponse) GetSort() int32 {
+	if x != nil {
+		return x.Sort
+	}
+	return 0
+}
+
+func (x *AddContestResponse) GetRateBook() []string {
+	if x != nil {
+		return x.RateBook
+	}
+	return nil
+}
+
+func (x *AddContestResponse) GetStatus() int32 {
+	if x != nil {
+		return x.Status
+	}
+	return 0
 }
 
 func (x *AddContestResponse) GetActive() bool {
@@ -2372,17 +2500,35 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\f \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xf8\x01\n" +
+	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xe7\x03\n" +
 	"\x11AddContestRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x16\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
+	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12 \n" +
+	"\vcompetition\x18\x03 \x01(\tR\vcompetition\x12\x16\n" +
+	"\x06author\x18\x04 \x01(\tR\x06author\x12\x19\n" +
+	"\bsong_own\x18\x05 \x01(\tR\asongOwn\x12\x1f\n" +
+	"\vsong_remake\x18\x06 \x01(\tR\n" +
+	"songRemake\x12\x12\n" +
+	"\x04sort\x18\a \x01(\x05R\x04sort\x12\x1b\n" +
+	"\trate_book\x18\b \x03(\tR\brateBook\x12\x16\n" +
+	"\x06status\x18\t \x01(\x05R\x06status\x12\x16\n" +
 	"\x06active\x18\n" +
 	" \x01(\bR\x06active\x12\x19\n" +
 	"\bowner_id\x18\v \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xf9\x01\n" +
+	"\aexpires\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xe8\x03\n" +
 	"\x12AddContestResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x16\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
+	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12 \n" +
+	"\vcompetition\x18\x03 \x01(\tR\vcompetition\x12\x16\n" +
+	"\x06author\x18\x04 \x01(\tR\x06author\x12\x19\n" +
+	"\bsong_own\x18\x05 \x01(\tR\asongOwn\x12\x1f\n" +
+	"\vsong_remake\x18\x06 \x01(\tR\n" +
+	"songRemake\x12\x12\n" +
+	"\x04sort\x18\a \x01(\x05R\x04sort\x12\x1b\n" +
+	"\trate_book\x18\b \x03(\tR\brateBook\x12\x16\n" +
+	"\x06status\x18\t \x01(\x05R\x06status\x12\x16\n" +
 	"\x06active\x18\n" +
 	" \x01(\bR\x06active\x12\x19\n" +
 	"\bowner_id\x18\v \x01(\tR\aownerId\x124\n" +
@@ -2622,71 +2768,73 @@ var file_contest_proto_depIdxs = []int32{
 	16, // 6: contest.AddPersonResponse.created:type_name -> google.protobuf.Timestamp
 	16, // 7: contest.AddPersonResponse.updated:type_name -> google.protobuf.Timestamp
 	16, // 8: contest.AddPersonResponse.expires:type_name -> google.protobuf.Timestamp
-	16, // 9: contest.AddContestRequest.created:type_name -> google.protobuf.Timestamp
-	16, // 10: contest.AddContestRequest.updated:type_name -> google.protobuf.Timestamp
-	16, // 11: contest.AddContestRequest.expires:type_name -> google.protobuf.Timestamp
-	16, // 12: contest.AddContestResponse.created:type_name -> google.protobuf.Timestamp
-	16, // 13: contest.AddContestResponse.updated:type_name -> google.protobuf.Timestamp
-	16, // 14: contest.AddContestResponse.expires:type_name -> google.protobuf.Timestamp
-	16, // 15: contest.Artist.created:type_name -> google.protobuf.Timestamp
-	16, // 16: contest.Artist.updated:type_name -> google.protobuf.Timestamp
-	16, // 17: contest.Artist.expires:type_name -> google.protobuf.Timestamp
-	16, // 18: contest.AddArtistRequest.created:type_name -> google.protobuf.Timestamp
-	16, // 19: contest.AddArtistRequest.updated:type_name -> google.protobuf.Timestamp
-	16, // 20: contest.AddArtistRequest.expires:type_name -> google.protobuf.Timestamp
-	16, // 21: contest.AddArtistResponse.created:type_name -> google.protobuf.Timestamp
-	16, // 22: contest.AddArtistResponse.updated:type_name -> google.protobuf.Timestamp
-	16, // 23: contest.AddArtistResponse.expires:type_name -> google.protobuf.Timestamp
-	16, // 24: contest.Song.created:type_name -> google.protobuf.Timestamp
-	16, // 25: contest.Song.updated:type_name -> google.protobuf.Timestamp
-	16, // 26: contest.Song.expires:type_name -> google.protobuf.Timestamp
-	16, // 27: contest.AddSongRequest.created:type_name -> google.protobuf.Timestamp
-	16, // 28: contest.AddSongRequest.updated:type_name -> google.protobuf.Timestamp
-	16, // 29: contest.AddSongRequest.expires:type_name -> google.protobuf.Timestamp
-	16, // 30: contest.AddSongResponse.created:type_name -> google.protobuf.Timestamp
-	16, // 31: contest.AddSongResponse.updated:type_name -> google.protobuf.Timestamp
-	16, // 32: contest.AddSongResponse.expires:type_name -> google.protobuf.Timestamp
-	16, // 33: contest.Project.start:type_name -> google.protobuf.Timestamp
-	16, // 34: contest.Project.finish:type_name -> google.protobuf.Timestamp
-	16, // 35: contest.Project.created:type_name -> google.protobuf.Timestamp
-	16, // 36: contest.Project.updated:type_name -> google.protobuf.Timestamp
-	16, // 37: contest.Project.expires:type_name -> google.protobuf.Timestamp
-	16, // 38: contest.Rate.created:type_name -> google.protobuf.Timestamp
-	16, // 39: contest.Rate.updated:type_name -> google.protobuf.Timestamp
-	16, // 40: contest.Rate.expires:type_name -> google.protobuf.Timestamp
-	16, // 41: contest.RateBook.created:type_name -> google.protobuf.Timestamp
-	16, // 42: contest.RateBook.updated:type_name -> google.protobuf.Timestamp
-	16, // 43: contest.RateBook.expires:type_name -> google.protobuf.Timestamp
-	16, // 44: contest.FullContent.date:type_name -> google.protobuf.Timestamp
-	11, // 45: contest.FullContent.competition:type_name -> contest.Project
-	0,  // 46: contest.FullContent.author:type_name -> contest.Person
-	13, // 47: contest.FullContent.rate_book:type_name -> contest.RateBook
-	8,  // 48: contest.FullContent.song_own:type_name -> contest.Song
-	5,  // 49: contest.FullContent.artist_song_own:type_name -> contest.Artist
-	12, // 50: contest.FullContent.rate_book_song_own:type_name -> contest.Rate
-	8,  // 51: contest.FullContent.song_remake:type_name -> contest.Song
-	5,  // 52: contest.FullContent.artist_song_remake:type_name -> contest.Artist
-	12, // 53: contest.FullContent.rate_book_song_remake:type_name -> contest.Rate
-	16, // 54: contest.FullContent.created:type_name -> google.protobuf.Timestamp
-	16, // 55: contest.FullContent.updated:type_name -> google.protobuf.Timestamp
-	16, // 56: contest.FullContent.expires:type_name -> google.protobuf.Timestamp
-	0,  // 57: contest.Team.person:type_name -> contest.Person
-	16, // 58: contest.Team.created:type_name -> google.protobuf.Timestamp
-	16, // 59: contest.Team.updated:type_name -> google.protobuf.Timestamp
-	16, // 60: contest.Team.expires:type_name -> google.protobuf.Timestamp
-	3,  // 61: contest.Contest.AddContest:input_type -> contest.AddContestRequest
-	1,  // 62: contest.Contest.AddPerson:input_type -> contest.AddPersonRequest
-	6,  // 63: contest.Contest.AddArtist:input_type -> contest.AddArtistRequest
-	9,  // 64: contest.Contest.AddSong:input_type -> contest.AddSongRequest
-	4,  // 65: contest.Contest.AddContest:output_type -> contest.AddContestResponse
-	2,  // 66: contest.Contest.AddPerson:output_type -> contest.AddPersonResponse
-	7,  // 67: contest.Contest.AddArtist:output_type -> contest.AddArtistResponse
-	10, // 68: contest.Contest.AddSong:output_type -> contest.AddSongResponse
-	65, // [65:69] is the sub-list for method output_type
-	61, // [61:65] is the sub-list for method input_type
-	61, // [61:61] is the sub-list for extension type_name
-	61, // [61:61] is the sub-list for extension extendee
-	0,  // [0:61] is the sub-list for field type_name
+	16, // 9: contest.AddContestRequest.date:type_name -> google.protobuf.Timestamp
+	16, // 10: contest.AddContestRequest.created:type_name -> google.protobuf.Timestamp
+	16, // 11: contest.AddContestRequest.updated:type_name -> google.protobuf.Timestamp
+	16, // 12: contest.AddContestRequest.expires:type_name -> google.protobuf.Timestamp
+	16, // 13: contest.AddContestResponse.date:type_name -> google.protobuf.Timestamp
+	16, // 14: contest.AddContestResponse.created:type_name -> google.protobuf.Timestamp
+	16, // 15: contest.AddContestResponse.updated:type_name -> google.protobuf.Timestamp
+	16, // 16: contest.AddContestResponse.expires:type_name -> google.protobuf.Timestamp
+	16, // 17: contest.Artist.created:type_name -> google.protobuf.Timestamp
+	16, // 18: contest.Artist.updated:type_name -> google.protobuf.Timestamp
+	16, // 19: contest.Artist.expires:type_name -> google.protobuf.Timestamp
+	16, // 20: contest.AddArtistRequest.created:type_name -> google.protobuf.Timestamp
+	16, // 21: contest.AddArtistRequest.updated:type_name -> google.protobuf.Timestamp
+	16, // 22: contest.AddArtistRequest.expires:type_name -> google.protobuf.Timestamp
+	16, // 23: contest.AddArtistResponse.created:type_name -> google.protobuf.Timestamp
+	16, // 24: contest.AddArtistResponse.updated:type_name -> google.protobuf.Timestamp
+	16, // 25: contest.AddArtistResponse.expires:type_name -> google.protobuf.Timestamp
+	16, // 26: contest.Song.created:type_name -> google.protobuf.Timestamp
+	16, // 27: contest.Song.updated:type_name -> google.protobuf.Timestamp
+	16, // 28: contest.Song.expires:type_name -> google.protobuf.Timestamp
+	16, // 29: contest.AddSongRequest.created:type_name -> google.protobuf.Timestamp
+	16, // 30: contest.AddSongRequest.updated:type_name -> google.protobuf.Timestamp
+	16, // 31: contest.AddSongRequest.expires:type_name -> google.protobuf.Timestamp
+	16, // 32: contest.AddSongResponse.created:type_name -> google.protobuf.Timestamp
+	16, // 33: contest.AddSongResponse.updated:type_name -> google.protobuf.Timestamp
+	16, // 34: contest.AddSongResponse.expires:type_name -> google.protobuf.Timestamp
+	16, // 35: contest.Project.start:type_name -> google.protobuf.Timestamp
+	16, // 36: contest.Project.finish:type_name -> google.protobuf.Timestamp
+	16, // 37: contest.Project.created:type_name -> google.protobuf.Timestamp
+	16, // 38: contest.Project.updated:type_name -> google.protobuf.Timestamp
+	16, // 39: contest.Project.expires:type_name -> google.protobuf.Timestamp
+	16, // 40: contest.Rate.created:type_name -> google.protobuf.Timestamp
+	16, // 41: contest.Rate.updated:type_name -> google.protobuf.Timestamp
+	16, // 42: contest.Rate.expires:type_name -> google.protobuf.Timestamp
+	16, // 43: contest.RateBook.created:type_name -> google.protobuf.Timestamp
+	16, // 44: contest.RateBook.updated:type_name -> google.protobuf.Timestamp
+	16, // 45: contest.RateBook.expires:type_name -> google.protobuf.Timestamp
+	16, // 46: contest.FullContent.date:type_name -> google.protobuf.Timestamp
+	11, // 47: contest.FullContent.competition:type_name -> contest.Project
+	0,  // 48: contest.FullContent.author:type_name -> contest.Person
+	13, // 49: contest.FullContent.rate_book:type_name -> contest.RateBook
+	8,  // 50: contest.FullContent.song_own:type_name -> contest.Song
+	5,  // 51: contest.FullContent.artist_song_own:type_name -> contest.Artist
+	12, // 52: contest.FullContent.rate_book_song_own:type_name -> contest.Rate
+	8,  // 53: contest.FullContent.song_remake:type_name -> contest.Song
+	5,  // 54: contest.FullContent.artist_song_remake:type_name -> contest.Artist
+	12, // 55: contest.FullContent.rate_book_song_remake:type_name -> contest.Rate
+	16, // 56: contest.FullContent.created:type_name -> google.protobuf.Timestamp
+	16, // 57: contest.FullContent.updated:type_name -> google.protobuf.Timestamp
+	16, // 58: contest.FullContent.expires:type_name -> google.protobuf.Timestamp
+	0,  // 59: contest.Team.person:type_name -> contest.Person
+	16, // 60: contest.Team.created:type_name -> google.protobuf.Timestamp
+	16, // 61: contest.Team.updated:type_name -> google.protobuf.Timestamp
+	16, // 62: contest.Team.expires:type_name -> google.protobuf.Timestamp
+	3,  // 63: contest.Contest.AddContest:input_type -> contest.AddContestRequest
+	1,  // 64: contest.Contest.AddPerson:input_type -> contest.AddPersonRequest
+	6,  // 65: contest.Contest.AddArtist:input_type -> contest.AddArtistRequest
+	9,  // 66: contest.Contest.AddSong:input_type -> contest.AddSongRequest
+	4,  // 67: contest.Contest.AddContest:output_type -> contest.AddContestResponse
+	2,  // 68: contest.Contest.AddPerson:output_type -> contest.AddPersonResponse
+	7,  // 69: contest.Contest.AddArtist:output_type -> contest.AddArtistResponse
+	10, // 70: contest.Contest.AddSong:output_type -> contest.AddSongResponse
+	67, // [67:71] is the sub-list for method output_type
+	63, // [63:67] is the sub-list for method input_type
+	63, // [63:63] is the sub-list for extension type_name
+	63, // [63:63] is the sub-list for extension extendee
+	0,  // [0:63] is the sub-list for field type_name
 }
 
 func init() { file_contest_proto_init() }
