@@ -491,17 +491,19 @@ type AddContestRequest struct {
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Date          *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
 	Competition   string                 `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
-	Author        string                 `protobuf:"bytes,4,opt,name=author,proto3" json:"author,omitempty"`
-	SongOwn       string                 `protobuf:"bytes,5,opt,name=song_own,json=songOwn,proto3" json:"song_own,omitempty"`
-	SongRemake    string                 `protobuf:"bytes,6,opt,name=song_remake,json=songRemake,proto3" json:"song_remake,omitempty"`
-	Sort          int32                  `protobuf:"varint,7,opt,name=sort,proto3" json:"sort,omitempty"`
-	RateBook      []string               `protobuf:"bytes,8,rep,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
-	Status        int32                  `protobuf:"varint,9,opt,name=status,proto3" json:"status,omitempty"`
-	Active        bool                   `protobuf:"varint,10,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,11,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=expires,proto3" json:"expires,omitempty"`
+	ProjectId     string                 `protobuf:"bytes,4,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	AuthorId      string                 `protobuf:"bytes,5,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
+	ArtistId      string                 `protobuf:"bytes,6,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
+	SongOwnId     string                 `protobuf:"bytes,7,opt,name=song_own_id,json=songOwnId,proto3" json:"song_own_id,omitempty"`
+	SongRemakeId  string                 `protobuf:"bytes,8,opt,name=song_remake_id,json=songRemakeId,proto3" json:"song_remake_id,omitempty"`
+	Sort          int32                  `protobuf:"varint,9,opt,name=sort,proto3" json:"sort,omitempty"`
+	RateBook      []string               `protobuf:"bytes,10,rep,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
+	Status        int32                  `protobuf:"varint,11,opt,name=status,proto3" json:"status,omitempty"`
+	Active        bool                   `protobuf:"varint,12,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,13,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=expires,proto3" json:"expires,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -557,23 +559,37 @@ func (x *AddContestRequest) GetCompetition() string {
 	return ""
 }
 
-func (x *AddContestRequest) GetAuthor() string {
+func (x *AddContestRequest) GetProjectId() string {
 	if x != nil {
-		return x.Author
+		return x.ProjectId
 	}
 	return ""
 }
 
-func (x *AddContestRequest) GetSongOwn() string {
+func (x *AddContestRequest) GetAuthorId() string {
 	if x != nil {
-		return x.SongOwn
+		return x.AuthorId
 	}
 	return ""
 }
 
-func (x *AddContestRequest) GetSongRemake() string {
+func (x *AddContestRequest) GetArtistId() string {
 	if x != nil {
-		return x.SongRemake
+		return x.ArtistId
+	}
+	return ""
+}
+
+func (x *AddContestRequest) GetSongOwnId() string {
+	if x != nil {
+		return x.SongOwnId
+	}
+	return ""
+}
+
+func (x *AddContestRequest) GetSongRemakeId() string {
+	if x != nil {
+		return x.SongRemakeId
 	}
 	return ""
 }
@@ -639,17 +655,19 @@ type AddContestResponse struct {
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Date          *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
 	Competition   string                 `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
-	Author        string                 `protobuf:"bytes,4,opt,name=author,proto3" json:"author,omitempty"`
-	SongOwn       string                 `protobuf:"bytes,5,opt,name=song_own,json=songOwn,proto3" json:"song_own,omitempty"`
-	SongRemake    string                 `protobuf:"bytes,6,opt,name=song_remake,json=songRemake,proto3" json:"song_remake,omitempty"`
-	Sort          int32                  `protobuf:"varint,7,opt,name=sort,proto3" json:"sort,omitempty"`
-	RateBook      []string               `protobuf:"bytes,8,rep,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
-	Status        int32                  `protobuf:"varint,9,opt,name=status,proto3" json:"status,omitempty"`
-	Active        bool                   `protobuf:"varint,10,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,11,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=expires,proto3" json:"expires,omitempty"`
+	ProjectId     string                 `protobuf:"bytes,4,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	AuthorId      string                 `protobuf:"bytes,5,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
+	ArtistId      string                 `protobuf:"bytes,6,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
+	SongOwnId     string                 `protobuf:"bytes,7,opt,name=song_own_id,json=songOwnId,proto3" json:"song_own_id,omitempty"`
+	SongRemakeId  string                 `protobuf:"bytes,8,opt,name=song_remake_id,json=songRemakeId,proto3" json:"song_remake_id,omitempty"`
+	Sort          int32                  `protobuf:"varint,9,opt,name=sort,proto3" json:"sort,omitempty"`
+	RateBook      []string               `protobuf:"bytes,10,rep,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
+	Status        int32                  `protobuf:"varint,11,opt,name=status,proto3" json:"status,omitempty"`
+	Active        bool                   `protobuf:"varint,12,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,13,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=expires,proto3" json:"expires,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -705,23 +723,37 @@ func (x *AddContestResponse) GetCompetition() string {
 	return ""
 }
 
-func (x *AddContestResponse) GetAuthor() string {
+func (x *AddContestResponse) GetProjectId() string {
 	if x != nil {
-		return x.Author
+		return x.ProjectId
 	}
 	return ""
 }
 
-func (x *AddContestResponse) GetSongOwn() string {
+func (x *AddContestResponse) GetAuthorId() string {
 	if x != nil {
-		return x.SongOwn
+		return x.AuthorId
 	}
 	return ""
 }
 
-func (x *AddContestResponse) GetSongRemake() string {
+func (x *AddContestResponse) GetArtistId() string {
 	if x != nil {
-		return x.SongRemake
+		return x.ArtistId
+	}
+	return ""
+}
+
+func (x *AddContestResponse) GetSongOwnId() string {
+	if x != nil {
+		return x.SongOwnId
+	}
+	return ""
+}
+
+func (x *AddContestResponse) GetSongRemakeId() string {
+	if x != nil {
+		return x.SongRemakeId
 	}
 	return ""
 }
@@ -2500,41 +2532,45 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\f \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xe7\x03\n" +
+	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xb2\x04\n" +
 	"\x11AddContestRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12 \n" +
-	"\vcompetition\x18\x03 \x01(\tR\vcompetition\x12\x16\n" +
-	"\x06author\x18\x04 \x01(\tR\x06author\x12\x19\n" +
-	"\bsong_own\x18\x05 \x01(\tR\asongOwn\x12\x1f\n" +
-	"\vsong_remake\x18\x06 \x01(\tR\n" +
-	"songRemake\x12\x12\n" +
-	"\x04sort\x18\a \x01(\x05R\x04sort\x12\x1b\n" +
-	"\trate_book\x18\b \x03(\tR\brateBook\x12\x16\n" +
-	"\x06status\x18\t \x01(\x05R\x06status\x12\x16\n" +
-	"\x06active\x18\n" +
-	" \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\v \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xe8\x03\n" +
+	"\vcompetition\x18\x03 \x01(\tR\vcompetition\x12\x1d\n" +
+	"\n" +
+	"project_id\x18\x04 \x01(\tR\tprojectId\x12\x1b\n" +
+	"\tauthor_id\x18\x05 \x01(\tR\bauthorId\x12\x1b\n" +
+	"\tartist_id\x18\x06 \x01(\tR\bartistId\x12\x1e\n" +
+	"\vsong_own_id\x18\a \x01(\tR\tsongOwnId\x12$\n" +
+	"\x0esong_remake_id\x18\b \x01(\tR\fsongRemakeId\x12\x12\n" +
+	"\x04sort\x18\t \x01(\x05R\x04sort\x12\x1b\n" +
+	"\trate_book\x18\n" +
+	" \x03(\tR\brateBook\x12\x16\n" +
+	"\x06status\x18\v \x01(\x05R\x06status\x12\x16\n" +
+	"\x06active\x18\f \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\r \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xb3\x04\n" +
 	"\x12AddContestResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12 \n" +
-	"\vcompetition\x18\x03 \x01(\tR\vcompetition\x12\x16\n" +
-	"\x06author\x18\x04 \x01(\tR\x06author\x12\x19\n" +
-	"\bsong_own\x18\x05 \x01(\tR\asongOwn\x12\x1f\n" +
-	"\vsong_remake\x18\x06 \x01(\tR\n" +
-	"songRemake\x12\x12\n" +
-	"\x04sort\x18\a \x01(\x05R\x04sort\x12\x1b\n" +
-	"\trate_book\x18\b \x03(\tR\brateBook\x12\x16\n" +
-	"\x06status\x18\t \x01(\x05R\x06status\x12\x16\n" +
-	"\x06active\x18\n" +
-	" \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\v \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xec\x03\n" +
+	"\vcompetition\x18\x03 \x01(\tR\vcompetition\x12\x1d\n" +
+	"\n" +
+	"project_id\x18\x04 \x01(\tR\tprojectId\x12\x1b\n" +
+	"\tauthor_id\x18\x05 \x01(\tR\bauthorId\x12\x1b\n" +
+	"\tartist_id\x18\x06 \x01(\tR\bartistId\x12\x1e\n" +
+	"\vsong_own_id\x18\a \x01(\tR\tsongOwnId\x12$\n" +
+	"\x0esong_remake_id\x18\b \x01(\tR\fsongRemakeId\x12\x12\n" +
+	"\x04sort\x18\t \x01(\x05R\x04sort\x12\x1b\n" +
+	"\trate_book\x18\n" +
+	" \x03(\tR\brateBook\x12\x16\n" +
+	"\x06status\x18\v \x01(\x05R\x06status\x12\x16\n" +
+	"\x06active\x18\f \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\r \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xec\x03\n" +
 	"\x06Artist\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1f\n" +
