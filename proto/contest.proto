@@ -86,7 +86,6 @@ message AddContestRequest {
   google.protobuf.Timestamp updated = 13;
   google.protobuf.Timestamp expires = 14;
 }
-
 message AddContestResponse {
   string id = 1;
   google.protobuf.Timestamp date = 2;
@@ -103,7 +102,6 @@ message AddContestResponse {
   google.protobuf.Timestamp updated = 13;
   google.protobuf.Timestamp expires = 14;
 }
-
 
 // Artist and CreateArtist
 message Artist {
