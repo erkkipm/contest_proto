@@ -34,14 +34,15 @@ type Person struct {
 	Phone         []string               `protobuf:"bytes,5,rep,name=phone,proto3" json:"phone,omitempty"`
 	Email         []string               `protobuf:"bytes,6,rep,name=email,proto3" json:"email,omitempty"`
 	Login         string                 `protobuf:"bytes,7,opt,name=login,proto3" json:"login,omitempty"`
-	City          string                 `protobuf:"bytes,8,opt,name=city,proto3" json:"city,omitempty"`
-	Bio           string                 `protobuf:"bytes,9,opt,name=bio,proto3" json:"bio,omitempty"`
-	Country       string                 `protobuf:"bytes,10,opt,name=country,proto3" json:"country,omitempty"`
-	Active        bool                   `protobuf:"varint,11,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,12,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=expires,proto3" json:"expires,omitempty"`
+	Bio           string                 `protobuf:"bytes,8,opt,name=bio,proto3" json:"bio,omitempty"`
+	City          string                 `protobuf:"bytes,9,opt,name=city,proto3" json:"city,omitempty"`
+	Region        string                 `protobuf:"bytes,10,opt,name=region,proto3" json:"region,omitempty"`
+	Country       string                 `protobuf:"bytes,11,opt,name=country,proto3" json:"country,omitempty"`
+	Active        bool                   `protobuf:"varint,12,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,13,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=expires,proto3" json:"expires,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -125,6 +126,13 @@ func (x *Person) GetLogin() string {
 	return ""
 }
 
+func (x *Person) GetBio() string {
+	if x != nil {
+		return x.Bio
+	}
+	return ""
+}
+
 func (x *Person) GetCity() string {
 	if x != nil {
 		return x.City
@@ -132,9 +140,9 @@ func (x *Person) GetCity() string {
 	return ""
 }
 
-func (x *Person) GetBio() string {
+func (x *Person) GetRegion() string {
 	if x != nil {
-		return x.Bio
+		return x.Region
 	}
 	return ""
 }
@@ -189,14 +197,15 @@ type AddPersonRequest struct {
 	Phone         []string               `protobuf:"bytes,5,rep,name=phone,proto3" json:"phone,omitempty"`
 	Email         []string               `protobuf:"bytes,6,rep,name=email,proto3" json:"email,omitempty"`
 	Login         string                 `protobuf:"bytes,7,opt,name=login,proto3" json:"login,omitempty"`
-	City          string                 `protobuf:"bytes,8,opt,name=city,proto3" json:"city,omitempty"`
-	Bio           string                 `protobuf:"bytes,9,opt,name=bio,proto3" json:"bio,omitempty"`
-	Country       string                 `protobuf:"bytes,10,opt,name=country,proto3" json:"country,omitempty"`
-	Active        bool                   `protobuf:"varint,11,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,12,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=expires,proto3" json:"expires,omitempty"`
+	Bio           string                 `protobuf:"bytes,8,opt,name=bio,proto3" json:"bio,omitempty"`
+	City          string                 `protobuf:"bytes,9,opt,name=city,proto3" json:"city,omitempty"`
+	Region        string                 `protobuf:"bytes,10,opt,name=region,proto3" json:"region,omitempty"`
+	Country       string                 `protobuf:"bytes,11,opt,name=country,proto3" json:"country,omitempty"`
+	Active        bool                   `protobuf:"varint,12,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,13,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=expires,proto3" json:"expires,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -273,6 +282,13 @@ func (x *AddPersonRequest) GetLogin() string {
 	return ""
 }
 
+func (x *AddPersonRequest) GetBio() string {
+	if x != nil {
+		return x.Bio
+	}
+	return ""
+}
+
 func (x *AddPersonRequest) GetCity() string {
 	if x != nil {
 		return x.City
@@ -280,9 +296,9 @@ func (x *AddPersonRequest) GetCity() string {
 	return ""
 }
 
-func (x *AddPersonRequest) GetBio() string {
+func (x *AddPersonRequest) GetRegion() string {
 	if x != nil {
-		return x.Bio
+		return x.Region
 	}
 	return ""
 }
@@ -338,14 +354,15 @@ type AddPersonResponse struct {
 	Phone         []string               `protobuf:"bytes,5,rep,name=phone,proto3" json:"phone,omitempty"`
 	Email         []string               `protobuf:"bytes,6,rep,name=email,proto3" json:"email,omitempty"`
 	Login         string                 `protobuf:"bytes,7,opt,name=login,proto3" json:"login,omitempty"`
-	City          string                 `protobuf:"bytes,8,opt,name=city,proto3" json:"city,omitempty"`
-	Bio           string                 `protobuf:"bytes,9,opt,name=bio,proto3" json:"bio,omitempty"`
-	Country       string                 `protobuf:"bytes,10,opt,name=country,proto3" json:"country,omitempty"`
-	Active        bool                   `protobuf:"varint,11,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,12,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=expires,proto3" json:"expires,omitempty"`
+	Bio           string                 `protobuf:"bytes,8,opt,name=bio,proto3" json:"bio,omitempty"`
+	City          string                 `protobuf:"bytes,9,opt,name=city,proto3" json:"city,omitempty"`
+	Region        string                 `protobuf:"bytes,10,opt,name=region,proto3" json:"region,omitempty"`
+	Country       string                 `protobuf:"bytes,11,opt,name=country,proto3" json:"country,omitempty"`
+	Active        bool                   `protobuf:"varint,12,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,13,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=expires,proto3" json:"expires,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -429,6 +446,13 @@ func (x *AddPersonResponse) GetLogin() string {
 	return ""
 }
 
+func (x *AddPersonResponse) GetBio() string {
+	if x != nil {
+		return x.Bio
+	}
+	return ""
+}
+
 func (x *AddPersonResponse) GetCity() string {
 	if x != nil {
 		return x.City
@@ -436,9 +460,9 @@ func (x *AddPersonResponse) GetCity() string {
 	return ""
 }
 
-func (x *AddPersonResponse) GetBio() string {
+func (x *AddPersonResponse) GetRegion() string {
 	if x != nil {
-		return x.Bio
+		return x.Region
 	}
 	return ""
 }
@@ -822,18 +846,19 @@ type Artist struct {
 	ShortTitle    string                 `protobuf:"bytes,3,opt,name=short_title,json=shortTitle,proto3" json:"short_title,omitempty"`
 	Type          []string               `protobuf:"bytes,4,rep,name=type,proto3" json:"type,omitempty"`
 	City          string                 `protobuf:"bytes,5,opt,name=city,proto3" json:"city,omitempty"`
-	Country       string                 `protobuf:"bytes,6,opt,name=country,proto3" json:"country,omitempty"`
-	Site          string                 `protobuf:"bytes,7,opt,name=site,proto3" json:"site,omitempty"`
-	Photo         []string               `protobuf:"bytes,8,rep,name=photo,proto3" json:"photo,omitempty"`
-	Bio           string                 `protobuf:"bytes,9,opt,name=bio,proto3" json:"bio,omitempty"`
-	Socmedia      []string               `protobuf:"bytes,10,rep,name=socmedia,proto3" json:"socmedia,omitempty"`
-	Release       []string               `protobuf:"bytes,11,rep,name=release,proto3" json:"release,omitempty"`
-	Team          []string               `protobuf:"bytes,12,rep,name=team,proto3" json:"team,omitempty"`
-	Active        bool                   `protobuf:"varint,13,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,14,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=expires,proto3" json:"expires,omitempty"`
+	Region        string                 `protobuf:"bytes,6,opt,name=region,proto3" json:"region,omitempty"`
+	Country       string                 `protobuf:"bytes,7,opt,name=country,proto3" json:"country,omitempty"`
+	Site          string                 `protobuf:"bytes,8,opt,name=site,proto3" json:"site,omitempty"`
+	Photo         []string               `protobuf:"bytes,9,rep,name=photo,proto3" json:"photo,omitempty"`
+	Bio           string                 `protobuf:"bytes,10,opt,name=bio,proto3" json:"bio,omitempty"`
+	Socmedia      []string               `protobuf:"bytes,11,rep,name=socmedia,proto3" json:"socmedia,omitempty"`
+	Release       []string               `protobuf:"bytes,12,rep,name=release,proto3" json:"release,omitempty"`
+	Team          []string               `protobuf:"bytes,13,rep,name=team,proto3" json:"team,omitempty"`
+	Active        bool                   `protobuf:"varint,14,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,15,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,18,opt,name=expires,proto3" json:"expires,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -899,6 +924,13 @@ func (x *Artist) GetType() []string {
 func (x *Artist) GetCity() string {
 	if x != nil {
 		return x.City
+	}
+	return ""
+}
+
+func (x *Artist) GetRegion() string {
+	if x != nil {
+		return x.Region
 	}
 	return ""
 }
@@ -993,18 +1025,19 @@ type AddArtistRequest struct {
 	ShortTitle    string                 `protobuf:"bytes,3,opt,name=short_title,json=shortTitle,proto3" json:"short_title,omitempty"`
 	Type          []string               `protobuf:"bytes,4,rep,name=type,proto3" json:"type,omitempty"`
 	City          string                 `protobuf:"bytes,5,opt,name=city,proto3" json:"city,omitempty"`
-	Country       string                 `protobuf:"bytes,6,opt,name=country,proto3" json:"country,omitempty"`
-	Site          string                 `protobuf:"bytes,7,opt,name=site,proto3" json:"site,omitempty"`
-	Photo         []string               `protobuf:"bytes,8,rep,name=photo,proto3" json:"photo,omitempty"`
-	Bio           string                 `protobuf:"bytes,9,opt,name=bio,proto3" json:"bio,omitempty"`
-	Socmedia      []string               `protobuf:"bytes,10,rep,name=socmedia,proto3" json:"socmedia,omitempty"`
-	Release       []string               `protobuf:"bytes,11,rep,name=release,proto3" json:"release,omitempty"`
-	Team          []string               `protobuf:"bytes,12,rep,name=team,proto3" json:"team,omitempty"`
-	Active        bool                   `protobuf:"varint,13,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,14,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=expires,proto3" json:"expires,omitempty"`
+	Region        string                 `protobuf:"bytes,6,opt,name=region,proto3" json:"region,omitempty"`
+	Country       string                 `protobuf:"bytes,7,opt,name=country,proto3" json:"country,omitempty"`
+	Site          string                 `protobuf:"bytes,8,opt,name=site,proto3" json:"site,omitempty"`
+	Photo         []string               `protobuf:"bytes,9,rep,name=photo,proto3" json:"photo,omitempty"`
+	Bio           string                 `protobuf:"bytes,10,opt,name=bio,proto3" json:"bio,omitempty"`
+	Socmedia      []string               `protobuf:"bytes,11,rep,name=socmedia,proto3" json:"socmedia,omitempty"`
+	Release       []string               `protobuf:"bytes,12,rep,name=release,proto3" json:"release,omitempty"`
+	Team          []string               `protobuf:"bytes,13,rep,name=team,proto3" json:"team,omitempty"`
+	Active        bool                   `protobuf:"varint,14,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,15,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,18,opt,name=expires,proto3" json:"expires,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1063,6 +1096,13 @@ func (x *AddArtistRequest) GetType() []string {
 func (x *AddArtistRequest) GetCity() string {
 	if x != nil {
 		return x.City
+	}
+	return ""
+}
+
+func (x *AddArtistRequest) GetRegion() string {
+	if x != nil {
+		return x.Region
 	}
 	return ""
 }
@@ -1158,18 +1198,19 @@ type AddArtistResponse struct {
 	ShortTitle    string                 `protobuf:"bytes,3,opt,name=short_title,json=shortTitle,proto3" json:"short_title,omitempty"`
 	Type          []string               `protobuf:"bytes,4,rep,name=type,proto3" json:"type,omitempty"`
 	City          string                 `protobuf:"bytes,5,opt,name=city,proto3" json:"city,omitempty"`
-	Country       string                 `protobuf:"bytes,6,opt,name=country,proto3" json:"country,omitempty"`
-	Site          string                 `protobuf:"bytes,7,opt,name=site,proto3" json:"site,omitempty"`
-	Photo         []string               `protobuf:"bytes,8,rep,name=photo,proto3" json:"photo,omitempty"`
-	Bio           string                 `protobuf:"bytes,9,opt,name=bio,proto3" json:"bio,omitempty"`
-	Socmedia      []string               `protobuf:"bytes,10,rep,name=socmedia,proto3" json:"socmedia,omitempty"`
-	Release       []string               `protobuf:"bytes,11,rep,name=release,proto3" json:"release,omitempty"`
-	Team          []string               `protobuf:"bytes,12,rep,name=team,proto3" json:"team,omitempty"`
-	Active        bool                   `protobuf:"varint,13,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,14,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=expires,proto3" json:"expires,omitempty"`
+	Region        string                 `protobuf:"bytes,6,opt,name=region,proto3" json:"region,omitempty"`
+	Country       string                 `protobuf:"bytes,7,opt,name=country,proto3" json:"country,omitempty"`
+	Site          string                 `protobuf:"bytes,8,opt,name=site,proto3" json:"site,omitempty"`
+	Photo         []string               `protobuf:"bytes,9,rep,name=photo,proto3" json:"photo,omitempty"`
+	Bio           string                 `protobuf:"bytes,10,opt,name=bio,proto3" json:"bio,omitempty"`
+	Socmedia      []string               `protobuf:"bytes,11,rep,name=socmedia,proto3" json:"socmedia,omitempty"`
+	Release       []string               `protobuf:"bytes,12,rep,name=release,proto3" json:"release,omitempty"`
+	Team          []string               `protobuf:"bytes,13,rep,name=team,proto3" json:"team,omitempty"`
+	Active        bool                   `protobuf:"varint,14,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,15,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,18,opt,name=expires,proto3" json:"expires,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1235,6 +1276,13 @@ func (x *AddArtistResponse) GetType() []string {
 func (x *AddArtistResponse) GetCity() string {
 	if x != nil {
 		return x.City
+	}
+	return ""
+}
+
+func (x *AddArtistResponse) GetRegion() string {
+	if x != nil {
+		return x.Region
 	}
 	return ""
 }
@@ -2476,7 +2524,7 @@ var File_contest_proto protoreflect.FileDescriptor
 
 const file_contest_proto_rawDesc = "" +
 	"\n" +
-	"\rcontest.proto\x12\acontest\x1a\x1fgoogle/protobuf/timestamp.proto\"\xcc\x03\n" +
+	"\rcontest.proto\x12\acontest\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe4\x03\n" +
 	"\x06Person\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
@@ -2486,16 +2534,17 @@ const file_contest_proto_rawDesc = "" +
 	"middleName\x12\x14\n" +
 	"\x05phone\x18\x05 \x03(\tR\x05phone\x12\x14\n" +
 	"\x05email\x18\x06 \x03(\tR\x05email\x12\x14\n" +
-	"\x05login\x18\a \x01(\tR\x05login\x12\x12\n" +
-	"\x04city\x18\b \x01(\tR\x04city\x12\x10\n" +
-	"\x03bio\x18\t \x01(\tR\x03bio\x12\x18\n" +
-	"\acountry\x18\n" +
-	" \x01(\tR\acountry\x12\x16\n" +
-	"\x06active\x18\v \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\f \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xc6\x03\n" +
+	"\x05login\x18\a \x01(\tR\x05login\x12\x10\n" +
+	"\x03bio\x18\b \x01(\tR\x03bio\x12\x12\n" +
+	"\x04city\x18\t \x01(\tR\x04city\x12\x16\n" +
+	"\x06region\x18\n" +
+	" \x01(\tR\x06region\x12\x18\n" +
+	"\acountry\x18\v \x01(\tR\acountry\x12\x16\n" +
+	"\x06active\x18\f \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\r \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xde\x03\n" +
 	"\x10AddPersonRequest\x12\x1d\n" +
 	"\n" +
 	"first_name\x18\x02 \x01(\tR\tfirstName\x12\x1b\n" +
@@ -2504,16 +2553,17 @@ const file_contest_proto_rawDesc = "" +
 	"middleName\x12\x14\n" +
 	"\x05phone\x18\x05 \x03(\tR\x05phone\x12\x14\n" +
 	"\x05email\x18\x06 \x03(\tR\x05email\x12\x14\n" +
-	"\x05login\x18\a \x01(\tR\x05login\x12\x12\n" +
-	"\x04city\x18\b \x01(\tR\x04city\x12\x10\n" +
-	"\x03bio\x18\t \x01(\tR\x03bio\x12\x18\n" +
-	"\acountry\x18\n" +
-	" \x01(\tR\acountry\x12\x16\n" +
-	"\x06active\x18\v \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\f \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xd7\x03\n" +
+	"\x05login\x18\a \x01(\tR\x05login\x12\x10\n" +
+	"\x03bio\x18\b \x01(\tR\x03bio\x12\x12\n" +
+	"\x04city\x18\t \x01(\tR\x04city\x12\x16\n" +
+	"\x06region\x18\n" +
+	" \x01(\tR\x06region\x12\x18\n" +
+	"\acountry\x18\v \x01(\tR\acountry\x12\x16\n" +
+	"\x06active\x18\f \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\r \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xef\x03\n" +
 	"\x11AddPersonResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
@@ -2523,16 +2573,17 @@ const file_contest_proto_rawDesc = "" +
 	"middleName\x12\x14\n" +
 	"\x05phone\x18\x05 \x03(\tR\x05phone\x12\x14\n" +
 	"\x05email\x18\x06 \x03(\tR\x05email\x12\x14\n" +
-	"\x05login\x18\a \x01(\tR\x05login\x12\x12\n" +
-	"\x04city\x18\b \x01(\tR\x04city\x12\x10\n" +
-	"\x03bio\x18\t \x01(\tR\x03bio\x12\x18\n" +
-	"\acountry\x18\n" +
-	" \x01(\tR\acountry\x12\x16\n" +
-	"\x06active\x18\v \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\f \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xb2\x04\n" +
+	"\x05login\x18\a \x01(\tR\x05login\x12\x10\n" +
+	"\x03bio\x18\b \x01(\tR\x03bio\x12\x12\n" +
+	"\x04city\x18\t \x01(\tR\x04city\x12\x16\n" +
+	"\x06region\x18\n" +
+	" \x01(\tR\x06region\x12\x18\n" +
+	"\acountry\x18\v \x01(\tR\acountry\x12\x16\n" +
+	"\x06active\x18\f \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\r \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xb2\x04\n" +
 	"\x11AddContestRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12 \n" +
@@ -2570,66 +2621,69 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\r \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xec\x03\n" +
+	"\aexpires\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\x84\x04\n" +
 	"\x06Artist\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1f\n" +
 	"\vshort_title\x18\x03 \x01(\tR\n" +
 	"shortTitle\x12\x12\n" +
 	"\x04type\x18\x04 \x03(\tR\x04type\x12\x12\n" +
-	"\x04city\x18\x05 \x01(\tR\x04city\x12\x18\n" +
-	"\acountry\x18\x06 \x01(\tR\acountry\x12\x12\n" +
-	"\x04site\x18\a \x01(\tR\x04site\x12\x14\n" +
-	"\x05photo\x18\b \x03(\tR\x05photo\x12\x10\n" +
-	"\x03bio\x18\t \x01(\tR\x03bio\x12\x1a\n" +
-	"\bsocmedia\x18\n" +
-	" \x03(\tR\bsocmedia\x12\x18\n" +
-	"\arelease\x18\v \x03(\tR\arelease\x12\x12\n" +
-	"\x04team\x18\f \x03(\tR\x04team\x12\x16\n" +
-	"\x06active\x18\r \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\x0e \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xe6\x03\n" +
+	"\x04city\x18\x05 \x01(\tR\x04city\x12\x16\n" +
+	"\x06region\x18\x06 \x01(\tR\x06region\x12\x18\n" +
+	"\acountry\x18\a \x01(\tR\acountry\x12\x12\n" +
+	"\x04site\x18\b \x01(\tR\x04site\x12\x14\n" +
+	"\x05photo\x18\t \x03(\tR\x05photo\x12\x10\n" +
+	"\x03bio\x18\n" +
+	" \x01(\tR\x03bio\x12\x1a\n" +
+	"\bsocmedia\x18\v \x03(\tR\bsocmedia\x12\x18\n" +
+	"\arelease\x18\f \x03(\tR\arelease\x12\x12\n" +
+	"\x04team\x18\r \x03(\tR\x04team\x12\x16\n" +
+	"\x06active\x18\x0e \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\x0f \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xfe\x03\n" +
 	"\x10AddArtistRequest\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1f\n" +
 	"\vshort_title\x18\x03 \x01(\tR\n" +
 	"shortTitle\x12\x12\n" +
 	"\x04type\x18\x04 \x03(\tR\x04type\x12\x12\n" +
-	"\x04city\x18\x05 \x01(\tR\x04city\x12\x18\n" +
-	"\acountry\x18\x06 \x01(\tR\acountry\x12\x12\n" +
-	"\x04site\x18\a \x01(\tR\x04site\x12\x14\n" +
-	"\x05photo\x18\b \x03(\tR\x05photo\x12\x10\n" +
-	"\x03bio\x18\t \x01(\tR\x03bio\x12\x1a\n" +
-	"\bsocmedia\x18\n" +
-	" \x03(\tR\bsocmedia\x12\x18\n" +
-	"\arelease\x18\v \x03(\tR\arelease\x12\x12\n" +
-	"\x04team\x18\f \x03(\tR\x04team\x12\x16\n" +
-	"\x06active\x18\r \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\x0e \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xf7\x03\n" +
+	"\x04city\x18\x05 \x01(\tR\x04city\x12\x16\n" +
+	"\x06region\x18\x06 \x01(\tR\x06region\x12\x18\n" +
+	"\acountry\x18\a \x01(\tR\acountry\x12\x12\n" +
+	"\x04site\x18\b \x01(\tR\x04site\x12\x14\n" +
+	"\x05photo\x18\t \x03(\tR\x05photo\x12\x10\n" +
+	"\x03bio\x18\n" +
+	" \x01(\tR\x03bio\x12\x1a\n" +
+	"\bsocmedia\x18\v \x03(\tR\bsocmedia\x12\x18\n" +
+	"\arelease\x18\f \x03(\tR\arelease\x12\x12\n" +
+	"\x04team\x18\r \x03(\tR\x04team\x12\x16\n" +
+	"\x06active\x18\x0e \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\x0f \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\x8f\x04\n" +
 	"\x11AddArtistResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1f\n" +
 	"\vshort_title\x18\x03 \x01(\tR\n" +
 	"shortTitle\x12\x12\n" +
 	"\x04type\x18\x04 \x03(\tR\x04type\x12\x12\n" +
-	"\x04city\x18\x05 \x01(\tR\x04city\x12\x18\n" +
-	"\acountry\x18\x06 \x01(\tR\acountry\x12\x12\n" +
-	"\x04site\x18\a \x01(\tR\x04site\x12\x14\n" +
-	"\x05photo\x18\b \x03(\tR\x05photo\x12\x10\n" +
-	"\x03bio\x18\t \x01(\tR\x03bio\x12\x1a\n" +
-	"\bsocmedia\x18\n" +
-	" \x03(\tR\bsocmedia\x12\x18\n" +
-	"\arelease\x18\v \x03(\tR\arelease\x12\x12\n" +
-	"\x04team\x18\f \x03(\tR\x04team\x12\x16\n" +
-	"\x06active\x18\r \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\x0e \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\x81\x04\n" +
+	"\x04city\x18\x05 \x01(\tR\x04city\x12\x16\n" +
+	"\x06region\x18\x06 \x01(\tR\x06region\x12\x18\n" +
+	"\acountry\x18\a \x01(\tR\acountry\x12\x12\n" +
+	"\x04site\x18\b \x01(\tR\x04site\x12\x14\n" +
+	"\x05photo\x18\t \x03(\tR\x05photo\x12\x10\n" +
+	"\x03bio\x18\n" +
+	" \x01(\tR\x03bio\x12\x1a\n" +
+	"\bsocmedia\x18\v \x03(\tR\bsocmedia\x12\x18\n" +
+	"\arelease\x18\f \x03(\tR\arelease\x12\x12\n" +
+	"\x04team\x18\r \x03(\tR\x04team\x12\x16\n" +
+	"\x06active\x18\x0e \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\x0f \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\x81\x04\n" +
 	"\x04Song\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x16\n" +
 	"\x06artist\x18\x02 \x03(\tR\x06artist\x12\x14\n" +
