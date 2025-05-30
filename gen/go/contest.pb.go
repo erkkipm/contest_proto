@@ -26,23 +26,23 @@ const (
 
 // Person
 type Person struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	FirstName     string                 `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
-	LastName      string                 `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
-	MiddleName    string                 `protobuf:"bytes,4,opt,name=middle_name,json=middleName,proto3" json:"middle_name,omitempty"`
-	Phone         []string               `protobuf:"bytes,5,rep,name=phone,proto3" json:"phone,omitempty"`
-	Email         []string               `protobuf:"bytes,6,rep,name=email,proto3" json:"email,omitempty"`
-	Login         string                 `protobuf:"bytes,7,opt,name=login,proto3" json:"login,omitempty"`
-	Bio           string                 `protobuf:"bytes,8,opt,name=bio,proto3" json:"bio,omitempty"`
-	City          string                 `protobuf:"bytes,9,opt,name=city,proto3" json:"city,omitempty"`
-	Region        string                 `protobuf:"bytes,10,opt,name=region,proto3" json:"region,omitempty"`
-	Country       string                 `protobuf:"bytes,11,opt,name=country,proto3" json:"country,omitempty"`
-	Active        bool                   `protobuf:"varint,12,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,13,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=expires,proto3" json:"expires,omitempty"`
+	state      protoimpl.MessageState `protogen:"open.v1"`
+	Id         string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	FirstName  string                 `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	LastName   string                 `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+	MiddleName string                 `protobuf:"bytes,4,opt,name=middle_name,json=middleName,proto3" json:"middle_name,omitempty"`
+	Phone      []string               `protobuf:"bytes,5,rep,name=phone,proto3" json:"phone,omitempty"`
+	Email      []string               `protobuf:"bytes,6,rep,name=email,proto3" json:"email,omitempty"`
+	// string login = 7;
+	Bio           string                 `protobuf:"bytes,7,opt,name=bio,proto3" json:"bio,omitempty"`
+	City          string                 `protobuf:"bytes,8,opt,name=city,proto3" json:"city,omitempty"`
+	Region        string                 `protobuf:"bytes,9,opt,name=region,proto3" json:"region,omitempty"`
+	Country       string                 `protobuf:"bytes,10,opt,name=country,proto3" json:"country,omitempty"`
+	Active        bool                   `protobuf:"varint,11,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,12,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=expires,proto3" json:"expires,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -119,13 +119,6 @@ func (x *Person) GetEmail() []string {
 	return nil
 }
 
-func (x *Person) GetLogin() string {
-	if x != nil {
-		return x.Login
-	}
-	return ""
-}
-
 func (x *Person) GetBio() string {
 	if x != nil {
 		return x.Bio
@@ -196,16 +189,15 @@ type AddPersonRequest struct {
 	MiddleName    string                 `protobuf:"bytes,4,opt,name=middle_name,json=middleName,proto3" json:"middle_name,omitempty"`
 	Phone         []string               `protobuf:"bytes,5,rep,name=phone,proto3" json:"phone,omitempty"`
 	Email         []string               `protobuf:"bytes,6,rep,name=email,proto3" json:"email,omitempty"`
-	Login         string                 `protobuf:"bytes,7,opt,name=login,proto3" json:"login,omitempty"`
-	Bio           string                 `protobuf:"bytes,8,opt,name=bio,proto3" json:"bio,omitempty"`
-	City          string                 `protobuf:"bytes,9,opt,name=city,proto3" json:"city,omitempty"`
-	Region        string                 `protobuf:"bytes,10,opt,name=region,proto3" json:"region,omitempty"`
-	Country       string                 `protobuf:"bytes,11,opt,name=country,proto3" json:"country,omitempty"`
-	Active        bool                   `protobuf:"varint,12,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,13,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=expires,proto3" json:"expires,omitempty"`
+	Bio           string                 `protobuf:"bytes,7,opt,name=bio,proto3" json:"bio,omitempty"`
+	City          string                 `protobuf:"bytes,8,opt,name=city,proto3" json:"city,omitempty"`
+	Region        string                 `protobuf:"bytes,9,opt,name=region,proto3" json:"region,omitempty"`
+	Country       string                 `protobuf:"bytes,10,opt,name=country,proto3" json:"country,omitempty"`
+	Active        bool                   `protobuf:"varint,11,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,12,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=expires,proto3" json:"expires,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -273,13 +265,6 @@ func (x *AddPersonRequest) GetEmail() []string {
 		return x.Email
 	}
 	return nil
-}
-
-func (x *AddPersonRequest) GetLogin() string {
-	if x != nil {
-		return x.Login
-	}
-	return ""
 }
 
 func (x *AddPersonRequest) GetBio() string {
@@ -353,16 +338,15 @@ type AddPersonResponse struct {
 	MiddleName    string                 `protobuf:"bytes,4,opt,name=middle_name,json=middleName,proto3" json:"middle_name,omitempty"`
 	Phone         []string               `protobuf:"bytes,5,rep,name=phone,proto3" json:"phone,omitempty"`
 	Email         []string               `protobuf:"bytes,6,rep,name=email,proto3" json:"email,omitempty"`
-	Login         string                 `protobuf:"bytes,7,opt,name=login,proto3" json:"login,omitempty"`
-	Bio           string                 `protobuf:"bytes,8,opt,name=bio,proto3" json:"bio,omitempty"`
-	City          string                 `protobuf:"bytes,9,opt,name=city,proto3" json:"city,omitempty"`
-	Region        string                 `protobuf:"bytes,10,opt,name=region,proto3" json:"region,omitempty"`
-	Country       string                 `protobuf:"bytes,11,opt,name=country,proto3" json:"country,omitempty"`
-	Active        bool                   `protobuf:"varint,12,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,13,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=expires,proto3" json:"expires,omitempty"`
+	Bio           string                 `protobuf:"bytes,7,opt,name=bio,proto3" json:"bio,omitempty"`
+	City          string                 `protobuf:"bytes,8,opt,name=city,proto3" json:"city,omitempty"`
+	Region        string                 `protobuf:"bytes,9,opt,name=region,proto3" json:"region,omitempty"`
+	Country       string                 `protobuf:"bytes,10,opt,name=country,proto3" json:"country,omitempty"`
+	Active        bool                   `protobuf:"varint,11,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,12,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=expires,proto3" json:"expires,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -439,13 +423,6 @@ func (x *AddPersonResponse) GetEmail() []string {
 	return nil
 }
 
-func (x *AddPersonResponse) GetLogin() string {
-	if x != nil {
-		return x.Login
-	}
-	return ""
-}
-
 func (x *AddPersonResponse) GetBio() string {
 	if x != nil {
 		return x.Bio
@@ -515,7 +492,6 @@ type AddContestRequest struct {
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Date          *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
 	Competition   string                 `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
-	ProjectId     string                 `protobuf:"bytes,4,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
 	AuthorId      string                 `protobuf:"bytes,5,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
 	ArtistId      string                 `protobuf:"bytes,6,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
 	SongOwnId     string                 `protobuf:"bytes,7,opt,name=song_own_id,json=songOwnId,proto3" json:"song_own_id,omitempty"`
@@ -579,13 +555,6 @@ func (x *AddContestRequest) GetDate() *timestamppb.Timestamp {
 func (x *AddContestRequest) GetCompetition() string {
 	if x != nil {
 		return x.Competition
-	}
-	return ""
-}
-
-func (x *AddContestRequest) GetProjectId() string {
-	if x != nil {
-		return x.ProjectId
 	}
 	return ""
 }
@@ -679,7 +648,6 @@ type AddContestResponse struct {
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Date          *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
 	Competition   string                 `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
-	ProjectId     string                 `protobuf:"bytes,4,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
 	AuthorId      string                 `protobuf:"bytes,5,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
 	ArtistId      string                 `protobuf:"bytes,6,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
 	SongOwnId     string                 `protobuf:"bytes,7,opt,name=song_own_id,json=songOwnId,proto3" json:"song_own_id,omitempty"`
@@ -743,13 +711,6 @@ func (x *AddContestResponse) GetDate() *timestamppb.Timestamp {
 func (x *AddContestResponse) GetCompetition() string {
 	if x != nil {
 		return x.Competition
-	}
-	return ""
-}
-
-func (x *AddContestResponse) GetProjectId() string {
-	if x != nil {
-		return x.ProjectId
 	}
 	return ""
 }
@@ -1880,6 +1841,419 @@ func (x *AddSongResponse) GetExpires() *timestamppb.Timestamp {
 	return nil
 }
 
+// Lit_work - Литературное произведение
+type LitWork struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	AuthorID      []string               `protobuf:"bytes,3,rep,name=authorID,proto3" json:"authorID,omitempty"`
+	Audio         []string               `protobuf:"bytes,4,rep,name=audio,proto3" json:"audio,omitempty"`
+	Clip          []string               `protobuf:"bytes,5,rep,name=clip,proto3" json:"clip,omitempty"`
+	Video         []string               `protobuf:"bytes,6,rep,name=video,proto3" json:"video,omitempty"`
+	Release       string                 `protobuf:"bytes,7,opt,name=release,proto3" json:"release,omitempty"`
+	Lyrics        string                 `protobuf:"bytes,8,opt,name=lyrics,proto3" json:"lyrics,omitempty"`
+	Active        bool                   `protobuf:"varint,9,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,10,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=expires,proto3" json:"expires,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LitWork) Reset() {
+	*x = LitWork{}
+	mi := &file_contest_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LitWork) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LitWork) ProtoMessage() {}
+
+func (x *LitWork) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LitWork.ProtoReflect.Descriptor instead.
+func (*LitWork) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *LitWork) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *LitWork) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *LitWork) GetAuthorID() []string {
+	if x != nil {
+		return x.AuthorID
+	}
+	return nil
+}
+
+func (x *LitWork) GetAudio() []string {
+	if x != nil {
+		return x.Audio
+	}
+	return nil
+}
+
+func (x *LitWork) GetClip() []string {
+	if x != nil {
+		return x.Clip
+	}
+	return nil
+}
+
+func (x *LitWork) GetVideo() []string {
+	if x != nil {
+		return x.Video
+	}
+	return nil
+}
+
+func (x *LitWork) GetRelease() string {
+	if x != nil {
+		return x.Release
+	}
+	return ""
+}
+
+func (x *LitWork) GetLyrics() string {
+	if x != nil {
+		return x.Lyrics
+	}
+	return ""
+}
+
+func (x *LitWork) GetActive() bool {
+	if x != nil {
+		return x.Active
+	}
+	return false
+}
+
+func (x *LitWork) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *LitWork) GetCreated() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Created
+	}
+	return nil
+}
+
+func (x *LitWork) GetUpdated() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Updated
+	}
+	return nil
+}
+
+func (x *LitWork) GetExpires() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Expires
+	}
+	return nil
+}
+
+type AddLitWorkRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	AuthorID      []string               `protobuf:"bytes,3,rep,name=authorID,proto3" json:"authorID,omitempty"`
+	Audio         []string               `protobuf:"bytes,4,rep,name=audio,proto3" json:"audio,omitempty"`
+	Clip          []string               `protobuf:"bytes,5,rep,name=clip,proto3" json:"clip,omitempty"`
+	Video         []string               `protobuf:"bytes,6,rep,name=video,proto3" json:"video,omitempty"`
+	Release       string                 `protobuf:"bytes,7,opt,name=release,proto3" json:"release,omitempty"`
+	Lyrics        string                 `protobuf:"bytes,8,opt,name=lyrics,proto3" json:"lyrics,omitempty"`
+	Active        bool                   `protobuf:"varint,9,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,10,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=expires,proto3" json:"expires,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddLitWorkRequest) Reset() {
+	*x = AddLitWorkRequest{}
+	mi := &file_contest_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddLitWorkRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddLitWorkRequest) ProtoMessage() {}
+
+func (x *AddLitWorkRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddLitWorkRequest.ProtoReflect.Descriptor instead.
+func (*AddLitWorkRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *AddLitWorkRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *AddLitWorkRequest) GetAuthorID() []string {
+	if x != nil {
+		return x.AuthorID
+	}
+	return nil
+}
+
+func (x *AddLitWorkRequest) GetAudio() []string {
+	if x != nil {
+		return x.Audio
+	}
+	return nil
+}
+
+func (x *AddLitWorkRequest) GetClip() []string {
+	if x != nil {
+		return x.Clip
+	}
+	return nil
+}
+
+func (x *AddLitWorkRequest) GetVideo() []string {
+	if x != nil {
+		return x.Video
+	}
+	return nil
+}
+
+func (x *AddLitWorkRequest) GetRelease() string {
+	if x != nil {
+		return x.Release
+	}
+	return ""
+}
+
+func (x *AddLitWorkRequest) GetLyrics() string {
+	if x != nil {
+		return x.Lyrics
+	}
+	return ""
+}
+
+func (x *AddLitWorkRequest) GetActive() bool {
+	if x != nil {
+		return x.Active
+	}
+	return false
+}
+
+func (x *AddLitWorkRequest) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *AddLitWorkRequest) GetCreated() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Created
+	}
+	return nil
+}
+
+func (x *AddLitWorkRequest) GetUpdated() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Updated
+	}
+	return nil
+}
+
+func (x *AddLitWorkRequest) GetExpires() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Expires
+	}
+	return nil
+}
+
+type AddLitWorkResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	AuthorID      []string               `protobuf:"bytes,3,rep,name=authorID,proto3" json:"authorID,omitempty"`
+	Audio         []string               `protobuf:"bytes,4,rep,name=audio,proto3" json:"audio,omitempty"`
+	Clip          []string               `protobuf:"bytes,5,rep,name=clip,proto3" json:"clip,omitempty"`
+	Video         []string               `protobuf:"bytes,6,rep,name=video,proto3" json:"video,omitempty"`
+	Release       string                 `protobuf:"bytes,7,opt,name=release,proto3" json:"release,omitempty"`
+	Lyrics        string                 `protobuf:"bytes,8,opt,name=lyrics,proto3" json:"lyrics,omitempty"`
+	Active        bool                   `protobuf:"varint,9,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,10,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=expires,proto3" json:"expires,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddLitWorkResponse) Reset() {
+	*x = AddLitWorkResponse{}
+	mi := &file_contest_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddLitWorkResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddLitWorkResponse) ProtoMessage() {}
+
+func (x *AddLitWorkResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddLitWorkResponse.ProtoReflect.Descriptor instead.
+func (*AddLitWorkResponse) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *AddLitWorkResponse) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *AddLitWorkResponse) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *AddLitWorkResponse) GetAuthorID() []string {
+	if x != nil {
+		return x.AuthorID
+	}
+	return nil
+}
+
+func (x *AddLitWorkResponse) GetAudio() []string {
+	if x != nil {
+		return x.Audio
+	}
+	return nil
+}
+
+func (x *AddLitWorkResponse) GetClip() []string {
+	if x != nil {
+		return x.Clip
+	}
+	return nil
+}
+
+func (x *AddLitWorkResponse) GetVideo() []string {
+	if x != nil {
+		return x.Video
+	}
+	return nil
+}
+
+func (x *AddLitWorkResponse) GetRelease() string {
+	if x != nil {
+		return x.Release
+	}
+	return ""
+}
+
+func (x *AddLitWorkResponse) GetLyrics() string {
+	if x != nil {
+		return x.Lyrics
+	}
+	return ""
+}
+
+func (x *AddLitWorkResponse) GetActive() bool {
+	if x != nil {
+		return x.Active
+	}
+	return false
+}
+
+func (x *AddLitWorkResponse) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *AddLitWorkResponse) GetCreated() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Created
+	}
+	return nil
+}
+
+func (x *AddLitWorkResponse) GetUpdated() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Updated
+	}
+	return nil
+}
+
+func (x *AddLitWorkResponse) GetExpires() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Expires
+	}
+	return nil
+}
+
 // Project and CreateProject
 type Project struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1890,17 +2264,18 @@ type Project struct {
 	Finish        *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=finish,proto3" json:"finish,omitempty"`
 	Event         []string               `protobuf:"bytes,6,rep,name=event,proto3" json:"event,omitempty"`
 	Active        bool                   `protobuf:"varint,7,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,8,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=expires,proto3" json:"expires,omitempty"`
+	AppId         string                 `protobuf:"bytes,15,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,16,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,18,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,19,opt,name=expires,proto3" json:"expires,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Project) Reset() {
 	*x = Project{}
-	mi := &file_contest_proto_msgTypes[11]
+	mi := &file_contest_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1912,7 +2287,7 @@ func (x *Project) String() string {
 func (*Project) ProtoMessage() {}
 
 func (x *Project) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[11]
+	mi := &file_contest_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1925,7 +2300,7 @@ func (x *Project) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Project.ProtoReflect.Descriptor instead.
 func (*Project) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{11}
+	return file_contest_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *Project) GetId() string {
@@ -1977,6 +2352,13 @@ func (x *Project) GetActive() bool {
 	return false
 }
 
+func (x *Project) GetAppId() string {
+	if x != nil {
+		return x.AppId
+	}
+	return ""
+}
+
 func (x *Project) GetOwnerId() string {
 	if x != nil {
 		return x.OwnerId
@@ -2011,20 +2393,20 @@ type Rate struct {
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	RateBookId    string                 `protobuf:"bytes,2,opt,name=rate_book_id,json=rateBookId,proto3" json:"rate_book_id,omitempty"`
 	Rate          int32                  `protobuf:"varint,3,opt,name=rate,proto3" json:"rate,omitempty"`
-	AppId         string                 `protobuf:"bytes,4,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
 	Jury          string                 `protobuf:"bytes,5,opt,name=jury,proto3" json:"jury,omitempty"`
 	Active        bool                   `protobuf:"varint,6,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,7,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=expires,proto3" json:"expires,omitempty"`
+	AppId         string                 `protobuf:"bytes,15,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,16,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,18,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,19,opt,name=expires,proto3" json:"expires,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Rate) Reset() {
 	*x = Rate{}
-	mi := &file_contest_proto_msgTypes[12]
+	mi := &file_contest_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2036,7 +2418,7 @@ func (x *Rate) String() string {
 func (*Rate) ProtoMessage() {}
 
 func (x *Rate) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[12]
+	mi := &file_contest_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2049,7 +2431,7 @@ func (x *Rate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Rate.ProtoReflect.Descriptor instead.
 func (*Rate) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{12}
+	return file_contest_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *Rate) GetId() string {
@@ -2073,13 +2455,6 @@ func (x *Rate) GetRate() int32 {
 	return 0
 }
 
-func (x *Rate) GetAppId() string {
-	if x != nil {
-		return x.AppId
-	}
-	return ""
-}
-
 func (x *Rate) GetJury() string {
 	if x != nil {
 		return x.Jury
@@ -2092,6 +2467,13 @@ func (x *Rate) GetActive() bool {
 		return x.Active
 	}
 	return false
+}
+
+func (x *Rate) GetAppId() string {
+	if x != nil {
+		return x.AppId
+	}
+	return ""
 }
 
 func (x *Rate) GetOwnerId() string {
@@ -2127,20 +2509,22 @@ type RateBook struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	ContentApp    string                 `protobuf:"bytes,2,opt,name=content_app,json=contentApp,proto3" json:"content_app,omitempty"`
-	Song          string                 `protobuf:"bytes,3,opt,name=song,proto3" json:"song,omitempty"`
-	Level         int32                  `protobuf:"varint,4,opt,name=level,proto3" json:"level,omitempty"`
-	Active        bool                   `protobuf:"varint,5,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,6,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=expires,proto3" json:"expires,omitempty"`
+	SongId        string                 `protobuf:"bytes,3,opt,name=song_id,json=songId,proto3" json:"song_id,omitempty"`
+	LitWorkId     string                 `protobuf:"bytes,4,opt,name=lit_work_id,json=litWorkId,proto3" json:"lit_work_id,omitempty"`
+	Level         int32                  `protobuf:"varint,5,opt,name=level,proto3" json:"level,omitempty"`
+	Active        bool                   `protobuf:"varint,6,opt,name=active,proto3" json:"active,omitempty"`
+	AppId         string                 `protobuf:"bytes,7,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,8,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=expires,proto3" json:"expires,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *RateBook) Reset() {
 	*x = RateBook{}
-	mi := &file_contest_proto_msgTypes[13]
+	mi := &file_contest_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2152,7 +2536,7 @@ func (x *RateBook) String() string {
 func (*RateBook) ProtoMessage() {}
 
 func (x *RateBook) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[13]
+	mi := &file_contest_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2165,7 +2549,7 @@ func (x *RateBook) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RateBook.ProtoReflect.Descriptor instead.
 func (*RateBook) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{13}
+	return file_contest_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *RateBook) GetId() string {
@@ -2182,9 +2566,16 @@ func (x *RateBook) GetContentApp() string {
 	return ""
 }
 
-func (x *RateBook) GetSong() string {
+func (x *RateBook) GetSongId() string {
 	if x != nil {
-		return x.Song
+		return x.SongId
+	}
+	return ""
+}
+
+func (x *RateBook) GetLitWorkId() string {
+	if x != nil {
+		return x.LitWorkId
 	}
 	return ""
 }
@@ -2201,6 +2592,13 @@ func (x *RateBook) GetActive() bool {
 		return x.Active
 	}
 	return false
+}
+
+func (x *RateBook) GetAppId() string {
+	if x != nil {
+		return x.AppId
+	}
+	return ""
 }
 
 func (x *RateBook) GetOwnerId() string {
@@ -2237,27 +2635,28 @@ type FullContent struct {
 	Date               *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
 	Competition        *Project               `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
 	Author             *Person                `protobuf:"bytes,4,opt,name=author,proto3" json:"author,omitempty"`
-	RateBook           []*RateBook            `protobuf:"bytes,5,rep,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
-	SongOwn            *Song                  `protobuf:"bytes,6,opt,name=song_own,json=songOwn,proto3" json:"song_own,omitempty"`
+	RateBook           *RateBook              `protobuf:"bytes,5,opt,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
+	Song               []*Song                `protobuf:"bytes,6,rep,name=song,proto3" json:"song,omitempty"`
 	ArtistSongOwn      []*Artist              `protobuf:"bytes,7,rep,name=artist_song_own,json=artistSongOwn,proto3" json:"artist_song_own,omitempty"`
 	RateBookSongOwn    []*Rate                `protobuf:"bytes,8,rep,name=rate_book_song_own,json=rateBookSongOwn,proto3" json:"rate_book_song_own,omitempty"`
-	SongRemake         *Song                  `protobuf:"bytes,9,opt,name=song_remake,json=songRemake,proto3" json:"song_remake,omitempty"`
-	ArtistSongRemake   []*Artist              `protobuf:"bytes,10,rep,name=artist_song_remake,json=artistSongRemake,proto3" json:"artist_song_remake,omitempty"`
-	RateBookSongRemake []*Rate                `protobuf:"bytes,11,rep,name=rate_book_song_remake,json=rateBookSongRemake,proto3" json:"rate_book_song_remake,omitempty"`
-	Sort               int32                  `protobuf:"varint,12,opt,name=sort,proto3" json:"sort,omitempty"`
-	Status             int32                  `protobuf:"varint,13,opt,name=status,proto3" json:"status,omitempty"`
-	Active             bool                   `protobuf:"varint,14,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId            string                 `protobuf:"bytes,15,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created            *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=created,proto3" json:"created,omitempty"`
-	Updated            *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires            *timestamppb.Timestamp `protobuf:"bytes,18,opt,name=expires,proto3" json:"expires,omitempty"`
+	LitWork            []*LitWork             `protobuf:"bytes,10,rep,name=lit_work,json=litWork,proto3" json:"lit_work,omitempty"`
+	ArtistSongRemake   []*Artist              `protobuf:"bytes,11,rep,name=artist_song_remake,json=artistSongRemake,proto3" json:"artist_song_remake,omitempty"`
+	RateBookSongRemake []*Rate                `protobuf:"bytes,12,rep,name=rate_book_song_remake,json=rateBookSongRemake,proto3" json:"rate_book_song_remake,omitempty"`
+	Sort               int32                  `protobuf:"varint,13,opt,name=sort,proto3" json:"sort,omitempty"`
+	Status             int32                  `protobuf:"varint,14,opt,name=status,proto3" json:"status,omitempty"`
+	Active             bool                   `protobuf:"varint,15,opt,name=active,proto3" json:"active,omitempty"`
+	AppId              string                 `protobuf:"bytes,16,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
+	OwnerId            string                 `protobuf:"bytes,17,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created            *timestamppb.Timestamp `protobuf:"bytes,18,opt,name=created,proto3" json:"created,omitempty"`
+	Updated            *timestamppb.Timestamp `protobuf:"bytes,19,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires            *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=expires,proto3" json:"expires,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
 
 func (x *FullContent) Reset() {
 	*x = FullContent{}
-	mi := &file_contest_proto_msgTypes[14]
+	mi := &file_contest_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2269,7 +2668,7 @@ func (x *FullContent) String() string {
 func (*FullContent) ProtoMessage() {}
 
 func (x *FullContent) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[14]
+	mi := &file_contest_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2282,7 +2681,7 @@ func (x *FullContent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FullContent.ProtoReflect.Descriptor instead.
 func (*FullContent) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{14}
+	return file_contest_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *FullContent) GetId() string {
@@ -2313,16 +2712,16 @@ func (x *FullContent) GetAuthor() *Person {
 	return nil
 }
 
-func (x *FullContent) GetRateBook() []*RateBook {
+func (x *FullContent) GetRateBook() *RateBook {
 	if x != nil {
 		return x.RateBook
 	}
 	return nil
 }
 
-func (x *FullContent) GetSongOwn() *Song {
+func (x *FullContent) GetSong() []*Song {
 	if x != nil {
-		return x.SongOwn
+		return x.Song
 	}
 	return nil
 }
@@ -2341,9 +2740,9 @@ func (x *FullContent) GetRateBookSongOwn() []*Rate {
 	return nil
 }
 
-func (x *FullContent) GetSongRemake() *Song {
+func (x *FullContent) GetLitWork() []*LitWork {
 	if x != nil {
-		return x.SongRemake
+		return x.LitWork
 	}
 	return nil
 }
@@ -2383,6 +2782,13 @@ func (x *FullContent) GetActive() bool {
 	return false
 }
 
+func (x *FullContent) GetAppId() string {
+	if x != nil {
+		return x.AppId
+	}
+	return ""
+}
+
 func (x *FullContent) GetOwnerId() string {
 	if x != nil {
 		return x.OwnerId
@@ -2416,7 +2822,7 @@ type Team struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Person        []*Person              `protobuf:"bytes,2,rep,name=person,proto3" json:"person,omitempty"`
-	Artist        string                 `protobuf:"bytes,3,opt,name=artist,proto3" json:"artist,omitempty"`
+	ArtistId      string                 `protobuf:"bytes,3,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
 	Status        string                 `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
 	Active        bool                   `protobuf:"varint,5,opt,name=active,proto3" json:"active,omitempty"`
 	OwnerId       string                 `protobuf:"bytes,6,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
@@ -2429,7 +2835,7 @@ type Team struct {
 
 func (x *Team) Reset() {
 	*x = Team{}
-	mi := &file_contest_proto_msgTypes[15]
+	mi := &file_contest_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2441,7 +2847,7 @@ func (x *Team) String() string {
 func (*Team) ProtoMessage() {}
 
 func (x *Team) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[15]
+	mi := &file_contest_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2454,7 +2860,7 @@ func (x *Team) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Team.ProtoReflect.Descriptor instead.
 func (*Team) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{15}
+	return file_contest_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *Team) GetId() string {
@@ -2471,9 +2877,9 @@ func (x *Team) GetPerson() []*Person {
 	return nil
 }
 
-func (x *Team) GetArtist() string {
+func (x *Team) GetArtistId() string {
 	if x != nil {
-		return x.Artist
+		return x.ArtistId
 	}
 	return ""
 }
@@ -2524,7 +2930,7 @@ var File_contest_proto protoreflect.FileDescriptor
 
 const file_contest_proto_rawDesc = "" +
 	"\n" +
-	"\rcontest.proto\x12\acontest\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe4\x03\n" +
+	"\rcontest.proto\x12\acontest\x1a\x1fgoogle/protobuf/timestamp.proto\"\xce\x03\n" +
 	"\x06Person\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
@@ -2533,18 +2939,17 @@ const file_contest_proto_rawDesc = "" +
 	"\vmiddle_name\x18\x04 \x01(\tR\n" +
 	"middleName\x12\x14\n" +
 	"\x05phone\x18\x05 \x03(\tR\x05phone\x12\x14\n" +
-	"\x05email\x18\x06 \x03(\tR\x05email\x12\x14\n" +
-	"\x05login\x18\a \x01(\tR\x05login\x12\x10\n" +
-	"\x03bio\x18\b \x01(\tR\x03bio\x12\x12\n" +
-	"\x04city\x18\t \x01(\tR\x04city\x12\x16\n" +
-	"\x06region\x18\n" +
-	" \x01(\tR\x06region\x12\x18\n" +
-	"\acountry\x18\v \x01(\tR\acountry\x12\x16\n" +
-	"\x06active\x18\f \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\r \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xde\x03\n" +
+	"\x05email\x18\x06 \x03(\tR\x05email\x12\x10\n" +
+	"\x03bio\x18\a \x01(\tR\x03bio\x12\x12\n" +
+	"\x04city\x18\b \x01(\tR\x04city\x12\x16\n" +
+	"\x06region\x18\t \x01(\tR\x06region\x12\x18\n" +
+	"\acountry\x18\n" +
+	" \x01(\tR\acountry\x12\x16\n" +
+	"\x06active\x18\v \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\f \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xc8\x03\n" +
 	"\x10AddPersonRequest\x12\x1d\n" +
 	"\n" +
 	"first_name\x18\x02 \x01(\tR\tfirstName\x12\x1b\n" +
@@ -2552,18 +2957,17 @@ const file_contest_proto_rawDesc = "" +
 	"\vmiddle_name\x18\x04 \x01(\tR\n" +
 	"middleName\x12\x14\n" +
 	"\x05phone\x18\x05 \x03(\tR\x05phone\x12\x14\n" +
-	"\x05email\x18\x06 \x03(\tR\x05email\x12\x14\n" +
-	"\x05login\x18\a \x01(\tR\x05login\x12\x10\n" +
-	"\x03bio\x18\b \x01(\tR\x03bio\x12\x12\n" +
-	"\x04city\x18\t \x01(\tR\x04city\x12\x16\n" +
-	"\x06region\x18\n" +
-	" \x01(\tR\x06region\x12\x18\n" +
-	"\acountry\x18\v \x01(\tR\acountry\x12\x16\n" +
-	"\x06active\x18\f \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\r \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xef\x03\n" +
+	"\x05email\x18\x06 \x03(\tR\x05email\x12\x10\n" +
+	"\x03bio\x18\a \x01(\tR\x03bio\x12\x12\n" +
+	"\x04city\x18\b \x01(\tR\x04city\x12\x16\n" +
+	"\x06region\x18\t \x01(\tR\x06region\x12\x18\n" +
+	"\acountry\x18\n" +
+	" \x01(\tR\acountry\x12\x16\n" +
+	"\x06active\x18\v \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\f \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xd9\x03\n" +
 	"\x11AddPersonResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
@@ -2572,24 +2976,21 @@ const file_contest_proto_rawDesc = "" +
 	"\vmiddle_name\x18\x04 \x01(\tR\n" +
 	"middleName\x12\x14\n" +
 	"\x05phone\x18\x05 \x03(\tR\x05phone\x12\x14\n" +
-	"\x05email\x18\x06 \x03(\tR\x05email\x12\x14\n" +
-	"\x05login\x18\a \x01(\tR\x05login\x12\x10\n" +
-	"\x03bio\x18\b \x01(\tR\x03bio\x12\x12\n" +
-	"\x04city\x18\t \x01(\tR\x04city\x12\x16\n" +
-	"\x06region\x18\n" +
-	" \x01(\tR\x06region\x12\x18\n" +
-	"\acountry\x18\v \x01(\tR\acountry\x12\x16\n" +
-	"\x06active\x18\f \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\r \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xb2\x04\n" +
+	"\x05email\x18\x06 \x03(\tR\x05email\x12\x10\n" +
+	"\x03bio\x18\a \x01(\tR\x03bio\x12\x12\n" +
+	"\x04city\x18\b \x01(\tR\x04city\x12\x16\n" +
+	"\x06region\x18\t \x01(\tR\x06region\x12\x18\n" +
+	"\acountry\x18\n" +
+	" \x01(\tR\acountry\x12\x16\n" +
+	"\x06active\x18\v \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\f \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\x93\x04\n" +
 	"\x11AddContestRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12 \n" +
-	"\vcompetition\x18\x03 \x01(\tR\vcompetition\x12\x1d\n" +
-	"\n" +
-	"project_id\x18\x04 \x01(\tR\tprojectId\x12\x1b\n" +
+	"\vcompetition\x18\x03 \x01(\tR\vcompetition\x12\x1b\n" +
 	"\tauthor_id\x18\x05 \x01(\tR\bauthorId\x12\x1b\n" +
 	"\tartist_id\x18\x06 \x01(\tR\bartistId\x12\x1e\n" +
 	"\vsong_own_id\x18\a \x01(\tR\tsongOwnId\x12$\n" +
@@ -2602,13 +3003,11 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\r \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xb3\x04\n" +
+	"\aexpires\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\x94\x04\n" +
 	"\x12AddContestResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12 \n" +
-	"\vcompetition\x18\x03 \x01(\tR\vcompetition\x12\x1d\n" +
-	"\n" +
-	"project_id\x18\x04 \x01(\tR\tprojectId\x12\x1b\n" +
+	"\vcompetition\x18\x03 \x01(\tR\vcompetition\x12\x1b\n" +
 	"\tauthor_id\x18\x05 \x01(\tR\bauthorId\x12\x1b\n" +
 	"\tartist_id\x18\x06 \x01(\tR\bartistId\x12\x1e\n" +
 	"\vsong_own_id\x18\a \x01(\tR\tsongOwnId\x12$\n" +
@@ -2739,7 +3138,51 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\x0e \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xa1\x03\n" +
+	"\aexpires\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\x92\x03\n" +
+	"\aLitWork\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1a\n" +
+	"\bauthorID\x18\x03 \x03(\tR\bauthorID\x12\x14\n" +
+	"\x05audio\x18\x04 \x03(\tR\x05audio\x12\x12\n" +
+	"\x04clip\x18\x05 \x03(\tR\x04clip\x12\x14\n" +
+	"\x05video\x18\x06 \x03(\tR\x05video\x12\x18\n" +
+	"\arelease\x18\a \x01(\tR\arelease\x12\x16\n" +
+	"\x06lyrics\x18\b \x01(\tR\x06lyrics\x12\x16\n" +
+	"\x06active\x18\t \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\n" +
+	" \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\x8c\x03\n" +
+	"\x11AddLitWorkRequest\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1a\n" +
+	"\bauthorID\x18\x03 \x03(\tR\bauthorID\x12\x14\n" +
+	"\x05audio\x18\x04 \x03(\tR\x05audio\x12\x12\n" +
+	"\x04clip\x18\x05 \x03(\tR\x04clip\x12\x14\n" +
+	"\x05video\x18\x06 \x03(\tR\x05video\x12\x18\n" +
+	"\arelease\x18\a \x01(\tR\arelease\x12\x16\n" +
+	"\x06lyrics\x18\b \x01(\tR\x06lyrics\x12\x16\n" +
+	"\x06active\x18\t \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\n" +
+	" \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\x9d\x03\n" +
+	"\x12AddLitWorkResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1a\n" +
+	"\bauthorID\x18\x03 \x03(\tR\bauthorID\x12\x14\n" +
+	"\x05audio\x18\x04 \x03(\tR\x05audio\x12\x12\n" +
+	"\x04clip\x18\x05 \x03(\tR\x04clip\x12\x14\n" +
+	"\x05video\x18\x06 \x03(\tR\x05video\x12\x18\n" +
+	"\arelease\x18\a \x01(\tR\arelease\x12\x16\n" +
+	"\x06lyrics\x18\b \x01(\tR\x06lyrics\x12\x16\n" +
+	"\x06active\x18\t \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\n" +
+	" \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xb8\x03\n" +
 	"\aProject\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1f\n" +
@@ -2748,61 +3191,63 @@ const file_contest_proto_rawDesc = "" +
 	"\x05start\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x05start\x122\n" +
 	"\x06finish\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x06finish\x12\x14\n" +
 	"\x05event\x18\x06 \x03(\tR\x05event\x12\x16\n" +
-	"\x06active\x18\a \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\b \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xcc\x02\n" +
+	"\x06active\x18\a \x01(\bR\x06active\x12\x15\n" +
+	"\x06app_id\x18\x0f \x01(\tR\x05appId\x12\x19\n" +
+	"\bowner_id\x18\x10 \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x13 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xcc\x02\n" +
 	"\x04Rate\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12 \n" +
 	"\frate_book_id\x18\x02 \x01(\tR\n" +
 	"rateBookId\x12\x12\n" +
-	"\x04rate\x18\x03 \x01(\x05R\x04rate\x12\x15\n" +
-	"\x06app_id\x18\x04 \x01(\tR\x05appId\x12\x12\n" +
+	"\x04rate\x18\x03 \x01(\x05R\x04rate\x12\x12\n" +
 	"\x04jury\x18\x05 \x01(\tR\x04jury\x12\x16\n" +
-	"\x06active\x18\x06 \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\a \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xba\x02\n" +
+	"\x06active\x18\x06 \x01(\bR\x06active\x12\x15\n" +
+	"\x06app_id\x18\x0f \x01(\tR\x05appId\x12\x19\n" +
+	"\bowner_id\x18\x10 \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x13 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xf6\x02\n" +
 	"\bRateBook\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1f\n" +
 	"\vcontent_app\x18\x02 \x01(\tR\n" +
-	"contentApp\x12\x12\n" +
-	"\x04song\x18\x03 \x01(\tR\x04song\x12\x14\n" +
-	"\x05level\x18\x04 \x01(\x05R\x05level\x12\x16\n" +
-	"\x06active\x18\x05 \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\x06 \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xab\x06\n" +
+	"contentApp\x12\x17\n" +
+	"\asong_id\x18\x03 \x01(\tR\x06songId\x12\x1e\n" +
+	"\vlit_work_id\x18\x04 \x01(\tR\tlitWorkId\x12\x14\n" +
+	"\x05level\x18\x05 \x01(\x05R\x05level\x12\x16\n" +
+	"\x06active\x18\x06 \x01(\bR\x06active\x12\x15\n" +
+	"\x06app_id\x18\a \x01(\tR\x05appId\x12\x19\n" +
+	"\bowner_id\x18\b \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xb8\x06\n" +
 	"\vFullContent\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x122\n" +
 	"\vcompetition\x18\x03 \x01(\v2\x10.contest.ProjectR\vcompetition\x12'\n" +
 	"\x06author\x18\x04 \x01(\v2\x0f.contest.PersonR\x06author\x12.\n" +
-	"\trate_book\x18\x05 \x03(\v2\x11.contest.RateBookR\brateBook\x12(\n" +
-	"\bsong_own\x18\x06 \x01(\v2\r.contest.SongR\asongOwn\x127\n" +
+	"\trate_book\x18\x05 \x01(\v2\x11.contest.RateBookR\brateBook\x12!\n" +
+	"\x04song\x18\x06 \x03(\v2\r.contest.SongR\x04song\x127\n" +
 	"\x0fartist_song_own\x18\a \x03(\v2\x0f.contest.ArtistR\rartistSongOwn\x12:\n" +
-	"\x12rate_book_song_own\x18\b \x03(\v2\r.contest.RateR\x0frateBookSongOwn\x12.\n" +
-	"\vsong_remake\x18\t \x01(\v2\r.contest.SongR\n" +
-	"songRemake\x12=\n" +
-	"\x12artist_song_remake\x18\n" +
-	" \x03(\v2\x0f.contest.ArtistR\x10artistSongRemake\x12@\n" +
-	"\x15rate_book_song_remake\x18\v \x03(\v2\r.contest.RateR\x12rateBookSongRemake\x12\x12\n" +
-	"\x04sort\x18\f \x01(\x05R\x04sort\x12\x16\n" +
-	"\x06status\x18\r \x01(\x05R\x06status\x12\x16\n" +
-	"\x06active\x18\x0e \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\x0f \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xc4\x02\n" +
+	"\x12rate_book_song_own\x18\b \x03(\v2\r.contest.RateR\x0frateBookSongOwn\x12+\n" +
+	"\blit_work\x18\n" +
+	" \x03(\v2\x10.contest.LitWorkR\alitWork\x12=\n" +
+	"\x12artist_song_remake\x18\v \x03(\v2\x0f.contest.ArtistR\x10artistSongRemake\x12@\n" +
+	"\x15rate_book_song_remake\x18\f \x03(\v2\r.contest.RateR\x12rateBookSongRemake\x12\x12\n" +
+	"\x04sort\x18\r \x01(\x05R\x04sort\x12\x16\n" +
+	"\x06status\x18\x0e \x01(\x05R\x06status\x12\x16\n" +
+	"\x06active\x18\x0f \x01(\bR\x06active\x12\x15\n" +
+	"\x06app_id\x18\x10 \x01(\tR\x05appId\x12\x19\n" +
+	"\bowner_id\x18\x11 \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x13 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xc9\x02\n" +
 	"\x04Team\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12'\n" +
-	"\x06person\x18\x02 \x03(\v2\x0f.contest.PersonR\x06person\x12\x16\n" +
-	"\x06artist\x18\x03 \x01(\tR\x06artist\x12\x16\n" +
+	"\x06person\x18\x02 \x03(\v2\x0f.contest.PersonR\x06person\x12\x1b\n" +
+	"\tartist_id\x18\x03 \x01(\tR\bartistId\x12\x16\n" +
 	"\x06status\x18\x04 \x01(\tR\x06status\x12\x16\n" +
 	"\x06active\x18\x05 \x01(\bR\x06active\x12\x19\n" +
 	"\bowner_id\x18\x06 \x01(\tR\aownerId\x124\n" +
@@ -2828,7 +3273,7 @@ func file_contest_proto_rawDescGZIP() []byte {
 	return file_contest_proto_rawDescData
 }
 
-var file_contest_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_contest_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_contest_proto_goTypes = []any{
 	(*Person)(nil),                // 0: contest.Person
 	(*AddPersonRequest)(nil),      // 1: contest.AddPersonRequest
@@ -2841,90 +3286,102 @@ var file_contest_proto_goTypes = []any{
 	(*Song)(nil),                  // 8: contest.Song
 	(*AddSongRequest)(nil),        // 9: contest.AddSongRequest
 	(*AddSongResponse)(nil),       // 10: contest.AddSongResponse
-	(*Project)(nil),               // 11: contest.Project
-	(*Rate)(nil),                  // 12: contest.Rate
-	(*RateBook)(nil),              // 13: contest.RateBook
-	(*FullContent)(nil),           // 14: contest.FullContent
-	(*Team)(nil),                  // 15: contest.Team
-	(*timestamppb.Timestamp)(nil), // 16: google.protobuf.Timestamp
+	(*LitWork)(nil),               // 11: contest.LitWork
+	(*AddLitWorkRequest)(nil),     // 12: contest.AddLitWorkRequest
+	(*AddLitWorkResponse)(nil),    // 13: contest.AddLitWorkResponse
+	(*Project)(nil),               // 14: contest.Project
+	(*Rate)(nil),                  // 15: contest.Rate
+	(*RateBook)(nil),              // 16: contest.RateBook
+	(*FullContent)(nil),           // 17: contest.FullContent
+	(*Team)(nil),                  // 18: contest.Team
+	(*timestamppb.Timestamp)(nil), // 19: google.protobuf.Timestamp
 }
 var file_contest_proto_depIdxs = []int32{
-	16, // 0: contest.Person.created:type_name -> google.protobuf.Timestamp
-	16, // 1: contest.Person.updated:type_name -> google.protobuf.Timestamp
-	16, // 2: contest.Person.expires:type_name -> google.protobuf.Timestamp
-	16, // 3: contest.AddPersonRequest.created:type_name -> google.protobuf.Timestamp
-	16, // 4: contest.AddPersonRequest.updated:type_name -> google.protobuf.Timestamp
-	16, // 5: contest.AddPersonRequest.expires:type_name -> google.protobuf.Timestamp
-	16, // 6: contest.AddPersonResponse.created:type_name -> google.protobuf.Timestamp
-	16, // 7: contest.AddPersonResponse.updated:type_name -> google.protobuf.Timestamp
-	16, // 8: contest.AddPersonResponse.expires:type_name -> google.protobuf.Timestamp
-	16, // 9: contest.AddContestRequest.date:type_name -> google.protobuf.Timestamp
-	16, // 10: contest.AddContestRequest.created:type_name -> google.protobuf.Timestamp
-	16, // 11: contest.AddContestRequest.updated:type_name -> google.protobuf.Timestamp
-	16, // 12: contest.AddContestRequest.expires:type_name -> google.protobuf.Timestamp
-	16, // 13: contest.AddContestResponse.date:type_name -> google.protobuf.Timestamp
-	16, // 14: contest.AddContestResponse.created:type_name -> google.protobuf.Timestamp
-	16, // 15: contest.AddContestResponse.updated:type_name -> google.protobuf.Timestamp
-	16, // 16: contest.AddContestResponse.expires:type_name -> google.protobuf.Timestamp
-	16, // 17: contest.Artist.created:type_name -> google.protobuf.Timestamp
-	16, // 18: contest.Artist.updated:type_name -> google.protobuf.Timestamp
-	16, // 19: contest.Artist.expires:type_name -> google.protobuf.Timestamp
-	16, // 20: contest.AddArtistRequest.created:type_name -> google.protobuf.Timestamp
-	16, // 21: contest.AddArtistRequest.updated:type_name -> google.protobuf.Timestamp
-	16, // 22: contest.AddArtistRequest.expires:type_name -> google.protobuf.Timestamp
-	16, // 23: contest.AddArtistResponse.created:type_name -> google.protobuf.Timestamp
-	16, // 24: contest.AddArtistResponse.updated:type_name -> google.protobuf.Timestamp
-	16, // 25: contest.AddArtistResponse.expires:type_name -> google.protobuf.Timestamp
-	16, // 26: contest.Song.created:type_name -> google.protobuf.Timestamp
-	16, // 27: contest.Song.updated:type_name -> google.protobuf.Timestamp
-	16, // 28: contest.Song.expires:type_name -> google.protobuf.Timestamp
-	16, // 29: contest.AddSongRequest.created:type_name -> google.protobuf.Timestamp
-	16, // 30: contest.AddSongRequest.updated:type_name -> google.protobuf.Timestamp
-	16, // 31: contest.AddSongRequest.expires:type_name -> google.protobuf.Timestamp
-	16, // 32: contest.AddSongResponse.created:type_name -> google.protobuf.Timestamp
-	16, // 33: contest.AddSongResponse.updated:type_name -> google.protobuf.Timestamp
-	16, // 34: contest.AddSongResponse.expires:type_name -> google.protobuf.Timestamp
-	16, // 35: contest.Project.start:type_name -> google.protobuf.Timestamp
-	16, // 36: contest.Project.finish:type_name -> google.protobuf.Timestamp
-	16, // 37: contest.Project.created:type_name -> google.protobuf.Timestamp
-	16, // 38: contest.Project.updated:type_name -> google.protobuf.Timestamp
-	16, // 39: contest.Project.expires:type_name -> google.protobuf.Timestamp
-	16, // 40: contest.Rate.created:type_name -> google.protobuf.Timestamp
-	16, // 41: contest.Rate.updated:type_name -> google.protobuf.Timestamp
-	16, // 42: contest.Rate.expires:type_name -> google.protobuf.Timestamp
-	16, // 43: contest.RateBook.created:type_name -> google.protobuf.Timestamp
-	16, // 44: contest.RateBook.updated:type_name -> google.protobuf.Timestamp
-	16, // 45: contest.RateBook.expires:type_name -> google.protobuf.Timestamp
-	16, // 46: contest.FullContent.date:type_name -> google.protobuf.Timestamp
-	11, // 47: contest.FullContent.competition:type_name -> contest.Project
-	0,  // 48: contest.FullContent.author:type_name -> contest.Person
-	13, // 49: contest.FullContent.rate_book:type_name -> contest.RateBook
-	8,  // 50: contest.FullContent.song_own:type_name -> contest.Song
-	5,  // 51: contest.FullContent.artist_song_own:type_name -> contest.Artist
-	12, // 52: contest.FullContent.rate_book_song_own:type_name -> contest.Rate
-	8,  // 53: contest.FullContent.song_remake:type_name -> contest.Song
-	5,  // 54: contest.FullContent.artist_song_remake:type_name -> contest.Artist
-	12, // 55: contest.FullContent.rate_book_song_remake:type_name -> contest.Rate
-	16, // 56: contest.FullContent.created:type_name -> google.protobuf.Timestamp
-	16, // 57: contest.FullContent.updated:type_name -> google.protobuf.Timestamp
-	16, // 58: contest.FullContent.expires:type_name -> google.protobuf.Timestamp
-	0,  // 59: contest.Team.person:type_name -> contest.Person
-	16, // 60: contest.Team.created:type_name -> google.protobuf.Timestamp
-	16, // 61: contest.Team.updated:type_name -> google.protobuf.Timestamp
-	16, // 62: contest.Team.expires:type_name -> google.protobuf.Timestamp
-	3,  // 63: contest.Contest.AddContest:input_type -> contest.AddContestRequest
-	1,  // 64: contest.Contest.AddPerson:input_type -> contest.AddPersonRequest
-	6,  // 65: contest.Contest.AddArtist:input_type -> contest.AddArtistRequest
-	9,  // 66: contest.Contest.AddSong:input_type -> contest.AddSongRequest
-	4,  // 67: contest.Contest.AddContest:output_type -> contest.AddContestResponse
-	2,  // 68: contest.Contest.AddPerson:output_type -> contest.AddPersonResponse
-	7,  // 69: contest.Contest.AddArtist:output_type -> contest.AddArtistResponse
-	10, // 70: contest.Contest.AddSong:output_type -> contest.AddSongResponse
-	67, // [67:71] is the sub-list for method output_type
-	63, // [63:67] is the sub-list for method input_type
-	63, // [63:63] is the sub-list for extension type_name
-	63, // [63:63] is the sub-list for extension extendee
-	0,  // [0:63] is the sub-list for field type_name
+	19, // 0: contest.Person.created:type_name -> google.protobuf.Timestamp
+	19, // 1: contest.Person.updated:type_name -> google.protobuf.Timestamp
+	19, // 2: contest.Person.expires:type_name -> google.protobuf.Timestamp
+	19, // 3: contest.AddPersonRequest.created:type_name -> google.protobuf.Timestamp
+	19, // 4: contest.AddPersonRequest.updated:type_name -> google.protobuf.Timestamp
+	19, // 5: contest.AddPersonRequest.expires:type_name -> google.protobuf.Timestamp
+	19, // 6: contest.AddPersonResponse.created:type_name -> google.protobuf.Timestamp
+	19, // 7: contest.AddPersonResponse.updated:type_name -> google.protobuf.Timestamp
+	19, // 8: contest.AddPersonResponse.expires:type_name -> google.protobuf.Timestamp
+	19, // 9: contest.AddContestRequest.date:type_name -> google.protobuf.Timestamp
+	19, // 10: contest.AddContestRequest.created:type_name -> google.protobuf.Timestamp
+	19, // 11: contest.AddContestRequest.updated:type_name -> google.protobuf.Timestamp
+	19, // 12: contest.AddContestRequest.expires:type_name -> google.protobuf.Timestamp
+	19, // 13: contest.AddContestResponse.date:type_name -> google.protobuf.Timestamp
+	19, // 14: contest.AddContestResponse.created:type_name -> google.protobuf.Timestamp
+	19, // 15: contest.AddContestResponse.updated:type_name -> google.protobuf.Timestamp
+	19, // 16: contest.AddContestResponse.expires:type_name -> google.protobuf.Timestamp
+	19, // 17: contest.Artist.created:type_name -> google.protobuf.Timestamp
+	19, // 18: contest.Artist.updated:type_name -> google.protobuf.Timestamp
+	19, // 19: contest.Artist.expires:type_name -> google.protobuf.Timestamp
+	19, // 20: contest.AddArtistRequest.created:type_name -> google.protobuf.Timestamp
+	19, // 21: contest.AddArtistRequest.updated:type_name -> google.protobuf.Timestamp
+	19, // 22: contest.AddArtistRequest.expires:type_name -> google.protobuf.Timestamp
+	19, // 23: contest.AddArtistResponse.created:type_name -> google.protobuf.Timestamp
+	19, // 24: contest.AddArtistResponse.updated:type_name -> google.protobuf.Timestamp
+	19, // 25: contest.AddArtistResponse.expires:type_name -> google.protobuf.Timestamp
+	19, // 26: contest.Song.created:type_name -> google.protobuf.Timestamp
+	19, // 27: contest.Song.updated:type_name -> google.protobuf.Timestamp
+	19, // 28: contest.Song.expires:type_name -> google.protobuf.Timestamp
+	19, // 29: contest.AddSongRequest.created:type_name -> google.protobuf.Timestamp
+	19, // 30: contest.AddSongRequest.updated:type_name -> google.protobuf.Timestamp
+	19, // 31: contest.AddSongRequest.expires:type_name -> google.protobuf.Timestamp
+	19, // 32: contest.AddSongResponse.created:type_name -> google.protobuf.Timestamp
+	19, // 33: contest.AddSongResponse.updated:type_name -> google.protobuf.Timestamp
+	19, // 34: contest.AddSongResponse.expires:type_name -> google.protobuf.Timestamp
+	19, // 35: contest.LitWork.created:type_name -> google.protobuf.Timestamp
+	19, // 36: contest.LitWork.updated:type_name -> google.protobuf.Timestamp
+	19, // 37: contest.LitWork.expires:type_name -> google.protobuf.Timestamp
+	19, // 38: contest.AddLitWorkRequest.created:type_name -> google.protobuf.Timestamp
+	19, // 39: contest.AddLitWorkRequest.updated:type_name -> google.protobuf.Timestamp
+	19, // 40: contest.AddLitWorkRequest.expires:type_name -> google.protobuf.Timestamp
+	19, // 41: contest.AddLitWorkResponse.created:type_name -> google.protobuf.Timestamp
+	19, // 42: contest.AddLitWorkResponse.updated:type_name -> google.protobuf.Timestamp
+	19, // 43: contest.AddLitWorkResponse.expires:type_name -> google.protobuf.Timestamp
+	19, // 44: contest.Project.start:type_name -> google.protobuf.Timestamp
+	19, // 45: contest.Project.finish:type_name -> google.protobuf.Timestamp
+	19, // 46: contest.Project.created:type_name -> google.protobuf.Timestamp
+	19, // 47: contest.Project.updated:type_name -> google.protobuf.Timestamp
+	19, // 48: contest.Project.expires:type_name -> google.protobuf.Timestamp
+	19, // 49: contest.Rate.created:type_name -> google.protobuf.Timestamp
+	19, // 50: contest.Rate.updated:type_name -> google.protobuf.Timestamp
+	19, // 51: contest.Rate.expires:type_name -> google.protobuf.Timestamp
+	19, // 52: contest.RateBook.created:type_name -> google.protobuf.Timestamp
+	19, // 53: contest.RateBook.updated:type_name -> google.protobuf.Timestamp
+	19, // 54: contest.RateBook.expires:type_name -> google.protobuf.Timestamp
+	19, // 55: contest.FullContent.date:type_name -> google.protobuf.Timestamp
+	14, // 56: contest.FullContent.competition:type_name -> contest.Project
+	0,  // 57: contest.FullContent.author:type_name -> contest.Person
+	16, // 58: contest.FullContent.rate_book:type_name -> contest.RateBook
+	8,  // 59: contest.FullContent.song:type_name -> contest.Song
+	5,  // 60: contest.FullContent.artist_song_own:type_name -> contest.Artist
+	15, // 61: contest.FullContent.rate_book_song_own:type_name -> contest.Rate
+	11, // 62: contest.FullContent.lit_work:type_name -> contest.LitWork
+	5,  // 63: contest.FullContent.artist_song_remake:type_name -> contest.Artist
+	15, // 64: contest.FullContent.rate_book_song_remake:type_name -> contest.Rate
+	19, // 65: contest.FullContent.created:type_name -> google.protobuf.Timestamp
+	19, // 66: contest.FullContent.updated:type_name -> google.protobuf.Timestamp
+	19, // 67: contest.FullContent.expires:type_name -> google.protobuf.Timestamp
+	0,  // 68: contest.Team.person:type_name -> contest.Person
+	19, // 69: contest.Team.created:type_name -> google.protobuf.Timestamp
+	19, // 70: contest.Team.updated:type_name -> google.protobuf.Timestamp
+	19, // 71: contest.Team.expires:type_name -> google.protobuf.Timestamp
+	3,  // 72: contest.Contest.AddContest:input_type -> contest.AddContestRequest
+	1,  // 73: contest.Contest.AddPerson:input_type -> contest.AddPersonRequest
+	6,  // 74: contest.Contest.AddArtist:input_type -> contest.AddArtistRequest
+	9,  // 75: contest.Contest.AddSong:input_type -> contest.AddSongRequest
+	4,  // 76: contest.Contest.AddContest:output_type -> contest.AddContestResponse
+	2,  // 77: contest.Contest.AddPerson:output_type -> contest.AddPersonResponse
+	7,  // 78: contest.Contest.AddArtist:output_type -> contest.AddArtistResponse
+	10, // 79: contest.Contest.AddSong:output_type -> contest.AddSongResponse
+	76, // [76:80] is the sub-list for method output_type
+	72, // [72:76] is the sub-list for method input_type
+	72, // [72:72] is the sub-list for extension type_name
+	72, // [72:72] is the sub-list for extension extendee
+	0,  // [0:72] is the sub-list for field type_name
 }
 
 func init() { file_contest_proto_init() }
@@ -2938,7 +3395,7 @@ func file_contest_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_contest_proto_rawDesc), len(file_contest_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   16,
+			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
