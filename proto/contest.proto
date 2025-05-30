@@ -15,6 +15,8 @@ service Contest{
   rpc AddPerson (AddPersonRequest) returns (AddPersonResponse);
   rpc AddArtist (AddArtistRequest) returns (AddArtistResponse);
   rpc AddSong (AddSongRequest) returns (AddSongResponse);
+
+  rpc AddLitWork (AddLitWorkRequest) returns (AddLitWorkResponse);
 }
 
 // Person

@@ -3253,13 +3253,15 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\x06 \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\aexpires2\x96\x02\n" +
+	"\aexpires\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\aexpires2\xdd\x02\n" +
 	"\aContest\x12E\n" +
 	"\n" +
 	"AddContest\x12\x1a.contest.AddContestRequest\x1a\x1b.contest.AddContestResponse\x12B\n" +
 	"\tAddPerson\x12\x19.contest.AddPersonRequest\x1a\x1a.contest.AddPersonResponse\x12B\n" +
 	"\tAddArtist\x12\x19.contest.AddArtistRequest\x1a\x1a.contest.AddArtistResponse\x12<\n" +
-	"\aAddSong\x12\x17.contest.AddSongRequest\x1a\x18.contest.AddSongResponseB3Z1github.com/erkkipm/contest_proto/gen/go;contestV1b\x06proto3"
+	"\aAddSong\x12\x17.contest.AddSongRequest\x1a\x18.contest.AddSongResponse\x12E\n" +
+	"\n" +
+	"AddLitWork\x12\x1a.contest.AddLitWorkRequest\x1a\x1b.contest.AddLitWorkResponseB3Z1github.com/erkkipm/contest_proto/gen/go;contestV1b\x06proto3"
 
 var (
 	file_contest_proto_rawDescOnce sync.Once
@@ -3373,12 +3375,14 @@ var file_contest_proto_depIdxs = []int32{
 	1,  // 73: contest.Contest.AddPerson:input_type -> contest.AddPersonRequest
 	6,  // 74: contest.Contest.AddArtist:input_type -> contest.AddArtistRequest
 	9,  // 75: contest.Contest.AddSong:input_type -> contest.AddSongRequest
-	4,  // 76: contest.Contest.AddContest:output_type -> contest.AddContestResponse
-	2,  // 77: contest.Contest.AddPerson:output_type -> contest.AddPersonResponse
-	7,  // 78: contest.Contest.AddArtist:output_type -> contest.AddArtistResponse
-	10, // 79: contest.Contest.AddSong:output_type -> contest.AddSongResponse
-	76, // [76:80] is the sub-list for method output_type
-	72, // [72:76] is the sub-list for method input_type
+	12, // 76: contest.Contest.AddLitWork:input_type -> contest.AddLitWorkRequest
+	4,  // 77: contest.Contest.AddContest:output_type -> contest.AddContestResponse
+	2,  // 78: contest.Contest.AddPerson:output_type -> contest.AddPersonResponse
+	7,  // 79: contest.Contest.AddArtist:output_type -> contest.AddArtistResponse
+	10, // 80: contest.Contest.AddSong:output_type -> contest.AddSongResponse
+	13, // 81: contest.Contest.AddLitWork:output_type -> contest.AddLitWorkResponse
+	77, // [77:82] is the sub-list for method output_type
+	72, // [72:77] is the sub-list for method input_type
 	72, // [72:72] is the sub-list for extension type_name
 	72, // [72:72] is the sub-list for extension extendee
 	0,  // [0:72] is the sub-list for field type_name

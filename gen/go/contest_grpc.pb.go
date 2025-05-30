@@ -25,6 +25,7 @@ const (
 	Contest_AddPerson_FullMethodName  = "/contest.Contest/AddPerson"
 	Contest_AddArtist_FullMethodName  = "/contest.Contest/AddArtist"
 	Contest_AddSong_FullMethodName    = "/contest.Contest/AddSong"
+	Contest_AddLitWork_FullMethodName = "/contest.Contest/AddLitWork"
 )
 
 // ContestClient is the client API for Contest service.
@@ -39,6 +40,7 @@ type ContestClient interface {
 	AddPerson(ctx context.Context, in *AddPersonRequest, opts ...grpc.CallOption) (*AddPersonResponse, error)
 	AddArtist(ctx context.Context, in *AddArtistRequest, opts ...grpc.CallOption) (*AddArtistResponse, error)
 	AddSong(ctx context.Context, in *AddSongRequest, opts ...grpc.CallOption) (*AddSongResponse, error)
+	AddLitWork(ctx context.Context, in *AddLitWorkRequest, opts ...grpc.CallOption) (*AddLitWorkResponse, error)
 }
 
 type contestClient struct {
@@ -89,6 +91,16 @@ func (c *contestClient) AddSong(ctx context.Context, in *AddSongRequest, opts ..
 	return out, nil
 }
 
+func (c *contestClient) AddLitWork(ctx context.Context, in *AddLitWorkRequest, opts ...grpc.CallOption) (*AddLitWorkResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddLitWorkResponse)
+	err := c.cc.Invoke(ctx, Contest_AddLitWork_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ContestServer is the server API for Contest service.
 // All implementations must embed UnimplementedContestServer
 // for forward compatibility.
@@ -101,6 +113,7 @@ type ContestServer interface {
 	AddPerson(context.Context, *AddPersonRequest) (*AddPersonResponse, error)
 	AddArtist(context.Context, *AddArtistRequest) (*AddArtistResponse, error)
 	AddSong(context.Context, *AddSongRequest) (*AddSongResponse, error)
+	AddLitWork(context.Context, *AddLitWorkRequest) (*AddLitWorkResponse, error)
 	mustEmbedUnimplementedContestServer()
 }
 
@@ -122,6 +135,9 @@ func (UnimplementedContestServer) AddArtist(context.Context, *AddArtistRequest) 
 }
 func (UnimplementedContestServer) AddSong(context.Context, *AddSongRequest) (*AddSongResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddSong not implemented")
+}
+func (UnimplementedContestServer) AddLitWork(context.Context, *AddLitWorkRequest) (*AddLitWorkResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddLitWork not implemented")
 }
 func (UnimplementedContestServer) mustEmbedUnimplementedContestServer() {}
 func (UnimplementedContestServer) testEmbeddedByValue()                 {}
@@ -216,6 +232,24 @@ func _Contest_AddSong_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Contest_AddLitWork_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddLitWorkRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).AddLitWork(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_AddLitWork_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).AddLitWork(ctx, req.(*AddLitWorkRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Contest_ServiceDesc is the grpc.ServiceDesc for Contest service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -238,6 +272,10 @@ var Contest_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddSong",
 			Handler:    _Contest_AddSong_Handler,
+		},
+		{
+			MethodName: "AddLitWork",
+			Handler:    _Contest_AddLitWork_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
