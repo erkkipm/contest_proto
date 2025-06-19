@@ -2942,6 +2942,1187 @@ func (x *Team) GetExpires() *timestamppb.Timestamp {
 	return nil
 }
 
+// PERSON
+type GetPersonByIDRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPersonByIDRequest) Reset() {
+	*x = GetPersonByIDRequest{}
+	mi := &file_contest_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPersonByIDRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPersonByIDRequest) ProtoMessage() {}
+
+func (x *GetPersonByIDRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPersonByIDRequest.ProtoReflect.Descriptor instead.
+func (*GetPersonByIDRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *GetPersonByIDRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type ListPersonsByRegionRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Region        string                 `protobuf:"bytes,1,opt,name=region,proto3" json:"region,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListPersonsByRegionRequest) Reset() {
+	*x = ListPersonsByRegionRequest{}
+	mi := &file_contest_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListPersonsByRegionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListPersonsByRegionRequest) ProtoMessage() {}
+
+func (x *ListPersonsByRegionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListPersonsByRegionRequest.ProtoReflect.Descriptor instead.
+func (*ListPersonsByRegionRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *ListPersonsByRegionRequest) GetRegion() string {
+	if x != nil {
+		return x.Region
+	}
+	return ""
+}
+
+type ListPersonsByRegionResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Persons       []*Person              `protobuf:"bytes,1,rep,name=persons,proto3" json:"persons,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListPersonsByRegionResponse) Reset() {
+	*x = ListPersonsByRegionResponse{}
+	mi := &file_contest_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListPersonsByRegionResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListPersonsByRegionResponse) ProtoMessage() {}
+
+func (x *ListPersonsByRegionResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListPersonsByRegionResponse.ProtoReflect.Descriptor instead.
+func (*ListPersonsByRegionResponse) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *ListPersonsByRegionResponse) GetPersons() []*Person {
+	if x != nil {
+		return x.Persons
+	}
+	return nil
+}
+
+type UpdatePersonRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	FirstName     string                 `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	LastName      string                 `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+	MiddleName    string                 `protobuf:"bytes,4,opt,name=middle_name,json=middleName,proto3" json:"middle_name,omitempty"`
+	Phone         []string               `protobuf:"bytes,5,rep,name=phone,proto3" json:"phone,omitempty"`
+	Email         []string               `protobuf:"bytes,6,rep,name=email,proto3" json:"email,omitempty"`
+	Bio           string                 `protobuf:"bytes,7,opt,name=bio,proto3" json:"bio,omitempty"`
+	City          string                 `protobuf:"bytes,8,opt,name=city,proto3" json:"city,omitempty"`
+	Region        string                 `protobuf:"bytes,9,opt,name=region,proto3" json:"region,omitempty"`
+	Country       string                 `protobuf:"bytes,10,opt,name=country,proto3" json:"country,omitempty"`
+	Active        bool                   `protobuf:"varint,11,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,12,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=expires,proto3" json:"expires,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdatePersonRequest) Reset() {
+	*x = UpdatePersonRequest{}
+	mi := &file_contest_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdatePersonRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdatePersonRequest) ProtoMessage() {}
+
+func (x *UpdatePersonRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdatePersonRequest.ProtoReflect.Descriptor instead.
+func (*UpdatePersonRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *UpdatePersonRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *UpdatePersonRequest) GetFirstName() string {
+	if x != nil {
+		return x.FirstName
+	}
+	return ""
+}
+
+func (x *UpdatePersonRequest) GetLastName() string {
+	if x != nil {
+		return x.LastName
+	}
+	return ""
+}
+
+func (x *UpdatePersonRequest) GetMiddleName() string {
+	if x != nil {
+		return x.MiddleName
+	}
+	return ""
+}
+
+func (x *UpdatePersonRequest) GetPhone() []string {
+	if x != nil {
+		return x.Phone
+	}
+	return nil
+}
+
+func (x *UpdatePersonRequest) GetEmail() []string {
+	if x != nil {
+		return x.Email
+	}
+	return nil
+}
+
+func (x *UpdatePersonRequest) GetBio() string {
+	if x != nil {
+		return x.Bio
+	}
+	return ""
+}
+
+func (x *UpdatePersonRequest) GetCity() string {
+	if x != nil {
+		return x.City
+	}
+	return ""
+}
+
+func (x *UpdatePersonRequest) GetRegion() string {
+	if x != nil {
+		return x.Region
+	}
+	return ""
+}
+
+func (x *UpdatePersonRequest) GetCountry() string {
+	if x != nil {
+		return x.Country
+	}
+	return ""
+}
+
+func (x *UpdatePersonRequest) GetActive() bool {
+	if x != nil {
+		return x.Active
+	}
+	return false
+}
+
+func (x *UpdatePersonRequest) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *UpdatePersonRequest) GetCreated() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Created
+	}
+	return nil
+}
+
+func (x *UpdatePersonRequest) GetUpdated() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Updated
+	}
+	return nil
+}
+
+func (x *UpdatePersonRequest) GetExpires() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Expires
+	}
+	return nil
+}
+
+// CONTEST
+type GetContestByIDRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetContestByIDRequest) Reset() {
+	*x = GetContestByIDRequest{}
+	mi := &file_contest_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetContestByIDRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetContestByIDRequest) ProtoMessage() {}
+
+func (x *GetContestByIDRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetContestByIDRequest.ProtoReflect.Descriptor instead.
+func (*GetContestByIDRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *GetContestByIDRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type ListContestsByRegionRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Region        string                 `protobuf:"bytes,1,opt,name=region,proto3" json:"region,omitempty"`
+	AppId         string                 `protobuf:"bytes,2,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
+	Competition   string                 `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListContestsByRegionRequest) Reset() {
+	*x = ListContestsByRegionRequest{}
+	mi := &file_contest_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListContestsByRegionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListContestsByRegionRequest) ProtoMessage() {}
+
+func (x *ListContestsByRegionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListContestsByRegionRequest.ProtoReflect.Descriptor instead.
+func (*ListContestsByRegionRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *ListContestsByRegionRequest) GetRegion() string {
+	if x != nil {
+		return x.Region
+	}
+	return ""
+}
+
+func (x *ListContestsByRegionRequest) GetAppId() string {
+	if x != nil {
+		return x.AppId
+	}
+	return ""
+}
+
+func (x *ListContestsByRegionRequest) GetCompetition() string {
+	if x != nil {
+		return x.Competition
+	}
+	return ""
+}
+
+type ListContestsByRegionResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Contests      []*AddContestResponse  `protobuf:"bytes,1,rep,name=contests,proto3" json:"contests,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListContestsByRegionResponse) Reset() {
+	*x = ListContestsByRegionResponse{}
+	mi := &file_contest_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListContestsByRegionResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListContestsByRegionResponse) ProtoMessage() {}
+
+func (x *ListContestsByRegionResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListContestsByRegionResponse.ProtoReflect.Descriptor instead.
+func (*ListContestsByRegionResponse) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *ListContestsByRegionResponse) GetContests() []*AddContestResponse {
+	if x != nil {
+		return x.Contests
+	}
+	return nil
+}
+
+type UpdateContestRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Date          *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
+	Competition   string                 `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
+	AuthorId      string                 `protobuf:"bytes,5,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
+	ArtistId      string                 `protobuf:"bytes,6,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
+	SongOwnId     string                 `protobuf:"bytes,7,opt,name=song_own_id,json=songOwnId,proto3" json:"song_own_id,omitempty"`
+	SongRemakeId  string                 `protobuf:"bytes,8,opt,name=song_remake_id,json=songRemakeId,proto3" json:"song_remake_id,omitempty"`
+	LitWorkId     string                 `protobuf:"bytes,9,opt,name=lit_work_id,json=litWorkId,proto3" json:"lit_work_id,omitempty"`
+	Sort          int32                  `protobuf:"varint,10,opt,name=sort,proto3" json:"sort,omitempty"`
+	RateBook      []string               `protobuf:"bytes,11,rep,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
+	Status        int32                  `protobuf:"varint,12,opt,name=status,proto3" json:"status,omitempty"`
+	Active        bool                   `protobuf:"varint,13,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,14,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=expires,proto3" json:"expires,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateContestRequest) Reset() {
+	*x = UpdateContestRequest{}
+	mi := &file_contest_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateContestRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateContestRequest) ProtoMessage() {}
+
+func (x *UpdateContestRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateContestRequest.ProtoReflect.Descriptor instead.
+func (*UpdateContestRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *UpdateContestRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *UpdateContestRequest) GetDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Date
+	}
+	return nil
+}
+
+func (x *UpdateContestRequest) GetCompetition() string {
+	if x != nil {
+		return x.Competition
+	}
+	return ""
+}
+
+func (x *UpdateContestRequest) GetAuthorId() string {
+	if x != nil {
+		return x.AuthorId
+	}
+	return ""
+}
+
+func (x *UpdateContestRequest) GetArtistId() string {
+	if x != nil {
+		return x.ArtistId
+	}
+	return ""
+}
+
+func (x *UpdateContestRequest) GetSongOwnId() string {
+	if x != nil {
+		return x.SongOwnId
+	}
+	return ""
+}
+
+func (x *UpdateContestRequest) GetSongRemakeId() string {
+	if x != nil {
+		return x.SongRemakeId
+	}
+	return ""
+}
+
+func (x *UpdateContestRequest) GetLitWorkId() string {
+	if x != nil {
+		return x.LitWorkId
+	}
+	return ""
+}
+
+func (x *UpdateContestRequest) GetSort() int32 {
+	if x != nil {
+		return x.Sort
+	}
+	return 0
+}
+
+func (x *UpdateContestRequest) GetRateBook() []string {
+	if x != nil {
+		return x.RateBook
+	}
+	return nil
+}
+
+func (x *UpdateContestRequest) GetStatus() int32 {
+	if x != nil {
+		return x.Status
+	}
+	return 0
+}
+
+func (x *UpdateContestRequest) GetActive() bool {
+	if x != nil {
+		return x.Active
+	}
+	return false
+}
+
+func (x *UpdateContestRequest) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *UpdateContestRequest) GetCreated() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Created
+	}
+	return nil
+}
+
+func (x *UpdateContestRequest) GetUpdated() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Updated
+	}
+	return nil
+}
+
+func (x *UpdateContestRequest) GetExpires() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Expires
+	}
+	return nil
+}
+
+type GetContestByPersonIDRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PersonId      string                 `protobuf:"bytes,1,opt,name=person_id,json=personId,proto3" json:"person_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetContestByPersonIDRequest) Reset() {
+	*x = GetContestByPersonIDRequest{}
+	mi := &file_contest_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetContestByPersonIDRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetContestByPersonIDRequest) ProtoMessage() {}
+
+func (x *GetContestByPersonIDRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetContestByPersonIDRequest.ProtoReflect.Descriptor instead.
+func (*GetContestByPersonIDRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *GetContestByPersonIDRequest) GetPersonId() string {
+	if x != nil {
+		return x.PersonId
+	}
+	return ""
+}
+
+type ListContestsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListContestsRequest) Reset() {
+	*x = ListContestsRequest{}
+	mi := &file_contest_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListContestsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListContestsRequest) ProtoMessage() {}
+
+func (x *ListContestsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListContestsRequest.ProtoReflect.Descriptor instead.
+func (*ListContestsRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{28}
+}
+
+type ListContestsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Contests      []*AddContestResponse  `protobuf:"bytes,1,rep,name=contests,proto3" json:"contests,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListContestsResponse) Reset() {
+	*x = ListContestsResponse{}
+	mi := &file_contest_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListContestsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListContestsResponse) ProtoMessage() {}
+
+func (x *ListContestsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListContestsResponse.ProtoReflect.Descriptor instead.
+func (*ListContestsResponse) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *ListContestsResponse) GetContests() []*AddContestResponse {
+	if x != nil {
+		return x.Contests
+	}
+	return nil
+}
+
+type ListPersonsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListPersonsRequest) Reset() {
+	*x = ListPersonsRequest{}
+	mi := &file_contest_proto_msgTypes[30]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListPersonsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListPersonsRequest) ProtoMessage() {}
+
+func (x *ListPersonsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[30]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListPersonsRequest.ProtoReflect.Descriptor instead.
+func (*ListPersonsRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{30}
+}
+
+type ListPersonsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Persons       []*Person              `protobuf:"bytes,1,rep,name=persons,proto3" json:"persons,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListPersonsResponse) Reset() {
+	*x = ListPersonsResponse{}
+	mi := &file_contest_proto_msgTypes[31]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListPersonsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListPersonsResponse) ProtoMessage() {}
+
+func (x *ListPersonsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[31]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListPersonsResponse.ProtoReflect.Descriptor instead.
+func (*ListPersonsResponse) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *ListPersonsResponse) GetPersons() []*Person {
+	if x != nil {
+		return x.Persons
+	}
+	return nil
+}
+
+// ARTIST
+type ListArtistsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListArtistsRequest) Reset() {
+	*x = ListArtistsRequest{}
+	mi := &file_contest_proto_msgTypes[32]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListArtistsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListArtistsRequest) ProtoMessage() {}
+
+func (x *ListArtistsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[32]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListArtistsRequest.ProtoReflect.Descriptor instead.
+func (*ListArtistsRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{32}
+}
+
+type ListArtistsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Artists       []*AddArtistResponse   `protobuf:"bytes,1,rep,name=artists,proto3" json:"artists,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListArtistsResponse) Reset() {
+	*x = ListArtistsResponse{}
+	mi := &file_contest_proto_msgTypes[33]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListArtistsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListArtistsResponse) ProtoMessage() {}
+
+func (x *ListArtistsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[33]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListArtistsResponse.ProtoReflect.Descriptor instead.
+func (*ListArtistsResponse) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *ListArtistsResponse) GetArtists() []*AddArtistResponse {
+	if x != nil {
+		return x.Artists
+	}
+	return nil
+}
+
+type GetArtistByIDRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetArtistByIDRequest) Reset() {
+	*x = GetArtistByIDRequest{}
+	mi := &file_contest_proto_msgTypes[34]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetArtistByIDRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetArtistByIDRequest) ProtoMessage() {}
+
+func (x *GetArtistByIDRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[34]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetArtistByIDRequest.ProtoReflect.Descriptor instead.
+func (*GetArtistByIDRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{34}
+}
+
+func (x *GetArtistByIDRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+// SONG
+type ListSongsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListSongsRequest) Reset() {
+	*x = ListSongsRequest{}
+	mi := &file_contest_proto_msgTypes[35]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListSongsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListSongsRequest) ProtoMessage() {}
+
+func (x *ListSongsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[35]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListSongsRequest.ProtoReflect.Descriptor instead.
+func (*ListSongsRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{35}
+}
+
+type ListSongsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Songs         []*AddSongResponse     `protobuf:"bytes,1,rep,name=songs,proto3" json:"songs,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListSongsResponse) Reset() {
+	*x = ListSongsResponse{}
+	mi := &file_contest_proto_msgTypes[36]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListSongsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListSongsResponse) ProtoMessage() {}
+
+func (x *ListSongsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[36]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListSongsResponse.ProtoReflect.Descriptor instead.
+func (*ListSongsResponse) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{36}
+}
+
+func (x *ListSongsResponse) GetSongs() []*AddSongResponse {
+	if x != nil {
+		return x.Songs
+	}
+	return nil
+}
+
+type GetSongByIDRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetSongByIDRequest) Reset() {
+	*x = GetSongByIDRequest{}
+	mi := &file_contest_proto_msgTypes[37]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetSongByIDRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSongByIDRequest) ProtoMessage() {}
+
+func (x *GetSongByIDRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[37]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSongByIDRequest.ProtoReflect.Descriptor instead.
+func (*GetSongByIDRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{37}
+}
+
+func (x *GetSongByIDRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+// LITWORK
+type ListLitWorksRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListLitWorksRequest) Reset() {
+	*x = ListLitWorksRequest{}
+	mi := &file_contest_proto_msgTypes[38]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListLitWorksRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListLitWorksRequest) ProtoMessage() {}
+
+func (x *ListLitWorksRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[38]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListLitWorksRequest.ProtoReflect.Descriptor instead.
+func (*ListLitWorksRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{38}
+}
+
+type ListLitWorksResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	LitWorks      []*AddLitWorkResponse  `protobuf:"bytes,1,rep,name=lit_works,json=litWorks,proto3" json:"lit_works,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListLitWorksResponse) Reset() {
+	*x = ListLitWorksResponse{}
+	mi := &file_contest_proto_msgTypes[39]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListLitWorksResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListLitWorksResponse) ProtoMessage() {}
+
+func (x *ListLitWorksResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[39]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListLitWorksResponse.ProtoReflect.Descriptor instead.
+func (*ListLitWorksResponse) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{39}
+}
+
+func (x *ListLitWorksResponse) GetLitWorks() []*AddLitWorkResponse {
+	if x != nil {
+		return x.LitWorks
+	}
+	return nil
+}
+
+type GetLitWorkByIDRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetLitWorkByIDRequest) Reset() {
+	*x = GetLitWorkByIDRequest{}
+	mi := &file_contest_proto_msgTypes[40]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetLitWorkByIDRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetLitWorkByIDRequest) ProtoMessage() {}
+
+func (x *GetLitWorkByIDRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[40]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetLitWorkByIDRequest.ProtoReflect.Descriptor instead.
+func (*GetLitWorkByIDRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{40}
+}
+
+func (x *GetLitWorkByIDRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
 var File_contest_proto protoreflect.FileDescriptor
 
 const file_contest_proto_rawDesc = "" +
@@ -3271,15 +4452,104 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\x06 \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\aexpires2\xdd\x02\n" +
+	"\aexpires\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"&\n" +
+	"\x14GetPersonByIDRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"4\n" +
+	"\x1aListPersonsByRegionRequest\x12\x16\n" +
+	"\x06region\x18\x01 \x01(\tR\x06region\"H\n" +
+	"\x1bListPersonsByRegionResponse\x12)\n" +
+	"\apersons\x18\x01 \x03(\v2\x0f.contest.PersonR\apersons\"\xdb\x03\n" +
+	"\x13UpdatePersonRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
+	"\n" +
+	"first_name\x18\x02 \x01(\tR\tfirstName\x12\x1b\n" +
+	"\tlast_name\x18\x03 \x01(\tR\blastName\x12\x1f\n" +
+	"\vmiddle_name\x18\x04 \x01(\tR\n" +
+	"middleName\x12\x14\n" +
+	"\x05phone\x18\x05 \x03(\tR\x05phone\x12\x14\n" +
+	"\x05email\x18\x06 \x03(\tR\x05email\x12\x10\n" +
+	"\x03bio\x18\a \x01(\tR\x03bio\x12\x12\n" +
+	"\x04city\x18\b \x01(\tR\x04city\x12\x16\n" +
+	"\x06region\x18\t \x01(\tR\x06region\x12\x18\n" +
+	"\acountry\x18\n" +
+	" \x01(\tR\acountry\x12\x16\n" +
+	"\x06active\x18\v \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\f \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"'\n" +
+	"\x15GetContestByIDRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"n\n" +
+	"\x1bListContestsByRegionRequest\x12\x16\n" +
+	"\x06region\x18\x01 \x01(\tR\x06region\x12\x15\n" +
+	"\x06app_id\x18\x02 \x01(\tR\x05appId\x12 \n" +
+	"\vcompetition\x18\x03 \x01(\tR\vcompetition\"W\n" +
+	"\x1cListContestsByRegionResponse\x127\n" +
+	"\bcontests\x18\x01 \x03(\v2\x1b.contest.AddContestResponseR\bcontests\"\xb6\x04\n" +
+	"\x14UpdateContestRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
+	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12 \n" +
+	"\vcompetition\x18\x03 \x01(\tR\vcompetition\x12\x1b\n" +
+	"\tauthor_id\x18\x05 \x01(\tR\bauthorId\x12\x1b\n" +
+	"\tartist_id\x18\x06 \x01(\tR\bartistId\x12\x1e\n" +
+	"\vsong_own_id\x18\a \x01(\tR\tsongOwnId\x12$\n" +
+	"\x0esong_remake_id\x18\b \x01(\tR\fsongRemakeId\x12\x1e\n" +
+	"\vlit_work_id\x18\t \x01(\tR\tlitWorkId\x12\x12\n" +
+	"\x04sort\x18\n" +
+	" \x01(\x05R\x04sort\x12\x1b\n" +
+	"\trate_book\x18\v \x03(\tR\brateBook\x12\x16\n" +
+	"\x06status\x18\f \x01(\x05R\x06status\x12\x16\n" +
+	"\x06active\x18\r \x01(\bR\x06active\x12\x19\n" +
+	"\bowner_id\x18\x0e \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\":\n" +
+	"\x1bGetContestByPersonIDRequest\x12\x1b\n" +
+	"\tperson_id\x18\x01 \x01(\tR\bpersonId\"\x15\n" +
+	"\x13ListContestsRequest\"O\n" +
+	"\x14ListContestsResponse\x127\n" +
+	"\bcontests\x18\x01 \x03(\v2\x1b.contest.AddContestResponseR\bcontests\"\x14\n" +
+	"\x12ListPersonsRequest\"@\n" +
+	"\x13ListPersonsResponse\x12)\n" +
+	"\apersons\x18\x01 \x03(\v2\x0f.contest.PersonR\apersons\"\x14\n" +
+	"\x12ListArtistsRequest\"K\n" +
+	"\x13ListArtistsResponse\x124\n" +
+	"\aartists\x18\x01 \x03(\v2\x1a.contest.AddArtistResponseR\aartists\"&\n" +
+	"\x14GetArtistByIDRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\x12\n" +
+	"\x10ListSongsRequest\"C\n" +
+	"\x11ListSongsResponse\x12.\n" +
+	"\x05songs\x18\x01 \x03(\v2\x18.contest.AddSongResponseR\x05songs\"$\n" +
+	"\x12GetSongByIDRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\x15\n" +
+	"\x13ListLitWorksRequest\"P\n" +
+	"\x14ListLitWorksResponse\x128\n" +
+	"\tlit_works\x18\x01 \x03(\v2\x1b.contest.AddLitWorkResponseR\blitWorks\"'\n" +
+	"\x15GetLitWorkByIDRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id2\xef\v\n" +
 	"\aContest\x12E\n" +
 	"\n" +
-	"AddContest\x12\x1a.contest.AddContestRequest\x1a\x1b.contest.AddContestResponse\x12B\n" +
-	"\tAddPerson\x12\x19.contest.AddPersonRequest\x1a\x1a.contest.AddPersonResponse\x12B\n" +
-	"\tAddArtist\x12\x19.contest.AddArtistRequest\x1a\x1a.contest.AddArtistResponse\x12<\n" +
-	"\aAddSong\x12\x17.contest.AddSongRequest\x1a\x18.contest.AddSongResponse\x12E\n" +
+	"AddContest\x12\x1a.contest.AddContestRequest\x1a\x1b.contest.AddContestResponse\x12M\n" +
+	"\x0eGetContestByID\x12\x1e.contest.GetContestByIDRequest\x1a\x1b.contest.AddContestResponse\x12Z\n" +
+	"\x15GetContestsByPersonID\x12$.contest.GetContestByPersonIDRequest\x1a\x1b.contest.AddContestResponse\x12K\n" +
+	"\fListContests\x12\x1c.contest.ListContestsRequest\x1a\x1d.contest.ListContestsResponse\x12c\n" +
+	"\x14ListContestsByRegion\x12$.contest.ListContestsByRegionRequest\x1a%.contest.ListContestsByRegionResponse\x12K\n" +
+	"\rUpdateContest\x12\x1d.contest.UpdateContestRequest\x1a\x1b.contest.AddContestResponse\x12B\n" +
+	"\tAddPerson\x12\x19.contest.AddPersonRequest\x1a\x1a.contest.AddPersonResponse\x12H\n" +
+	"\vListPersons\x12\x1b.contest.ListPersonsRequest\x1a\x1c.contest.ListPersonsResponse\x12?\n" +
+	"\rGetPersonByID\x12\x1d.contest.GetPersonByIDRequest\x1a\x0f.contest.Person\x12`\n" +
+	"\x13ListPersonsByRegion\x12#.contest.ListPersonsByRegionRequest\x1a$.contest.ListPersonsByRegionResponse\x12=\n" +
+	"\fUpdatePerson\x12\x1c.contest.UpdatePersonRequest\x1a\x0f.contest.Person\x12B\n" +
+	"\tAddArtist\x12\x19.contest.AddArtistRequest\x1a\x1a.contest.AddArtistResponse\x12H\n" +
+	"\vListArtists\x12\x1b.contest.ListArtistsRequest\x1a\x1c.contest.ListArtistsResponse\x12J\n" +
+	"\rGetArtistByID\x12\x1d.contest.GetArtistByIDRequest\x1a\x1a.contest.AddArtistResponse\x12<\n" +
+	"\aAddSong\x12\x17.contest.AddSongRequest\x1a\x18.contest.AddSongResponse\x12B\n" +
+	"\tListSongs\x12\x19.contest.ListSongsRequest\x1a\x1a.contest.ListSongsResponse\x12D\n" +
+	"\vGetSongByID\x12\x1b.contest.GetSongByIDRequest\x1a\x18.contest.AddSongResponse\x12E\n" +
 	"\n" +
-	"AddLitWork\x12\x1a.contest.AddLitWorkRequest\x1a\x1b.contest.AddLitWorkResponseB3Z1github.com/erkkipm/contest_proto/gen/go;contestV1b\x06proto3"
+	"AddLitWork\x12\x1a.contest.AddLitWorkRequest\x1a\x1b.contest.AddLitWorkResponse\x12K\n" +
+	"\fListLitWorks\x12\x1c.contest.ListLitWorksRequest\x1a\x1d.contest.ListLitWorksResponse\x12M\n" +
+	"\x0eGetLitWorkByID\x12\x1e.contest.GetLitWorkByIDRequest\x1a\x1b.contest.AddLitWorkResponseB3Z1github.com/erkkipm/contest_proto/gen/go;contestV1b\x06proto3"
 
 var (
 	file_contest_proto_rawDescOnce sync.Once
@@ -3293,117 +4563,183 @@ func file_contest_proto_rawDescGZIP() []byte {
 	return file_contest_proto_rawDescData
 }
 
-var file_contest_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
+var file_contest_proto_msgTypes = make([]protoimpl.MessageInfo, 41)
 var file_contest_proto_goTypes = []any{
-	(*Person)(nil),                // 0: contest.Person
-	(*AddPersonRequest)(nil),      // 1: contest.AddPersonRequest
-	(*AddPersonResponse)(nil),     // 2: contest.AddPersonResponse
-	(*AddContestRequest)(nil),     // 3: contest.AddContestRequest
-	(*AddContestResponse)(nil),    // 4: contest.AddContestResponse
-	(*Artist)(nil),                // 5: contest.Artist
-	(*AddArtistRequest)(nil),      // 6: contest.AddArtistRequest
-	(*AddArtistResponse)(nil),     // 7: contest.AddArtistResponse
-	(*Song)(nil),                  // 8: contest.Song
-	(*AddSongRequest)(nil),        // 9: contest.AddSongRequest
-	(*AddSongResponse)(nil),       // 10: contest.AddSongResponse
-	(*LitWork)(nil),               // 11: contest.LitWork
-	(*AddLitWorkRequest)(nil),     // 12: contest.AddLitWorkRequest
-	(*AddLitWorkResponse)(nil),    // 13: contest.AddLitWorkResponse
-	(*Project)(nil),               // 14: contest.Project
-	(*Rate)(nil),                  // 15: contest.Rate
-	(*RateBook)(nil),              // 16: contest.RateBook
-	(*FullContent)(nil),           // 17: contest.FullContent
-	(*Team)(nil),                  // 18: contest.Team
-	(*timestamppb.Timestamp)(nil), // 19: google.protobuf.Timestamp
+	(*Person)(nil),                       // 0: contest.Person
+	(*AddPersonRequest)(nil),             // 1: contest.AddPersonRequest
+	(*AddPersonResponse)(nil),            // 2: contest.AddPersonResponse
+	(*AddContestRequest)(nil),            // 3: contest.AddContestRequest
+	(*AddContestResponse)(nil),           // 4: contest.AddContestResponse
+	(*Artist)(nil),                       // 5: contest.Artist
+	(*AddArtistRequest)(nil),             // 6: contest.AddArtistRequest
+	(*AddArtistResponse)(nil),            // 7: contest.AddArtistResponse
+	(*Song)(nil),                         // 8: contest.Song
+	(*AddSongRequest)(nil),               // 9: contest.AddSongRequest
+	(*AddSongResponse)(nil),              // 10: contest.AddSongResponse
+	(*LitWork)(nil),                      // 11: contest.LitWork
+	(*AddLitWorkRequest)(nil),            // 12: contest.AddLitWorkRequest
+	(*AddLitWorkResponse)(nil),           // 13: contest.AddLitWorkResponse
+	(*Project)(nil),                      // 14: contest.Project
+	(*Rate)(nil),                         // 15: contest.Rate
+	(*RateBook)(nil),                     // 16: contest.RateBook
+	(*FullContent)(nil),                  // 17: contest.FullContent
+	(*Team)(nil),                         // 18: contest.Team
+	(*GetPersonByIDRequest)(nil),         // 19: contest.GetPersonByIDRequest
+	(*ListPersonsByRegionRequest)(nil),   // 20: contest.ListPersonsByRegionRequest
+	(*ListPersonsByRegionResponse)(nil),  // 21: contest.ListPersonsByRegionResponse
+	(*UpdatePersonRequest)(nil),          // 22: contest.UpdatePersonRequest
+	(*GetContestByIDRequest)(nil),        // 23: contest.GetContestByIDRequest
+	(*ListContestsByRegionRequest)(nil),  // 24: contest.ListContestsByRegionRequest
+	(*ListContestsByRegionResponse)(nil), // 25: contest.ListContestsByRegionResponse
+	(*UpdateContestRequest)(nil),         // 26: contest.UpdateContestRequest
+	(*GetContestByPersonIDRequest)(nil),  // 27: contest.GetContestByPersonIDRequest
+	(*ListContestsRequest)(nil),          // 28: contest.ListContestsRequest
+	(*ListContestsResponse)(nil),         // 29: contest.ListContestsResponse
+	(*ListPersonsRequest)(nil),           // 30: contest.ListPersonsRequest
+	(*ListPersonsResponse)(nil),          // 31: contest.ListPersonsResponse
+	(*ListArtistsRequest)(nil),           // 32: contest.ListArtistsRequest
+	(*ListArtistsResponse)(nil),          // 33: contest.ListArtistsResponse
+	(*GetArtistByIDRequest)(nil),         // 34: contest.GetArtistByIDRequest
+	(*ListSongsRequest)(nil),             // 35: contest.ListSongsRequest
+	(*ListSongsResponse)(nil),            // 36: contest.ListSongsResponse
+	(*GetSongByIDRequest)(nil),           // 37: contest.GetSongByIDRequest
+	(*ListLitWorksRequest)(nil),          // 38: contest.ListLitWorksRequest
+	(*ListLitWorksResponse)(nil),         // 39: contest.ListLitWorksResponse
+	(*GetLitWorkByIDRequest)(nil),        // 40: contest.GetLitWorkByIDRequest
+	(*timestamppb.Timestamp)(nil),        // 41: google.protobuf.Timestamp
 }
 var file_contest_proto_depIdxs = []int32{
-	19, // 0: contest.Person.created:type_name -> google.protobuf.Timestamp
-	19, // 1: contest.Person.updated:type_name -> google.protobuf.Timestamp
-	19, // 2: contest.Person.expires:type_name -> google.protobuf.Timestamp
-	19, // 3: contest.AddPersonRequest.created:type_name -> google.protobuf.Timestamp
-	19, // 4: contest.AddPersonRequest.updated:type_name -> google.protobuf.Timestamp
-	19, // 5: contest.AddPersonRequest.expires:type_name -> google.protobuf.Timestamp
-	19, // 6: contest.AddPersonResponse.created:type_name -> google.protobuf.Timestamp
-	19, // 7: contest.AddPersonResponse.updated:type_name -> google.protobuf.Timestamp
-	19, // 8: contest.AddPersonResponse.expires:type_name -> google.protobuf.Timestamp
-	19, // 9: contest.AddContestRequest.date:type_name -> google.protobuf.Timestamp
-	19, // 10: contest.AddContestRequest.created:type_name -> google.protobuf.Timestamp
-	19, // 11: contest.AddContestRequest.updated:type_name -> google.protobuf.Timestamp
-	19, // 12: contest.AddContestRequest.expires:type_name -> google.protobuf.Timestamp
-	19, // 13: contest.AddContestResponse.date:type_name -> google.protobuf.Timestamp
-	19, // 14: contest.AddContestResponse.created:type_name -> google.protobuf.Timestamp
-	19, // 15: contest.AddContestResponse.updated:type_name -> google.protobuf.Timestamp
-	19, // 16: contest.AddContestResponse.expires:type_name -> google.protobuf.Timestamp
-	19, // 17: contest.Artist.created:type_name -> google.protobuf.Timestamp
-	19, // 18: contest.Artist.updated:type_name -> google.protobuf.Timestamp
-	19, // 19: contest.Artist.expires:type_name -> google.protobuf.Timestamp
-	19, // 20: contest.AddArtistRequest.created:type_name -> google.protobuf.Timestamp
-	19, // 21: contest.AddArtistRequest.updated:type_name -> google.protobuf.Timestamp
-	19, // 22: contest.AddArtistRequest.expires:type_name -> google.protobuf.Timestamp
-	19, // 23: contest.AddArtistResponse.created:type_name -> google.protobuf.Timestamp
-	19, // 24: contest.AddArtistResponse.updated:type_name -> google.protobuf.Timestamp
-	19, // 25: contest.AddArtistResponse.expires:type_name -> google.protobuf.Timestamp
-	19, // 26: contest.Song.created:type_name -> google.protobuf.Timestamp
-	19, // 27: contest.Song.updated:type_name -> google.protobuf.Timestamp
-	19, // 28: contest.Song.expires:type_name -> google.protobuf.Timestamp
-	19, // 29: contest.AddSongRequest.created:type_name -> google.protobuf.Timestamp
-	19, // 30: contest.AddSongRequest.updated:type_name -> google.protobuf.Timestamp
-	19, // 31: contest.AddSongRequest.expires:type_name -> google.protobuf.Timestamp
-	19, // 32: contest.AddSongResponse.created:type_name -> google.protobuf.Timestamp
-	19, // 33: contest.AddSongResponse.updated:type_name -> google.protobuf.Timestamp
-	19, // 34: contest.AddSongResponse.expires:type_name -> google.protobuf.Timestamp
-	19, // 35: contest.LitWork.created:type_name -> google.protobuf.Timestamp
-	19, // 36: contest.LitWork.updated:type_name -> google.protobuf.Timestamp
-	19, // 37: contest.LitWork.expires:type_name -> google.protobuf.Timestamp
-	19, // 38: contest.AddLitWorkRequest.created:type_name -> google.protobuf.Timestamp
-	19, // 39: contest.AddLitWorkRequest.updated:type_name -> google.protobuf.Timestamp
-	19, // 40: contest.AddLitWorkRequest.expires:type_name -> google.protobuf.Timestamp
-	19, // 41: contest.AddLitWorkResponse.created:type_name -> google.protobuf.Timestamp
-	19, // 42: contest.AddLitWorkResponse.updated:type_name -> google.protobuf.Timestamp
-	19, // 43: contest.AddLitWorkResponse.expires:type_name -> google.protobuf.Timestamp
-	19, // 44: contest.Project.start:type_name -> google.protobuf.Timestamp
-	19, // 45: contest.Project.finish:type_name -> google.protobuf.Timestamp
-	19, // 46: contest.Project.created:type_name -> google.protobuf.Timestamp
-	19, // 47: contest.Project.updated:type_name -> google.protobuf.Timestamp
-	19, // 48: contest.Project.expires:type_name -> google.protobuf.Timestamp
-	19, // 49: contest.Rate.created:type_name -> google.protobuf.Timestamp
-	19, // 50: contest.Rate.updated:type_name -> google.protobuf.Timestamp
-	19, // 51: contest.Rate.expires:type_name -> google.protobuf.Timestamp
-	19, // 52: contest.RateBook.created:type_name -> google.protobuf.Timestamp
-	19, // 53: contest.RateBook.updated:type_name -> google.protobuf.Timestamp
-	19, // 54: contest.RateBook.expires:type_name -> google.protobuf.Timestamp
-	19, // 55: contest.FullContent.date:type_name -> google.protobuf.Timestamp
-	14, // 56: contest.FullContent.competition:type_name -> contest.Project
-	0,  // 57: contest.FullContent.author:type_name -> contest.Person
-	16, // 58: contest.FullContent.rate_book:type_name -> contest.RateBook
-	8,  // 59: contest.FullContent.song:type_name -> contest.Song
-	5,  // 60: contest.FullContent.artist_song_own:type_name -> contest.Artist
-	15, // 61: contest.FullContent.rate_book_song_own:type_name -> contest.Rate
-	11, // 62: contest.FullContent.lit_work:type_name -> contest.LitWork
-	5,  // 63: contest.FullContent.artist_song_remake:type_name -> contest.Artist
-	15, // 64: contest.FullContent.rate_book_song_remake:type_name -> contest.Rate
-	19, // 65: contest.FullContent.created:type_name -> google.protobuf.Timestamp
-	19, // 66: contest.FullContent.updated:type_name -> google.protobuf.Timestamp
-	19, // 67: contest.FullContent.expires:type_name -> google.protobuf.Timestamp
-	0,  // 68: contest.Team.person:type_name -> contest.Person
-	19, // 69: contest.Team.created:type_name -> google.protobuf.Timestamp
-	19, // 70: contest.Team.updated:type_name -> google.protobuf.Timestamp
-	19, // 71: contest.Team.expires:type_name -> google.protobuf.Timestamp
-	3,  // 72: contest.Contest.AddContest:input_type -> contest.AddContestRequest
-	1,  // 73: contest.Contest.AddPerson:input_type -> contest.AddPersonRequest
-	6,  // 74: contest.Contest.AddArtist:input_type -> contest.AddArtistRequest
-	9,  // 75: contest.Contest.AddSong:input_type -> contest.AddSongRequest
-	12, // 76: contest.Contest.AddLitWork:input_type -> contest.AddLitWorkRequest
-	4,  // 77: contest.Contest.AddContest:output_type -> contest.AddContestResponse
-	2,  // 78: contest.Contest.AddPerson:output_type -> contest.AddPersonResponse
-	7,  // 79: contest.Contest.AddArtist:output_type -> contest.AddArtistResponse
-	10, // 80: contest.Contest.AddSong:output_type -> contest.AddSongResponse
-	13, // 81: contest.Contest.AddLitWork:output_type -> contest.AddLitWorkResponse
-	77, // [77:82] is the sub-list for method output_type
-	72, // [72:77] is the sub-list for method input_type
-	72, // [72:72] is the sub-list for extension type_name
-	72, // [72:72] is the sub-list for extension extendee
-	0,  // [0:72] is the sub-list for field type_name
+	41,  // 0: contest.Person.created:type_name -> google.protobuf.Timestamp
+	41,  // 1: contest.Person.updated:type_name -> google.protobuf.Timestamp
+	41,  // 2: contest.Person.expires:type_name -> google.protobuf.Timestamp
+	41,  // 3: contest.AddPersonRequest.created:type_name -> google.protobuf.Timestamp
+	41,  // 4: contest.AddPersonRequest.updated:type_name -> google.protobuf.Timestamp
+	41,  // 5: contest.AddPersonRequest.expires:type_name -> google.protobuf.Timestamp
+	41,  // 6: contest.AddPersonResponse.created:type_name -> google.protobuf.Timestamp
+	41,  // 7: contest.AddPersonResponse.updated:type_name -> google.protobuf.Timestamp
+	41,  // 8: contest.AddPersonResponse.expires:type_name -> google.protobuf.Timestamp
+	41,  // 9: contest.AddContestRequest.date:type_name -> google.protobuf.Timestamp
+	41,  // 10: contest.AddContestRequest.created:type_name -> google.protobuf.Timestamp
+	41,  // 11: contest.AddContestRequest.updated:type_name -> google.protobuf.Timestamp
+	41,  // 12: contest.AddContestRequest.expires:type_name -> google.protobuf.Timestamp
+	41,  // 13: contest.AddContestResponse.date:type_name -> google.protobuf.Timestamp
+	41,  // 14: contest.AddContestResponse.created:type_name -> google.protobuf.Timestamp
+	41,  // 15: contest.AddContestResponse.updated:type_name -> google.protobuf.Timestamp
+	41,  // 16: contest.AddContestResponse.expires:type_name -> google.protobuf.Timestamp
+	41,  // 17: contest.Artist.created:type_name -> google.protobuf.Timestamp
+	41,  // 18: contest.Artist.updated:type_name -> google.protobuf.Timestamp
+	41,  // 19: contest.Artist.expires:type_name -> google.protobuf.Timestamp
+	41,  // 20: contest.AddArtistRequest.created:type_name -> google.protobuf.Timestamp
+	41,  // 21: contest.AddArtistRequest.updated:type_name -> google.protobuf.Timestamp
+	41,  // 22: contest.AddArtistRequest.expires:type_name -> google.protobuf.Timestamp
+	41,  // 23: contest.AddArtistResponse.created:type_name -> google.protobuf.Timestamp
+	41,  // 24: contest.AddArtistResponse.updated:type_name -> google.protobuf.Timestamp
+	41,  // 25: contest.AddArtistResponse.expires:type_name -> google.protobuf.Timestamp
+	41,  // 26: contest.Song.created:type_name -> google.protobuf.Timestamp
+	41,  // 27: contest.Song.updated:type_name -> google.protobuf.Timestamp
+	41,  // 28: contest.Song.expires:type_name -> google.protobuf.Timestamp
+	41,  // 29: contest.AddSongRequest.created:type_name -> google.protobuf.Timestamp
+	41,  // 30: contest.AddSongRequest.updated:type_name -> google.protobuf.Timestamp
+	41,  // 31: contest.AddSongRequest.expires:type_name -> google.protobuf.Timestamp
+	41,  // 32: contest.AddSongResponse.created:type_name -> google.protobuf.Timestamp
+	41,  // 33: contest.AddSongResponse.updated:type_name -> google.protobuf.Timestamp
+	41,  // 34: contest.AddSongResponse.expires:type_name -> google.protobuf.Timestamp
+	41,  // 35: contest.LitWork.created:type_name -> google.protobuf.Timestamp
+	41,  // 36: contest.LitWork.updated:type_name -> google.protobuf.Timestamp
+	41,  // 37: contest.LitWork.expires:type_name -> google.protobuf.Timestamp
+	41,  // 38: contest.AddLitWorkRequest.created:type_name -> google.protobuf.Timestamp
+	41,  // 39: contest.AddLitWorkRequest.updated:type_name -> google.protobuf.Timestamp
+	41,  // 40: contest.AddLitWorkRequest.expires:type_name -> google.protobuf.Timestamp
+	41,  // 41: contest.AddLitWorkResponse.created:type_name -> google.protobuf.Timestamp
+	41,  // 42: contest.AddLitWorkResponse.updated:type_name -> google.protobuf.Timestamp
+	41,  // 43: contest.AddLitWorkResponse.expires:type_name -> google.protobuf.Timestamp
+	41,  // 44: contest.Project.start:type_name -> google.protobuf.Timestamp
+	41,  // 45: contest.Project.finish:type_name -> google.protobuf.Timestamp
+	41,  // 46: contest.Project.created:type_name -> google.protobuf.Timestamp
+	41,  // 47: contest.Project.updated:type_name -> google.protobuf.Timestamp
+	41,  // 48: contest.Project.expires:type_name -> google.protobuf.Timestamp
+	41,  // 49: contest.Rate.created:type_name -> google.protobuf.Timestamp
+	41,  // 50: contest.Rate.updated:type_name -> google.protobuf.Timestamp
+	41,  // 51: contest.Rate.expires:type_name -> google.protobuf.Timestamp
+	41,  // 52: contest.RateBook.created:type_name -> google.protobuf.Timestamp
+	41,  // 53: contest.RateBook.updated:type_name -> google.protobuf.Timestamp
+	41,  // 54: contest.RateBook.expires:type_name -> google.protobuf.Timestamp
+	41,  // 55: contest.FullContent.date:type_name -> google.protobuf.Timestamp
+	14,  // 56: contest.FullContent.competition:type_name -> contest.Project
+	0,   // 57: contest.FullContent.author:type_name -> contest.Person
+	16,  // 58: contest.FullContent.rate_book:type_name -> contest.RateBook
+	8,   // 59: contest.FullContent.song:type_name -> contest.Song
+	5,   // 60: contest.FullContent.artist_song_own:type_name -> contest.Artist
+	15,  // 61: contest.FullContent.rate_book_song_own:type_name -> contest.Rate
+	11,  // 62: contest.FullContent.lit_work:type_name -> contest.LitWork
+	5,   // 63: contest.FullContent.artist_song_remake:type_name -> contest.Artist
+	15,  // 64: contest.FullContent.rate_book_song_remake:type_name -> contest.Rate
+	41,  // 65: contest.FullContent.created:type_name -> google.protobuf.Timestamp
+	41,  // 66: contest.FullContent.updated:type_name -> google.protobuf.Timestamp
+	41,  // 67: contest.FullContent.expires:type_name -> google.protobuf.Timestamp
+	0,   // 68: contest.Team.person:type_name -> contest.Person
+	41,  // 69: contest.Team.created:type_name -> google.protobuf.Timestamp
+	41,  // 70: contest.Team.updated:type_name -> google.protobuf.Timestamp
+	41,  // 71: contest.Team.expires:type_name -> google.protobuf.Timestamp
+	0,   // 72: contest.ListPersonsByRegionResponse.persons:type_name -> contest.Person
+	41,  // 73: contest.UpdatePersonRequest.created:type_name -> google.protobuf.Timestamp
+	41,  // 74: contest.UpdatePersonRequest.updated:type_name -> google.protobuf.Timestamp
+	41,  // 75: contest.UpdatePersonRequest.expires:type_name -> google.protobuf.Timestamp
+	4,   // 76: contest.ListContestsByRegionResponse.contests:type_name -> contest.AddContestResponse
+	41,  // 77: contest.UpdateContestRequest.date:type_name -> google.protobuf.Timestamp
+	41,  // 78: contest.UpdateContestRequest.created:type_name -> google.protobuf.Timestamp
+	41,  // 79: contest.UpdateContestRequest.updated:type_name -> google.protobuf.Timestamp
+	41,  // 80: contest.UpdateContestRequest.expires:type_name -> google.protobuf.Timestamp
+	4,   // 81: contest.ListContestsResponse.contests:type_name -> contest.AddContestResponse
+	0,   // 82: contest.ListPersonsResponse.persons:type_name -> contest.Person
+	7,   // 83: contest.ListArtistsResponse.artists:type_name -> contest.AddArtistResponse
+	10,  // 84: contest.ListSongsResponse.songs:type_name -> contest.AddSongResponse
+	13,  // 85: contest.ListLitWorksResponse.lit_works:type_name -> contest.AddLitWorkResponse
+	3,   // 86: contest.Contest.AddContest:input_type -> contest.AddContestRequest
+	23,  // 87: contest.Contest.GetContestByID:input_type -> contest.GetContestByIDRequest
+	27,  // 88: contest.Contest.GetContestsByPersonID:input_type -> contest.GetContestByPersonIDRequest
+	28,  // 89: contest.Contest.ListContests:input_type -> contest.ListContestsRequest
+	24,  // 90: contest.Contest.ListContestsByRegion:input_type -> contest.ListContestsByRegionRequest
+	26,  // 91: contest.Contest.UpdateContest:input_type -> contest.UpdateContestRequest
+	1,   // 92: contest.Contest.AddPerson:input_type -> contest.AddPersonRequest
+	30,  // 93: contest.Contest.ListPersons:input_type -> contest.ListPersonsRequest
+	19,  // 94: contest.Contest.GetPersonByID:input_type -> contest.GetPersonByIDRequest
+	20,  // 95: contest.Contest.ListPersonsByRegion:input_type -> contest.ListPersonsByRegionRequest
+	22,  // 96: contest.Contest.UpdatePerson:input_type -> contest.UpdatePersonRequest
+	6,   // 97: contest.Contest.AddArtist:input_type -> contest.AddArtistRequest
+	32,  // 98: contest.Contest.ListArtists:input_type -> contest.ListArtistsRequest
+	34,  // 99: contest.Contest.GetArtistByID:input_type -> contest.GetArtistByIDRequest
+	9,   // 100: contest.Contest.AddSong:input_type -> contest.AddSongRequest
+	35,  // 101: contest.Contest.ListSongs:input_type -> contest.ListSongsRequest
+	37,  // 102: contest.Contest.GetSongByID:input_type -> contest.GetSongByIDRequest
+	12,  // 103: contest.Contest.AddLitWork:input_type -> contest.AddLitWorkRequest
+	38,  // 104: contest.Contest.ListLitWorks:input_type -> contest.ListLitWorksRequest
+	40,  // 105: contest.Contest.GetLitWorkByID:input_type -> contest.GetLitWorkByIDRequest
+	4,   // 106: contest.Contest.AddContest:output_type -> contest.AddContestResponse
+	4,   // 107: contest.Contest.GetContestByID:output_type -> contest.AddContestResponse
+	4,   // 108: contest.Contest.GetContestsByPersonID:output_type -> contest.AddContestResponse
+	29,  // 109: contest.Contest.ListContests:output_type -> contest.ListContestsResponse
+	25,  // 110: contest.Contest.ListContestsByRegion:output_type -> contest.ListContestsByRegionResponse
+	4,   // 111: contest.Contest.UpdateContest:output_type -> contest.AddContestResponse
+	2,   // 112: contest.Contest.AddPerson:output_type -> contest.AddPersonResponse
+	31,  // 113: contest.Contest.ListPersons:output_type -> contest.ListPersonsResponse
+	0,   // 114: contest.Contest.GetPersonByID:output_type -> contest.Person
+	21,  // 115: contest.Contest.ListPersonsByRegion:output_type -> contest.ListPersonsByRegionResponse
+	0,   // 116: contest.Contest.UpdatePerson:output_type -> contest.Person
+	7,   // 117: contest.Contest.AddArtist:output_type -> contest.AddArtistResponse
+	33,  // 118: contest.Contest.ListArtists:output_type -> contest.ListArtistsResponse
+	7,   // 119: contest.Contest.GetArtistByID:output_type -> contest.AddArtistResponse
+	10,  // 120: contest.Contest.AddSong:output_type -> contest.AddSongResponse
+	36,  // 121: contest.Contest.ListSongs:output_type -> contest.ListSongsResponse
+	10,  // 122: contest.Contest.GetSongByID:output_type -> contest.AddSongResponse
+	13,  // 123: contest.Contest.AddLitWork:output_type -> contest.AddLitWorkResponse
+	39,  // 124: contest.Contest.ListLitWorks:output_type -> contest.ListLitWorksResponse
+	13,  // 125: contest.Contest.GetLitWorkByID:output_type -> contest.AddLitWorkResponse
+	106, // [106:126] is the sub-list for method output_type
+	86,  // [86:106] is the sub-list for method input_type
+	86,  // [86:86] is the sub-list for extension type_name
+	86,  // [86:86] is the sub-list for extension extendee
+	0,   // [0:86] is the sub-list for field type_name
 }
 
 func init() { file_contest_proto_init() }
@@ -3417,7 +4753,7 @@ func file_contest_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_contest_proto_rawDesc), len(file_contest_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   19,
+			NumMessages:   41,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
