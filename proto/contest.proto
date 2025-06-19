@@ -9,14 +9,43 @@ import "google/protobuf/timestamp.proto";
 
 // Сервис для входа и регистрации
 service Contest{
-  // Добавление новой заявки
+  //  ЗАЯВКИ
+  // Добавление
   rpc AddContest (AddContestRequest) returns (AddContestResponse);
-  // Добавление новой персоны
-  rpc AddPerson (AddPersonRequest) returns (AddPersonResponse);
-  rpc AddArtist (AddArtistRequest) returns (AddArtistResponse);
-  rpc AddSong (AddSongRequest) returns (AddSongResponse);
+  rpc GetContestByID (GetContestByIDRequest) returns (AddContestResponse);
+  rpc GetContestsByPersonID (GetContestByPersonIDRequest) returns (AddContestResponse);
+  rpc ListContests (ListContestsRequest) returns (ListContestsResponse);
+  rpc ListContestsByRegion (ListContestsByRegionRequest) returns (ListContestsByRegionResponse);
+  rpc UpdateContest (UpdateContestRequest) returns (AddContestResponse);
 
+  //  ПЕРСОНА
+  // Добавление
+  rpc AddPerson (AddPersonRequest) returns (AddPersonResponse);
+  rpc ListPersons (ListPersonsRequest) returns (ListPersonsResponse);
+  //  Получение данных персоны по ID
+  rpc GetPersonByID (GetPersonByIDRequest) returns (Person);
+  //  Получение всех персон в регионе
+  rpc ListPersonsByRegion (ListPersonsByRegionRequest) returns (ListPersonsByRegionResponse);
+  //  Обновление
+  rpc UpdatePerson (UpdatePersonRequest) returns (Person);
+
+  //  АРТИСТ
+  // Добавление
+  rpc AddArtist (AddArtistRequest) returns (AddArtistResponse);
+  rpc ListArtists (ListArtistsRequest) returns (ListArtistsResponse);
+  rpc GetArtistByID (GetArtistByIDRequest) returns (AddArtistResponse);
+
+  //  ПЕСНЯ
+  // Добавление
+  rpc AddSong (AddSongRequest) returns (AddSongResponse);
+  rpc ListSongs (ListSongsRequest) returns (ListSongsResponse);
+  rpc GetSongByID (GetSongByIDRequest) returns (AddSongResponse);
+
+  //  ЛИТЕРАТУРНОЕ ПРОИЗВЕДЕНИЕ
+  // Добавление
   rpc AddLitWork (AddLitWorkRequest) returns (AddLitWorkResponse);
+  rpc ListLitWorks (ListLitWorksRequest) returns (ListLitWorksResponse);
+  rpc GetLitWorkByID (GetLitWorkByIDRequest) returns (AddLitWorkResponse);
 }
 
 // Person
@@ -377,3 +406,118 @@ message Team {
   google.protobuf.Timestamp updated = 8;
   google.protobuf.Timestamp expires = 9;
 }
+
+// PERSON
+message GetPersonByIDRequest {
+  string id = 1;
+}
+message ListPersonsByRegionRequest {
+  string region = 1;
+}
+message ListPersonsByRegionResponse {
+  repeated Person persons = 1;
+}
+message UpdatePersonRequest {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string middle_name = 4;
+  repeated string phone = 5;
+  repeated string email = 6;
+  string bio = 7;
+  string city = 8;
+  string region = 9;
+  string country = 10;
+  bool active = 11;
+  string owner_id = 12;
+  google.protobuf.Timestamp created = 13;
+  google.protobuf.Timestamp updated = 14;
+  google.protobuf.Timestamp expires = 15;
+}
+
+// CONTEST
+message GetContestByIDRequest {
+  string id = 1;
+}
+message ListContestsByRegionRequest {
+  string region = 1;
+  string app_id = 2;
+  string competition = 3;
+}
+message ListContestsByRegionResponse {
+  repeated AddContestResponse contests = 1;
+}
+message UpdateContestRequest {
+  string id = 1;
+  google.protobuf.Timestamp date = 2;
+  string competition = 3;
+  string author_id = 5;
+  string artist_id = 6;
+  string song_own_id = 7;
+  string song_remake_id = 8;
+  string lit_work_id = 9;
+  int32 sort = 10;
+  repeated string rate_book = 11;
+  int32 status = 12;
+  bool active = 13;
+  string owner_id = 14;
+  google.protobuf.Timestamp created = 15;
+  google.protobuf.Timestamp updated = 16;
+  google.protobuf.Timestamp expires = 17;
+}
+
+message GetContestByPersonIDRequest {
+  string person_id = 1;
+}
+
+message ListContestsRequest {
+  // Можно добавить фильтры (по дате, региону, статусу и т.д.)
+}
+
+message ListContestsResponse {
+  repeated AddContestResponse contests = 1;
+}
+
+
+message ListPersonsRequest {
+  // Фильтры если нужны
+}
+
+message ListPersonsResponse {
+  repeated Person persons = 1;
+}
+
+// ARTIST
+message ListArtistsRequest {
+  // Можно добавить фильтры при необходимости, например region, app_id и т.д.
+}
+message ListArtistsResponse {
+  repeated AddArtistResponse artists = 1;
+}
+message GetArtistByIDRequest {
+  string id = 1;
+}
+
+// SONG
+message ListSongsRequest {
+  // Можно добавить фильтры
+}
+message ListSongsResponse {
+  repeated AddSongResponse songs = 1;
+}
+message GetSongByIDRequest {
+  string id = 1;
+}
+
+// LITWORK
+message ListLitWorksRequest {
+  // Можно добавить фильтры
+}
+message ListLitWorksResponse {
+  repeated AddLitWorkResponse lit_works = 1;
+}
+message GetLitWorkByIDRequest {
+  string id = 1;
+}
+
+
