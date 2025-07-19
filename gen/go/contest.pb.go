@@ -4170,7 +4170,7 @@ func (x *GetLitWorkByIDRequest) GetId() string {
 // Новый запрос на выборку по competition и пустой category
 type GetContestWithEmptyCategoryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	CompetitionId string                 `protobuf:"bytes,1,opt,name=competition_id,json=competitionId,proto3" json:"competition_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4205,9 +4205,9 @@ func (*GetContestWithEmptyCategoryRequest) Descriptor() ([]byte, []int) {
 	return file_contest_proto_rawDescGZIP(), []int{42}
 }
 
-func (x *GetContestWithEmptyCategoryRequest) GetId() string {
+func (x *GetContestWithEmptyCategoryRequest) GetCompetitionId() string {
 	if x != nil {
-		return x.Id
+		return x.CompetitionId
 	}
 	return ""
 }
@@ -4661,9 +4661,9 @@ const file_contest_proto_rawDesc = "" +
 	"\x14ListLitWorksResponse\x128\n" +
 	"\tlit_works\x18\x01 \x03(\v2\x1b.contest.AddLitWorkResponseR\blitWorks\"'\n" +
 	"\x15GetLitWorkByIDRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"4\n" +
-	"\"GetContestWithEmptyCategoryRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"U\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"K\n" +
+	"\"GetContestWithEmptyCategoryRequest\x12%\n" +
+	"\x0ecompetition_id\x18\x01 \x01(\tR\rcompetitionId\"U\n" +
 	"#GetContestWithEmptyCategoryResponse\x12.\n" +
 	"\acontest\x18\x01 \x01(\v2\x14.contest.FullContentR\acontest2\xe9\f\n" +
 	"\aContest\x12E\n" +
