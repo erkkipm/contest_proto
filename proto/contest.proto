@@ -5,6 +5,7 @@ package contest;
 // Настройки для генерации GO кода. Используется при генерации файлов на GO
 option go_package = "github.com/erkkipm/contest_proto/gen/go;contestV1";
 
+
 import "google/protobuf/timestamp.proto";
 
 // Сервис для входа и регистрации
@@ -17,6 +18,8 @@ service Contest{
   rpc ListContests (ListContestsRequest) returns (ListContestsResponse);
   rpc ListContestsByRegion (ListContestsByRegionRequest) returns (ListContestsByRegionResponse);
   rpc UpdateContest (UpdateContestRequest) returns (AddContestResponse);
+  rpc GetContestWithEmptyCategory(GetContestWithEmptyCategoryRequest) returns (GetContestWithEmptyCategoryResponse);
+
 
   //  ПЕРСОНА
   // Добавление
@@ -46,6 +49,10 @@ service Contest{
   rpc AddLitWork (AddLitWorkRequest) returns (AddLitWorkResponse);
   rpc ListLitWorks (ListLitWorksRequest) returns (ListLitWorksResponse);
   rpc GetLitWorkByID (GetLitWorkByIDRequest) returns (AddLitWorkResponse);
+}
+
+message GetContestsByRegionRequest {
+  string region = 1;
 }
 
 // Person
@@ -520,4 +527,12 @@ message GetLitWorkByIDRequest {
   string id = 1;
 }
 
+// Новый запрос на выборку по competition и пустой category
+message GetContestWithEmptyCategoryRequest {
+  string competition_id = 1;
+}
+
+message GetContestWithEmptyCategoryResponse {
+  AddContestResponse contest = 1;
+}
 
