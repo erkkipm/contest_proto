@@ -4170,7 +4170,7 @@ func (x *GetLitWorkByIDRequest) GetId() string {
 // Новый запрос на выборку по competition и пустой category
 type GetContestWithEmptyCategoryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CompetitionId string                 `protobuf:"bytes,1,opt,name=competition_id,json=competitionId,proto3" json:"competition_id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4205,16 +4205,16 @@ func (*GetContestWithEmptyCategoryRequest) Descriptor() ([]byte, []int) {
 	return file_contest_proto_rawDescGZIP(), []int{42}
 }
 
-func (x *GetContestWithEmptyCategoryRequest) GetCompetitionId() string {
+func (x *GetContestWithEmptyCategoryRequest) GetId() string {
 	if x != nil {
-		return x.CompetitionId
+		return x.Id
 	}
 	return ""
 }
 
 type GetContestWithEmptyCategoryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Contest       *AddContestResponse    `protobuf:"bytes,1,opt,name=contest,proto3" json:"contest,omitempty"`
+	Contest       *FullContent           `protobuf:"bytes,1,opt,name=contest,proto3" json:"contest,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4249,7 +4249,7 @@ func (*GetContestWithEmptyCategoryResponse) Descriptor() ([]byte, []int) {
 	return file_contest_proto_rawDescGZIP(), []int{43}
 }
 
-func (x *GetContestWithEmptyCategoryResponse) GetContest() *AddContestResponse {
+func (x *GetContestWithEmptyCategoryResponse) GetContest() *FullContent {
 	if x != nil {
 		return x.Contest
 	}
@@ -4661,11 +4661,11 @@ const file_contest_proto_rawDesc = "" +
 	"\x14ListLitWorksResponse\x128\n" +
 	"\tlit_works\x18\x01 \x03(\v2\x1b.contest.AddLitWorkResponseR\blitWorks\"'\n" +
 	"\x15GetLitWorkByIDRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"K\n" +
-	"\"GetContestWithEmptyCategoryRequest\x12%\n" +
-	"\x0ecompetition_id\x18\x01 \x01(\tR\rcompetitionId\"\\\n" +
-	"#GetContestWithEmptyCategoryResponse\x125\n" +
-	"\acontest\x18\x01 \x01(\v2\x1b.contest.AddContestResponseR\acontest2\xe9\f\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"4\n" +
+	"\"GetContestWithEmptyCategoryRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"U\n" +
+	"#GetContestWithEmptyCategoryResponse\x12.\n" +
+	"\acontest\x18\x01 \x01(\v2\x14.contest.FullContentR\acontest2\xe9\f\n" +
 	"\aContest\x12E\n" +
 	"\n" +
 	"AddContest\x12\x1a.contest.AddContestRequest\x1a\x1b.contest.AddContestResponse\x12M\n" +
@@ -4838,7 +4838,7 @@ var file_contest_proto_depIdxs = []int32{
 	8,   // 83: contest.ListArtistsResponse.artists:type_name -> contest.AddArtistResponse
 	11,  // 84: contest.ListSongsResponse.songs:type_name -> contest.AddSongResponse
 	14,  // 85: contest.ListLitWorksResponse.lit_works:type_name -> contest.AddLitWorkResponse
-	5,   // 86: contest.GetContestWithEmptyCategoryResponse.contest:type_name -> contest.AddContestResponse
+	18,  // 86: contest.GetContestWithEmptyCategoryResponse.contest:type_name -> contest.FullContent
 	4,   // 87: contest.Contest.AddContest:input_type -> contest.AddContestRequest
 	24,  // 88: contest.Contest.GetContestByID:input_type -> contest.GetContestByIDRequest
 	28,  // 89: contest.Contest.GetContestsByPersonID:input_type -> contest.GetContestByPersonIDRequest

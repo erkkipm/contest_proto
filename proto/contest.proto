@@ -207,7 +207,6 @@ message AddArtistResponse {
   google.protobuf.Timestamp expires = 18;
 }
 
-
 // Song
 message Song {
   string id = 1;
@@ -228,6 +227,7 @@ message Song {
   google.protobuf.Timestamp updated = 16;
   google.protobuf.Timestamp expires = 17;
 }
+
 message AddSongRequest {
   repeated string artist = 2;
   string title = 3;
@@ -246,6 +246,7 @@ message AddSongRequest {
   google.protobuf.Timestamp updated = 16;
   google.protobuf.Timestamp expires = 17;
 }
+
 message AddSongResponse {
   string id = 1;
   repeated string artist = 2;
@@ -529,10 +530,10 @@ message GetLitWorkByIDRequest {
 
 // Новый запрос на выборку по competition и пустой category
 message GetContestWithEmptyCategoryRequest {
-  string competition_id = 1;
+  string id = 1;
 }
 
 message GetContestWithEmptyCategoryResponse {
-  AddContestResponse contest = 1;
+  FullContent contest = 1;
 }
 
