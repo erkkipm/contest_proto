@@ -15,10 +15,11 @@ service Contest{
   rpc AddContest (AddContestRequest) returns (AddContestResponse);
   rpc GetContestByID (GetContestByIDRequest) returns (AddContestResponse);
   rpc GetContestsByPersonID (GetContestByPersonIDRequest) returns (AddContestResponse);
+// получение заявок с пустой категорией
+  rpc GetContestWithEmptyCategory(GetContestWithEmptyCategoryRequest) returns (GetContestWithEmptyCategoryResponse);
   rpc ListContests (ListContestsRequest) returns (ListContestsResponse);
   rpc ListContestsByRegion (ListContestsByRegionRequest) returns (ListContestsByRegionResponse);
   rpc UpdateContest (UpdateContestRequest) returns (AddContestResponse);
-  rpc GetContestWithEmptyCategory(GetContestWithEmptyCategoryRequest) returns (GetContestWithEmptyCategoryResponse);
 
 
   //  ПЕРСОНА
