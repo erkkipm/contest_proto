@@ -4670,11 +4670,11 @@ const file_contest_proto_rawDesc = "" +
 	"\n" +
 	"AddContest\x12\x1a.contest.AddContestRequest\x1a\x1b.contest.AddContestResponse\x12M\n" +
 	"\x0eGetContestByID\x12\x1e.contest.GetContestByIDRequest\x1a\x1b.contest.AddContestResponse\x12Z\n" +
-	"\x15GetContestsByPersonID\x12$.contest.GetContestByPersonIDRequest\x1a\x1b.contest.AddContestResponse\x12K\n" +
+	"\x15GetContestsByPersonID\x12$.contest.GetContestByPersonIDRequest\x1a\x1b.contest.AddContestResponse\x12x\n" +
+	"\x1bGetContestWithEmptyCategory\x12+.contest.GetContestWithEmptyCategoryRequest\x1a,.contest.GetContestWithEmptyCategoryResponse\x12K\n" +
 	"\fListContests\x12\x1c.contest.ListContestsRequest\x1a\x1d.contest.ListContestsResponse\x12c\n" +
 	"\x14ListContestsByRegion\x12$.contest.ListContestsByRegionRequest\x1a%.contest.ListContestsByRegionResponse\x12K\n" +
-	"\rUpdateContest\x12\x1d.contest.UpdateContestRequest\x1a\x1b.contest.AddContestResponse\x12x\n" +
-	"\x1bGetContestWithEmptyCategory\x12+.contest.GetContestWithEmptyCategoryRequest\x1a,.contest.GetContestWithEmptyCategoryResponse\x12B\n" +
+	"\rUpdateContest\x12\x1d.contest.UpdateContestRequest\x1a\x1b.contest.AddContestResponse\x12B\n" +
 	"\tAddPerson\x12\x19.contest.AddPersonRequest\x1a\x1a.contest.AddPersonResponse\x12H\n" +
 	"\vListPersons\x12\x1b.contest.ListPersonsRequest\x1a\x1c.contest.ListPersonsResponse\x12?\n" +
 	"\rGetPersonByID\x12\x1d.contest.GetPersonByIDRequest\x1a\x0f.contest.Person\x12`\n" +
@@ -4842,10 +4842,10 @@ var file_contest_proto_depIdxs = []int32{
 	4,   // 87: contest.Contest.AddContest:input_type -> contest.AddContestRequest
 	24,  // 88: contest.Contest.GetContestByID:input_type -> contest.GetContestByIDRequest
 	28,  // 89: contest.Contest.GetContestsByPersonID:input_type -> contest.GetContestByPersonIDRequest
-	29,  // 90: contest.Contest.ListContests:input_type -> contest.ListContestsRequest
-	25,  // 91: contest.Contest.ListContestsByRegion:input_type -> contest.ListContestsByRegionRequest
-	27,  // 92: contest.Contest.UpdateContest:input_type -> contest.UpdateContestRequest
-	42,  // 93: contest.Contest.GetContestWithEmptyCategory:input_type -> contest.GetContestWithEmptyCategoryRequest
+	42,  // 90: contest.Contest.GetContestWithEmptyCategory:input_type -> contest.GetContestWithEmptyCategoryRequest
+	29,  // 91: contest.Contest.ListContests:input_type -> contest.ListContestsRequest
+	25,  // 92: contest.Contest.ListContestsByRegion:input_type -> contest.ListContestsByRegionRequest
+	27,  // 93: contest.Contest.UpdateContest:input_type -> contest.UpdateContestRequest
 	2,   // 94: contest.Contest.AddPerson:input_type -> contest.AddPersonRequest
 	31,  // 95: contest.Contest.ListPersons:input_type -> contest.ListPersonsRequest
 	20,  // 96: contest.Contest.GetPersonByID:input_type -> contest.GetPersonByIDRequest
@@ -4863,10 +4863,10 @@ var file_contest_proto_depIdxs = []int32{
 	5,   // 108: contest.Contest.AddContest:output_type -> contest.AddContestResponse
 	5,   // 109: contest.Contest.GetContestByID:output_type -> contest.AddContestResponse
 	5,   // 110: contest.Contest.GetContestsByPersonID:output_type -> contest.AddContestResponse
-	30,  // 111: contest.Contest.ListContests:output_type -> contest.ListContestsResponse
-	26,  // 112: contest.Contest.ListContestsByRegion:output_type -> contest.ListContestsByRegionResponse
-	5,   // 113: contest.Contest.UpdateContest:output_type -> contest.AddContestResponse
-	43,  // 114: contest.Contest.GetContestWithEmptyCategory:output_type -> contest.GetContestWithEmptyCategoryResponse
+	43,  // 111: contest.Contest.GetContestWithEmptyCategory:output_type -> contest.GetContestWithEmptyCategoryResponse
+	30,  // 112: contest.Contest.ListContests:output_type -> contest.ListContestsResponse
+	26,  // 113: contest.Contest.ListContestsByRegion:output_type -> contest.ListContestsByRegionResponse
+	5,   // 114: contest.Contest.UpdateContest:output_type -> contest.AddContestResponse
 	3,   // 115: contest.Contest.AddPerson:output_type -> contest.AddPersonResponse
 	32,  // 116: contest.Contest.ListPersons:output_type -> contest.ListPersonsResponse
 	1,   // 117: contest.Contest.GetPersonByID:output_type -> contest.Person
