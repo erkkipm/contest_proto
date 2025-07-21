@@ -22,6 +22,7 @@ service Contest{
   rpc UpdateContest (UpdateContestRequest) returns (AddContestResponse);
 
 
+
   //  ПЕРСОНА
   // Добавление
   rpc AddPerson (AddPersonRequest) returns (AddPersonResponse);
@@ -467,11 +468,12 @@ message UpdateContestRequest {
   int32 sort = 10;
   repeated string rate_book = 11;
   int32 status = 12;
-  bool active = 13;
-  string owner_id = 14;
-  google.protobuf.Timestamp created = 15;
-  google.protobuf.Timestamp updated = 16;
-  google.protobuf.Timestamp expires = 17;
+  string category = 13;
+  bool active = 14;
+  string owner_id = 15;
+  google.protobuf.Timestamp created = 16;
+  google.protobuf.Timestamp updated = 17;
+  google.protobuf.Timestamp expires = 18;
 }
 
 message GetContestByPersonIDRequest {
