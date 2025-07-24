@@ -485,11 +485,9 @@ message ListContestsRequest {
   string category = 2;
 }
 
-
 message ListContestsResponse {
   repeated AddContestResponse contests = 1;
 }
-
 
 message ListPersonsRequest {
   // Фильтры если нужны
