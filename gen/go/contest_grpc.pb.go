@@ -25,6 +25,7 @@ const (
 	Contest_GetContestByID_FullMethodName              = "/contest.Contest/GetContestByID"
 	Contest_GetContestsByPersonID_FullMethodName       = "/contest.Contest/GetContestsByPersonID"
 	Contest_GetContestWithEmptyCategory_FullMethodName = "/contest.Contest/GetContestWithEmptyCategory"
+	Contest_GetContestWithCategory_FullMethodName      = "/contest.Contest/GetContestWithCategory"
 	Contest_ListContests_FullMethodName                = "/contest.Contest/ListContests"
 	Contest_ListContestsByRegion_FullMethodName        = "/contest.Contest/ListContestsByRegion"
 	Contest_UpdateContest_FullMethodName               = "/contest.Contest/UpdateContest"
@@ -58,6 +59,7 @@ type ContestClient interface {
 	GetContestsByPersonID(ctx context.Context, in *GetContestByPersonIDRequest, opts ...grpc.CallOption) (*AddContestResponse, error)
 	// получение заявок с пустой категорией
 	GetContestWithEmptyCategory(ctx context.Context, in *GetContestWithEmptyCategoryRequest, opts ...grpc.CallOption) (*GetContestWithEmptyCategoryResponse, error)
+	GetContestWithCategory(ctx context.Context, in *GetContestWithCategoryRequest, opts ...grpc.CallOption) (*GetContestWithCategoryResponse, error)
 	ListContests(ctx context.Context, in *ListContestsRequest, opts ...grpc.CallOption) (*ListContestsResponse, error)
 	ListContestsByRegion(ctx context.Context, in *ListContestsByRegionRequest, opts ...grpc.CallOption) (*ListContestsByRegionResponse, error)
 	UpdateContest(ctx context.Context, in *UpdateContestRequest, opts ...grpc.CallOption) (*AddContestResponse, error)
@@ -134,6 +136,16 @@ func (c *contestClient) GetContestWithEmptyCategory(ctx context.Context, in *Get
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetContestWithEmptyCategoryResponse)
 	err := c.cc.Invoke(ctx, Contest_GetContestWithEmptyCategory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contestClient) GetContestWithCategory(ctx context.Context, in *GetContestWithCategoryRequest, opts ...grpc.CallOption) (*GetContestWithCategoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetContestWithCategoryResponse)
+	err := c.cc.Invoke(ctx, Contest_GetContestWithCategory_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -324,6 +336,7 @@ type ContestServer interface {
 	GetContestsByPersonID(context.Context, *GetContestByPersonIDRequest) (*AddContestResponse, error)
 	// получение заявок с пустой категорией
 	GetContestWithEmptyCategory(context.Context, *GetContestWithEmptyCategoryRequest) (*GetContestWithEmptyCategoryResponse, error)
+	GetContestWithCategory(context.Context, *GetContestWithCategoryRequest) (*GetContestWithCategoryResponse, error)
 	ListContests(context.Context, *ListContestsRequest) (*ListContestsResponse, error)
 	ListContestsByRegion(context.Context, *ListContestsByRegionRequest) (*ListContestsByRegionResponse, error)
 	UpdateContest(context.Context, *UpdateContestRequest) (*AddContestResponse, error)
@@ -377,6 +390,9 @@ func (UnimplementedContestServer) GetContestsByPersonID(context.Context, *GetCon
 }
 func (UnimplementedContestServer) GetContestWithEmptyCategory(context.Context, *GetContestWithEmptyCategoryRequest) (*GetContestWithEmptyCategoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetContestWithEmptyCategory not implemented")
+}
+func (UnimplementedContestServer) GetContestWithCategory(context.Context, *GetContestWithCategoryRequest) (*GetContestWithCategoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetContestWithCategory not implemented")
 }
 func (UnimplementedContestServer) ListContests(context.Context, *ListContestsRequest) (*ListContestsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListContests not implemented")
@@ -518,6 +534,24 @@ func _Contest_GetContestWithEmptyCategory_Handler(srv interface{}, ctx context.C
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ContestServer).GetContestWithEmptyCategory(ctx, req.(*GetContestWithEmptyCategoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Contest_GetContestWithCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetContestWithCategoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).GetContestWithCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_GetContestWithCategory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).GetContestWithCategory(ctx, req.(*GetContestWithCategoryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -850,6 +884,10 @@ var Contest_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetContestWithEmptyCategory",
 			Handler:    _Contest_GetContestWithEmptyCategory_Handler,
+		},
+		{
+			MethodName: "GetContestWithCategory",
+			Handler:    _Contest_GetContestWithCategory_Handler,
 		},
 		{
 			MethodName: "ListContests",

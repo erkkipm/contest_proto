@@ -541,12 +541,12 @@ message GetContestWithEmptyCategoryResponse {
 }
 
 // Новый запрос на выборку по competition и  category
-message GetContesEmptyCategoryRequest {
+message GetContestWithCategoryRequest {
   string competition_id = 1;
   string category = 2;
 }
 
-message GetContestEmptyCategoryResponse {
+message GetContestWithCategoryResponse {
   FullContent contest = 1;
 }
 
