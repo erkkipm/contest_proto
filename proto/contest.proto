@@ -481,8 +481,10 @@ message GetContestByPersonIDRequest {
 }
 
 message ListContestsRequest {
-  // Можно добавить фильтры (по дате, региону, статусу и т.д.)
+  string competition_id = 1;
+  string category = 2;
 }
+
 
 message ListContestsResponse {
   repeated AddContestResponse contests = 1;

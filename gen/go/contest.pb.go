@@ -3642,6 +3642,8 @@ func (x *GetContestByPersonIDRequest) GetPersonId() string {
 
 type ListContestsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	CompetitionId string                 `protobuf:"bytes,1,opt,name=competition_id,json=competitionId,proto3" json:"competition_id,omitempty"`
+	Category      string                 `protobuf:"bytes,2,opt,name=category,proto3" json:"category,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3674,6 +3676,20 @@ func (x *ListContestsRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use ListContestsRequest.ProtoReflect.Descriptor instead.
 func (*ListContestsRequest) Descriptor() ([]byte, []int) {
 	return file_contest_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *ListContestsRequest) GetCompetitionId() string {
+	if x != nil {
+		return x.CompetitionId
+	}
+	return ""
+}
+
+func (x *ListContestsRequest) GetCategory() string {
+	if x != nil {
+		return x.Category
+	}
+	return ""
 }
 
 type ListContestsResponse struct {
@@ -4649,8 +4665,10 @@ const file_contest_proto_rawDesc = "" +
 	"\aupdated\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
 	"\aexpires\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\":\n" +
 	"\x1bGetContestByPersonIDRequest\x12\x1b\n" +
-	"\tperson_id\x18\x01 \x01(\tR\bpersonId\"\x15\n" +
-	"\x13ListContestsRequest\"O\n" +
+	"\tperson_id\x18\x01 \x01(\tR\bpersonId\"X\n" +
+	"\x13ListContestsRequest\x12%\n" +
+	"\x0ecompetition_id\x18\x01 \x01(\tR\rcompetitionId\x12\x1a\n" +
+	"\bcategory\x18\x02 \x01(\tR\bcategory\"O\n" +
 	"\x14ListContestsResponse\x127\n" +
 	"\bcontests\x18\x01 \x03(\v2\x1b.contest.AddContestResponseR\bcontests\"\x14\n" +
 	"\x12ListPersonsRequest\"@\n" +
