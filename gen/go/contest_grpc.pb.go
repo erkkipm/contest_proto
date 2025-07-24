@@ -61,6 +61,7 @@ type ContestClient interface {
 	GetContestWithEmptyCategory(ctx context.Context, in *GetContestWithEmptyCategoryRequest, opts ...grpc.CallOption) (*GetContestWithEmptyCategoryResponse, error)
 	// получение заявок из категорий
 	GetContestWithCategory(ctx context.Context, in *GetContestWithCategoryRequest, opts ...grpc.CallOption) (*GetContestWithCategoryResponse, error)
+	// ...
 	ListContests(ctx context.Context, in *ListContestsRequest, opts ...grpc.CallOption) (*ListContestsResponse, error)
 	ListContestsByRegion(ctx context.Context, in *ListContestsByRegionRequest, opts ...grpc.CallOption) (*ListContestsByRegionResponse, error)
 	UpdateContest(ctx context.Context, in *UpdateContestRequest, opts ...grpc.CallOption) (*AddContestResponse, error)
@@ -339,6 +340,7 @@ type ContestServer interface {
 	GetContestWithEmptyCategory(context.Context, *GetContestWithEmptyCategoryRequest) (*GetContestWithEmptyCategoryResponse, error)
 	// получение заявок из категорий
 	GetContestWithCategory(context.Context, *GetContestWithCategoryRequest) (*GetContestWithCategoryResponse, error)
+	// ...
 	ListContests(context.Context, *ListContestsRequest) (*ListContestsResponse, error)
 	ListContestsByRegion(context.Context, *ListContestsByRegionRequest) (*ListContestsByRegionResponse, error)
 	UpdateContest(context.Context, *UpdateContestRequest) (*AddContestResponse, error)
