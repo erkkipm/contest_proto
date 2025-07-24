@@ -486,7 +486,7 @@ message ListContestsRequest {
 }
 
 message ListContestsResponse {
-  repeated AddContestResponse contests = 1;
+  repeated FullContent contests = 1;
 }
 
 message ListPersonsRequest {

@@ -3694,7 +3694,7 @@ func (x *ListContestsRequest) GetCategory() string {
 
 type ListContestsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Contests      []*AddContestResponse  `protobuf:"bytes,1,rep,name=contests,proto3" json:"contests,omitempty"`
+	Contests      []*FullContent         `protobuf:"bytes,1,rep,name=contests,proto3" json:"contests,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3729,7 +3729,7 @@ func (*ListContestsResponse) Descriptor() ([]byte, []int) {
 	return file_contest_proto_rawDescGZIP(), []int{30}
 }
 
-func (x *ListContestsResponse) GetContests() []*AddContestResponse {
+func (x *ListContestsResponse) GetContests() []*FullContent {
 	if x != nil {
 		return x.Contests
 	}
@@ -4668,9 +4668,9 @@ const file_contest_proto_rawDesc = "" +
 	"\tperson_id\x18\x01 \x01(\tR\bpersonId\"X\n" +
 	"\x13ListContestsRequest\x12%\n" +
 	"\x0ecompetition_id\x18\x01 \x01(\tR\rcompetitionId\x12\x1a\n" +
-	"\bcategory\x18\x02 \x01(\tR\bcategory\"O\n" +
-	"\x14ListContestsResponse\x127\n" +
-	"\bcontests\x18\x01 \x03(\v2\x1b.contest.AddContestResponseR\bcontests\"\x14\n" +
+	"\bcategory\x18\x02 \x01(\tR\bcategory\"H\n" +
+	"\x14ListContestsResponse\x120\n" +
+	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\"\x14\n" +
 	"\x12ListPersonsRequest\"@\n" +
 	"\x13ListPersonsResponse\x12)\n" +
 	"\apersons\x18\x01 \x03(\v2\x0f.contest.PersonR\apersons\"\x14\n" +
@@ -4860,7 +4860,7 @@ var file_contest_proto_depIdxs = []int32{
 	44,  // 78: contest.UpdateContestRequest.created:type_name -> google.protobuf.Timestamp
 	44,  // 79: contest.UpdateContestRequest.updated:type_name -> google.protobuf.Timestamp
 	44,  // 80: contest.UpdateContestRequest.expires:type_name -> google.protobuf.Timestamp
-	5,   // 81: contest.ListContestsResponse.contests:type_name -> contest.AddContestResponse
+	18,  // 81: contest.ListContestsResponse.contests:type_name -> contest.FullContent
 	1,   // 82: contest.ListPersonsResponse.persons:type_name -> contest.Person
 	8,   // 83: contest.ListArtistsResponse.artists:type_name -> contest.AddArtistResponse
 	11,  // 84: contest.ListSongsResponse.songs:type_name -> contest.AddSongResponse
