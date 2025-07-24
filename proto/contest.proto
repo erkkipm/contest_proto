@@ -17,6 +17,7 @@ service Contest{
   rpc GetContestsByPersonID (GetContestByPersonIDRequest) returns (AddContestResponse);
 // получение заявок с пустой категорией
   rpc GetContestWithEmptyCategory(GetContestWithEmptyCategoryRequest) returns (GetContestWithEmptyCategoryResponse);
+  rpc GetContestWithCategory(GetContestWithCategoryRequest) returns (GetContestWithCategoryResponse);
   rpc ListContests (ListContestsRequest) returns (ListContestsResponse);
   rpc ListContestsByRegion (ListContestsByRegionRequest) returns (ListContestsByRegionResponse);
   rpc UpdateContest (UpdateContestRequest) returns (AddContestResponse);
@@ -536,6 +537,16 @@ message GetContestWithEmptyCategoryRequest {
 }
 
 message GetContestWithEmptyCategoryResponse {
+  FullContent contest = 1;
+}
+
+// Новый запрос на выборку по competition и  category
+message GetContesEmptyCategoryRequest {
+  string competition_id = 1;
+  string category = 2;
+}
+
+message GetContestEmptyCategoryResponse {
   FullContent contest = 1;
 }
 
