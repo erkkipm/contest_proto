@@ -21,6 +21,7 @@ service Contest{
   rpc GetContestWithCategory(GetContestWithCategoryRequest) returns (GetContestWithCategoryResponse);
 //  ...
   rpc ListContests (ListContestsRequest) returns (ListContestsResponse);
+//  ...
   rpc ListContestsByRegion (ListContestsByRegionRequest) returns (ListContestsByRegionResponse);
   rpc UpdateContest (UpdateContestRequest) returns (AddContestResponse);
 

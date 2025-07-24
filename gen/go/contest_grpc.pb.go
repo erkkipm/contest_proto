@@ -63,6 +63,7 @@ type ContestClient interface {
 	GetContestWithCategory(ctx context.Context, in *GetContestWithCategoryRequest, opts ...grpc.CallOption) (*GetContestWithCategoryResponse, error)
 	// ...
 	ListContests(ctx context.Context, in *ListContestsRequest, opts ...grpc.CallOption) (*ListContestsResponse, error)
+	// ...
 	ListContestsByRegion(ctx context.Context, in *ListContestsByRegionRequest, opts ...grpc.CallOption) (*ListContestsByRegionResponse, error)
 	UpdateContest(ctx context.Context, in *UpdateContestRequest, opts ...grpc.CallOption) (*AddContestResponse, error)
 	//	ПЕРСОНА
@@ -342,6 +343,7 @@ type ContestServer interface {
 	GetContestWithCategory(context.Context, *GetContestWithCategoryRequest) (*GetContestWithCategoryResponse, error)
 	// ...
 	ListContests(context.Context, *ListContestsRequest) (*ListContestsResponse, error)
+	// ...
 	ListContestsByRegion(context.Context, *ListContestsByRegionRequest) (*ListContestsByRegionResponse, error)
 	UpdateContest(context.Context, *UpdateContestRequest) (*AddContestResponse, error)
 	//	ПЕРСОНА
