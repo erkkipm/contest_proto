@@ -430,6 +430,12 @@ message ListPersonsByRegionRequest {
 message ListPersonsByRegionResponse {
   repeated Person persons = 1;
 }
+message ListPersonsRequest {
+  // Фильтры если нужны
+}
+message ListPersonsResponse {
+  repeated Person persons = 1;
+}
 message UpdatePersonRequest {
   string id = 1;
   string first_name = 2;
@@ -493,14 +499,6 @@ message ListContestsResponse {
   repeated FullContent contests = 1;
 }
 
-message ListPersonsRequest {
-  // Фильтры если нужны
-}
-
-message ListPersonsResponse {
-  repeated Person persons = 1;
-}
-
 // ARTIST
 message ListArtistsRequest {
   // Можно добавить фильтры при необходимости, например region, app_id и т.д.
@@ -552,4 +550,3 @@ message GetContestWithCategoryRequest {
 message GetContestWithCategoryResponse {
   FullContent contest = 1;
 }
-
