@@ -2689,6 +2689,7 @@ func (x *RateBook) GetExpires() *timestamppb.Timestamp {
 	return nil
 }
 
+// FullContent ... полная заявка
 type FullContent struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
 	Id                 string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`

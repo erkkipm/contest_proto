@@ -383,6 +383,7 @@ message RateBook {
 //  google.protobuf.Timestamp expires = 14;
 //}
 
+// FullContent ... полная заявка
 message FullContent {
   string id = 1;
   google.protobuf.Timestamp date = 2;
