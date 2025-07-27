@@ -387,11 +387,12 @@ message FullContent {
   string id = 1;
   google.protobuf.Timestamp date = 2;
   Project competition = 3;
-  Person author = 4;
-  RateBook rate_book = 5;
-  repeated Song song = 6;
-  repeated Artist artist_song_own = 7;
-  repeated Rate rate_book_song_own = 8;
+  string competition_id = 4;
+  Person author = 5;
+  RateBook rate_book = 6;
+  repeated Song song = 7;
+  repeated Artist artist_song_own = 8;
+  repeated Rate rate_book_song_own = 9;
   repeated LitWork lit_work = 10;
   repeated Artist artist_song_remake = 11;
   repeated Rate rate_book_song_remake = 12;

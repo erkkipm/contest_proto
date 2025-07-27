@@ -2694,11 +2694,12 @@ type FullContent struct {
 	Id                 string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Date               *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
 	Competition        *Project               `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
-	Author             *Person                `protobuf:"bytes,4,opt,name=author,proto3" json:"author,omitempty"`
-	RateBook           *RateBook              `protobuf:"bytes,5,opt,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
-	Song               []*Song                `protobuf:"bytes,6,rep,name=song,proto3" json:"song,omitempty"`
-	ArtistSongOwn      []*Artist              `protobuf:"bytes,7,rep,name=artist_song_own,json=artistSongOwn,proto3" json:"artist_song_own,omitempty"`
-	RateBookSongOwn    []*Rate                `protobuf:"bytes,8,rep,name=rate_book_song_own,json=rateBookSongOwn,proto3" json:"rate_book_song_own,omitempty"`
+	CompetitionId      string                 `protobuf:"bytes,4,opt,name=competition_id,json=competitionId,proto3" json:"competition_id,omitempty"`
+	Author             *Person                `protobuf:"bytes,5,opt,name=author,proto3" json:"author,omitempty"`
+	RateBook           *RateBook              `protobuf:"bytes,6,opt,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
+	Song               []*Song                `protobuf:"bytes,7,rep,name=song,proto3" json:"song,omitempty"`
+	ArtistSongOwn      []*Artist              `protobuf:"bytes,8,rep,name=artist_song_own,json=artistSongOwn,proto3" json:"artist_song_own,omitempty"`
+	RateBookSongOwn    []*Rate                `protobuf:"bytes,9,rep,name=rate_book_song_own,json=rateBookSongOwn,proto3" json:"rate_book_song_own,omitempty"`
 	LitWork            []*LitWork             `protobuf:"bytes,10,rep,name=lit_work,json=litWork,proto3" json:"lit_work,omitempty"`
 	ArtistSongRemake   []*Artist              `protobuf:"bytes,11,rep,name=artist_song_remake,json=artistSongRemake,proto3" json:"artist_song_remake,omitempty"`
 	RateBookSongRemake []*Rate                `protobuf:"bytes,12,rep,name=rate_book_song_remake,json=rateBookSongRemake,proto3" json:"rate_book_song_remake,omitempty"`
@@ -2763,6 +2764,13 @@ func (x *FullContent) GetCompetition() *Project {
 		return x.Competition
 	}
 	return nil
+}
+
+func (x *FullContent) GetCompetitionId() string {
+	if x != nil {
+		return x.CompetitionId
+	}
+	return ""
 }
 
 func (x *FullContent) GetAuthor() *Person {
@@ -4677,16 +4685,17 @@ const file_contest_proto_rawDesc = "" +
 	"\acreated\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\n" +
 	" \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xb8\x06\n" +
+	"\aexpires\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xdf\x06\n" +
 	"\vFullContent\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x122\n" +
-	"\vcompetition\x18\x03 \x01(\v2\x10.contest.ProjectR\vcompetition\x12'\n" +
-	"\x06author\x18\x04 \x01(\v2\x0f.contest.PersonR\x06author\x12.\n" +
-	"\trate_book\x18\x05 \x01(\v2\x11.contest.RateBookR\brateBook\x12!\n" +
-	"\x04song\x18\x06 \x03(\v2\r.contest.SongR\x04song\x127\n" +
-	"\x0fartist_song_own\x18\a \x03(\v2\x0f.contest.ArtistR\rartistSongOwn\x12:\n" +
-	"\x12rate_book_song_own\x18\b \x03(\v2\r.contest.RateR\x0frateBookSongOwn\x12+\n" +
+	"\vcompetition\x18\x03 \x01(\v2\x10.contest.ProjectR\vcompetition\x12%\n" +
+	"\x0ecompetition_id\x18\x04 \x01(\tR\rcompetitionId\x12'\n" +
+	"\x06author\x18\x05 \x01(\v2\x0f.contest.PersonR\x06author\x12.\n" +
+	"\trate_book\x18\x06 \x01(\v2\x11.contest.RateBookR\brateBook\x12!\n" +
+	"\x04song\x18\a \x03(\v2\r.contest.SongR\x04song\x127\n" +
+	"\x0fartist_song_own\x18\b \x03(\v2\x0f.contest.ArtistR\rartistSongOwn\x12:\n" +
+	"\x12rate_book_song_own\x18\t \x03(\v2\r.contest.RateR\x0frateBookSongOwn\x12+\n" +
 	"\blit_work\x18\n" +
 	" \x03(\v2\x10.contest.LitWorkR\alitWork\x12=\n" +
 	"\x12artist_song_remake\x18\v \x03(\v2\x0f.contest.ArtistR\x10artistSongRemake\x12@\n" +
