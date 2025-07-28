@@ -290,21 +290,19 @@ message GetContestWithEmptyCategoryResponse {
 }
 // CONTESTS = LIST = By Category
 message ListContestsByCategoryRequest {
-  string region = 1;
-  string app_id = 2;
-  string competition = 3;
+  string category = 1;
+  string competition = 2;
 }
 message ListContestsByCategoryResponse {
-  repeated AddContestResponse contests = 1;
+  repeated FullContent contests = 1;
 }
 // CONTESTS = LIST = By Region
 message ListContestsByRegionRequest {
   string region = 1;
-  string app_id = 2;
-  string competition = 3;
+  string competition = 2;
 }
 message ListContestsByRegionResponse {
-  repeated AddContestResponse contests = 1;
+  repeated FullContent contests = 1;
 }
 // CONTESTS = UPDATE
 message UpdateContestRequest {

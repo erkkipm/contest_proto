@@ -1955,9 +1955,8 @@ func (x *GetContestWithEmptyCategoryResponse) GetContest() *FullContent {
 // CONTESTS = LIST = By Category
 type ListContestsByCategoryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Region        string                 `protobuf:"bytes,1,opt,name=region,proto3" json:"region,omitempty"`
-	AppId         string                 `protobuf:"bytes,2,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
-	Competition   string                 `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
+	Category      string                 `protobuf:"bytes,1,opt,name=category,proto3" json:"category,omitempty"`
+	Competition   string                 `protobuf:"bytes,2,opt,name=competition,proto3" json:"competition,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1992,16 +1991,9 @@ func (*ListContestsByCategoryRequest) Descriptor() ([]byte, []int) {
 	return file_contest_proto_rawDescGZIP(), []int{15}
 }
 
-func (x *ListContestsByCategoryRequest) GetRegion() string {
+func (x *ListContestsByCategoryRequest) GetCategory() string {
 	if x != nil {
-		return x.Region
-	}
-	return ""
-}
-
-func (x *ListContestsByCategoryRequest) GetAppId() string {
-	if x != nil {
-		return x.AppId
+		return x.Category
 	}
 	return ""
 }
@@ -2015,7 +2007,7 @@ func (x *ListContestsByCategoryRequest) GetCompetition() string {
 
 type ListContestsByCategoryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Contests      []*AddContestResponse  `protobuf:"bytes,1,rep,name=contests,proto3" json:"contests,omitempty"`
+	Contests      []*FullContent         `protobuf:"bytes,1,rep,name=contests,proto3" json:"contests,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2050,7 +2042,7 @@ func (*ListContestsByCategoryResponse) Descriptor() ([]byte, []int) {
 	return file_contest_proto_rawDescGZIP(), []int{16}
 }
 
-func (x *ListContestsByCategoryResponse) GetContests() []*AddContestResponse {
+func (x *ListContestsByCategoryResponse) GetContests() []*FullContent {
 	if x != nil {
 		return x.Contests
 	}
@@ -2061,8 +2053,7 @@ func (x *ListContestsByCategoryResponse) GetContests() []*AddContestResponse {
 type ListContestsByRegionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Region        string                 `protobuf:"bytes,1,opt,name=region,proto3" json:"region,omitempty"`
-	AppId         string                 `protobuf:"bytes,2,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
-	Competition   string                 `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
+	Competition   string                 `protobuf:"bytes,2,opt,name=competition,proto3" json:"competition,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2104,13 +2095,6 @@ func (x *ListContestsByRegionRequest) GetRegion() string {
 	return ""
 }
 
-func (x *ListContestsByRegionRequest) GetAppId() string {
-	if x != nil {
-		return x.AppId
-	}
-	return ""
-}
-
 func (x *ListContestsByRegionRequest) GetCompetition() string {
 	if x != nil {
 		return x.Competition
@@ -2120,7 +2104,7 @@ func (x *ListContestsByRegionRequest) GetCompetition() string {
 
 type ListContestsByRegionResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Contests      []*AddContestResponse  `protobuf:"bytes,1,rep,name=contests,proto3" json:"contests,omitempty"`
+	Contests      []*FullContent         `protobuf:"bytes,1,rep,name=contests,proto3" json:"contests,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2155,7 +2139,7 @@ func (*ListContestsByRegionResponse) Descriptor() ([]byte, []int) {
 	return file_contest_proto_rawDescGZIP(), []int{18}
 }
 
-func (x *ListContestsByRegionResponse) GetContests() []*AddContestResponse {
+func (x *ListContestsByRegionResponse) GetContests() []*FullContent {
 	if x != nil {
 		return x.Contests
 	}
@@ -5529,19 +5513,17 @@ const file_contest_proto_rawDesc = "" +
 	"\"GetContestWithEmptyCategoryRequest\x12%\n" +
 	"\x0ecompetition_id\x18\x01 \x01(\tR\rcompetitionId\"U\n" +
 	"#GetContestWithEmptyCategoryResponse\x12.\n" +
-	"\acontest\x18\x01 \x01(\v2\x14.contest.FullContentR\acontest\"p\n" +
-	"\x1dListContestsByCategoryRequest\x12\x16\n" +
-	"\x06region\x18\x01 \x01(\tR\x06region\x12\x15\n" +
-	"\x06app_id\x18\x02 \x01(\tR\x05appId\x12 \n" +
-	"\vcompetition\x18\x03 \x01(\tR\vcompetition\"Y\n" +
-	"\x1eListContestsByCategoryResponse\x127\n" +
-	"\bcontests\x18\x01 \x03(\v2\x1b.contest.AddContestResponseR\bcontests\"n\n" +
+	"\acontest\x18\x01 \x01(\v2\x14.contest.FullContentR\acontest\"]\n" +
+	"\x1dListContestsByCategoryRequest\x12\x1a\n" +
+	"\bcategory\x18\x01 \x01(\tR\bcategory\x12 \n" +
+	"\vcompetition\x18\x02 \x01(\tR\vcompetition\"R\n" +
+	"\x1eListContestsByCategoryResponse\x120\n" +
+	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\"W\n" +
 	"\x1bListContestsByRegionRequest\x12\x16\n" +
-	"\x06region\x18\x01 \x01(\tR\x06region\x12\x15\n" +
-	"\x06app_id\x18\x02 \x01(\tR\x05appId\x12 \n" +
-	"\vcompetition\x18\x03 \x01(\tR\vcompetition\"W\n" +
-	"\x1cListContestsByRegionResponse\x127\n" +
-	"\bcontests\x18\x01 \x03(\v2\x1b.contest.AddContestResponseR\bcontests\"\xd2\x04\n" +
+	"\x06region\x18\x01 \x01(\tR\x06region\x12 \n" +
+	"\vcompetition\x18\x02 \x01(\tR\vcompetition\"P\n" +
+	"\x1cListContestsByRegionResponse\x120\n" +
+	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\"\xd2\x04\n" +
 	"\x14UpdateContestRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12 \n" +
@@ -5997,8 +5979,8 @@ var file_contest_proto_depIdxs = []int32{
 	49,  // 44: contest.GetContestsByPersonIDResponse.updated:type_name -> google.protobuf.Timestamp
 	49,  // 45: contest.GetContestsByPersonIDResponse.expires:type_name -> google.protobuf.Timestamp
 	0,   // 46: contest.GetContestWithEmptyCategoryResponse.contest:type_name -> contest.FullContent
-	8,   // 47: contest.ListContestsByCategoryResponse.contests:type_name -> contest.AddContestResponse
-	8,   // 48: contest.ListContestsByRegionResponse.contests:type_name -> contest.AddContestResponse
+	0,   // 47: contest.ListContestsByCategoryResponse.contests:type_name -> contest.FullContent
+	0,   // 48: contest.ListContestsByRegionResponse.contests:type_name -> contest.FullContent
 	49,  // 49: contest.UpdateContestRequest.date:type_name -> google.protobuf.Timestamp
 	49,  // 50: contest.UpdateContestRequest.created:type_name -> google.protobuf.Timestamp
 	49,  // 51: contest.UpdateContestRequest.updated:type_name -> google.protobuf.Timestamp
