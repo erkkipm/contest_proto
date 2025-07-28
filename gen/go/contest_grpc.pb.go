@@ -25,13 +25,12 @@ const (
 	Contest_GetContestByID_FullMethodName              = "/contest.Contest/GetContestByID"
 	Contest_GetContestsByPersonID_FullMethodName       = "/contest.Contest/GetContestsByPersonID"
 	Contest_GetContestWithEmptyCategory_FullMethodName = "/contest.Contest/GetContestWithEmptyCategory"
-	Contest_GetContestWithCategory_FullMethodName      = "/contest.Contest/GetContestWithCategory"
-	Contest_ListContests_FullMethodName                = "/contest.Contest/ListContests"
+	Contest_ListContestsByCategory_FullMethodName      = "/contest.Contest/ListContestsByCategory"
 	Contest_ListContestsByRegion_FullMethodName        = "/contest.Contest/ListContestsByRegion"
 	Contest_UpdateContest_FullMethodName               = "/contest.Contest/UpdateContest"
 	Contest_AddPerson_FullMethodName                   = "/contest.Contest/AddPerson"
-	Contest_ListPersons_FullMethodName                 = "/contest.Contest/ListPersons"
 	Contest_GetPersonByID_FullMethodName               = "/contest.Contest/GetPersonByID"
+	Contest_ListPersons_FullMethodName                 = "/contest.Contest/ListPersons"
 	Contest_ListPersonsByRegion_FullMethodName         = "/contest.Contest/ListPersonsByRegion"
 	Contest_UpdatePerson_FullMethodName                = "/contest.Contest/UpdatePerson"
 	Contest_AddArtist_FullMethodName                   = "/contest.Contest/AddArtist"
@@ -51,50 +50,54 @@ const (
 //
 // Сервис для входа и регистрации
 type ContestClient interface {
-	//	ЗАЯВКИ
-	//
-	// Добавление
+	// ==== ЗАЯВКИ ====
+	// CONTEST = ADD
 	AddContest(ctx context.Context, in *AddContestRequest, opts ...grpc.CallOption) (*AddContestResponse, error)
-	GetContestByID(ctx context.Context, in *GetContestByIDRequest, opts ...grpc.CallOption) (*AddContestResponse, error)
-	GetContestsByPersonID(ctx context.Context, in *GetContestByPersonIDRequest, opts ...grpc.CallOption) (*AddContestResponse, error)
-	// получение заявок с пустой категорией
+	// CONTEST = GET = ByID
+	GetContestByID(ctx context.Context, in *GetContestByIDRequest, opts ...grpc.CallOption) (*GetContestByIDResponse, error)
+	// CONTEST = GET = ByPerson
+	GetContestsByPersonID(ctx context.Context, in *GetContestByPersonIDRequest, opts ...grpc.CallOption) (*GetContestsByPersonIDResponse, error)
+	// CONTEST = GET = With Empty Category \\ с пустой категорией
 	GetContestWithEmptyCategory(ctx context.Context, in *GetContestWithEmptyCategoryRequest, opts ...grpc.CallOption) (*GetContestWithEmptyCategoryResponse, error)
-	// получение заявок из категорий
-	GetContestWithCategory(ctx context.Context, in *GetContestWithCategoryRequest, opts ...grpc.CallOption) (*GetContestWithCategoryResponse, error)
-	// ...
-	ListContests(ctx context.Context, in *ListContestsRequest, opts ...grpc.CallOption) (*ListContestsResponse, error)
-	// ...
+	// CONTESTS = LIST = By Category \\ с категорией
+	ListContestsByCategory(ctx context.Context, in *ListContestsByCategoryRequest, opts ...grpc.CallOption) (*ListContestsByCategoryResponse, error)
+	// CONTESTS = LIST = By Region
 	ListContestsByRegion(ctx context.Context, in *ListContestsByRegionRequest, opts ...grpc.CallOption) (*ListContestsByRegionResponse, error)
-	UpdateContest(ctx context.Context, in *UpdateContestRequest, opts ...grpc.CallOption) (*AddContestResponse, error)
-	//	ПЕРСОНА
-	//
-	// Добавление
+	// CONTESTS = UPDATE
+	UpdateContest(ctx context.Context, in *UpdateContestRequest, opts ...grpc.CallOption) (*UpdateContestResponse, error)
+	// ==== ПЕРСОНА ====
+	// PERSON = ADD
 	AddPerson(ctx context.Context, in *AddPersonRequest, opts ...grpc.CallOption) (*AddPersonResponse, error)
+	// PERSON = GET = ByID //  Получение данных персоны по ID
+	GetPersonByID(ctx context.Context, in *GetPersonByIDRequest, opts ...grpc.CallOption) (*GetPersonByIDResponse, error)
+	// PERSON = LIST
 	ListPersons(ctx context.Context, in *ListPersonsRequest, opts ...grpc.CallOption) (*ListPersonsResponse, error)
-	// Получение данных персоны по ID
-	GetPersonByID(ctx context.Context, in *GetPersonByIDRequest, opts ...grpc.CallOption) (*Person, error)
-	// Получение всех персон в регионе
+	// PERSON = LIST = ByRegion || Получение всех персон в регионе
 	ListPersonsByRegion(ctx context.Context, in *ListPersonsByRegionRequest, opts ...grpc.CallOption) (*ListPersonsByRegionResponse, error)
-	// Обновление
-	UpdatePerson(ctx context.Context, in *UpdatePersonRequest, opts ...grpc.CallOption) (*Person, error)
-	//	АРТИСТ
+	// PERSON = UPDATE
+	UpdatePerson(ctx context.Context, in *UpdatePersonRequest, opts ...grpc.CallOption) (*UpdatePersonResponse, error)
+	//	==== АРТИСТ ====
 	//
-	// Добавление
+	// ДОБАВИТЬ
 	AddArtist(ctx context.Context, in *AddArtistRequest, opts ...grpc.CallOption) (*AddArtistResponse, error)
+	// СПИСОК
 	ListArtists(ctx context.Context, in *ListArtistsRequest, opts ...grpc.CallOption) (*ListArtistsResponse, error)
-	GetArtistByID(ctx context.Context, in *GetArtistByIDRequest, opts ...grpc.CallOption) (*AddArtistResponse, error)
-	//	ПЕСНЯ
-	//
-	// Добавление
+	// ПОЛУЧИТЬ
+	GetArtistByID(ctx context.Context, in *GetArtistByIDRequest, opts ...grpc.CallOption) (*GetArtistByIDResponse, error)
+	// ==== ПЕСНЯ =====
+	// ДОБАВИТЬ
 	AddSong(ctx context.Context, in *AddSongRequest, opts ...grpc.CallOption) (*AddSongResponse, error)
+	// СПИСОК
 	ListSongs(ctx context.Context, in *ListSongsRequest, opts ...grpc.CallOption) (*ListSongsResponse, error)
-	GetSongByID(ctx context.Context, in *GetSongByIDRequest, opts ...grpc.CallOption) (*AddSongResponse, error)
-	//	ЛИТЕРАТУРНОЕ ПРОИЗВЕДЕНИЕ
-	//
-	// Добавление
+	// ПОЛУЧИТЬ
+	GetSongByID(ctx context.Context, in *GetSongByIDRequest, opts ...grpc.CallOption) (*GetSongByIDResponse, error)
+	// ===== ЛИТЕРАТУРНОЕ ПРОИЗВЕДЕНИЕ ====
+	// ДОБАВИТЬ
 	AddLitWork(ctx context.Context, in *AddLitWorkRequest, opts ...grpc.CallOption) (*AddLitWorkResponse, error)
+	// СПИСОК
 	ListLitWorks(ctx context.Context, in *ListLitWorksRequest, opts ...grpc.CallOption) (*ListLitWorksResponse, error)
-	GetLitWorkByID(ctx context.Context, in *GetLitWorkByIDRequest, opts ...grpc.CallOption) (*AddLitWorkResponse, error)
+	// ПОЛУЧИТЬ
+	GetLitWorkByID(ctx context.Context, in *GetLitWorkByIDRequest, opts ...grpc.CallOption) (*GetLitWorkByIDResponse, error)
 }
 
 type contestClient struct {
@@ -115,9 +118,9 @@ func (c *contestClient) AddContest(ctx context.Context, in *AddContestRequest, o
 	return out, nil
 }
 
-func (c *contestClient) GetContestByID(ctx context.Context, in *GetContestByIDRequest, opts ...grpc.CallOption) (*AddContestResponse, error) {
+func (c *contestClient) GetContestByID(ctx context.Context, in *GetContestByIDRequest, opts ...grpc.CallOption) (*GetContestByIDResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddContestResponse)
+	out := new(GetContestByIDResponse)
 	err := c.cc.Invoke(ctx, Contest_GetContestByID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -125,9 +128,9 @@ func (c *contestClient) GetContestByID(ctx context.Context, in *GetContestByIDRe
 	return out, nil
 }
 
-func (c *contestClient) GetContestsByPersonID(ctx context.Context, in *GetContestByPersonIDRequest, opts ...grpc.CallOption) (*AddContestResponse, error) {
+func (c *contestClient) GetContestsByPersonID(ctx context.Context, in *GetContestByPersonIDRequest, opts ...grpc.CallOption) (*GetContestsByPersonIDResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddContestResponse)
+	out := new(GetContestsByPersonIDResponse)
 	err := c.cc.Invoke(ctx, Contest_GetContestsByPersonID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -145,20 +148,10 @@ func (c *contestClient) GetContestWithEmptyCategory(ctx context.Context, in *Get
 	return out, nil
 }
 
-func (c *contestClient) GetContestWithCategory(ctx context.Context, in *GetContestWithCategoryRequest, opts ...grpc.CallOption) (*GetContestWithCategoryResponse, error) {
+func (c *contestClient) ListContestsByCategory(ctx context.Context, in *ListContestsByCategoryRequest, opts ...grpc.CallOption) (*ListContestsByCategoryResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetContestWithCategoryResponse)
-	err := c.cc.Invoke(ctx, Contest_GetContestWithCategory_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *contestClient) ListContests(ctx context.Context, in *ListContestsRequest, opts ...grpc.CallOption) (*ListContestsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListContestsResponse)
-	err := c.cc.Invoke(ctx, Contest_ListContests_FullMethodName, in, out, cOpts...)
+	out := new(ListContestsByCategoryResponse)
+	err := c.cc.Invoke(ctx, Contest_ListContestsByCategory_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -175,9 +168,9 @@ func (c *contestClient) ListContestsByRegion(ctx context.Context, in *ListContes
 	return out, nil
 }
 
-func (c *contestClient) UpdateContest(ctx context.Context, in *UpdateContestRequest, opts ...grpc.CallOption) (*AddContestResponse, error) {
+func (c *contestClient) UpdateContest(ctx context.Context, in *UpdateContestRequest, opts ...grpc.CallOption) (*UpdateContestResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddContestResponse)
+	out := new(UpdateContestResponse)
 	err := c.cc.Invoke(ctx, Contest_UpdateContest_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -195,20 +188,20 @@ func (c *contestClient) AddPerson(ctx context.Context, in *AddPersonRequest, opt
 	return out, nil
 }
 
-func (c *contestClient) ListPersons(ctx context.Context, in *ListPersonsRequest, opts ...grpc.CallOption) (*ListPersonsResponse, error) {
+func (c *contestClient) GetPersonByID(ctx context.Context, in *GetPersonByIDRequest, opts ...grpc.CallOption) (*GetPersonByIDResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListPersonsResponse)
-	err := c.cc.Invoke(ctx, Contest_ListPersons_FullMethodName, in, out, cOpts...)
+	out := new(GetPersonByIDResponse)
+	err := c.cc.Invoke(ctx, Contest_GetPersonByID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *contestClient) GetPersonByID(ctx context.Context, in *GetPersonByIDRequest, opts ...grpc.CallOption) (*Person, error) {
+func (c *contestClient) ListPersons(ctx context.Context, in *ListPersonsRequest, opts ...grpc.CallOption) (*ListPersonsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Person)
-	err := c.cc.Invoke(ctx, Contest_GetPersonByID_FullMethodName, in, out, cOpts...)
+	out := new(ListPersonsResponse)
+	err := c.cc.Invoke(ctx, Contest_ListPersons_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -225,9 +218,9 @@ func (c *contestClient) ListPersonsByRegion(ctx context.Context, in *ListPersons
 	return out, nil
 }
 
-func (c *contestClient) UpdatePerson(ctx context.Context, in *UpdatePersonRequest, opts ...grpc.CallOption) (*Person, error) {
+func (c *contestClient) UpdatePerson(ctx context.Context, in *UpdatePersonRequest, opts ...grpc.CallOption) (*UpdatePersonResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Person)
+	out := new(UpdatePersonResponse)
 	err := c.cc.Invoke(ctx, Contest_UpdatePerson_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -255,9 +248,9 @@ func (c *contestClient) ListArtists(ctx context.Context, in *ListArtistsRequest,
 	return out, nil
 }
 
-func (c *contestClient) GetArtistByID(ctx context.Context, in *GetArtistByIDRequest, opts ...grpc.CallOption) (*AddArtistResponse, error) {
+func (c *contestClient) GetArtistByID(ctx context.Context, in *GetArtistByIDRequest, opts ...grpc.CallOption) (*GetArtistByIDResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddArtistResponse)
+	out := new(GetArtistByIDResponse)
 	err := c.cc.Invoke(ctx, Contest_GetArtistByID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -285,9 +278,9 @@ func (c *contestClient) ListSongs(ctx context.Context, in *ListSongsRequest, opt
 	return out, nil
 }
 
-func (c *contestClient) GetSongByID(ctx context.Context, in *GetSongByIDRequest, opts ...grpc.CallOption) (*AddSongResponse, error) {
+func (c *contestClient) GetSongByID(ctx context.Context, in *GetSongByIDRequest, opts ...grpc.CallOption) (*GetSongByIDResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddSongResponse)
+	out := new(GetSongByIDResponse)
 	err := c.cc.Invoke(ctx, Contest_GetSongByID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -315,9 +308,9 @@ func (c *contestClient) ListLitWorks(ctx context.Context, in *ListLitWorksReques
 	return out, nil
 }
 
-func (c *contestClient) GetLitWorkByID(ctx context.Context, in *GetLitWorkByIDRequest, opts ...grpc.CallOption) (*AddLitWorkResponse, error) {
+func (c *contestClient) GetLitWorkByID(ctx context.Context, in *GetLitWorkByIDRequest, opts ...grpc.CallOption) (*GetLitWorkByIDResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddLitWorkResponse)
+	out := new(GetLitWorkByIDResponse)
 	err := c.cc.Invoke(ctx, Contest_GetLitWorkByID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -331,50 +324,54 @@ func (c *contestClient) GetLitWorkByID(ctx context.Context, in *GetLitWorkByIDRe
 //
 // Сервис для входа и регистрации
 type ContestServer interface {
-	//	ЗАЯВКИ
-	//
-	// Добавление
+	// ==== ЗАЯВКИ ====
+	// CONTEST = ADD
 	AddContest(context.Context, *AddContestRequest) (*AddContestResponse, error)
-	GetContestByID(context.Context, *GetContestByIDRequest) (*AddContestResponse, error)
-	GetContestsByPersonID(context.Context, *GetContestByPersonIDRequest) (*AddContestResponse, error)
-	// получение заявок с пустой категорией
+	// CONTEST = GET = ByID
+	GetContestByID(context.Context, *GetContestByIDRequest) (*GetContestByIDResponse, error)
+	// CONTEST = GET = ByPerson
+	GetContestsByPersonID(context.Context, *GetContestByPersonIDRequest) (*GetContestsByPersonIDResponse, error)
+	// CONTEST = GET = With Empty Category \\ с пустой категорией
 	GetContestWithEmptyCategory(context.Context, *GetContestWithEmptyCategoryRequest) (*GetContestWithEmptyCategoryResponse, error)
-	// получение заявок из категорий
-	GetContestWithCategory(context.Context, *GetContestWithCategoryRequest) (*GetContestWithCategoryResponse, error)
-	// ...
-	ListContests(context.Context, *ListContestsRequest) (*ListContestsResponse, error)
-	// ...
+	// CONTESTS = LIST = By Category \\ с категорией
+	ListContestsByCategory(context.Context, *ListContestsByCategoryRequest) (*ListContestsByCategoryResponse, error)
+	// CONTESTS = LIST = By Region
 	ListContestsByRegion(context.Context, *ListContestsByRegionRequest) (*ListContestsByRegionResponse, error)
-	UpdateContest(context.Context, *UpdateContestRequest) (*AddContestResponse, error)
-	//	ПЕРСОНА
-	//
-	// Добавление
+	// CONTESTS = UPDATE
+	UpdateContest(context.Context, *UpdateContestRequest) (*UpdateContestResponse, error)
+	// ==== ПЕРСОНА ====
+	// PERSON = ADD
 	AddPerson(context.Context, *AddPersonRequest) (*AddPersonResponse, error)
+	// PERSON = GET = ByID //  Получение данных персоны по ID
+	GetPersonByID(context.Context, *GetPersonByIDRequest) (*GetPersonByIDResponse, error)
+	// PERSON = LIST
 	ListPersons(context.Context, *ListPersonsRequest) (*ListPersonsResponse, error)
-	// Получение данных персоны по ID
-	GetPersonByID(context.Context, *GetPersonByIDRequest) (*Person, error)
-	// Получение всех персон в регионе
+	// PERSON = LIST = ByRegion || Получение всех персон в регионе
 	ListPersonsByRegion(context.Context, *ListPersonsByRegionRequest) (*ListPersonsByRegionResponse, error)
-	// Обновление
-	UpdatePerson(context.Context, *UpdatePersonRequest) (*Person, error)
-	//	АРТИСТ
+	// PERSON = UPDATE
+	UpdatePerson(context.Context, *UpdatePersonRequest) (*UpdatePersonResponse, error)
+	//	==== АРТИСТ ====
 	//
-	// Добавление
+	// ДОБАВИТЬ
 	AddArtist(context.Context, *AddArtistRequest) (*AddArtistResponse, error)
+	// СПИСОК
 	ListArtists(context.Context, *ListArtistsRequest) (*ListArtistsResponse, error)
-	GetArtistByID(context.Context, *GetArtistByIDRequest) (*AddArtistResponse, error)
-	//	ПЕСНЯ
-	//
-	// Добавление
+	// ПОЛУЧИТЬ
+	GetArtistByID(context.Context, *GetArtistByIDRequest) (*GetArtistByIDResponse, error)
+	// ==== ПЕСНЯ =====
+	// ДОБАВИТЬ
 	AddSong(context.Context, *AddSongRequest) (*AddSongResponse, error)
+	// СПИСОК
 	ListSongs(context.Context, *ListSongsRequest) (*ListSongsResponse, error)
-	GetSongByID(context.Context, *GetSongByIDRequest) (*AddSongResponse, error)
-	//	ЛИТЕРАТУРНОЕ ПРОИЗВЕДЕНИЕ
-	//
-	// Добавление
+	// ПОЛУЧИТЬ
+	GetSongByID(context.Context, *GetSongByIDRequest) (*GetSongByIDResponse, error)
+	// ===== ЛИТЕРАТУРНОЕ ПРОИЗВЕДЕНИЕ ====
+	// ДОБАВИТЬ
 	AddLitWork(context.Context, *AddLitWorkRequest) (*AddLitWorkResponse, error)
+	// СПИСОК
 	ListLitWorks(context.Context, *ListLitWorksRequest) (*ListLitWorksResponse, error)
-	GetLitWorkByID(context.Context, *GetLitWorkByIDRequest) (*AddLitWorkResponse, error)
+	// ПОЛУЧИТЬ
+	GetLitWorkByID(context.Context, *GetLitWorkByIDRequest) (*GetLitWorkByIDResponse, error)
 	mustEmbedUnimplementedContestServer()
 }
 
@@ -388,40 +385,37 @@ type UnimplementedContestServer struct{}
 func (UnimplementedContestServer) AddContest(context.Context, *AddContestRequest) (*AddContestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddContest not implemented")
 }
-func (UnimplementedContestServer) GetContestByID(context.Context, *GetContestByIDRequest) (*AddContestResponse, error) {
+func (UnimplementedContestServer) GetContestByID(context.Context, *GetContestByIDRequest) (*GetContestByIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetContestByID not implemented")
 }
-func (UnimplementedContestServer) GetContestsByPersonID(context.Context, *GetContestByPersonIDRequest) (*AddContestResponse, error) {
+func (UnimplementedContestServer) GetContestsByPersonID(context.Context, *GetContestByPersonIDRequest) (*GetContestsByPersonIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetContestsByPersonID not implemented")
 }
 func (UnimplementedContestServer) GetContestWithEmptyCategory(context.Context, *GetContestWithEmptyCategoryRequest) (*GetContestWithEmptyCategoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetContestWithEmptyCategory not implemented")
 }
-func (UnimplementedContestServer) GetContestWithCategory(context.Context, *GetContestWithCategoryRequest) (*GetContestWithCategoryResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetContestWithCategory not implemented")
-}
-func (UnimplementedContestServer) ListContests(context.Context, *ListContestsRequest) (*ListContestsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListContests not implemented")
+func (UnimplementedContestServer) ListContestsByCategory(context.Context, *ListContestsByCategoryRequest) (*ListContestsByCategoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListContestsByCategory not implemented")
 }
 func (UnimplementedContestServer) ListContestsByRegion(context.Context, *ListContestsByRegionRequest) (*ListContestsByRegionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListContestsByRegion not implemented")
 }
-func (UnimplementedContestServer) UpdateContest(context.Context, *UpdateContestRequest) (*AddContestResponse, error) {
+func (UnimplementedContestServer) UpdateContest(context.Context, *UpdateContestRequest) (*UpdateContestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateContest not implemented")
 }
 func (UnimplementedContestServer) AddPerson(context.Context, *AddPersonRequest) (*AddPersonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddPerson not implemented")
 }
+func (UnimplementedContestServer) GetPersonByID(context.Context, *GetPersonByIDRequest) (*GetPersonByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPersonByID not implemented")
+}
 func (UnimplementedContestServer) ListPersons(context.Context, *ListPersonsRequest) (*ListPersonsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPersons not implemented")
-}
-func (UnimplementedContestServer) GetPersonByID(context.Context, *GetPersonByIDRequest) (*Person, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPersonByID not implemented")
 }
 func (UnimplementedContestServer) ListPersonsByRegion(context.Context, *ListPersonsByRegionRequest) (*ListPersonsByRegionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPersonsByRegion not implemented")
 }
-func (UnimplementedContestServer) UpdatePerson(context.Context, *UpdatePersonRequest) (*Person, error) {
+func (UnimplementedContestServer) UpdatePerson(context.Context, *UpdatePersonRequest) (*UpdatePersonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdatePerson not implemented")
 }
 func (UnimplementedContestServer) AddArtist(context.Context, *AddArtistRequest) (*AddArtistResponse, error) {
@@ -430,7 +424,7 @@ func (UnimplementedContestServer) AddArtist(context.Context, *AddArtistRequest) 
 func (UnimplementedContestServer) ListArtists(context.Context, *ListArtistsRequest) (*ListArtistsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListArtists not implemented")
 }
-func (UnimplementedContestServer) GetArtistByID(context.Context, *GetArtistByIDRequest) (*AddArtistResponse, error) {
+func (UnimplementedContestServer) GetArtistByID(context.Context, *GetArtistByIDRequest) (*GetArtistByIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetArtistByID not implemented")
 }
 func (UnimplementedContestServer) AddSong(context.Context, *AddSongRequest) (*AddSongResponse, error) {
@@ -439,7 +433,7 @@ func (UnimplementedContestServer) AddSong(context.Context, *AddSongRequest) (*Ad
 func (UnimplementedContestServer) ListSongs(context.Context, *ListSongsRequest) (*ListSongsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListSongs not implemented")
 }
-func (UnimplementedContestServer) GetSongByID(context.Context, *GetSongByIDRequest) (*AddSongResponse, error) {
+func (UnimplementedContestServer) GetSongByID(context.Context, *GetSongByIDRequest) (*GetSongByIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSongByID not implemented")
 }
 func (UnimplementedContestServer) AddLitWork(context.Context, *AddLitWorkRequest) (*AddLitWorkResponse, error) {
@@ -448,7 +442,7 @@ func (UnimplementedContestServer) AddLitWork(context.Context, *AddLitWorkRequest
 func (UnimplementedContestServer) ListLitWorks(context.Context, *ListLitWorksRequest) (*ListLitWorksResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListLitWorks not implemented")
 }
-func (UnimplementedContestServer) GetLitWorkByID(context.Context, *GetLitWorkByIDRequest) (*AddLitWorkResponse, error) {
+func (UnimplementedContestServer) GetLitWorkByID(context.Context, *GetLitWorkByIDRequest) (*GetLitWorkByIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLitWorkByID not implemented")
 }
 func (UnimplementedContestServer) mustEmbedUnimplementedContestServer() {}
@@ -544,38 +538,20 @@ func _Contest_GetContestWithEmptyCategory_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Contest_GetContestWithCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetContestWithCategoryRequest)
+func _Contest_ListContestsByCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListContestsByCategoryRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ContestServer).GetContestWithCategory(ctx, in)
+		return srv.(ContestServer).ListContestsByCategory(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Contest_GetContestWithCategory_FullMethodName,
+		FullMethod: Contest_ListContestsByCategory_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContestServer).GetContestWithCategory(ctx, req.(*GetContestWithCategoryRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Contest_ListContests_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListContestsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ContestServer).ListContests(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Contest_ListContests_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContestServer).ListContests(ctx, req.(*ListContestsRequest))
+		return srv.(ContestServer).ListContestsByCategory(ctx, req.(*ListContestsByCategoryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -634,24 +610,6 @@ func _Contest_AddPerson_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Contest_ListPersons_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListPersonsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ContestServer).ListPersons(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Contest_ListPersons_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContestServer).ListPersons(ctx, req.(*ListPersonsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Contest_GetPersonByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetPersonByIDRequest)
 	if err := dec(in); err != nil {
@@ -666,6 +624,24 @@ func _Contest_GetPersonByID_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ContestServer).GetPersonByID(ctx, req.(*GetPersonByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Contest_ListPersons_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPersonsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).ListPersons(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_ListPersons_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).ListPersons(ctx, req.(*ListPersonsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -892,12 +868,8 @@ var Contest_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Contest_GetContestWithEmptyCategory_Handler,
 		},
 		{
-			MethodName: "GetContestWithCategory",
-			Handler:    _Contest_GetContestWithCategory_Handler,
-		},
-		{
-			MethodName: "ListContests",
-			Handler:    _Contest_ListContests_Handler,
+			MethodName: "ListContestsByCategory",
+			Handler:    _Contest_ListContestsByCategory_Handler,
 		},
 		{
 			MethodName: "ListContestsByRegion",
@@ -912,12 +884,12 @@ var Contest_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Contest_AddPerson_Handler,
 		},
 		{
-			MethodName: "ListPersons",
-			Handler:    _Contest_ListPersons_Handler,
-		},
-		{
 			MethodName: "GetPersonByID",
 			Handler:    _Contest_GetPersonByID_Handler,
+		},
+		{
+			MethodName: "ListPersons",
+			Handler:    _Contest_ListPersons_Handler,
 		},
 		{
 			MethodName: "ListPersonsByRegion",
