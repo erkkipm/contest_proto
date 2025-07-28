@@ -19,6 +19,8 @@ service Contest{
   rpc GetContestsByPersonID (GetContestByPersonIDRequest) returns (GetContestsByPersonIDResponse);
   // CONTEST = GET = With Empty Category \\ с пустой категорией
   rpc GetContestWithEmptyCategory(GetContestWithEmptyCategoryRequest) returns (GetContestWithEmptyCategoryResponse);
+  // CONTESTS = LIST || все заявки
+  rpc ListContests(ListContestsRequest) returns (ListContestsResponse);
   // CONTESTS = LIST = By Category \\ с категорией
   rpc ListContestsByCategory(ListContestsByCategoryRequest) returns (ListContestsByCategoryResponse);
   // CONTESTS = LIST = By Region
@@ -294,6 +296,13 @@ message ListContestsByCategoryRequest {
   string competition = 2;
 }
 message ListContestsByCategoryResponse {
+  repeated FullContent contests = 1;
+}
+// CONTESTS = LIST
+message ListContestsRequest {
+  string competition = 1;
+}
+message ListContestsResponse {
   repeated FullContent contests = 1;
 }
 // CONTESTS = LIST = By Region

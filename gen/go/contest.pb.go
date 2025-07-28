@@ -2049,6 +2049,95 @@ func (x *ListContestsByCategoryResponse) GetContests() []*FullContent {
 	return nil
 }
 
+// CONTESTS = LIST
+type ListContestsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Competition   string                 `protobuf:"bytes,1,opt,name=competition,proto3" json:"competition,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListContestsRequest) Reset() {
+	*x = ListContestsRequest{}
+	mi := &file_contest_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListContestsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListContestsRequest) ProtoMessage() {}
+
+func (x *ListContestsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListContestsRequest.ProtoReflect.Descriptor instead.
+func (*ListContestsRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *ListContestsRequest) GetCompetition() string {
+	if x != nil {
+		return x.Competition
+	}
+	return ""
+}
+
+type ListContestsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Contests      []*FullContent         `protobuf:"bytes,1,rep,name=contests,proto3" json:"contests,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListContestsResponse) Reset() {
+	*x = ListContestsResponse{}
+	mi := &file_contest_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListContestsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListContestsResponse) ProtoMessage() {}
+
+func (x *ListContestsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListContestsResponse.ProtoReflect.Descriptor instead.
+func (*ListContestsResponse) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *ListContestsResponse) GetContests() []*FullContent {
+	if x != nil {
+		return x.Contests
+	}
+	return nil
+}
+
 // CONTESTS = LIST = By Region
 type ListContestsByRegionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -2060,7 +2149,7 @@ type ListContestsByRegionRequest struct {
 
 func (x *ListContestsByRegionRequest) Reset() {
 	*x = ListContestsByRegionRequest{}
-	mi := &file_contest_proto_msgTypes[17]
+	mi := &file_contest_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2072,7 +2161,7 @@ func (x *ListContestsByRegionRequest) String() string {
 func (*ListContestsByRegionRequest) ProtoMessage() {}
 
 func (x *ListContestsByRegionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[17]
+	mi := &file_contest_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2085,7 +2174,7 @@ func (x *ListContestsByRegionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListContestsByRegionRequest.ProtoReflect.Descriptor instead.
 func (*ListContestsByRegionRequest) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{17}
+	return file_contest_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *ListContestsByRegionRequest) GetRegion() string {
@@ -2111,7 +2200,7 @@ type ListContestsByRegionResponse struct {
 
 func (x *ListContestsByRegionResponse) Reset() {
 	*x = ListContestsByRegionResponse{}
-	mi := &file_contest_proto_msgTypes[18]
+	mi := &file_contest_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2123,7 +2212,7 @@ func (x *ListContestsByRegionResponse) String() string {
 func (*ListContestsByRegionResponse) ProtoMessage() {}
 
 func (x *ListContestsByRegionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[18]
+	mi := &file_contest_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2136,7 +2225,7 @@ func (x *ListContestsByRegionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListContestsByRegionResponse.ProtoReflect.Descriptor instead.
 func (*ListContestsByRegionResponse) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{18}
+	return file_contest_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *ListContestsByRegionResponse) GetContests() []*FullContent {
@@ -2172,7 +2261,7 @@ type UpdateContestRequest struct {
 
 func (x *UpdateContestRequest) Reset() {
 	*x = UpdateContestRequest{}
-	mi := &file_contest_proto_msgTypes[19]
+	mi := &file_contest_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2184,7 +2273,7 @@ func (x *UpdateContestRequest) String() string {
 func (*UpdateContestRequest) ProtoMessage() {}
 
 func (x *UpdateContestRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[19]
+	mi := &file_contest_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2197,7 +2286,7 @@ func (x *UpdateContestRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateContestRequest.ProtoReflect.Descriptor instead.
 func (*UpdateContestRequest) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{19}
+	return file_contest_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *UpdateContestRequest) GetId() string {
@@ -2343,7 +2432,7 @@ type UpdateContestResponse struct {
 
 func (x *UpdateContestResponse) Reset() {
 	*x = UpdateContestResponse{}
-	mi := &file_contest_proto_msgTypes[20]
+	mi := &file_contest_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2355,7 +2444,7 @@ func (x *UpdateContestResponse) String() string {
 func (*UpdateContestResponse) ProtoMessage() {}
 
 func (x *UpdateContestResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[20]
+	mi := &file_contest_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2368,7 +2457,7 @@ func (x *UpdateContestResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateContestResponse.ProtoReflect.Descriptor instead.
 func (*UpdateContestResponse) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{20}
+	return file_contest_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *UpdateContestResponse) GetId() string {
@@ -2506,7 +2595,7 @@ type AddPersonRequest struct {
 
 func (x *AddPersonRequest) Reset() {
 	*x = AddPersonRequest{}
-	mi := &file_contest_proto_msgTypes[21]
+	mi := &file_contest_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2518,7 +2607,7 @@ func (x *AddPersonRequest) String() string {
 func (*AddPersonRequest) ProtoMessage() {}
 
 func (x *AddPersonRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[21]
+	mi := &file_contest_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2531,7 +2620,7 @@ func (x *AddPersonRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddPersonRequest.ProtoReflect.Descriptor instead.
 func (*AddPersonRequest) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{21}
+	return file_contest_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *AddPersonRequest) GetFirstName() string {
@@ -2655,7 +2744,7 @@ type AddPersonResponse struct {
 
 func (x *AddPersonResponse) Reset() {
 	*x = AddPersonResponse{}
-	mi := &file_contest_proto_msgTypes[22]
+	mi := &file_contest_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2667,7 +2756,7 @@ func (x *AddPersonResponse) String() string {
 func (*AddPersonResponse) ProtoMessage() {}
 
 func (x *AddPersonResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[22]
+	mi := &file_contest_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2680,7 +2769,7 @@ func (x *AddPersonResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddPersonResponse.ProtoReflect.Descriptor instead.
 func (*AddPersonResponse) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{22}
+	return file_contest_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *AddPersonResponse) GetId() string {
@@ -2798,7 +2887,7 @@ type GetPersonByIDRequest struct {
 
 func (x *GetPersonByIDRequest) Reset() {
 	*x = GetPersonByIDRequest{}
-	mi := &file_contest_proto_msgTypes[23]
+	mi := &file_contest_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2810,7 +2899,7 @@ func (x *GetPersonByIDRequest) String() string {
 func (*GetPersonByIDRequest) ProtoMessage() {}
 
 func (x *GetPersonByIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[23]
+	mi := &file_contest_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2823,7 +2912,7 @@ func (x *GetPersonByIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetPersonByIDRequest.ProtoReflect.Descriptor instead.
 func (*GetPersonByIDRequest) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{23}
+	return file_contest_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *GetPersonByIDRequest) GetId() string {
@@ -2857,7 +2946,7 @@ type GetPersonByIDResponse struct {
 
 func (x *GetPersonByIDResponse) Reset() {
 	*x = GetPersonByIDResponse{}
-	mi := &file_contest_proto_msgTypes[24]
+	mi := &file_contest_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2869,7 +2958,7 @@ func (x *GetPersonByIDResponse) String() string {
 func (*GetPersonByIDResponse) ProtoMessage() {}
 
 func (x *GetPersonByIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[24]
+	mi := &file_contest_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2882,7 +2971,7 @@ func (x *GetPersonByIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetPersonByIDResponse.ProtoReflect.Descriptor instead.
 func (*GetPersonByIDResponse) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{24}
+	return file_contest_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *GetPersonByIDResponse) GetId() string {
@@ -2999,7 +3088,7 @@ type ListPersonsRequest struct {
 
 func (x *ListPersonsRequest) Reset() {
 	*x = ListPersonsRequest{}
-	mi := &file_contest_proto_msgTypes[25]
+	mi := &file_contest_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3011,7 +3100,7 @@ func (x *ListPersonsRequest) String() string {
 func (*ListPersonsRequest) ProtoMessage() {}
 
 func (x *ListPersonsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[25]
+	mi := &file_contest_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3024,7 +3113,7 @@ func (x *ListPersonsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPersonsRequest.ProtoReflect.Descriptor instead.
 func (*ListPersonsRequest) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{25}
+	return file_contest_proto_rawDescGZIP(), []int{27}
 }
 
 type ListPersonsResponse struct {
@@ -3036,7 +3125,7 @@ type ListPersonsResponse struct {
 
 func (x *ListPersonsResponse) Reset() {
 	*x = ListPersonsResponse{}
-	mi := &file_contest_proto_msgTypes[26]
+	mi := &file_contest_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3048,7 +3137,7 @@ func (x *ListPersonsResponse) String() string {
 func (*ListPersonsResponse) ProtoMessage() {}
 
 func (x *ListPersonsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[26]
+	mi := &file_contest_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3061,7 +3150,7 @@ func (x *ListPersonsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPersonsResponse.ProtoReflect.Descriptor instead.
 func (*ListPersonsResponse) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{26}
+	return file_contest_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *ListPersonsResponse) GetPersons() []*Person {
@@ -3081,7 +3170,7 @@ type ListPersonsByRegionRequest struct {
 
 func (x *ListPersonsByRegionRequest) Reset() {
 	*x = ListPersonsByRegionRequest{}
-	mi := &file_contest_proto_msgTypes[27]
+	mi := &file_contest_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3093,7 +3182,7 @@ func (x *ListPersonsByRegionRequest) String() string {
 func (*ListPersonsByRegionRequest) ProtoMessage() {}
 
 func (x *ListPersonsByRegionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[27]
+	mi := &file_contest_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3106,7 +3195,7 @@ func (x *ListPersonsByRegionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPersonsByRegionRequest.ProtoReflect.Descriptor instead.
 func (*ListPersonsByRegionRequest) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{27}
+	return file_contest_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *ListPersonsByRegionRequest) GetRegion() string {
@@ -3125,7 +3214,7 @@ type ListPersonsByRegionResponse struct {
 
 func (x *ListPersonsByRegionResponse) Reset() {
 	*x = ListPersonsByRegionResponse{}
-	mi := &file_contest_proto_msgTypes[28]
+	mi := &file_contest_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3137,7 +3226,7 @@ func (x *ListPersonsByRegionResponse) String() string {
 func (*ListPersonsByRegionResponse) ProtoMessage() {}
 
 func (x *ListPersonsByRegionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[28]
+	mi := &file_contest_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3150,7 +3239,7 @@ func (x *ListPersonsByRegionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPersonsByRegionResponse.ProtoReflect.Descriptor instead.
 func (*ListPersonsByRegionResponse) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{28}
+	return file_contest_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *ListPersonsByRegionResponse) GetPersons() []*Person {
@@ -3184,7 +3273,7 @@ type UpdatePersonRequest struct {
 
 func (x *UpdatePersonRequest) Reset() {
 	*x = UpdatePersonRequest{}
-	mi := &file_contest_proto_msgTypes[29]
+	mi := &file_contest_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3196,7 +3285,7 @@ func (x *UpdatePersonRequest) String() string {
 func (*UpdatePersonRequest) ProtoMessage() {}
 
 func (x *UpdatePersonRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[29]
+	mi := &file_contest_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3209,7 +3298,7 @@ func (x *UpdatePersonRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdatePersonRequest.ProtoReflect.Descriptor instead.
 func (*UpdatePersonRequest) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{29}
+	return file_contest_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *UpdatePersonRequest) GetId() string {
@@ -3341,7 +3430,7 @@ type UpdatePersonResponse struct {
 
 func (x *UpdatePersonResponse) Reset() {
 	*x = UpdatePersonResponse{}
-	mi := &file_contest_proto_msgTypes[30]
+	mi := &file_contest_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3353,7 +3442,7 @@ func (x *UpdatePersonResponse) String() string {
 func (*UpdatePersonResponse) ProtoMessage() {}
 
 func (x *UpdatePersonResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[30]
+	mi := &file_contest_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3366,7 +3455,7 @@ func (x *UpdatePersonResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdatePersonResponse.ProtoReflect.Descriptor instead.
 func (*UpdatePersonResponse) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{30}
+	return file_contest_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *UpdatePersonResponse) GetId() string {
@@ -3500,7 +3589,7 @@ type AddArtistRequest struct {
 
 func (x *AddArtistRequest) Reset() {
 	*x = AddArtistRequest{}
-	mi := &file_contest_proto_msgTypes[31]
+	mi := &file_contest_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3512,7 +3601,7 @@ func (x *AddArtistRequest) String() string {
 func (*AddArtistRequest) ProtoMessage() {}
 
 func (x *AddArtistRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[31]
+	mi := &file_contest_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3525,7 +3614,7 @@ func (x *AddArtistRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddArtistRequest.ProtoReflect.Descriptor instead.
 func (*AddArtistRequest) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{31}
+	return file_contest_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *AddArtistRequest) GetTitle() string {
@@ -3673,7 +3762,7 @@ type AddArtistResponse struct {
 
 func (x *AddArtistResponse) Reset() {
 	*x = AddArtistResponse{}
-	mi := &file_contest_proto_msgTypes[32]
+	mi := &file_contest_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3685,7 +3774,7 @@ func (x *AddArtistResponse) String() string {
 func (*AddArtistResponse) ProtoMessage() {}
 
 func (x *AddArtistResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[32]
+	mi := &file_contest_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3698,7 +3787,7 @@ func (x *AddArtistResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddArtistResponse.ProtoReflect.Descriptor instead.
 func (*AddArtistResponse) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{32}
+	return file_contest_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *AddArtistResponse) GetId() string {
@@ -3836,7 +3925,7 @@ type ListArtistsRequest struct {
 
 func (x *ListArtistsRequest) Reset() {
 	*x = ListArtistsRequest{}
-	mi := &file_contest_proto_msgTypes[33]
+	mi := &file_contest_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3848,7 +3937,7 @@ func (x *ListArtistsRequest) String() string {
 func (*ListArtistsRequest) ProtoMessage() {}
 
 func (x *ListArtistsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[33]
+	mi := &file_contest_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3861,7 +3950,7 @@ func (x *ListArtistsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListArtistsRequest.ProtoReflect.Descriptor instead.
 func (*ListArtistsRequest) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{33}
+	return file_contest_proto_rawDescGZIP(), []int{35}
 }
 
 type ListArtistsResponse struct {
@@ -3873,7 +3962,7 @@ type ListArtistsResponse struct {
 
 func (x *ListArtistsResponse) Reset() {
 	*x = ListArtistsResponse{}
-	mi := &file_contest_proto_msgTypes[34]
+	mi := &file_contest_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3885,7 +3974,7 @@ func (x *ListArtistsResponse) String() string {
 func (*ListArtistsResponse) ProtoMessage() {}
 
 func (x *ListArtistsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[34]
+	mi := &file_contest_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3898,7 +3987,7 @@ func (x *ListArtistsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListArtistsResponse.ProtoReflect.Descriptor instead.
 func (*ListArtistsResponse) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{34}
+	return file_contest_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *ListArtistsResponse) GetArtists() []*AddArtistResponse {
@@ -3918,7 +4007,7 @@ type GetArtistByIDRequest struct {
 
 func (x *GetArtistByIDRequest) Reset() {
 	*x = GetArtistByIDRequest{}
-	mi := &file_contest_proto_msgTypes[35]
+	mi := &file_contest_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3930,7 +4019,7 @@ func (x *GetArtistByIDRequest) String() string {
 func (*GetArtistByIDRequest) ProtoMessage() {}
 
 func (x *GetArtistByIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[35]
+	mi := &file_contest_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3943,7 +4032,7 @@ func (x *GetArtistByIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetArtistByIDRequest.ProtoReflect.Descriptor instead.
 func (*GetArtistByIDRequest) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{35}
+	return file_contest_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *GetArtistByIDRequest) GetId() string {
@@ -3979,7 +4068,7 @@ type GetArtistByIDResponse struct {
 
 func (x *GetArtistByIDResponse) Reset() {
 	*x = GetArtistByIDResponse{}
-	mi := &file_contest_proto_msgTypes[36]
+	mi := &file_contest_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3991,7 +4080,7 @@ func (x *GetArtistByIDResponse) String() string {
 func (*GetArtistByIDResponse) ProtoMessage() {}
 
 func (x *GetArtistByIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[36]
+	mi := &file_contest_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4004,7 +4093,7 @@ func (x *GetArtistByIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetArtistByIDResponse.ProtoReflect.Descriptor instead.
 func (*GetArtistByIDResponse) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{36}
+	return file_contest_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *GetArtistByIDResponse) GetId() string {
@@ -4158,7 +4247,7 @@ type AddSongRequest struct {
 
 func (x *AddSongRequest) Reset() {
 	*x = AddSongRequest{}
-	mi := &file_contest_proto_msgTypes[37]
+	mi := &file_contest_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4170,7 +4259,7 @@ func (x *AddSongRequest) String() string {
 func (*AddSongRequest) ProtoMessage() {}
 
 func (x *AddSongRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[37]
+	mi := &file_contest_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4183,7 +4272,7 @@ func (x *AddSongRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddSongRequest.ProtoReflect.Descriptor instead.
 func (*AddSongRequest) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{37}
+	return file_contest_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *AddSongRequest) GetArtist() []string {
@@ -4323,7 +4412,7 @@ type AddSongResponse struct {
 
 func (x *AddSongResponse) Reset() {
 	*x = AddSongResponse{}
-	mi := &file_contest_proto_msgTypes[38]
+	mi := &file_contest_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4335,7 +4424,7 @@ func (x *AddSongResponse) String() string {
 func (*AddSongResponse) ProtoMessage() {}
 
 func (x *AddSongResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[38]
+	mi := &file_contest_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4348,7 +4437,7 @@ func (x *AddSongResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddSongResponse.ProtoReflect.Descriptor instead.
 func (*AddSongResponse) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{38}
+	return file_contest_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *AddSongResponse) GetId() string {
@@ -4479,7 +4568,7 @@ type ListSongsRequest struct {
 
 func (x *ListSongsRequest) Reset() {
 	*x = ListSongsRequest{}
-	mi := &file_contest_proto_msgTypes[39]
+	mi := &file_contest_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4491,7 +4580,7 @@ func (x *ListSongsRequest) String() string {
 func (*ListSongsRequest) ProtoMessage() {}
 
 func (x *ListSongsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[39]
+	mi := &file_contest_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4504,7 +4593,7 @@ func (x *ListSongsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSongsRequest.ProtoReflect.Descriptor instead.
 func (*ListSongsRequest) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{39}
+	return file_contest_proto_rawDescGZIP(), []int{41}
 }
 
 type ListSongsResponse struct {
@@ -4516,7 +4605,7 @@ type ListSongsResponse struct {
 
 func (x *ListSongsResponse) Reset() {
 	*x = ListSongsResponse{}
-	mi := &file_contest_proto_msgTypes[40]
+	mi := &file_contest_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4528,7 +4617,7 @@ func (x *ListSongsResponse) String() string {
 func (*ListSongsResponse) ProtoMessage() {}
 
 func (x *ListSongsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[40]
+	mi := &file_contest_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4541,7 +4630,7 @@ func (x *ListSongsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSongsResponse.ProtoReflect.Descriptor instead.
 func (*ListSongsResponse) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{40}
+	return file_contest_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *ListSongsResponse) GetSongs() []*AddSongResponse {
@@ -4561,7 +4650,7 @@ type GetSongByIDRequest struct {
 
 func (x *GetSongByIDRequest) Reset() {
 	*x = GetSongByIDRequest{}
-	mi := &file_contest_proto_msgTypes[41]
+	mi := &file_contest_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4573,7 +4662,7 @@ func (x *GetSongByIDRequest) String() string {
 func (*GetSongByIDRequest) ProtoMessage() {}
 
 func (x *GetSongByIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[41]
+	mi := &file_contest_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4586,7 +4675,7 @@ func (x *GetSongByIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSongByIDRequest.ProtoReflect.Descriptor instead.
 func (*GetSongByIDRequest) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{41}
+	return file_contest_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *GetSongByIDRequest) GetId() string {
@@ -4621,7 +4710,7 @@ type GetSongByIDResponse struct {
 
 func (x *GetSongByIDResponse) Reset() {
 	*x = GetSongByIDResponse{}
-	mi := &file_contest_proto_msgTypes[42]
+	mi := &file_contest_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4633,7 +4722,7 @@ func (x *GetSongByIDResponse) String() string {
 func (*GetSongByIDResponse) ProtoMessage() {}
 
 func (x *GetSongByIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[42]
+	mi := &file_contest_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4646,7 +4735,7 @@ func (x *GetSongByIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSongByIDResponse.ProtoReflect.Descriptor instead.
 func (*GetSongByIDResponse) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{42}
+	return file_contest_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *GetSongByIDResponse) GetId() string {
@@ -4789,7 +4878,7 @@ type AddLitWorkRequest struct {
 
 func (x *AddLitWorkRequest) Reset() {
 	*x = AddLitWorkRequest{}
-	mi := &file_contest_proto_msgTypes[43]
+	mi := &file_contest_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4801,7 +4890,7 @@ func (x *AddLitWorkRequest) String() string {
 func (*AddLitWorkRequest) ProtoMessage() {}
 
 func (x *AddLitWorkRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[43]
+	mi := &file_contest_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4814,7 +4903,7 @@ func (x *AddLitWorkRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddLitWorkRequest.ProtoReflect.Descriptor instead.
 func (*AddLitWorkRequest) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{43}
+	return file_contest_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *AddLitWorkRequest) GetTitle() string {
@@ -4922,7 +5011,7 @@ type AddLitWorkResponse struct {
 
 func (x *AddLitWorkResponse) Reset() {
 	*x = AddLitWorkResponse{}
-	mi := &file_contest_proto_msgTypes[44]
+	mi := &file_contest_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4934,7 +5023,7 @@ func (x *AddLitWorkResponse) String() string {
 func (*AddLitWorkResponse) ProtoMessage() {}
 
 func (x *AddLitWorkResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[44]
+	mi := &file_contest_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4947,7 +5036,7 @@ func (x *AddLitWorkResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddLitWorkResponse.ProtoReflect.Descriptor instead.
 func (*AddLitWorkResponse) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{44}
+	return file_contest_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *AddLitWorkResponse) GetId() string {
@@ -5050,7 +5139,7 @@ type ListLitWorksRequest struct {
 
 func (x *ListLitWorksRequest) Reset() {
 	*x = ListLitWorksRequest{}
-	mi := &file_contest_proto_msgTypes[45]
+	mi := &file_contest_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5062,7 +5151,7 @@ func (x *ListLitWorksRequest) String() string {
 func (*ListLitWorksRequest) ProtoMessage() {}
 
 func (x *ListLitWorksRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[45]
+	mi := &file_contest_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5075,7 +5164,7 @@ func (x *ListLitWorksRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListLitWorksRequest.ProtoReflect.Descriptor instead.
 func (*ListLitWorksRequest) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{45}
+	return file_contest_proto_rawDescGZIP(), []int{47}
 }
 
 type ListLitWorksResponse struct {
@@ -5087,7 +5176,7 @@ type ListLitWorksResponse struct {
 
 func (x *ListLitWorksResponse) Reset() {
 	*x = ListLitWorksResponse{}
-	mi := &file_contest_proto_msgTypes[46]
+	mi := &file_contest_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5099,7 +5188,7 @@ func (x *ListLitWorksResponse) String() string {
 func (*ListLitWorksResponse) ProtoMessage() {}
 
 func (x *ListLitWorksResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[46]
+	mi := &file_contest_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5112,7 +5201,7 @@ func (x *ListLitWorksResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListLitWorksResponse.ProtoReflect.Descriptor instead.
 func (*ListLitWorksResponse) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{46}
+	return file_contest_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *ListLitWorksResponse) GetLitWorks() []*AddLitWorkResponse {
@@ -5132,7 +5221,7 @@ type GetLitWorkByIDRequest struct {
 
 func (x *GetLitWorkByIDRequest) Reset() {
 	*x = GetLitWorkByIDRequest{}
-	mi := &file_contest_proto_msgTypes[47]
+	mi := &file_contest_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5144,7 +5233,7 @@ func (x *GetLitWorkByIDRequest) String() string {
 func (*GetLitWorkByIDRequest) ProtoMessage() {}
 
 func (x *GetLitWorkByIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[47]
+	mi := &file_contest_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5157,7 +5246,7 @@ func (x *GetLitWorkByIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetLitWorkByIDRequest.ProtoReflect.Descriptor instead.
 func (*GetLitWorkByIDRequest) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{47}
+	return file_contest_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *GetLitWorkByIDRequest) GetId() string {
@@ -5188,7 +5277,7 @@ type GetLitWorkByIDResponse struct {
 
 func (x *GetLitWorkByIDResponse) Reset() {
 	*x = GetLitWorkByIDResponse{}
-	mi := &file_contest_proto_msgTypes[48]
+	mi := &file_contest_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5200,7 +5289,7 @@ func (x *GetLitWorkByIDResponse) String() string {
 func (*GetLitWorkByIDResponse) ProtoMessage() {}
 
 func (x *GetLitWorkByIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_contest_proto_msgTypes[48]
+	mi := &file_contest_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5213,7 +5302,7 @@ func (x *GetLitWorkByIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetLitWorkByIDResponse.ProtoReflect.Descriptor instead.
 func (*GetLitWorkByIDResponse) Descriptor() ([]byte, []int) {
-	return file_contest_proto_rawDescGZIP(), []int{48}
+	return file_contest_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *GetLitWorkByIDResponse) GetId() string {
@@ -5518,6 +5607,10 @@ const file_contest_proto_rawDesc = "" +
 	"\bcategory\x18\x01 \x01(\tR\bcategory\x12 \n" +
 	"\vcompetition\x18\x02 \x01(\tR\vcompetition\"R\n" +
 	"\x1eListContestsByCategoryResponse\x120\n" +
+	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\"7\n" +
+	"\x13ListContestsRequest\x12 \n" +
+	"\vcompetition\x18\x01 \x01(\tR\vcompetition\"H\n" +
+	"\x14ListContestsResponse\x120\n" +
 	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\"W\n" +
 	"\x1bListContestsByRegionRequest\x12\x16\n" +
 	"\x06region\x18\x01 \x01(\tR\x06region\x12 \n" +
@@ -5840,13 +5933,14 @@ const file_contest_proto_rawDesc = "" +
 	" \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\aexpires2\xc2\r\n" +
+	"\aexpires\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\aexpires2\x8f\x0e\n" +
 	"\aContest\x12E\n" +
 	"\n" +
 	"AddContest\x12\x1a.contest.AddContestRequest\x1a\x1b.contest.AddContestResponse\x12Q\n" +
 	"\x0eGetContestByID\x12\x1e.contest.GetContestByIDRequest\x1a\x1f.contest.GetContestByIDResponse\x12e\n" +
 	"\x15GetContestsByPersonID\x12$.contest.GetContestByPersonIDRequest\x1a&.contest.GetContestsByPersonIDResponse\x12x\n" +
-	"\x1bGetContestWithEmptyCategory\x12+.contest.GetContestWithEmptyCategoryRequest\x1a,.contest.GetContestWithEmptyCategoryResponse\x12i\n" +
+	"\x1bGetContestWithEmptyCategory\x12+.contest.GetContestWithEmptyCategoryRequest\x1a,.contest.GetContestWithEmptyCategoryResponse\x12K\n" +
+	"\fListContests\x12\x1c.contest.ListContestsRequest\x1a\x1d.contest.ListContestsResponse\x12i\n" +
 	"\x16ListContestsByCategory\x12&.contest.ListContestsByCategoryRequest\x1a'.contest.ListContestsByCategoryResponse\x12c\n" +
 	"\x14ListContestsByRegion\x12$.contest.ListContestsByRegionRequest\x1a%.contest.ListContestsByRegionResponse\x12N\n" +
 	"\rUpdateContest\x12\x1d.contest.UpdateContestRequest\x1a\x1e.contest.UpdateContestResponse\x12B\n" +
@@ -5878,7 +5972,7 @@ func file_contest_proto_rawDescGZIP() []byte {
 	return file_contest_proto_rawDescData
 }
 
-var file_contest_proto_msgTypes = make([]protoimpl.MessageInfo, 49)
+var file_contest_proto_msgTypes = make([]protoimpl.MessageInfo, 51)
 var file_contest_proto_goTypes = []any{
 	(*FullContent)(nil),                         // 0: contest.FullContent
 	(*Person)(nil),                              // 1: contest.Person
@@ -5897,42 +5991,44 @@ var file_contest_proto_goTypes = []any{
 	(*GetContestWithEmptyCategoryResponse)(nil), // 14: contest.GetContestWithEmptyCategoryResponse
 	(*ListContestsByCategoryRequest)(nil),       // 15: contest.ListContestsByCategoryRequest
 	(*ListContestsByCategoryResponse)(nil),      // 16: contest.ListContestsByCategoryResponse
-	(*ListContestsByRegionRequest)(nil),         // 17: contest.ListContestsByRegionRequest
-	(*ListContestsByRegionResponse)(nil),        // 18: contest.ListContestsByRegionResponse
-	(*UpdateContestRequest)(nil),                // 19: contest.UpdateContestRequest
-	(*UpdateContestResponse)(nil),               // 20: contest.UpdateContestResponse
-	(*AddPersonRequest)(nil),                    // 21: contest.AddPersonRequest
-	(*AddPersonResponse)(nil),                   // 22: contest.AddPersonResponse
-	(*GetPersonByIDRequest)(nil),                // 23: contest.GetPersonByIDRequest
-	(*GetPersonByIDResponse)(nil),               // 24: contest.GetPersonByIDResponse
-	(*ListPersonsRequest)(nil),                  // 25: contest.ListPersonsRequest
-	(*ListPersonsResponse)(nil),                 // 26: contest.ListPersonsResponse
-	(*ListPersonsByRegionRequest)(nil),          // 27: contest.ListPersonsByRegionRequest
-	(*ListPersonsByRegionResponse)(nil),         // 28: contest.ListPersonsByRegionResponse
-	(*UpdatePersonRequest)(nil),                 // 29: contest.UpdatePersonRequest
-	(*UpdatePersonResponse)(nil),                // 30: contest.UpdatePersonResponse
-	(*AddArtistRequest)(nil),                    // 31: contest.AddArtistRequest
-	(*AddArtistResponse)(nil),                   // 32: contest.AddArtistResponse
-	(*ListArtistsRequest)(nil),                  // 33: contest.ListArtistsRequest
-	(*ListArtistsResponse)(nil),                 // 34: contest.ListArtistsResponse
-	(*GetArtistByIDRequest)(nil),                // 35: contest.GetArtistByIDRequest
-	(*GetArtistByIDResponse)(nil),               // 36: contest.GetArtistByIDResponse
-	(*AddSongRequest)(nil),                      // 37: contest.AddSongRequest
-	(*AddSongResponse)(nil),                     // 38: contest.AddSongResponse
-	(*ListSongsRequest)(nil),                    // 39: contest.ListSongsRequest
-	(*ListSongsResponse)(nil),                   // 40: contest.ListSongsResponse
-	(*GetSongByIDRequest)(nil),                  // 41: contest.GetSongByIDRequest
-	(*GetSongByIDResponse)(nil),                 // 42: contest.GetSongByIDResponse
-	(*AddLitWorkRequest)(nil),                   // 43: contest.AddLitWorkRequest
-	(*AddLitWorkResponse)(nil),                  // 44: contest.AddLitWorkResponse
-	(*ListLitWorksRequest)(nil),                 // 45: contest.ListLitWorksRequest
-	(*ListLitWorksResponse)(nil),                // 46: contest.ListLitWorksResponse
-	(*GetLitWorkByIDRequest)(nil),               // 47: contest.GetLitWorkByIDRequest
-	(*GetLitWorkByIDResponse)(nil),              // 48: contest.GetLitWorkByIDResponse
-	(*timestamppb.Timestamp)(nil),               // 49: google.protobuf.Timestamp
+	(*ListContestsRequest)(nil),                 // 17: contest.ListContestsRequest
+	(*ListContestsResponse)(nil),                // 18: contest.ListContestsResponse
+	(*ListContestsByRegionRequest)(nil),         // 19: contest.ListContestsByRegionRequest
+	(*ListContestsByRegionResponse)(nil),        // 20: contest.ListContestsByRegionResponse
+	(*UpdateContestRequest)(nil),                // 21: contest.UpdateContestRequest
+	(*UpdateContestResponse)(nil),               // 22: contest.UpdateContestResponse
+	(*AddPersonRequest)(nil),                    // 23: contest.AddPersonRequest
+	(*AddPersonResponse)(nil),                   // 24: contest.AddPersonResponse
+	(*GetPersonByIDRequest)(nil),                // 25: contest.GetPersonByIDRequest
+	(*GetPersonByIDResponse)(nil),               // 26: contest.GetPersonByIDResponse
+	(*ListPersonsRequest)(nil),                  // 27: contest.ListPersonsRequest
+	(*ListPersonsResponse)(nil),                 // 28: contest.ListPersonsResponse
+	(*ListPersonsByRegionRequest)(nil),          // 29: contest.ListPersonsByRegionRequest
+	(*ListPersonsByRegionResponse)(nil),         // 30: contest.ListPersonsByRegionResponse
+	(*UpdatePersonRequest)(nil),                 // 31: contest.UpdatePersonRequest
+	(*UpdatePersonResponse)(nil),                // 32: contest.UpdatePersonResponse
+	(*AddArtistRequest)(nil),                    // 33: contest.AddArtistRequest
+	(*AddArtistResponse)(nil),                   // 34: contest.AddArtistResponse
+	(*ListArtistsRequest)(nil),                  // 35: contest.ListArtistsRequest
+	(*ListArtistsResponse)(nil),                 // 36: contest.ListArtistsResponse
+	(*GetArtistByIDRequest)(nil),                // 37: contest.GetArtistByIDRequest
+	(*GetArtistByIDResponse)(nil),               // 38: contest.GetArtistByIDResponse
+	(*AddSongRequest)(nil),                      // 39: contest.AddSongRequest
+	(*AddSongResponse)(nil),                     // 40: contest.AddSongResponse
+	(*ListSongsRequest)(nil),                    // 41: contest.ListSongsRequest
+	(*ListSongsResponse)(nil),                   // 42: contest.ListSongsResponse
+	(*GetSongByIDRequest)(nil),                  // 43: contest.GetSongByIDRequest
+	(*GetSongByIDResponse)(nil),                 // 44: contest.GetSongByIDResponse
+	(*AddLitWorkRequest)(nil),                   // 45: contest.AddLitWorkRequest
+	(*AddLitWorkResponse)(nil),                  // 46: contest.AddLitWorkResponse
+	(*ListLitWorksRequest)(nil),                 // 47: contest.ListLitWorksRequest
+	(*ListLitWorksResponse)(nil),                // 48: contest.ListLitWorksResponse
+	(*GetLitWorkByIDRequest)(nil),               // 49: contest.GetLitWorkByIDRequest
+	(*GetLitWorkByIDResponse)(nil),              // 50: contest.GetLitWorkByIDResponse
+	(*timestamppb.Timestamp)(nil),               // 51: google.protobuf.Timestamp
 }
 var file_contest_proto_depIdxs = []int32{
-	49,  // 0: contest.FullContent.date:type_name -> google.protobuf.Timestamp
+	51,  // 0: contest.FullContent.date:type_name -> google.protobuf.Timestamp
 	1,   // 1: contest.FullContent.author:type_name -> contest.Person
 	5,   // 2: contest.FullContent.rate_book:type_name -> contest.RateBook
 	2,   // 3: contest.FullContent.song:type_name -> contest.Song
@@ -5941,148 +6037,151 @@ var file_contest_proto_depIdxs = []int32{
 	6,   // 6: contest.FullContent.lit_work:type_name -> contest.LitWork
 	3,   // 7: contest.FullContent.artist_song_remake:type_name -> contest.Artist
 	4,   // 8: contest.FullContent.rate_book_song_remake:type_name -> contest.Rate
-	49,  // 9: contest.FullContent.created:type_name -> google.protobuf.Timestamp
-	49,  // 10: contest.FullContent.updated:type_name -> google.protobuf.Timestamp
-	49,  // 11: contest.FullContent.expires:type_name -> google.protobuf.Timestamp
-	49,  // 12: contest.Person.created:type_name -> google.protobuf.Timestamp
-	49,  // 13: contest.Person.updated:type_name -> google.protobuf.Timestamp
-	49,  // 14: contest.Person.expires:type_name -> google.protobuf.Timestamp
-	49,  // 15: contest.Song.created:type_name -> google.protobuf.Timestamp
-	49,  // 16: contest.Song.updated:type_name -> google.protobuf.Timestamp
-	49,  // 17: contest.Song.expires:type_name -> google.protobuf.Timestamp
-	49,  // 18: contest.Artist.created:type_name -> google.protobuf.Timestamp
-	49,  // 19: contest.Artist.updated:type_name -> google.protobuf.Timestamp
-	49,  // 20: contest.Artist.expires:type_name -> google.protobuf.Timestamp
-	49,  // 21: contest.Rate.created:type_name -> google.protobuf.Timestamp
-	49,  // 22: contest.Rate.updated:type_name -> google.protobuf.Timestamp
-	49,  // 23: contest.Rate.expires:type_name -> google.protobuf.Timestamp
-	49,  // 24: contest.RateBook.created:type_name -> google.protobuf.Timestamp
-	49,  // 25: contest.RateBook.updated:type_name -> google.protobuf.Timestamp
-	49,  // 26: contest.RateBook.expires:type_name -> google.protobuf.Timestamp
-	49,  // 27: contest.LitWork.created:type_name -> google.protobuf.Timestamp
-	49,  // 28: contest.LitWork.updated:type_name -> google.protobuf.Timestamp
-	49,  // 29: contest.LitWork.expires:type_name -> google.protobuf.Timestamp
-	49,  // 30: contest.AddContestRequest.date:type_name -> google.protobuf.Timestamp
-	49,  // 31: contest.AddContestRequest.created:type_name -> google.protobuf.Timestamp
-	49,  // 32: contest.AddContestRequest.updated:type_name -> google.protobuf.Timestamp
-	49,  // 33: contest.AddContestRequest.expires:type_name -> google.protobuf.Timestamp
-	49,  // 34: contest.AddContestResponse.date:type_name -> google.protobuf.Timestamp
-	49,  // 35: contest.AddContestResponse.created:type_name -> google.protobuf.Timestamp
-	49,  // 36: contest.AddContestResponse.updated:type_name -> google.protobuf.Timestamp
-	49,  // 37: contest.AddContestResponse.expires:type_name -> google.protobuf.Timestamp
-	49,  // 38: contest.GetContestByIDResponse.date:type_name -> google.protobuf.Timestamp
-	49,  // 39: contest.GetContestByIDResponse.created:type_name -> google.protobuf.Timestamp
-	49,  // 40: contest.GetContestByIDResponse.updated:type_name -> google.protobuf.Timestamp
-	49,  // 41: contest.GetContestByIDResponse.expires:type_name -> google.protobuf.Timestamp
-	49,  // 42: contest.GetContestsByPersonIDResponse.date:type_name -> google.protobuf.Timestamp
-	49,  // 43: contest.GetContestsByPersonIDResponse.created:type_name -> google.protobuf.Timestamp
-	49,  // 44: contest.GetContestsByPersonIDResponse.updated:type_name -> google.protobuf.Timestamp
-	49,  // 45: contest.GetContestsByPersonIDResponse.expires:type_name -> google.protobuf.Timestamp
+	51,  // 9: contest.FullContent.created:type_name -> google.protobuf.Timestamp
+	51,  // 10: contest.FullContent.updated:type_name -> google.protobuf.Timestamp
+	51,  // 11: contest.FullContent.expires:type_name -> google.protobuf.Timestamp
+	51,  // 12: contest.Person.created:type_name -> google.protobuf.Timestamp
+	51,  // 13: contest.Person.updated:type_name -> google.protobuf.Timestamp
+	51,  // 14: contest.Person.expires:type_name -> google.protobuf.Timestamp
+	51,  // 15: contest.Song.created:type_name -> google.protobuf.Timestamp
+	51,  // 16: contest.Song.updated:type_name -> google.protobuf.Timestamp
+	51,  // 17: contest.Song.expires:type_name -> google.protobuf.Timestamp
+	51,  // 18: contest.Artist.created:type_name -> google.protobuf.Timestamp
+	51,  // 19: contest.Artist.updated:type_name -> google.protobuf.Timestamp
+	51,  // 20: contest.Artist.expires:type_name -> google.protobuf.Timestamp
+	51,  // 21: contest.Rate.created:type_name -> google.protobuf.Timestamp
+	51,  // 22: contest.Rate.updated:type_name -> google.protobuf.Timestamp
+	51,  // 23: contest.Rate.expires:type_name -> google.protobuf.Timestamp
+	51,  // 24: contest.RateBook.created:type_name -> google.protobuf.Timestamp
+	51,  // 25: contest.RateBook.updated:type_name -> google.protobuf.Timestamp
+	51,  // 26: contest.RateBook.expires:type_name -> google.protobuf.Timestamp
+	51,  // 27: contest.LitWork.created:type_name -> google.protobuf.Timestamp
+	51,  // 28: contest.LitWork.updated:type_name -> google.protobuf.Timestamp
+	51,  // 29: contest.LitWork.expires:type_name -> google.protobuf.Timestamp
+	51,  // 30: contest.AddContestRequest.date:type_name -> google.protobuf.Timestamp
+	51,  // 31: contest.AddContestRequest.created:type_name -> google.protobuf.Timestamp
+	51,  // 32: contest.AddContestRequest.updated:type_name -> google.protobuf.Timestamp
+	51,  // 33: contest.AddContestRequest.expires:type_name -> google.protobuf.Timestamp
+	51,  // 34: contest.AddContestResponse.date:type_name -> google.protobuf.Timestamp
+	51,  // 35: contest.AddContestResponse.created:type_name -> google.protobuf.Timestamp
+	51,  // 36: contest.AddContestResponse.updated:type_name -> google.protobuf.Timestamp
+	51,  // 37: contest.AddContestResponse.expires:type_name -> google.protobuf.Timestamp
+	51,  // 38: contest.GetContestByIDResponse.date:type_name -> google.protobuf.Timestamp
+	51,  // 39: contest.GetContestByIDResponse.created:type_name -> google.protobuf.Timestamp
+	51,  // 40: contest.GetContestByIDResponse.updated:type_name -> google.protobuf.Timestamp
+	51,  // 41: contest.GetContestByIDResponse.expires:type_name -> google.protobuf.Timestamp
+	51,  // 42: contest.GetContestsByPersonIDResponse.date:type_name -> google.protobuf.Timestamp
+	51,  // 43: contest.GetContestsByPersonIDResponse.created:type_name -> google.protobuf.Timestamp
+	51,  // 44: contest.GetContestsByPersonIDResponse.updated:type_name -> google.protobuf.Timestamp
+	51,  // 45: contest.GetContestsByPersonIDResponse.expires:type_name -> google.protobuf.Timestamp
 	0,   // 46: contest.GetContestWithEmptyCategoryResponse.contest:type_name -> contest.FullContent
 	0,   // 47: contest.ListContestsByCategoryResponse.contests:type_name -> contest.FullContent
-	0,   // 48: contest.ListContestsByRegionResponse.contests:type_name -> contest.FullContent
-	49,  // 49: contest.UpdateContestRequest.date:type_name -> google.protobuf.Timestamp
-	49,  // 50: contest.UpdateContestRequest.created:type_name -> google.protobuf.Timestamp
-	49,  // 51: contest.UpdateContestRequest.updated:type_name -> google.protobuf.Timestamp
-	49,  // 52: contest.UpdateContestRequest.expires:type_name -> google.protobuf.Timestamp
-	49,  // 53: contest.UpdateContestResponse.date:type_name -> google.protobuf.Timestamp
-	49,  // 54: contest.UpdateContestResponse.created:type_name -> google.protobuf.Timestamp
-	49,  // 55: contest.UpdateContestResponse.updated:type_name -> google.protobuf.Timestamp
-	49,  // 56: contest.UpdateContestResponse.expires:type_name -> google.protobuf.Timestamp
-	49,  // 57: contest.AddPersonRequest.created:type_name -> google.protobuf.Timestamp
-	49,  // 58: contest.AddPersonRequest.updated:type_name -> google.protobuf.Timestamp
-	49,  // 59: contest.AddPersonRequest.expires:type_name -> google.protobuf.Timestamp
-	49,  // 60: contest.AddPersonResponse.created:type_name -> google.protobuf.Timestamp
-	49,  // 61: contest.AddPersonResponse.updated:type_name -> google.protobuf.Timestamp
-	49,  // 62: contest.AddPersonResponse.expires:type_name -> google.protobuf.Timestamp
-	49,  // 63: contest.GetPersonByIDResponse.created:type_name -> google.protobuf.Timestamp
-	49,  // 64: contest.GetPersonByIDResponse.updated:type_name -> google.protobuf.Timestamp
-	49,  // 65: contest.GetPersonByIDResponse.expires:type_name -> google.protobuf.Timestamp
-	1,   // 66: contest.ListPersonsResponse.persons:type_name -> contest.Person
-	1,   // 67: contest.ListPersonsByRegionResponse.persons:type_name -> contest.Person
-	49,  // 68: contest.UpdatePersonRequest.created:type_name -> google.protobuf.Timestamp
-	49,  // 69: contest.UpdatePersonRequest.updated:type_name -> google.protobuf.Timestamp
-	49,  // 70: contest.UpdatePersonRequest.expires:type_name -> google.protobuf.Timestamp
-	49,  // 71: contest.UpdatePersonResponse.created:type_name -> google.protobuf.Timestamp
-	49,  // 72: contest.UpdatePersonResponse.updated:type_name -> google.protobuf.Timestamp
-	49,  // 73: contest.UpdatePersonResponse.expires:type_name -> google.protobuf.Timestamp
-	49,  // 74: contest.AddArtistRequest.created:type_name -> google.protobuf.Timestamp
-	49,  // 75: contest.AddArtistRequest.updated:type_name -> google.protobuf.Timestamp
-	49,  // 76: contest.AddArtistRequest.expires:type_name -> google.protobuf.Timestamp
-	49,  // 77: contest.AddArtistResponse.created:type_name -> google.protobuf.Timestamp
-	49,  // 78: contest.AddArtistResponse.updated:type_name -> google.protobuf.Timestamp
-	49,  // 79: contest.AddArtistResponse.expires:type_name -> google.protobuf.Timestamp
-	32,  // 80: contest.ListArtistsResponse.artists:type_name -> contest.AddArtistResponse
-	49,  // 81: contest.GetArtistByIDResponse.created:type_name -> google.protobuf.Timestamp
-	49,  // 82: contest.GetArtistByIDResponse.updated:type_name -> google.protobuf.Timestamp
-	49,  // 83: contest.GetArtistByIDResponse.expires:type_name -> google.protobuf.Timestamp
-	49,  // 84: contest.AddSongRequest.created:type_name -> google.protobuf.Timestamp
-	49,  // 85: contest.AddSongRequest.updated:type_name -> google.protobuf.Timestamp
-	49,  // 86: contest.AddSongRequest.expires:type_name -> google.protobuf.Timestamp
-	49,  // 87: contest.AddSongResponse.created:type_name -> google.protobuf.Timestamp
-	49,  // 88: contest.AddSongResponse.updated:type_name -> google.protobuf.Timestamp
-	49,  // 89: contest.AddSongResponse.expires:type_name -> google.protobuf.Timestamp
-	38,  // 90: contest.ListSongsResponse.songs:type_name -> contest.AddSongResponse
-	49,  // 91: contest.GetSongByIDResponse.created:type_name -> google.protobuf.Timestamp
-	49,  // 92: contest.GetSongByIDResponse.updated:type_name -> google.protobuf.Timestamp
-	49,  // 93: contest.GetSongByIDResponse.expires:type_name -> google.protobuf.Timestamp
-	49,  // 94: contest.AddLitWorkRequest.created:type_name -> google.protobuf.Timestamp
-	49,  // 95: contest.AddLitWorkRequest.updated:type_name -> google.protobuf.Timestamp
-	49,  // 96: contest.AddLitWorkRequest.expires:type_name -> google.protobuf.Timestamp
-	49,  // 97: contest.AddLitWorkResponse.created:type_name -> google.protobuf.Timestamp
-	49,  // 98: contest.AddLitWorkResponse.updated:type_name -> google.protobuf.Timestamp
-	49,  // 99: contest.AddLitWorkResponse.expires:type_name -> google.protobuf.Timestamp
-	44,  // 100: contest.ListLitWorksResponse.lit_works:type_name -> contest.AddLitWorkResponse
-	49,  // 101: contest.GetLitWorkByIDResponse.created:type_name -> google.protobuf.Timestamp
-	49,  // 102: contest.GetLitWorkByIDResponse.updated:type_name -> google.protobuf.Timestamp
-	49,  // 103: contest.GetLitWorkByIDResponse.expires:type_name -> google.protobuf.Timestamp
-	7,   // 104: contest.Contest.AddContest:input_type -> contest.AddContestRequest
-	9,   // 105: contest.Contest.GetContestByID:input_type -> contest.GetContestByIDRequest
-	11,  // 106: contest.Contest.GetContestsByPersonID:input_type -> contest.GetContestByPersonIDRequest
-	13,  // 107: contest.Contest.GetContestWithEmptyCategory:input_type -> contest.GetContestWithEmptyCategoryRequest
-	15,  // 108: contest.Contest.ListContestsByCategory:input_type -> contest.ListContestsByCategoryRequest
-	17,  // 109: contest.Contest.ListContestsByRegion:input_type -> contest.ListContestsByRegionRequest
-	19,  // 110: contest.Contest.UpdateContest:input_type -> contest.UpdateContestRequest
-	21,  // 111: contest.Contest.AddPerson:input_type -> contest.AddPersonRequest
-	23,  // 112: contest.Contest.GetPersonByID:input_type -> contest.GetPersonByIDRequest
-	25,  // 113: contest.Contest.ListPersons:input_type -> contest.ListPersonsRequest
-	27,  // 114: contest.Contest.ListPersonsByRegion:input_type -> contest.ListPersonsByRegionRequest
-	29,  // 115: contest.Contest.UpdatePerson:input_type -> contest.UpdatePersonRequest
-	31,  // 116: contest.Contest.AddArtist:input_type -> contest.AddArtistRequest
-	33,  // 117: contest.Contest.ListArtists:input_type -> contest.ListArtistsRequest
-	35,  // 118: contest.Contest.GetArtistByID:input_type -> contest.GetArtistByIDRequest
-	37,  // 119: contest.Contest.AddSong:input_type -> contest.AddSongRequest
-	39,  // 120: contest.Contest.ListSongs:input_type -> contest.ListSongsRequest
-	41,  // 121: contest.Contest.GetSongByID:input_type -> contest.GetSongByIDRequest
-	43,  // 122: contest.Contest.AddLitWork:input_type -> contest.AddLitWorkRequest
-	45,  // 123: contest.Contest.ListLitWorks:input_type -> contest.ListLitWorksRequest
-	47,  // 124: contest.Contest.GetLitWorkByID:input_type -> contest.GetLitWorkByIDRequest
-	8,   // 125: contest.Contest.AddContest:output_type -> contest.AddContestResponse
-	10,  // 126: contest.Contest.GetContestByID:output_type -> contest.GetContestByIDResponse
-	12,  // 127: contest.Contest.GetContestsByPersonID:output_type -> contest.GetContestsByPersonIDResponse
-	14,  // 128: contest.Contest.GetContestWithEmptyCategory:output_type -> contest.GetContestWithEmptyCategoryResponse
-	16,  // 129: contest.Contest.ListContestsByCategory:output_type -> contest.ListContestsByCategoryResponse
-	18,  // 130: contest.Contest.ListContestsByRegion:output_type -> contest.ListContestsByRegionResponse
-	20,  // 131: contest.Contest.UpdateContest:output_type -> contest.UpdateContestResponse
-	22,  // 132: contest.Contest.AddPerson:output_type -> contest.AddPersonResponse
-	24,  // 133: contest.Contest.GetPersonByID:output_type -> contest.GetPersonByIDResponse
-	26,  // 134: contest.Contest.ListPersons:output_type -> contest.ListPersonsResponse
-	28,  // 135: contest.Contest.ListPersonsByRegion:output_type -> contest.ListPersonsByRegionResponse
-	30,  // 136: contest.Contest.UpdatePerson:output_type -> contest.UpdatePersonResponse
-	32,  // 137: contest.Contest.AddArtist:output_type -> contest.AddArtistResponse
-	34,  // 138: contest.Contest.ListArtists:output_type -> contest.ListArtistsResponse
-	36,  // 139: contest.Contest.GetArtistByID:output_type -> contest.GetArtistByIDResponse
-	38,  // 140: contest.Contest.AddSong:output_type -> contest.AddSongResponse
-	40,  // 141: contest.Contest.ListSongs:output_type -> contest.ListSongsResponse
-	42,  // 142: contest.Contest.GetSongByID:output_type -> contest.GetSongByIDResponse
-	44,  // 143: contest.Contest.AddLitWork:output_type -> contest.AddLitWorkResponse
-	46,  // 144: contest.Contest.ListLitWorks:output_type -> contest.ListLitWorksResponse
-	48,  // 145: contest.Contest.GetLitWorkByID:output_type -> contest.GetLitWorkByIDResponse
-	125, // [125:146] is the sub-list for method output_type
-	104, // [104:125] is the sub-list for method input_type
-	104, // [104:104] is the sub-list for extension type_name
-	104, // [104:104] is the sub-list for extension extendee
-	0,   // [0:104] is the sub-list for field type_name
+	0,   // 48: contest.ListContestsResponse.contests:type_name -> contest.FullContent
+	0,   // 49: contest.ListContestsByRegionResponse.contests:type_name -> contest.FullContent
+	51,  // 50: contest.UpdateContestRequest.date:type_name -> google.protobuf.Timestamp
+	51,  // 51: contest.UpdateContestRequest.created:type_name -> google.protobuf.Timestamp
+	51,  // 52: contest.UpdateContestRequest.updated:type_name -> google.protobuf.Timestamp
+	51,  // 53: contest.UpdateContestRequest.expires:type_name -> google.protobuf.Timestamp
+	51,  // 54: contest.UpdateContestResponse.date:type_name -> google.protobuf.Timestamp
+	51,  // 55: contest.UpdateContestResponse.created:type_name -> google.protobuf.Timestamp
+	51,  // 56: contest.UpdateContestResponse.updated:type_name -> google.protobuf.Timestamp
+	51,  // 57: contest.UpdateContestResponse.expires:type_name -> google.protobuf.Timestamp
+	51,  // 58: contest.AddPersonRequest.created:type_name -> google.protobuf.Timestamp
+	51,  // 59: contest.AddPersonRequest.updated:type_name -> google.protobuf.Timestamp
+	51,  // 60: contest.AddPersonRequest.expires:type_name -> google.protobuf.Timestamp
+	51,  // 61: contest.AddPersonResponse.created:type_name -> google.protobuf.Timestamp
+	51,  // 62: contest.AddPersonResponse.updated:type_name -> google.protobuf.Timestamp
+	51,  // 63: contest.AddPersonResponse.expires:type_name -> google.protobuf.Timestamp
+	51,  // 64: contest.GetPersonByIDResponse.created:type_name -> google.protobuf.Timestamp
+	51,  // 65: contest.GetPersonByIDResponse.updated:type_name -> google.protobuf.Timestamp
+	51,  // 66: contest.GetPersonByIDResponse.expires:type_name -> google.protobuf.Timestamp
+	1,   // 67: contest.ListPersonsResponse.persons:type_name -> contest.Person
+	1,   // 68: contest.ListPersonsByRegionResponse.persons:type_name -> contest.Person
+	51,  // 69: contest.UpdatePersonRequest.created:type_name -> google.protobuf.Timestamp
+	51,  // 70: contest.UpdatePersonRequest.updated:type_name -> google.protobuf.Timestamp
+	51,  // 71: contest.UpdatePersonRequest.expires:type_name -> google.protobuf.Timestamp
+	51,  // 72: contest.UpdatePersonResponse.created:type_name -> google.protobuf.Timestamp
+	51,  // 73: contest.UpdatePersonResponse.updated:type_name -> google.protobuf.Timestamp
+	51,  // 74: contest.UpdatePersonResponse.expires:type_name -> google.protobuf.Timestamp
+	51,  // 75: contest.AddArtistRequest.created:type_name -> google.protobuf.Timestamp
+	51,  // 76: contest.AddArtistRequest.updated:type_name -> google.protobuf.Timestamp
+	51,  // 77: contest.AddArtistRequest.expires:type_name -> google.protobuf.Timestamp
+	51,  // 78: contest.AddArtistResponse.created:type_name -> google.protobuf.Timestamp
+	51,  // 79: contest.AddArtistResponse.updated:type_name -> google.protobuf.Timestamp
+	51,  // 80: contest.AddArtistResponse.expires:type_name -> google.protobuf.Timestamp
+	34,  // 81: contest.ListArtistsResponse.artists:type_name -> contest.AddArtistResponse
+	51,  // 82: contest.GetArtistByIDResponse.created:type_name -> google.protobuf.Timestamp
+	51,  // 83: contest.GetArtistByIDResponse.updated:type_name -> google.protobuf.Timestamp
+	51,  // 84: contest.GetArtistByIDResponse.expires:type_name -> google.protobuf.Timestamp
+	51,  // 85: contest.AddSongRequest.created:type_name -> google.protobuf.Timestamp
+	51,  // 86: contest.AddSongRequest.updated:type_name -> google.protobuf.Timestamp
+	51,  // 87: contest.AddSongRequest.expires:type_name -> google.protobuf.Timestamp
+	51,  // 88: contest.AddSongResponse.created:type_name -> google.protobuf.Timestamp
+	51,  // 89: contest.AddSongResponse.updated:type_name -> google.protobuf.Timestamp
+	51,  // 90: contest.AddSongResponse.expires:type_name -> google.protobuf.Timestamp
+	40,  // 91: contest.ListSongsResponse.songs:type_name -> contest.AddSongResponse
+	51,  // 92: contest.GetSongByIDResponse.created:type_name -> google.protobuf.Timestamp
+	51,  // 93: contest.GetSongByIDResponse.updated:type_name -> google.protobuf.Timestamp
+	51,  // 94: contest.GetSongByIDResponse.expires:type_name -> google.protobuf.Timestamp
+	51,  // 95: contest.AddLitWorkRequest.created:type_name -> google.protobuf.Timestamp
+	51,  // 96: contest.AddLitWorkRequest.updated:type_name -> google.protobuf.Timestamp
+	51,  // 97: contest.AddLitWorkRequest.expires:type_name -> google.protobuf.Timestamp
+	51,  // 98: contest.AddLitWorkResponse.created:type_name -> google.protobuf.Timestamp
+	51,  // 99: contest.AddLitWorkResponse.updated:type_name -> google.protobuf.Timestamp
+	51,  // 100: contest.AddLitWorkResponse.expires:type_name -> google.protobuf.Timestamp
+	46,  // 101: contest.ListLitWorksResponse.lit_works:type_name -> contest.AddLitWorkResponse
+	51,  // 102: contest.GetLitWorkByIDResponse.created:type_name -> google.protobuf.Timestamp
+	51,  // 103: contest.GetLitWorkByIDResponse.updated:type_name -> google.protobuf.Timestamp
+	51,  // 104: contest.GetLitWorkByIDResponse.expires:type_name -> google.protobuf.Timestamp
+	7,   // 105: contest.Contest.AddContest:input_type -> contest.AddContestRequest
+	9,   // 106: contest.Contest.GetContestByID:input_type -> contest.GetContestByIDRequest
+	11,  // 107: contest.Contest.GetContestsByPersonID:input_type -> contest.GetContestByPersonIDRequest
+	13,  // 108: contest.Contest.GetContestWithEmptyCategory:input_type -> contest.GetContestWithEmptyCategoryRequest
+	17,  // 109: contest.Contest.ListContests:input_type -> contest.ListContestsRequest
+	15,  // 110: contest.Contest.ListContestsByCategory:input_type -> contest.ListContestsByCategoryRequest
+	19,  // 111: contest.Contest.ListContestsByRegion:input_type -> contest.ListContestsByRegionRequest
+	21,  // 112: contest.Contest.UpdateContest:input_type -> contest.UpdateContestRequest
+	23,  // 113: contest.Contest.AddPerson:input_type -> contest.AddPersonRequest
+	25,  // 114: contest.Contest.GetPersonByID:input_type -> contest.GetPersonByIDRequest
+	27,  // 115: contest.Contest.ListPersons:input_type -> contest.ListPersonsRequest
+	29,  // 116: contest.Contest.ListPersonsByRegion:input_type -> contest.ListPersonsByRegionRequest
+	31,  // 117: contest.Contest.UpdatePerson:input_type -> contest.UpdatePersonRequest
+	33,  // 118: contest.Contest.AddArtist:input_type -> contest.AddArtistRequest
+	35,  // 119: contest.Contest.ListArtists:input_type -> contest.ListArtistsRequest
+	37,  // 120: contest.Contest.GetArtistByID:input_type -> contest.GetArtistByIDRequest
+	39,  // 121: contest.Contest.AddSong:input_type -> contest.AddSongRequest
+	41,  // 122: contest.Contest.ListSongs:input_type -> contest.ListSongsRequest
+	43,  // 123: contest.Contest.GetSongByID:input_type -> contest.GetSongByIDRequest
+	45,  // 124: contest.Contest.AddLitWork:input_type -> contest.AddLitWorkRequest
+	47,  // 125: contest.Contest.ListLitWorks:input_type -> contest.ListLitWorksRequest
+	49,  // 126: contest.Contest.GetLitWorkByID:input_type -> contest.GetLitWorkByIDRequest
+	8,   // 127: contest.Contest.AddContest:output_type -> contest.AddContestResponse
+	10,  // 128: contest.Contest.GetContestByID:output_type -> contest.GetContestByIDResponse
+	12,  // 129: contest.Contest.GetContestsByPersonID:output_type -> contest.GetContestsByPersonIDResponse
+	14,  // 130: contest.Contest.GetContestWithEmptyCategory:output_type -> contest.GetContestWithEmptyCategoryResponse
+	18,  // 131: contest.Contest.ListContests:output_type -> contest.ListContestsResponse
+	16,  // 132: contest.Contest.ListContestsByCategory:output_type -> contest.ListContestsByCategoryResponse
+	20,  // 133: contest.Contest.ListContestsByRegion:output_type -> contest.ListContestsByRegionResponse
+	22,  // 134: contest.Contest.UpdateContest:output_type -> contest.UpdateContestResponse
+	24,  // 135: contest.Contest.AddPerson:output_type -> contest.AddPersonResponse
+	26,  // 136: contest.Contest.GetPersonByID:output_type -> contest.GetPersonByIDResponse
+	28,  // 137: contest.Contest.ListPersons:output_type -> contest.ListPersonsResponse
+	30,  // 138: contest.Contest.ListPersonsByRegion:output_type -> contest.ListPersonsByRegionResponse
+	32,  // 139: contest.Contest.UpdatePerson:output_type -> contest.UpdatePersonResponse
+	34,  // 140: contest.Contest.AddArtist:output_type -> contest.AddArtistResponse
+	36,  // 141: contest.Contest.ListArtists:output_type -> contest.ListArtistsResponse
+	38,  // 142: contest.Contest.GetArtistByID:output_type -> contest.GetArtistByIDResponse
+	40,  // 143: contest.Contest.AddSong:output_type -> contest.AddSongResponse
+	42,  // 144: contest.Contest.ListSongs:output_type -> contest.ListSongsResponse
+	44,  // 145: contest.Contest.GetSongByID:output_type -> contest.GetSongByIDResponse
+	46,  // 146: contest.Contest.AddLitWork:output_type -> contest.AddLitWorkResponse
+	48,  // 147: contest.Contest.ListLitWorks:output_type -> contest.ListLitWorksResponse
+	50,  // 148: contest.Contest.GetLitWorkByID:output_type -> contest.GetLitWorkByIDResponse
+	127, // [127:149] is the sub-list for method output_type
+	105, // [105:127] is the sub-list for method input_type
+	105, // [105:105] is the sub-list for extension type_name
+	105, // [105:105] is the sub-list for extension extendee
+	0,   // [0:105] is the sub-list for field type_name
 }
 
 func init() { file_contest_proto_init() }
@@ -6096,7 +6195,7 @@ func file_contest_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_contest_proto_rawDesc), len(file_contest_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   49,
+			NumMessages:   51,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
