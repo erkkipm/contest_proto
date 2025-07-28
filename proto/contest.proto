@@ -63,9 +63,9 @@ service Contest{
   rpc GetLitWorkByID (GetLitWorkByIDRequest) returns (GetLitWorkByIDResponse);
 }
 
-// =====
-// =====
-// =====
+// ==========
+// ==========
+// ==========
 
 // FullContent ... полная заявка
 message FullContent {
@@ -194,9 +194,9 @@ message LitWork {
   google.protobuf.Timestamp expires = 13;
 }
 
-// =====
-// =====
-// =====
+// ==========
+// ==========
+// ==========
 
 // CONTEST
 
