@@ -387,7 +387,7 @@ message RateBook {
 message FullContent {
   string id = 1;
   google.protobuf.Timestamp date = 2;
-  Project competition = 3;
+  string competition = 3;
   string competition_id = 4;
   Person author = 5;
   RateBook rate_book = 6;
