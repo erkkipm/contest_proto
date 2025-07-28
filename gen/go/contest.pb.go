@@ -2694,7 +2694,7 @@ type FullContent struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
 	Id                 string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Date               *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
-	Competition        *Project               `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
+	Competition        string                 `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
 	CompetitionId      string                 `protobuf:"bytes,4,opt,name=competition_id,json=competitionId,proto3" json:"competition_id,omitempty"`
 	Author             *Person                `protobuf:"bytes,5,opt,name=author,proto3" json:"author,omitempty"`
 	RateBook           *RateBook              `protobuf:"bytes,6,opt,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
@@ -2760,11 +2760,11 @@ func (x *FullContent) GetDate() *timestamppb.Timestamp {
 	return nil
 }
 
-func (x *FullContent) GetCompetition() *Project {
+func (x *FullContent) GetCompetition() string {
 	if x != nil {
 		return x.Competition
 	}
-	return nil
+	return ""
 }
 
 func (x *FullContent) GetCompetitionId() string {
@@ -4686,11 +4686,11 @@ const file_contest_proto_rawDesc = "" +
 	"\acreated\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\n" +
 	" \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xdf\x06\n" +
+	"\aexpires\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xcd\x06\n" +
 	"\vFullContent\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
-	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x122\n" +
-	"\vcompetition\x18\x03 \x01(\v2\x10.contest.ProjectR\vcompetition\x12%\n" +
+	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12 \n" +
+	"\vcompetition\x18\x03 \x01(\tR\vcompetition\x12%\n" +
 	"\x0ecompetition_id\x18\x04 \x01(\tR\rcompetitionId\x12'\n" +
 	"\x06author\x18\x05 \x01(\v2\x0f.contest.PersonR\x06author\x12.\n" +
 	"\trate_book\x18\x06 \x01(\v2\x11.contest.RateBookR\brateBook\x12!\n" +
@@ -4950,87 +4950,86 @@ var file_contest_proto_depIdxs = []int32{
 	46,  // 53: contest.RateBook.updated:type_name -> google.protobuf.Timestamp
 	46,  // 54: contest.RateBook.expires:type_name -> google.protobuf.Timestamp
 	46,  // 55: contest.FullContent.date:type_name -> google.protobuf.Timestamp
-	15,  // 56: contest.FullContent.competition:type_name -> contest.Project
-	1,   // 57: contest.FullContent.author:type_name -> contest.Person
-	17,  // 58: contest.FullContent.rate_book:type_name -> contest.RateBook
-	9,   // 59: contest.FullContent.song:type_name -> contest.Song
-	6,   // 60: contest.FullContent.artist_song_own:type_name -> contest.Artist
-	16,  // 61: contest.FullContent.rate_book_song_own:type_name -> contest.Rate
-	12,  // 62: contest.FullContent.lit_work:type_name -> contest.LitWork
-	6,   // 63: contest.FullContent.artist_song_remake:type_name -> contest.Artist
-	16,  // 64: contest.FullContent.rate_book_song_remake:type_name -> contest.Rate
-	46,  // 65: contest.FullContent.created:type_name -> google.protobuf.Timestamp
-	46,  // 66: contest.FullContent.updated:type_name -> google.protobuf.Timestamp
-	46,  // 67: contest.FullContent.expires:type_name -> google.protobuf.Timestamp
-	1,   // 68: contest.Team.person:type_name -> contest.Person
-	46,  // 69: contest.Team.created:type_name -> google.protobuf.Timestamp
-	46,  // 70: contest.Team.updated:type_name -> google.protobuf.Timestamp
-	46,  // 71: contest.Team.expires:type_name -> google.protobuf.Timestamp
-	1,   // 72: contest.ListPersonsByRegionResponse.persons:type_name -> contest.Person
-	1,   // 73: contest.ListPersonsResponse.persons:type_name -> contest.Person
-	46,  // 74: contest.UpdatePersonRequest.created:type_name -> google.protobuf.Timestamp
-	46,  // 75: contest.UpdatePersonRequest.updated:type_name -> google.protobuf.Timestamp
-	46,  // 76: contest.UpdatePersonRequest.expires:type_name -> google.protobuf.Timestamp
-	5,   // 77: contest.ListContestsByRegionResponse.contests:type_name -> contest.AddContestResponse
-	46,  // 78: contest.UpdateContestRequest.date:type_name -> google.protobuf.Timestamp
-	46,  // 79: contest.UpdateContestRequest.created:type_name -> google.protobuf.Timestamp
-	46,  // 80: contest.UpdateContestRequest.updated:type_name -> google.protobuf.Timestamp
-	46,  // 81: contest.UpdateContestRequest.expires:type_name -> google.protobuf.Timestamp
-	18,  // 82: contest.ListContestsResponse.contests:type_name -> contest.FullContent
-	8,   // 83: contest.ListArtistsResponse.artists:type_name -> contest.AddArtistResponse
-	11,  // 84: contest.ListSongsResponse.songs:type_name -> contest.AddSongResponse
-	14,  // 85: contest.ListLitWorksResponse.lit_works:type_name -> contest.AddLitWorkResponse
-	18,  // 86: contest.GetContestWithEmptyCategoryResponse.contest:type_name -> contest.FullContent
-	18,  // 87: contest.GetContestWithCategoryResponse.contest:type_name -> contest.FullContent
-	4,   // 88: contest.Contest.AddContest:input_type -> contest.AddContestRequest
-	26,  // 89: contest.Contest.GetContestByID:input_type -> contest.GetContestByIDRequest
-	30,  // 90: contest.Contest.GetContestsByPersonID:input_type -> contest.GetContestByPersonIDRequest
-	42,  // 91: contest.Contest.GetContestWithEmptyCategory:input_type -> contest.GetContestWithEmptyCategoryRequest
-	44,  // 92: contest.Contest.GetContestWithCategory:input_type -> contest.GetContestWithCategoryRequest
-	31,  // 93: contest.Contest.ListContests:input_type -> contest.ListContestsRequest
-	27,  // 94: contest.Contest.ListContestsByRegion:input_type -> contest.ListContestsByRegionRequest
-	29,  // 95: contest.Contest.UpdateContest:input_type -> contest.UpdateContestRequest
-	2,   // 96: contest.Contest.AddPerson:input_type -> contest.AddPersonRequest
-	23,  // 97: contest.Contest.ListPersons:input_type -> contest.ListPersonsRequest
-	20,  // 98: contest.Contest.GetPersonByID:input_type -> contest.GetPersonByIDRequest
-	21,  // 99: contest.Contest.ListPersonsByRegion:input_type -> contest.ListPersonsByRegionRequest
-	25,  // 100: contest.Contest.UpdatePerson:input_type -> contest.UpdatePersonRequest
-	7,   // 101: contest.Contest.AddArtist:input_type -> contest.AddArtistRequest
-	33,  // 102: contest.Contest.ListArtists:input_type -> contest.ListArtistsRequest
-	35,  // 103: contest.Contest.GetArtistByID:input_type -> contest.GetArtistByIDRequest
-	10,  // 104: contest.Contest.AddSong:input_type -> contest.AddSongRequest
-	36,  // 105: contest.Contest.ListSongs:input_type -> contest.ListSongsRequest
-	38,  // 106: contest.Contest.GetSongByID:input_type -> contest.GetSongByIDRequest
-	13,  // 107: contest.Contest.AddLitWork:input_type -> contest.AddLitWorkRequest
-	39,  // 108: contest.Contest.ListLitWorks:input_type -> contest.ListLitWorksRequest
-	41,  // 109: contest.Contest.GetLitWorkByID:input_type -> contest.GetLitWorkByIDRequest
-	5,   // 110: contest.Contest.AddContest:output_type -> contest.AddContestResponse
-	5,   // 111: contest.Contest.GetContestByID:output_type -> contest.AddContestResponse
-	5,   // 112: contest.Contest.GetContestsByPersonID:output_type -> contest.AddContestResponse
-	43,  // 113: contest.Contest.GetContestWithEmptyCategory:output_type -> contest.GetContestWithEmptyCategoryResponse
-	45,  // 114: contest.Contest.GetContestWithCategory:output_type -> contest.GetContestWithCategoryResponse
-	32,  // 115: contest.Contest.ListContests:output_type -> contest.ListContestsResponse
-	28,  // 116: contest.Contest.ListContestsByRegion:output_type -> contest.ListContestsByRegionResponse
-	5,   // 117: contest.Contest.UpdateContest:output_type -> contest.AddContestResponse
-	3,   // 118: contest.Contest.AddPerson:output_type -> contest.AddPersonResponse
-	24,  // 119: contest.Contest.ListPersons:output_type -> contest.ListPersonsResponse
-	1,   // 120: contest.Contest.GetPersonByID:output_type -> contest.Person
-	22,  // 121: contest.Contest.ListPersonsByRegion:output_type -> contest.ListPersonsByRegionResponse
-	1,   // 122: contest.Contest.UpdatePerson:output_type -> contest.Person
-	8,   // 123: contest.Contest.AddArtist:output_type -> contest.AddArtistResponse
-	34,  // 124: contest.Contest.ListArtists:output_type -> contest.ListArtistsResponse
-	8,   // 125: contest.Contest.GetArtistByID:output_type -> contest.AddArtistResponse
-	11,  // 126: contest.Contest.AddSong:output_type -> contest.AddSongResponse
-	37,  // 127: contest.Contest.ListSongs:output_type -> contest.ListSongsResponse
-	11,  // 128: contest.Contest.GetSongByID:output_type -> contest.AddSongResponse
-	14,  // 129: contest.Contest.AddLitWork:output_type -> contest.AddLitWorkResponse
-	40,  // 130: contest.Contest.ListLitWorks:output_type -> contest.ListLitWorksResponse
-	14,  // 131: contest.Contest.GetLitWorkByID:output_type -> contest.AddLitWorkResponse
-	110, // [110:132] is the sub-list for method output_type
-	88,  // [88:110] is the sub-list for method input_type
-	88,  // [88:88] is the sub-list for extension type_name
-	88,  // [88:88] is the sub-list for extension extendee
-	0,   // [0:88] is the sub-list for field type_name
+	1,   // 56: contest.FullContent.author:type_name -> contest.Person
+	17,  // 57: contest.FullContent.rate_book:type_name -> contest.RateBook
+	9,   // 58: contest.FullContent.song:type_name -> contest.Song
+	6,   // 59: contest.FullContent.artist_song_own:type_name -> contest.Artist
+	16,  // 60: contest.FullContent.rate_book_song_own:type_name -> contest.Rate
+	12,  // 61: contest.FullContent.lit_work:type_name -> contest.LitWork
+	6,   // 62: contest.FullContent.artist_song_remake:type_name -> contest.Artist
+	16,  // 63: contest.FullContent.rate_book_song_remake:type_name -> contest.Rate
+	46,  // 64: contest.FullContent.created:type_name -> google.protobuf.Timestamp
+	46,  // 65: contest.FullContent.updated:type_name -> google.protobuf.Timestamp
+	46,  // 66: contest.FullContent.expires:type_name -> google.protobuf.Timestamp
+	1,   // 67: contest.Team.person:type_name -> contest.Person
+	46,  // 68: contest.Team.created:type_name -> google.protobuf.Timestamp
+	46,  // 69: contest.Team.updated:type_name -> google.protobuf.Timestamp
+	46,  // 70: contest.Team.expires:type_name -> google.protobuf.Timestamp
+	1,   // 71: contest.ListPersonsByRegionResponse.persons:type_name -> contest.Person
+	1,   // 72: contest.ListPersonsResponse.persons:type_name -> contest.Person
+	46,  // 73: contest.UpdatePersonRequest.created:type_name -> google.protobuf.Timestamp
+	46,  // 74: contest.UpdatePersonRequest.updated:type_name -> google.protobuf.Timestamp
+	46,  // 75: contest.UpdatePersonRequest.expires:type_name -> google.protobuf.Timestamp
+	5,   // 76: contest.ListContestsByRegionResponse.contests:type_name -> contest.AddContestResponse
+	46,  // 77: contest.UpdateContestRequest.date:type_name -> google.protobuf.Timestamp
+	46,  // 78: contest.UpdateContestRequest.created:type_name -> google.protobuf.Timestamp
+	46,  // 79: contest.UpdateContestRequest.updated:type_name -> google.protobuf.Timestamp
+	46,  // 80: contest.UpdateContestRequest.expires:type_name -> google.protobuf.Timestamp
+	18,  // 81: contest.ListContestsResponse.contests:type_name -> contest.FullContent
+	8,   // 82: contest.ListArtistsResponse.artists:type_name -> contest.AddArtistResponse
+	11,  // 83: contest.ListSongsResponse.songs:type_name -> contest.AddSongResponse
+	14,  // 84: contest.ListLitWorksResponse.lit_works:type_name -> contest.AddLitWorkResponse
+	18,  // 85: contest.GetContestWithEmptyCategoryResponse.contest:type_name -> contest.FullContent
+	18,  // 86: contest.GetContestWithCategoryResponse.contest:type_name -> contest.FullContent
+	4,   // 87: contest.Contest.AddContest:input_type -> contest.AddContestRequest
+	26,  // 88: contest.Contest.GetContestByID:input_type -> contest.GetContestByIDRequest
+	30,  // 89: contest.Contest.GetContestsByPersonID:input_type -> contest.GetContestByPersonIDRequest
+	42,  // 90: contest.Contest.GetContestWithEmptyCategory:input_type -> contest.GetContestWithEmptyCategoryRequest
+	44,  // 91: contest.Contest.GetContestWithCategory:input_type -> contest.GetContestWithCategoryRequest
+	31,  // 92: contest.Contest.ListContests:input_type -> contest.ListContestsRequest
+	27,  // 93: contest.Contest.ListContestsByRegion:input_type -> contest.ListContestsByRegionRequest
+	29,  // 94: contest.Contest.UpdateContest:input_type -> contest.UpdateContestRequest
+	2,   // 95: contest.Contest.AddPerson:input_type -> contest.AddPersonRequest
+	23,  // 96: contest.Contest.ListPersons:input_type -> contest.ListPersonsRequest
+	20,  // 97: contest.Contest.GetPersonByID:input_type -> contest.GetPersonByIDRequest
+	21,  // 98: contest.Contest.ListPersonsByRegion:input_type -> contest.ListPersonsByRegionRequest
+	25,  // 99: contest.Contest.UpdatePerson:input_type -> contest.UpdatePersonRequest
+	7,   // 100: contest.Contest.AddArtist:input_type -> contest.AddArtistRequest
+	33,  // 101: contest.Contest.ListArtists:input_type -> contest.ListArtistsRequest
+	35,  // 102: contest.Contest.GetArtistByID:input_type -> contest.GetArtistByIDRequest
+	10,  // 103: contest.Contest.AddSong:input_type -> contest.AddSongRequest
+	36,  // 104: contest.Contest.ListSongs:input_type -> contest.ListSongsRequest
+	38,  // 105: contest.Contest.GetSongByID:input_type -> contest.GetSongByIDRequest
+	13,  // 106: contest.Contest.AddLitWork:input_type -> contest.AddLitWorkRequest
+	39,  // 107: contest.Contest.ListLitWorks:input_type -> contest.ListLitWorksRequest
+	41,  // 108: contest.Contest.GetLitWorkByID:input_type -> contest.GetLitWorkByIDRequest
+	5,   // 109: contest.Contest.AddContest:output_type -> contest.AddContestResponse
+	5,   // 110: contest.Contest.GetContestByID:output_type -> contest.AddContestResponse
+	5,   // 111: contest.Contest.GetContestsByPersonID:output_type -> contest.AddContestResponse
+	43,  // 112: contest.Contest.GetContestWithEmptyCategory:output_type -> contest.GetContestWithEmptyCategoryResponse
+	45,  // 113: contest.Contest.GetContestWithCategory:output_type -> contest.GetContestWithCategoryResponse
+	32,  // 114: contest.Contest.ListContests:output_type -> contest.ListContestsResponse
+	28,  // 115: contest.Contest.ListContestsByRegion:output_type -> contest.ListContestsByRegionResponse
+	5,   // 116: contest.Contest.UpdateContest:output_type -> contest.AddContestResponse
+	3,   // 117: contest.Contest.AddPerson:output_type -> contest.AddPersonResponse
+	24,  // 118: contest.Contest.ListPersons:output_type -> contest.ListPersonsResponse
+	1,   // 119: contest.Contest.GetPersonByID:output_type -> contest.Person
+	22,  // 120: contest.Contest.ListPersonsByRegion:output_type -> contest.ListPersonsByRegionResponse
+	1,   // 121: contest.Contest.UpdatePerson:output_type -> contest.Person
+	8,   // 122: contest.Contest.AddArtist:output_type -> contest.AddArtistResponse
+	34,  // 123: contest.Contest.ListArtists:output_type -> contest.ListArtistsResponse
+	8,   // 124: contest.Contest.GetArtistByID:output_type -> contest.AddArtistResponse
+	11,  // 125: contest.Contest.AddSong:output_type -> contest.AddSongResponse
+	37,  // 126: contest.Contest.ListSongs:output_type -> contest.ListSongsResponse
+	11,  // 127: contest.Contest.GetSongByID:output_type -> contest.AddSongResponse
+	14,  // 128: contest.Contest.AddLitWork:output_type -> contest.AddLitWorkResponse
+	40,  // 129: contest.Contest.ListLitWorks:output_type -> contest.ListLitWorksResponse
+	14,  // 130: contest.Contest.GetLitWorkByID:output_type -> contest.AddLitWorkResponse
+	109, // [109:131] is the sub-list for method output_type
+	87,  // [87:109] is the sub-list for method input_type
+	87,  // [87:87] is the sub-list for extension type_name
+	87,  // [87:87] is the sub-list for extension extendee
+	0,   // [0:87] is the sub-list for field type_name
 }
 
 func init() { file_contest_proto_init() }
