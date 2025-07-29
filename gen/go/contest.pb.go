@@ -31,22 +31,23 @@ type FullContent struct {
 	Date               *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
 	Competition        string                 `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
 	CompetitionId      string                 `protobuf:"bytes,4,opt,name=competition_id,json=competitionId,proto3" json:"competition_id,omitempty"`
-	Author             *Person                `protobuf:"bytes,5,opt,name=author,proto3" json:"author,omitempty"`
-	RateBook           *RateBook              `protobuf:"bytes,6,opt,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
-	Song               []*Song                `protobuf:"bytes,7,rep,name=song,proto3" json:"song,omitempty"`
-	ArtistSongOwn      []*Artist              `protobuf:"bytes,8,rep,name=artist_song_own,json=artistSongOwn,proto3" json:"artist_song_own,omitempty"`
-	RateBookSongOwn    []*Rate                `protobuf:"bytes,9,rep,name=rate_book_song_own,json=rateBookSongOwn,proto3" json:"rate_book_song_own,omitempty"`
-	LitWork            []*LitWork             `protobuf:"bytes,10,rep,name=lit_work,json=litWork,proto3" json:"lit_work,omitempty"`
-	ArtistSongRemake   []*Artist              `protobuf:"bytes,11,rep,name=artist_song_remake,json=artistSongRemake,proto3" json:"artist_song_remake,omitempty"`
-	RateBookSongRemake []*Rate                `protobuf:"bytes,12,rep,name=rate_book_song_remake,json=rateBookSongRemake,proto3" json:"rate_book_song_remake,omitempty"`
-	Sort               int32                  `protobuf:"varint,13,opt,name=sort,proto3" json:"sort,omitempty"`
-	Status             int32                  `protobuf:"varint,14,opt,name=status,proto3" json:"status,omitempty"`
-	Active             bool                   `protobuf:"varint,15,opt,name=active,proto3" json:"active,omitempty"`
-	AppId              string                 `protobuf:"bytes,16,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
-	OwnerId            string                 `protobuf:"bytes,17,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created            *timestamppb.Timestamp `protobuf:"bytes,18,opt,name=created,proto3" json:"created,omitempty"`
-	Updated            *timestamppb.Timestamp `protobuf:"bytes,19,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires            *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=expires,proto3" json:"expires,omitempty"`
+	Category           string                 `protobuf:"bytes,5,opt,name=category,proto3" json:"category,omitempty"`
+	Author             *Person                `protobuf:"bytes,6,opt,name=author,proto3" json:"author,omitempty"`
+	RateBook           *RateBook              `protobuf:"bytes,7,opt,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
+	Song               []*Song                `protobuf:"bytes,8,rep,name=song,proto3" json:"song,omitempty"`
+	ArtistSongOwn      []*Artist              `protobuf:"bytes,9,rep,name=artist_song_own,json=artistSongOwn,proto3" json:"artist_song_own,omitempty"`
+	RateBookSongOwn    []*Rate                `protobuf:"bytes,10,rep,name=rate_book_song_own,json=rateBookSongOwn,proto3" json:"rate_book_song_own,omitempty"`
+	LitWork            []*LitWork             `protobuf:"bytes,11,rep,name=lit_work,json=litWork,proto3" json:"lit_work,omitempty"`
+	ArtistSongRemake   []*Artist              `protobuf:"bytes,12,rep,name=artist_song_remake,json=artistSongRemake,proto3" json:"artist_song_remake,omitempty"`
+	RateBookSongRemake []*Rate                `protobuf:"bytes,13,rep,name=rate_book_song_remake,json=rateBookSongRemake,proto3" json:"rate_book_song_remake,omitempty"`
+	Sort               int32                  `protobuf:"varint,14,opt,name=sort,proto3" json:"sort,omitempty"`
+	Status             int32                  `protobuf:"varint,15,opt,name=status,proto3" json:"status,omitempty"`
+	Active             bool                   `protobuf:"varint,16,opt,name=active,proto3" json:"active,omitempty"`
+	AppId              string                 `protobuf:"bytes,17,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
+	OwnerId            string                 `protobuf:"bytes,18,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created            *timestamppb.Timestamp `protobuf:"bytes,19,opt,name=created,proto3" json:"created,omitempty"`
+	Updated            *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires            *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=expires,proto3" json:"expires,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -105,6 +106,13 @@ func (x *FullContent) GetCompetition() string {
 func (x *FullContent) GetCompetitionId() string {
 	if x != nil {
 		return x.CompetitionId
+	}
+	return ""
+}
+
+func (x *FullContent) GetCategory() string {
+	if x != nil {
+		return x.Category
 	}
 	return ""
 }
@@ -5400,29 +5408,30 @@ var File_contest_proto protoreflect.FileDescriptor
 
 const file_contest_proto_rawDesc = "" +
 	"\n" +
-	"\rcontest.proto\x12\acontest\x1a\x1fgoogle/protobuf/timestamp.proto\"\xcd\x06\n" +
+	"\rcontest.proto\x12\acontest\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe9\x06\n" +
 	"\vFullContent\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12 \n" +
 	"\vcompetition\x18\x03 \x01(\tR\vcompetition\x12%\n" +
-	"\x0ecompetition_id\x18\x04 \x01(\tR\rcompetitionId\x12'\n" +
-	"\x06author\x18\x05 \x01(\v2\x0f.contest.PersonR\x06author\x12.\n" +
-	"\trate_book\x18\x06 \x01(\v2\x11.contest.RateBookR\brateBook\x12!\n" +
-	"\x04song\x18\a \x03(\v2\r.contest.SongR\x04song\x127\n" +
-	"\x0fartist_song_own\x18\b \x03(\v2\x0f.contest.ArtistR\rartistSongOwn\x12:\n" +
-	"\x12rate_book_song_own\x18\t \x03(\v2\r.contest.RateR\x0frateBookSongOwn\x12+\n" +
-	"\blit_work\x18\n" +
-	" \x03(\v2\x10.contest.LitWorkR\alitWork\x12=\n" +
-	"\x12artist_song_remake\x18\v \x03(\v2\x0f.contest.ArtistR\x10artistSongRemake\x12@\n" +
-	"\x15rate_book_song_remake\x18\f \x03(\v2\r.contest.RateR\x12rateBookSongRemake\x12\x12\n" +
-	"\x04sort\x18\r \x01(\x05R\x04sort\x12\x16\n" +
-	"\x06status\x18\x0e \x01(\x05R\x06status\x12\x16\n" +
-	"\x06active\x18\x0f \x01(\bR\x06active\x12\x15\n" +
-	"\x06app_id\x18\x10 \x01(\tR\x05appId\x12\x19\n" +
-	"\bowner_id\x18\x11 \x01(\tR\aownerId\x124\n" +
-	"\acreated\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
-	"\aupdated\x18\x13 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xce\x03\n" +
+	"\x0ecompetition_id\x18\x04 \x01(\tR\rcompetitionId\x12\x1a\n" +
+	"\bcategory\x18\x05 \x01(\tR\bcategory\x12'\n" +
+	"\x06author\x18\x06 \x01(\v2\x0f.contest.PersonR\x06author\x12.\n" +
+	"\trate_book\x18\a \x01(\v2\x11.contest.RateBookR\brateBook\x12!\n" +
+	"\x04song\x18\b \x03(\v2\r.contest.SongR\x04song\x127\n" +
+	"\x0fartist_song_own\x18\t \x03(\v2\x0f.contest.ArtistR\rartistSongOwn\x12:\n" +
+	"\x12rate_book_song_own\x18\n" +
+	" \x03(\v2\r.contest.RateR\x0frateBookSongOwn\x12+\n" +
+	"\blit_work\x18\v \x03(\v2\x10.contest.LitWorkR\alitWork\x12=\n" +
+	"\x12artist_song_remake\x18\f \x03(\v2\x0f.contest.ArtistR\x10artistSongRemake\x12@\n" +
+	"\x15rate_book_song_remake\x18\r \x03(\v2\r.contest.RateR\x12rateBookSongRemake\x12\x12\n" +
+	"\x04sort\x18\x0e \x01(\x05R\x04sort\x12\x16\n" +
+	"\x06status\x18\x0f \x01(\x05R\x06status\x12\x16\n" +
+	"\x06active\x18\x10 \x01(\bR\x06active\x12\x15\n" +
+	"\x06app_id\x18\x11 \x01(\tR\x05appId\x12\x19\n" +
+	"\bowner_id\x18\x12 \x01(\tR\aownerId\x124\n" +
+	"\acreated\x18\x13 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
+	"\aexpires\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xce\x03\n" +
 	"\x06Person\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +

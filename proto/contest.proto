@@ -75,22 +75,23 @@ message FullContent {
   google.protobuf.Timestamp date = 2;
   string competition = 3;
   string competition_id = 4;
-  Person author = 5;
-  RateBook rate_book = 6;
-  repeated Song song = 7;
-  repeated Artist artist_song_own = 8;
-  repeated Rate rate_book_song_own = 9;
-  repeated LitWork lit_work = 10;
-  repeated Artist artist_song_remake = 11;
-  repeated Rate rate_book_song_remake = 12;
-  int32 sort = 13;
-  int32 status = 14;
-  bool active = 15;
-  string app_id = 16;
-  string owner_id = 17;
-  google.protobuf.Timestamp created = 18;
-  google.protobuf.Timestamp updated = 19;
-  google.protobuf.Timestamp expires = 20;
+  string category = 5;
+  Person author = 6;
+  RateBook rate_book = 7;
+  repeated Song song = 8;
+  repeated Artist artist_song_own = 9;
+  repeated Rate rate_book_song_own = 10;
+  repeated LitWork lit_work = 11;
+  repeated Artist artist_song_remake = 12;
+  repeated Rate rate_book_song_remake = 13;
+  int32 sort = 14;
+  int32 status = 15;
+  bool active = 16;
+  string app_id = 17;
+  string owner_id = 18;
+  google.protobuf.Timestamp created = 19;
+  google.protobuf.Timestamp updated = 20;
+  google.protobuf.Timestamp expires = 21;
 }
 // Person
 message Person {
