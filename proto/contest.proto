@@ -321,6 +321,7 @@ message ListContestsByRegionRequest {
 }
 message ListContestsByRegionResponse {
   repeated FullContent contests = 1;
+  int32 total = 2; // <-- всего заявок по этому competition
 }
 // CONTESTS = UPDATE
 message UpdateContestRequest {

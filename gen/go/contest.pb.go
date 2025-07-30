@@ -2266,6 +2266,7 @@ func (x *ListContestsByRegionRequest) GetCompetition() string {
 type ListContestsByRegionResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Contests      []*FullContent         `protobuf:"bytes,1,rep,name=contests,proto3" json:"contests,omitempty"`
+	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"` // <-- всего заявок по этому competition
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2305,6 +2306,13 @@ func (x *ListContestsByRegionResponse) GetContests() []*FullContent {
 		return x.Contests
 	}
 	return nil
+}
+
+func (x *ListContestsByRegionResponse) GetTotal() int32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
 }
 
 // CONTESTS = UPDATE
@@ -5695,9 +5703,10 @@ const file_contest_proto_rawDesc = "" +
 	"\x06region\x18\x01 \x01(\tR\x06region\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x03 \x01(\x05R\x06offset\x12 \n" +
-	"\vcompetition\x18\x04 \x01(\tR\vcompetition\"P\n" +
+	"\vcompetition\x18\x04 \x01(\tR\vcompetition\"f\n" +
 	"\x1cListContestsByRegionResponse\x120\n" +
-	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\"\xd2\x04\n" +
+	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"\xd2\x04\n" +
 	"\x14UpdateContestRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12 \n" +
