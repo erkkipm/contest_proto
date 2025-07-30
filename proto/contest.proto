@@ -294,10 +294,13 @@ message GetContestWithEmptyCategoryResponse {
 // CONTESTS = LIST = By Category
 message ListContestsByCategoryRequest {
   string category = 1;
-  string competition = 2;
+  int32 limit = 2;   // сколько заявок за раз (например, 50)
+  int32 offset = 3;  // с какой позиции (например, 0, 50, 100)
+  string competition = 4;
 }
 message ListContestsByCategoryResponse {
   repeated FullContent contests = 1;
+  int32 total = 2; // <-- всего заявок по этому competition
 }
 // CONTESTS = LIST
 message ListContestsRequest {
@@ -307,6 +310,7 @@ message ListContestsRequest {
 }
 message ListContestsResponse {
   repeated FullContent contests = 1;
+  int32 total = 2; // <-- всего заявок по этому competition
 }
 // CONTESTS = LIST = By Region
 message ListContestsByRegionRequest {

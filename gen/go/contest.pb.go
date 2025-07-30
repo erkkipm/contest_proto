@@ -1964,7 +1964,9 @@ func (x *GetContestWithEmptyCategoryResponse) GetContest() *FullContent {
 type ListContestsByCategoryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Category      string                 `protobuf:"bytes,1,opt,name=category,proto3" json:"category,omitempty"`
-	Competition   string                 `protobuf:"bytes,2,opt,name=competition,proto3" json:"competition,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`   // сколько заявок за раз (например, 50)
+	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"` // с какой позиции (например, 0, 50, 100)
+	Competition   string                 `protobuf:"bytes,4,opt,name=competition,proto3" json:"competition,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2006,6 +2008,20 @@ func (x *ListContestsByCategoryRequest) GetCategory() string {
 	return ""
 }
 
+func (x *ListContestsByCategoryRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListContestsByCategoryRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
 func (x *ListContestsByCategoryRequest) GetCompetition() string {
 	if x != nil {
 		return x.Competition
@@ -2016,6 +2032,7 @@ func (x *ListContestsByCategoryRequest) GetCompetition() string {
 type ListContestsByCategoryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Contests      []*FullContent         `protobuf:"bytes,1,rep,name=contests,proto3" json:"contests,omitempty"`
+	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"` // <-- всего заявок по этому competition
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2055,6 +2072,13 @@ func (x *ListContestsByCategoryResponse) GetContests() []*FullContent {
 		return x.Contests
 	}
 	return nil
+}
+
+func (x *ListContestsByCategoryResponse) GetTotal() int32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
 }
 
 // CONTESTS = LIST
@@ -2121,6 +2145,7 @@ func (x *ListContestsRequest) GetOffset() int32 {
 type ListContestsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Contests      []*FullContent         `protobuf:"bytes,1,rep,name=contests,proto3" json:"contests,omitempty"`
+	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"` // <-- всего заявок по этому competition
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2160,6 +2185,13 @@ func (x *ListContestsResponse) GetContests() []*FullContent {
 		return x.Contests
 	}
 	return nil
+}
+
+func (x *ListContestsResponse) GetTotal() int32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
 }
 
 // CONTESTS = LIST = By Region
@@ -5643,18 +5675,22 @@ const file_contest_proto_rawDesc = "" +
 	"\"GetContestWithEmptyCategoryRequest\x12%\n" +
 	"\x0ecompetition_id\x18\x01 \x01(\tR\rcompetitionId\"U\n" +
 	"#GetContestWithEmptyCategoryResponse\x12.\n" +
-	"\acontest\x18\x01 \x01(\v2\x14.contest.FullContentR\acontest\"]\n" +
+	"\acontest\x18\x01 \x01(\v2\x14.contest.FullContentR\acontest\"\x8b\x01\n" +
 	"\x1dListContestsByCategoryRequest\x12\x1a\n" +
-	"\bcategory\x18\x01 \x01(\tR\bcategory\x12 \n" +
-	"\vcompetition\x18\x02 \x01(\tR\vcompetition\"R\n" +
+	"\bcategory\x18\x01 \x01(\tR\bcategory\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\x12 \n" +
+	"\vcompetition\x18\x04 \x01(\tR\vcompetition\"h\n" +
 	"\x1eListContestsByCategoryResponse\x120\n" +
-	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\"e\n" +
+	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"e\n" +
 	"\x13ListContestsRequest\x12 \n" +
 	"\vcompetition\x18\x01 \x01(\tR\vcompetition\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x05R\x06offset\"H\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\"^\n" +
 	"\x14ListContestsResponse\x120\n" +
-	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\"\x85\x01\n" +
+	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"\x85\x01\n" +
 	"\x1bListContestsByRegionRequest\x12\x16\n" +
 	"\x06region\x18\x01 \x01(\tR\x06region\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
