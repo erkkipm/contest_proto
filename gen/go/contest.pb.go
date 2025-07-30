@@ -2061,6 +2061,8 @@ func (x *ListContestsByCategoryResponse) GetContests() []*FullContent {
 type ListContestsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Competition   string                 `protobuf:"bytes,1,opt,name=competition,proto3" json:"competition,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`   // сколько заявок за раз (например, 50)
+	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"` // с какой позиции (например, 0, 50, 100)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2100,6 +2102,20 @@ func (x *ListContestsRequest) GetCompetition() string {
 		return x.Competition
 	}
 	return ""
+}
+
+func (x *ListContestsRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListContestsRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
 }
 
 type ListContestsResponse struct {
@@ -2150,7 +2166,9 @@ func (x *ListContestsResponse) GetContests() []*FullContent {
 type ListContestsByRegionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Region        string                 `protobuf:"bytes,1,opt,name=region,proto3" json:"region,omitempty"`
-	Competition   string                 `protobuf:"bytes,2,opt,name=competition,proto3" json:"competition,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`   // сколько заявок за раз (например, 50)
+	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"` // с какой позиции (например, 0, 50, 100)
+	Competition   string                 `protobuf:"bytes,4,opt,name=competition,proto3" json:"competition,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2190,6 +2208,20 @@ func (x *ListContestsByRegionRequest) GetRegion() string {
 		return x.Region
 	}
 	return ""
+}
+
+func (x *ListContestsByRegionRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListContestsByRegionRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
 }
 
 func (x *ListContestsByRegionRequest) GetCompetition() string {
@@ -5616,14 +5648,18 @@ const file_contest_proto_rawDesc = "" +
 	"\bcategory\x18\x01 \x01(\tR\bcategory\x12 \n" +
 	"\vcompetition\x18\x02 \x01(\tR\vcompetition\"R\n" +
 	"\x1eListContestsByCategoryResponse\x120\n" +
-	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\"7\n" +
+	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\"e\n" +
 	"\x13ListContestsRequest\x12 \n" +
-	"\vcompetition\x18\x01 \x01(\tR\vcompetition\"H\n" +
+	"\vcompetition\x18\x01 \x01(\tR\vcompetition\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\"H\n" +
 	"\x14ListContestsResponse\x120\n" +
-	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\"W\n" +
+	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\"\x85\x01\n" +
 	"\x1bListContestsByRegionRequest\x12\x16\n" +
-	"\x06region\x18\x01 \x01(\tR\x06region\x12 \n" +
-	"\vcompetition\x18\x02 \x01(\tR\vcompetition\"P\n" +
+	"\x06region\x18\x01 \x01(\tR\x06region\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\x12 \n" +
+	"\vcompetition\x18\x04 \x01(\tR\vcompetition\"P\n" +
 	"\x1cListContestsByRegionResponse\x120\n" +
 	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\"\xd2\x04\n" +
 	"\x14UpdateContestRequest\x12\x0e\n" +

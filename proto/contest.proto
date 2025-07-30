@@ -302,6 +302,8 @@ message ListContestsByCategoryResponse {
 // CONTESTS = LIST
 message ListContestsRequest {
   string competition = 1;
+  int32 limit = 2;   // сколько заявок за раз (например, 50)
+  int32 offset = 3;  // с какой позиции (например, 0, 50, 100)
 }
 message ListContestsResponse {
   repeated FullContent contests = 1;
@@ -309,7 +311,9 @@ message ListContestsResponse {
 // CONTESTS = LIST = By Region
 message ListContestsByRegionRequest {
   string region = 1;
-  string competition = 2;
+  int32 limit = 2;   // сколько заявок за раз (например, 50)
+  int32 offset = 3;  // с какой позиции (например, 0, 50, 100)
+  string competition = 4;
 }
 message ListContestsByRegionResponse {
   repeated FullContent contests = 1;
