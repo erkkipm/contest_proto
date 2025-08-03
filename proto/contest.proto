@@ -389,8 +389,6 @@ message SetRateInContestResponse {
 }
 
 
-
-
 // PERSON
 
 // PERSON = ADD
