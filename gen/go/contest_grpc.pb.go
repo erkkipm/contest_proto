@@ -29,6 +29,7 @@ const (
 	Contest_ListContestsByCategory_FullMethodName      = "/contest.Contest/ListContestsByCategory"
 	Contest_ListContestsByRegion_FullMethodName        = "/contest.Contest/ListContestsByRegion"
 	Contest_UpdateContest_FullMethodName               = "/contest.Contest/UpdateContest"
+	Contest_SetRateInContest_FullMethodName            = "/contest.Contest/SetRateInContest"
 	Contest_AddPerson_FullMethodName                   = "/contest.Contest/AddPerson"
 	Contest_GetPersonByID_FullMethodName               = "/contest.Contest/GetPersonByID"
 	Contest_ListPersons_FullMethodName                 = "/contest.Contest/ListPersons"
@@ -68,6 +69,8 @@ type ContestClient interface {
 	ListContestsByRegion(ctx context.Context, in *ListContestsByRegionRequest, opts ...grpc.CallOption) (*ListContestsByRegionResponse, error)
 	// CONTESTS = UPDATE
 	UpdateContest(ctx context.Context, in *UpdateContestRequest, opts ...grpc.CallOption) (*UpdateContestResponse, error)
+	// CONTESTS = SET RATE
+	SetRateInContest(ctx context.Context, in *SetRateInContestRequest, opts ...grpc.CallOption) (*SetRateInContestResponse, error)
 	// ==== ПЕРСОНА ====
 	// PERSON = ADD
 	AddPerson(ctx context.Context, in *AddPersonRequest, opts ...grpc.CallOption) (*AddPersonResponse, error)
@@ -185,6 +188,16 @@ func (c *contestClient) UpdateContest(ctx context.Context, in *UpdateContestRequ
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpdateContestResponse)
 	err := c.cc.Invoke(ctx, Contest_UpdateContest_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contestClient) SetRateInContest(ctx context.Context, in *SetRateInContestRequest, opts ...grpc.CallOption) (*SetRateInContestResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetRateInContestResponse)
+	err := c.cc.Invoke(ctx, Contest_SetRateInContest_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -354,6 +367,8 @@ type ContestServer interface {
 	ListContestsByRegion(context.Context, *ListContestsByRegionRequest) (*ListContestsByRegionResponse, error)
 	// CONTESTS = UPDATE
 	UpdateContest(context.Context, *UpdateContestRequest) (*UpdateContestResponse, error)
+	// CONTESTS = SET RATE
+	SetRateInContest(context.Context, *SetRateInContestRequest) (*SetRateInContestResponse, error)
 	// ==== ПЕРСОНА ====
 	// PERSON = ADD
 	AddPerson(context.Context, *AddPersonRequest) (*AddPersonResponse, error)
@@ -420,6 +435,9 @@ func (UnimplementedContestServer) ListContestsByRegion(context.Context, *ListCon
 }
 func (UnimplementedContestServer) UpdateContest(context.Context, *UpdateContestRequest) (*UpdateContestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateContest not implemented")
+}
+func (UnimplementedContestServer) SetRateInContest(context.Context, *SetRateInContestRequest) (*SetRateInContestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetRateInContest not implemented")
 }
 func (UnimplementedContestServer) AddPerson(context.Context, *AddPersonRequest) (*AddPersonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddPerson not implemented")
@@ -624,6 +642,24 @@ func _Contest_UpdateContest_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ContestServer).UpdateContest(ctx, req.(*UpdateContestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Contest_SetRateInContest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetRateInContestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).SetRateInContest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_SetRateInContest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).SetRateInContest(ctx, req.(*SetRateInContestRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -918,6 +954,10 @@ var Contest_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateContest",
 			Handler:    _Contest_UpdateContest_Handler,
+		},
+		{
+			MethodName: "SetRateInContest",
+			Handler:    _Contest_SetRateInContest_Handler,
 		},
 		{
 			MethodName: "AddPerson",
