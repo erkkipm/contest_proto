@@ -79,13 +79,11 @@ message FullContent {
   string competition_id = 4;
   string category = 5;
   Person author = 6;
-  RateBook rate_book = 7;
   repeated Song song = 8;
   repeated Artist artist_song_own = 9;
-  repeated Rate rate_book_song_own = 10;
   repeated LitWork lit_work = 11;
   repeated Artist artist_song_remake = 12;
-  repeated Rate rate_book_song_remake = 13;
+  repeated Rate rate = 13;
   int32 sort = 14;
   int32 status = 15;
   bool active = 16;
@@ -94,7 +92,7 @@ message FullContent {
   google.protobuf.Timestamp created = 19;
   google.protobuf.Timestamp updated = 20;
   google.protobuf.Timestamp expires = 21;
-  Rate rate = 22;
+
 }
 // Person
 message Person {
