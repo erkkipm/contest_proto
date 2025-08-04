@@ -28,7 +28,7 @@ service Contest{
   //  CONTESTS = UPDATE
   rpc UpdateContest (UpdateContestRequest) returns (UpdateContestResponse);
   //  CONTESTS = SET RATE
-  rpc SetRateInContest (SetRateInContestRequest) returns (SetRateInContestResponse);
+  rpc UpdateContestAddRate (UpdateContestAddRateRequest) returns (UpdateContestAddRateResponse);
 
   // ==== ПЕРСОНА ====
   // PERSON = ADD
@@ -364,27 +364,13 @@ message UpdateContestResponse {
   google.protobuf.Timestamp expires = 17;
 }
 // CONTESTS = SET RATE
-message SetRateInContestRequest {
+message UpdateContestAddRateRequest {
   string id = 1;
   Rate rate = 2;
 }
-message SetRateInContestResponse {
+message UpdateContestAddRateResponse {
   string id = 1;
-  google.protobuf.Timestamp date = 2;
-  string competition = 3;
-  string author_id = 5;
-  string artist_id = 6;
-  string song_own_id = 7;
-  string song_remake_id = 8;
-  string lit_work_id = 9;
-  int32 sort = 10;
-  repeated string rate_book = 11;
-  int32 status = 12;
-  bool active = 13;
-  string owner_id = 14;
-  google.protobuf.Timestamp created = 15;
-  google.protobuf.Timestamp updated = 16;
-  google.protobuf.Timestamp expires = 17;
+  FullContent full_contest = 2;
   string message = 18;
 }
 
