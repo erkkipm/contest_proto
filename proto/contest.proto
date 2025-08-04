@@ -94,6 +94,7 @@ message FullContent {
   google.protobuf.Timestamp created = 19;
   google.protobuf.Timestamp updated = 20;
   google.protobuf.Timestamp expires = 21;
+  Rate rate = 22;
 }
 // Person
 message Person {
