@@ -12,27 +12,27 @@ import "google/protobuf/timestamp.proto";
 service Contest{
   // ==== ЗАЯВКИ ====
   // CONTEST = ADD
-  rpc AddContest (AddContestRequest) returns (AddContestResponse);
+  rpc AddContest (AddContestRequest) returns (AddContestResponse); // Используется в grpc_contest.go
   // CONTEST = GET = ByID
   rpc GetContestByID (GetContestByIDRequest) returns (GetContestByIDResponse);
   // CONTEST = GET = ByPerson
   rpc GetContestsByPersonID (GetContestByPersonIDRequest) returns (GetContestsByPersonIDResponse);
   // CONTEST = GET = With Empty Category \\ с пустой категорией
-  rpc GetContestWithEmptyCategory(GetContestWithEmptyCategoryRequest) returns (GetContestWithEmptyCategoryResponse);
+  rpc GetContestWithEmptyCategory(GetContestWithEmptyCategoryRequest) returns (GetContestWithEmptyCategoryResponse); // Используется в grpc_contest.go
   // CONTESTS = LIST || все заявки
-  rpc ListContests(ListContestsRequest) returns (ListContestsResponse);
+  rpc ListContests(ListContestsRequest) returns (ListContestsResponse); // Используется в grpc_contest.go
   // CONTESTS = LIST = By Category \\ с категорией
-  rpc ListContestsByCategory(ListContestsByCategoryRequest) returns (ListContestsByCategoryResponse);
+  rpc ListContestsByCategory(ListContestsByCategoryRequest) returns (ListContestsByCategoryResponse); // Используется в grpc_contest.go
   // CONTESTS = LIST = By Region
   rpc ListContestsByRegion (ListContestsByRegionRequest) returns (ListContestsByRegionResponse);
   //  CONTESTS = UPDATE
-  rpc UpdateContest (UpdateContestRequest) returns (UpdateContestResponse);
+  rpc UpdateContest (UpdateContestRequest) returns (UpdateContestResponse); // Используется в grpc_contest.go
   //  CONTESTS = SET RATE
-  rpc UpdateContestAddRate (UpdateContestAddRateRequest) returns (UpdateContestAddRateResponse);
+  rpc UpdateContestAddRate (UpdateContestAddRateRequest) returns (UpdateContestAddRateResponse); // Используется в grpc_contest.go
 
   // ==== ПЕРСОНА ====
   // PERSON = ADD
-  rpc AddPerson (AddPersonRequest) returns (AddPersonResponse);
+  rpc AddPerson (AddPersonRequest) returns (AddPersonResponse); // Используется в grpc_person.go
   //  PERSON = GET = ByID //  Получение данных персоны по ID
   rpc GetPersonByID (GetPersonByIDRequest) returns (GetPersonByIDResponse);
   //  PERSON = LIST
@@ -44,33 +44,58 @@ service Contest{
 
   //  ==== АРТИСТ ====
   // ДОБАВИТЬ
-  rpc AddArtist (AddArtistRequest) returns (AddArtistResponse);
+  rpc AddArtist (AddArtistRequest) returns (AddArtistResponse); // Используется в grpc_artist.go
   //  СПИСОК
   rpc ListArtists (ListArtistsRequest) returns (ListArtistsResponse);
   //  ПОЛУЧИТЬ
   rpc GetArtistByID (GetArtistByIDRequest) returns (GetArtistByIDResponse);
+  //  PERSON = UPDATE
+  rpc UpdateArtist (UpdateArtistRequest) returns (UpdateArtistResponse);
 
   // ==== ПЕСНЯ =====
   // ДОБАВИТЬ
-  rpc AddSong (AddSongRequest) returns (AddSongResponse);
+  rpc AddSong (AddSongRequest) returns (AddSongResponse); // Используется в grpc_song.go
   //  СПИСОК
   rpc ListSongs (ListSongsRequest) returns (ListSongsResponse);
   //  ПОЛУЧИТЬ
   rpc GetSongByID (GetSongByIDRequest) returns (GetSongByIDResponse);
+  //  PERSON = UPDATE
+  rpc UpdateSong (UpdateSongRequest) returns (UpdateSongResponse);
 
   // ===== ЛИТЕРАТУРНОЕ ПРОИЗВЕДЕНИЕ ====
   // ДОБАВИТЬ
-  rpc AddLitWork (AddLitWorkRequest) returns (AddLitWorkResponse);
+  rpc AddLitWork (AddLitWorkRequest) returns (AddLitWorkResponse); // Используется в grpc_song.go
   //  СПИСОК
   rpc ListLitWorks (ListLitWorksRequest) returns (ListLitWorksResponse);
   //  ПОЛУЧИТЬ
   rpc GetLitWorkByID (GetLitWorkByIDRequest) returns (GetLitWorkByIDResponse);
+  //  PERSON = UPDATE
+  rpc UpdateLitWork (UpdateLitWorkRequest) returns (UpdateLitWorkResponse);
 }
 
 // ==========
 // ==========
 // ==========
 
+// Contest
+message OneContest {
+  string id = 1;
+  google.protobuf.Timestamp date = 2;
+  string competition = 3;
+  string author_id = 5;
+  string artist_id = 6;
+  string song_own_id = 7;
+  string song_remake_id = 8;
+  string lit_work_id = 9;
+  int32 sort = 10;
+  repeated string rate_book = 11;
+  int32 status = 12;
+  bool active = 13;
+  string owner_id = 14;
+  google.protobuf.Timestamp created = 15;
+  google.protobuf.Timestamp updated = 16;
+  google.protobuf.Timestamp expires = 17;
+}
 // FullContent ... полная заявка
 message FullContent {
   string id = 1;
@@ -112,7 +137,7 @@ message Person {
   google.protobuf.Timestamp created = 13;
   google.protobuf.Timestamp updated = 14;
   google.protobuf.Timestamp expires = 15;
-}
+  }
 // Song
 message Song {
   string id = 1;
@@ -206,22 +231,22 @@ message LitWork {
 
 // CONTEST = ADD
 message AddContestRequest {
-  string id = 1;
-  google.protobuf.Timestamp date = 2;
-  string competition = 3;
-  string author_id = 5;
-  string artist_id = 6;
-  string song_own_id = 7;
-  string song_remake_id = 8;
-  string lit_work_id = 9;
-  int32 sort = 10;
-  repeated string rate_book = 11;
-  int32 status = 12;
-  bool active = 13;
-  string owner_id = 14;
-  google.protobuf.Timestamp created = 15;
-  google.protobuf.Timestamp updated = 16;
-  google.protobuf.Timestamp expires = 17;
+    string id = 1;
+    google.protobuf.Timestamp date = 2;
+    string competition = 3;
+    string author_id = 5;
+    string artist_id = 6;
+    string song_own_id = 7;
+    string song_remake_id = 8;
+    string lit_work_id = 9;
+    int32 sort = 10;
+    repeated string rate_book = 11;
+    int32 status = 12;
+    bool active = 13;
+    string owner_id = 14;
+    google.protobuf.Timestamp created = 15;
+    google.protobuf.Timestamp updated = 16;
+    google.protobuf.Timestamp expires = 17;
 }
 message AddContestResponse {
   string id = 1;
@@ -246,44 +271,16 @@ message GetContestByIDRequest {
   string id = 1;
 }
 message GetContestByIDResponse {
-  string id = 1;
-  google.protobuf.Timestamp date = 2;
-  string competition = 3;
-  string author_id = 5;
-  string artist_id = 6;
-  string song_own_id = 7;
-  string song_remake_id = 8;
-  string lit_work_id = 9;
-  int32 sort = 10;
-  repeated string rate_book = 11;
-  int32 status = 12;
-  bool active = 13;
-  string owner_id = 14;
-  google.protobuf.Timestamp created = 15;
-  google.protobuf.Timestamp updated = 16;
-  google.protobuf.Timestamp expires = 17;
+  OneContest contest = 1;
+  string message = 2;
 }
 // CONTEST = GET = ByPersonID
 message GetContestByPersonIDRequest {
   string person_id = 1;
 }
 message GetContestsByPersonIDResponse {
-  string id = 1;
-  google.protobuf.Timestamp date = 2;
-  string competition = 3;
-  string author_id = 5;
-  string artist_id = 6;
-  string song_own_id = 7;
-  string song_remake_id = 8;
-  string lit_work_id = 9;
-  int32 sort = 10;
-  repeated string rate_book = 11;
-  int32 status = 12;
-  bool active = 13;
-  string owner_id = 14;
-  google.protobuf.Timestamp created = 15;
-  google.protobuf.Timestamp updated = 16;
-  google.protobuf.Timestamp expires = 17;
+  OneContest contest = 1;
+  string message = 2;
 }
 // CONTEST = GET = With Empty Category
 message GetContestWithEmptyCategoryRequest {
@@ -356,11 +353,12 @@ message UpdateContestResponse {
   int32 sort = 10;
   repeated string rate_book = 11;
   int32 status = 12;
-  bool active = 13;
-  string owner_id = 14;
-  google.protobuf.Timestamp created = 15;
-  google.protobuf.Timestamp updated = 16;
-  google.protobuf.Timestamp expires = 17;
+  string category = 13;
+  bool active = 14;
+  string owner_id = 15;
+  google.protobuf.Timestamp created = 16;
+  google.protobuf.Timestamp updated = 17;
+  google.protobuf.Timestamp expires = 18;
 }
 // CONTESTS = SET RATE
 message UpdateContestAddRateRequest {
@@ -415,22 +413,8 @@ message GetPersonByIDRequest {
   string id = 1;
 }
 message GetPersonByIDResponse {
-  string id = 1;
-  string first_name = 2;
-  string last_name = 3;
-  string middle_name = 4;
-  repeated string phone = 5;
-  repeated string email = 6;
-  //  string login = 7;
-  string bio = 7;
-  string city = 8;
-  string region = 9;
-  string country = 10;
-  bool active = 11;
-  string owner_id = 12;
-  google.protobuf.Timestamp created = 13;
-  google.protobuf.Timestamp updated = 14;
-  google.protobuf.Timestamp expires = 15;
+  Person person = 1;
+  string message = 2;
 }
 // PERSONS = LIST
 message ListPersonsRequest {
@@ -448,40 +432,13 @@ message ListPersonsByRegionResponse {
 }
 // PERSON = UPDATE
 message UpdatePersonRequest {
-  string id = 1;
-  string first_name = 2;
-  string last_name = 3;
-  string middle_name = 4;
-  repeated string phone = 5;
-  repeated string email = 6;
-  string bio = 7;
-  string city = 8;
-  string region = 9;
-  string country = 10;
-  bool active = 11;
-  string owner_id = 12;
-  google.protobuf.Timestamp created = 13;
-  google.protobuf.Timestamp updated = 14;
-  google.protobuf.Timestamp expires = 15;
+  Person person = 1;
 }
 message UpdatePersonResponse {
-  string id = 1;
-  string first_name = 2;
-  string last_name = 3;
-  string middle_name = 4;
-  repeated string phone = 5;
-  repeated string email = 6;
-  //  string login = 7;
-  string bio = 7;
-  string city = 8;
-  string region = 9;
-  string country = 10;
-  bool active = 11;
-  string owner_id = 12;
-  google.protobuf.Timestamp created = 13;
-  google.protobuf.Timestamp updated = 14;
-  google.protobuf.Timestamp expires = 15;
+  Person person = 1;
+  string message = 2;
 }
+
 
 // ARTIST
 
@@ -537,26 +494,17 @@ message GetArtistByIDRequest {
   string id = 1;
 }
 message GetArtistByIDResponse {
-  string id = 1;
-  string title = 2;
-  string short_title = 3;
-  repeated string type = 4;
-  string city = 5;
-  string region = 6;
-  string country = 7;
-  string site = 8;
-  repeated string photo = 9;
-  string bio = 10;
-  repeated string socmedia = 11;
-  repeated string release = 12;
-  repeated string team = 13;
-  bool active = 14;
-  string owner_id = 15;
-  google.protobuf.Timestamp created = 16;
-  google.protobuf.Timestamp updated = 17;
-  google.protobuf.Timestamp expires = 18;
+  Artist artist = 1;
+  string Message = 2;
 }
-
+// ARTIST = UPDATE
+message UpdateArtistRequest {
+  Artist artist = 1;
+}
+message UpdateArtistResponse {
+  Artist artist = 1;
+  string message = 2;
+}
 
 // SONG
 
@@ -580,23 +528,8 @@ message AddSongRequest {
   google.protobuf.Timestamp expires = 17;
 }
 message AddSongResponse {
-  string id = 1;
-  repeated string artist = 2;
-  string title = 3;
-  repeated string author_lyrics = 4;
-  repeated string author_music = 5;
-  repeated string arranger = 6;
-  repeated string audio = 7;
-  repeated string clip = 8;
-  repeated string video = 9;
-  repeated string pts = 10;
-  string release = 11;
-  string lyrics = 12;
-  bool active = 13;
-  string owner_id = 14;
-  google.protobuf.Timestamp created = 15;
-  google.protobuf.Timestamp updated = 16;
-  google.protobuf.Timestamp expires = 17;
+  Song song = 1;
+  string message = 2;
 }
 // SONGS = LIST
 message ListSongsRequest {
@@ -610,23 +543,16 @@ message GetSongByIDRequest {
   string id = 1;
 }
 message GetSongByIDResponse {
-  string id = 1;
-  repeated string artist = 2;
-  string title = 3;
-  repeated string author_lyrics = 4;
-  repeated string author_music = 5;
-  repeated string arranger = 6;
-  repeated string audio = 7;
-  repeated string clip = 8;
-  repeated string video = 9;
-  repeated string pts = 10;
-  string release = 11;
-  string lyrics = 12;
-  bool active = 13;
-  string owner_id = 14;
-  google.protobuf.Timestamp created = 15;
-  google.protobuf.Timestamp updated = 16;
-  google.protobuf.Timestamp expires = 17;
+  Song song = 1;
+  string message = 2;
+}
+// SONG = UPDATE
+message UpdateSongRequest {
+  Song song = 1;
+}
+message UpdateSongResponse {
+  Song song = 1;
+  string message = 2;
 }
 
 // LITWORK
@@ -673,17 +599,14 @@ message GetLitWorkByIDRequest {
   string id = 1;
 }
 message GetLitWorkByIDResponse {
-  string id = 1;
-  string title = 2;
-  repeated string authorID = 3;
-  repeated string audio = 4;
-  repeated string clip = 5;
-  repeated string video = 6;
-  string release = 7;
-  string lyrics = 8;
-  bool active = 9;
-  string owner_id = 10;
-  google.protobuf.Timestamp created = 11;
-  google.protobuf.Timestamp updated = 12;
-  google.protobuf.Timestamp expires = 13;
+  LitWork lit_work = 1;
+  string message = 2;
+}
+// SONG = UPDATE
+message UpdateLitWorkRequest {
+  LitWork lit_work = 1;
+}
+message UpdateLitWorkResponse {
+  LitWork lit_work = 1;
+  string message = 2;
 }
