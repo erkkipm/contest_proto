@@ -2307,7 +2307,7 @@ type UpdateContestRequest struct {
 	SongOwnId     string                 `protobuf:"bytes,7,opt,name=song_own_id,json=songOwnId,proto3" json:"song_own_id,omitempty"`
 	SongRemakeId  string                 `protobuf:"bytes,8,opt,name=song_remake_id,json=songRemakeId,proto3" json:"song_remake_id,omitempty"`
 	LitWorkId     string                 `protobuf:"bytes,9,opt,name=lit_work_id,json=litWorkId,proto3" json:"lit_work_id,omitempty"`
-	Top3          string                 `protobuf:"bytes,10,opt,name=top3,proto3" json:"top3,omitempty"`
+	Top3          bool                   `protobuf:"varint,10,opt,name=top3,proto3" json:"top3,omitempty"`
 	Winner        bool                   `protobuf:"varint,11,opt,name=winner,proto3" json:"winner,omitempty"`
 	Sort          int32                  `protobuf:"varint,12,opt,name=sort,proto3" json:"sort,omitempty"`
 	RateBook      []string               `protobuf:"bytes,13,rep,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
@@ -2408,11 +2408,11 @@ func (x *UpdateContestRequest) GetLitWorkId() string {
 	return ""
 }
 
-func (x *UpdateContestRequest) GetTop3() string {
+func (x *UpdateContestRequest) GetTop3() bool {
 	if x != nil {
 		return x.Top3
 	}
-	return ""
+	return false
 }
 
 func (x *UpdateContestRequest) GetWinner() bool {
@@ -5366,7 +5366,7 @@ const file_contest_proto_rawDesc = "" +
 	"\x0esong_remake_id\x18\b \x01(\tR\fsongRemakeId\x12\x1e\n" +
 	"\vlit_work_id\x18\t \x01(\tR\tlitWorkId\x12\x12\n" +
 	"\x04top3\x18\n" +
-	" \x01(\tR\x04top3\x12\x16\n" +
+	" \x01(\bR\x04top3\x12\x16\n" +
 	"\x06winner\x18\v \x01(\bR\x06winner\x12\x12\n" +
 	"\x04sort\x18\f \x01(\x05R\x04sort\x12\x1b\n" +
 	"\trate_book\x18\r \x03(\tR\brateBook\x12\x16\n" +

@@ -338,7 +338,7 @@ message UpdateContestRequest {
   string song_own_id = 7;
   string song_remake_id = 8;
   string lit_work_id = 9;
-  string top3 = 10;
+  bool top3 = 10;
   bool winner = 11;
   int32 sort = 12;
   repeated string rate_book = 13;
