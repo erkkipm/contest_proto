@@ -82,19 +82,25 @@ message OneContest {
   string id = 1;
   google.protobuf.Timestamp date = 2;
   string competition = 3;
-  string author_id = 5;
-  string artist_id = 6;
-  string song_own_id = 7;
-  string song_remake_id = 8;
-  string lit_work_id = 9;
-  int32 sort = 10;
-  repeated string rate_book = 11;
-  int32 status = 12;
-  bool active = 13;
-  string owner_id = 14;
-  google.protobuf.Timestamp created = 15;
-  google.protobuf.Timestamp updated = 16;
-  google.protobuf.Timestamp expires = 17;
+  string competition_id = 4;
+  string category =5;
+  string author_id = 6;
+  string artist_id = 7;
+  string song_own_id = 8;
+  string song_remake_id = 9;
+  string lit_work_id = 10;
+  repeated Rate rate = 11;
+  repeated Rate rate_top3 = 12;
+  bool top3 = 13;
+  int32 sort = 14;
+  repeated string rate_book = 15;
+  int32 status = 16;
+  bool active = 17;
+  string owner_id = 18;
+  google.protobuf.Timestamp created = 19;
+  google.protobuf.Timestamp updated = 20;
+  google.protobuf.Timestamp expires = 21;
+
 }
 // FullContent ... полная заявка
 message FullContent {
@@ -104,11 +110,13 @@ message FullContent {
   string competition_id = 4;
   string category = 5;
   Person author = 6;
-  repeated Song song = 8;
-  repeated Artist artist_song_own = 9;
-  repeated LitWork lit_work = 11;
-  repeated Artist artist_song_remake = 12;
-  repeated Rate rate = 13;
+  repeated Song song = 7;
+  repeated Artist artist_song_own = 8;
+  repeated LitWork lit_work = 9;
+  repeated Artist artist_song_remake = 10;
+  repeated Rate rate = 11;
+  repeated Rate rate_top3 = 12;
+  bool top3 = 13;
   int32 sort = 14;
   int32 status = 15;
   bool active = 16;
@@ -117,7 +125,6 @@ message FullContent {
   google.protobuf.Timestamp created = 19;
   google.protobuf.Timestamp updated = 20;
   google.protobuf.Timestamp expires = 21;
-
 }
 // Person
 message Person {
