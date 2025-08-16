@@ -339,15 +339,16 @@ message UpdateContestRequest {
   string song_remake_id = 8;
   string lit_work_id = 9;
   string top3 = 10;
-  int32 sort = 11;
-  repeated string rate_book = 12;
-  int32 status = 13;
-  string category = 14;
-  bool active = 15;
-  string owner_id = 16;
-  google.protobuf.Timestamp created = 17;
-  google.protobuf.Timestamp updated = 18;
-  google.protobuf.Timestamp expires = 19;
+  bool winner = 11;
+  int32 sort = 12;
+  repeated string rate_book = 13;
+  int32 status = 14;
+  string category = 15;
+  bool active = 16;
+  string owner_id = 17;
+  google.protobuf.Timestamp created = 18;
+  google.protobuf.Timestamp updated = 19;
+  google.protobuf.Timestamp expires = 20;
 }
 message UpdateContestResponse {
   string id = 1;
@@ -358,16 +359,17 @@ message UpdateContestResponse {
   string song_own_id = 7;
   string song_remake_id = 8;
   string lit_work_id = 9;
-  string top3 = 10;
-  int32 sort = 11;
-  repeated string rate_book = 12;
-  int32 status = 13;
-  string category = 14;
-  bool active = 15;
-  string owner_id = 16;
-  google.protobuf.Timestamp created = 17;
-  google.protobuf.Timestamp updated = 18;
-  google.protobuf.Timestamp expires = 19;
+  bool top3 = 10;
+  bool winner = 11;
+  int32 sort = 12;
+  repeated string rate_book = 13;
+  int32 status = 14;
+  string category = 15;
+  bool active = 16;
+  string owner_id = 17;
+  google.protobuf.Timestamp created = 18;
+  google.protobuf.Timestamp updated = 19;
+  google.protobuf.Timestamp expires = 20;
 }
 // CONTESTS = SET RATE
 message UpdateContestAddRateRequest {
