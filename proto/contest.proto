@@ -23,6 +23,7 @@ service Contest{
   rpc ListContests(ListContestsRequest) returns (ListContestsResponse); // Используется в grpc_contest.go
   // CONTESTS = LIST = By Category \\ с категорией
   rpc ListContestsByCategory(ListContestsByCategoryRequest) returns (ListContestsByCategoryResponse); // Используется в grpc_contest.go
+  rpc ListContestsByCategoryTop3(ListContestsByCategoryTop3Request) returns (ListContestsByCategoryTop3Response); // Используется в grpc_contest.go
   // CONTESTS = LIST = By Region
   rpc ListContestsByRegion (ListContestsByRegionRequest) returns (ListContestsByRegionResponse);
   //  CONTESTS = UPDATE
@@ -304,6 +305,16 @@ message ListContestsByCategoryRequest {
   string competition = 4;
 }
 message ListContestsByCategoryResponse {
+  repeated FullContent contests = 1;
+  int32 total = 2; // <-- всего заявок по этому competition
+}
+message ListContestsByCategoryTop3Request {
+  string category = 1;
+  int32 limit = 2;   // сколько заявок за раз (например, 50)
+  int32 offset = 3;  // с какой позиции (например, 0, 50, 100)
+  string competition = 4;
+}
+message ListContestsByCategoryTop3Response {
   repeated FullContent contests = 1;
   int32 total = 2; // <-- всего заявок по этому competition
 }
