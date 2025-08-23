@@ -7,6 +7,8 @@ option go_package = "github.com/erkkipm/contest_proto/gen/go;contestV1";
 
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/field_mask.proto";
 
 // Сервис для входа и регистрации
 service Contest{
@@ -349,8 +351,8 @@ message UpdateContestRequest {
   string song_own_id = 7;
   string song_remake_id = 8;
   string lit_work_id = 9;
-  bool top3 = 10;
-  bool winner = 11;
+  google.protobuf.BoolValue top3   = 10;
+  google.protobuf.BoolValue winner = 11;
   int32 sort = 12;
   repeated string rate_book = 13;
   int32 status = 14;
@@ -360,6 +362,7 @@ message UpdateContestRequest {
   google.protobuf.Timestamp created = 18;
   google.protobuf.Timestamp updated = 19;
   google.protobuf.Timestamp expires = 20;
+  google.protobuf.FieldMask update_mask = 30;
 }
 message UpdateContestResponse {
   string id = 1;
