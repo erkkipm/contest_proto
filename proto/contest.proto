@@ -26,6 +26,9 @@ service Contest{
   // CONTESTS = LIST = By Category \\ с категорией
   rpc ListContestsByCategory(ListContestsByCategoryRequest) returns (ListContestsByCategoryResponse); // Используется в grpc_contest.go
   rpc ListContestsByCategoryTop3(ListContestsByCategoryTop3Request) returns (ListContestsByCategoryTop3Response); // Используется в grpc_contest.go
+  // CONTESTS = LIST = Winners \\ победители
+  rpc ListWinners(ListWinnersRequest) returns (ListWinnersResponse); // Используется в grpc_contest.go
+
   // CONTESTS = LIST = By Region
   rpc ListContestsByRegion (ListContestsByRegionRequest) returns (ListContestsByRegionResponse);
   //  CONTESTS = UPDATE
@@ -80,13 +83,27 @@ service Contest{
 // ==========
 // ==========
 
+// ContestShort
+message ContestShort {
+  string id = 1;
+  string category = 5;
+  string song_title = 6;
+  string song_video = 7;
+  string song_audio = 8;
+  string artist_name = 9;
+  string artist_city = 10;
+  string artist_photo = 11;
+  bool top3 = 13;
+  bool winner = 14;
+}
+
 // Contest
 message OneContest {
   string id = 1;
   google.protobuf.Timestamp date = 2;
   string competition = 3;
   string competition_id = 4;
-  string category =5;
+  string category = 5;
   string author_id = 6;
   string artist_id = 7;
   string song_own_id = 8;
@@ -104,7 +121,6 @@ message OneContest {
   google.protobuf.Timestamp created = 30;
   google.protobuf.Timestamp updated = 31;
   google.protobuf.Timestamp expires = 32;
-
 }
 // FullContent ... полная заявка
 message FullContent {
@@ -322,6 +338,17 @@ message ListContestsByCategoryTop3Response {
   repeated FullContent contests = 1;
   int32 total = 2; // <-- всего заявок по этому competition
 }
+message ListWinnersRequest {
+  string category = 1;
+  int32 limit = 2;   // сколько заявок за раз (например, 50)
+  int32 offset = 3;  // с какой позиции (например, 0, 50, 100)
+  string competition = 4;
+}
+message ListWinnersResponse {
+  repeated ContestShort contests = 1;
+  int32 total = 2; // <-- всего заявок по этому competition
+}
+
 // CONTESTS = LIST
 message ListContestsRequest {
   string competition = 1;
