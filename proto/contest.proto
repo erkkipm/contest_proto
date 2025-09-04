@@ -95,14 +95,15 @@ message OneContest {
   repeated Rate rate = 11;
   repeated Rate rate_top3 = 12;
   bool top3 = 13;
-  int32 sort = 14;
-  repeated string rate_book = 15;
-  int32 status = 16;
-  bool active = 17;
-  string owner_id = 18;
-  google.protobuf.Timestamp created = 19;
-  google.protobuf.Timestamp updated = 20;
-  google.protobuf.Timestamp expires = 21;
+  bool winner = 14;
+  int32 sort = 15;
+  repeated string rate_book = 16;
+  int32 status = 17;
+  bool active = 18;
+  string owner_id = 19;
+  google.protobuf.Timestamp created = 30;
+  google.protobuf.Timestamp updated = 31;
+  google.protobuf.Timestamp expires = 32;
 
 }
 // FullContent ... полная заявка
@@ -120,14 +121,15 @@ message FullContent {
   repeated Rate rate = 11;
   repeated Rate rate_top3 = 12;
   bool top3 = 13;
-  int32 sort = 14;
-  int32 status = 15;
-  bool active = 16;
-  string app_id = 17;
-  string owner_id = 18;
-  google.protobuf.Timestamp created = 19;
-  google.protobuf.Timestamp updated = 20;
-  google.protobuf.Timestamp expires = 21;
+  bool winner = 14;
+  int32 sort = 15;
+  int32 status = 16;
+  bool active = 17;
+  string app_id = 18;
+  string owner_id = 19;
+  google.protobuf.Timestamp created = 31;
+  google.protobuf.Timestamp updated = 32;
+  google.protobuf.Timestamp expires = 33;
 }
 // Person
 message Person {
@@ -351,8 +353,8 @@ message UpdateContestRequest {
   string song_own_id = 7;
   string song_remake_id = 8;
   string lit_work_id = 9;
-  google.protobuf.BoolValue top3   = 10;
-  google.protobuf.BoolValue winner = 11;
+  google.protobuf.BoolValue top3   = 10;   // признак присутствия
+  google.protobuf.BoolValue winner = 11;   // признак присутствия
   int32 sort = 12;
   repeated string rate_book = 13;
   int32 status = 14;
@@ -362,7 +364,7 @@ message UpdateContestRequest {
   google.protobuf.Timestamp created = 18;
   google.protobuf.Timestamp updated = 19;
   google.protobuf.Timestamp expires = 20;
-  google.protobuf.FieldMask update_mask = 30;
+  google.protobuf.FieldMask update_mask = 30; // какие поля менять
 }
 message UpdateContestResponse {
   string id = 1;
