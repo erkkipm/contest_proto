@@ -25,9 +25,6 @@ service Contest{
   rpc ListContests(ListContestsRequest) returns (ListContestsResponse); // Используется в grpc_contest.go
   // CONTESTS = LIST = By Category \\ с категорией
   rpc ListContestsByCategory(ListContestsByCategoryRequest) returns (ListContestsByCategoryResponse); // Используется в grpc_contest.go
-  rpc ListContestsByCategoryTop3(ListContestsByCategoryTop3Request) returns (ListContestsByCategoryTop3Response); // Используется в grpc_contest.go
-  // CONTESTS = LIST = Winners \\ победители
-  rpc ListWinners(ListWinnersRequest) returns (ListWinnersResponse); // Используется в grpc_contest.go
 
   // CONTESTS = LIST = By Region
   rpc ListContestsByRegion (ListContestsByRegionRequest) returns (ListContestsByRegionResponse);
@@ -320,9 +317,10 @@ message GetContestWithEmptyCategoryResponse {
 // CONTESTS = LIST = By Category
 message ListContestsByCategoryRequest {
   string category = 1;
-  int32 limit = 2;   // сколько заявок за раз (например, 50)
-  int32 offset = 3;  // с какой позиции (например, 0, 50, 100)
-  string competition = 4;
+  string filter = 2; // в фильтре указываются по каким флагам отфильтровываются заявки (top-100, top-10, top-3, winner)
+  int32 limit = 3;   // сколько заявок за раз (например, 50)
+  int32 offset = 4;  // с какой позиции (например, 0, 50, 100)
+  string competition = 5; // идентификатор конкурса
 }
 message ListContestsByCategoryResponse {
   repeated FullContent contests = 1;
