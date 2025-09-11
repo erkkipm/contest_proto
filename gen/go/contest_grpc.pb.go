@@ -27,8 +27,6 @@ const (
 	Contest_GetContestWithEmptyCategory_FullMethodName = "/contest.Contest/GetContestWithEmptyCategory"
 	Contest_ListContests_FullMethodName                = "/contest.Contest/ListContests"
 	Contest_ListContestsByCategory_FullMethodName      = "/contest.Contest/ListContestsByCategory"
-	Contest_ListContestsByCategoryTop3_FullMethodName  = "/contest.Contest/ListContestsByCategoryTop3"
-	Contest_ListWinners_FullMethodName                 = "/contest.Contest/ListWinners"
 	Contest_ListContestsByRegion_FullMethodName        = "/contest.Contest/ListContestsByRegion"
 	Contest_UpdateContest_FullMethodName               = "/contest.Contest/UpdateContest"
 	Contest_UpdateContestAddRate_FullMethodName        = "/contest.Contest/UpdateContestAddRate"
@@ -70,9 +68,6 @@ type ContestClient interface {
 	ListContests(ctx context.Context, in *ListContestsRequest, opts ...grpc.CallOption) (*ListContestsResponse, error)
 	// CONTESTS = LIST = By Category \\ с категорией
 	ListContestsByCategory(ctx context.Context, in *ListContestsByCategoryRequest, opts ...grpc.CallOption) (*ListContestsByCategoryResponse, error)
-	ListContestsByCategoryTop3(ctx context.Context, in *ListContestsByCategoryTop3Request, opts ...grpc.CallOption) (*ListContestsByCategoryTop3Response, error)
-	// CONTESTS = LIST = Winners \\ победители
-	ListWinners(ctx context.Context, in *ListWinnersRequest, opts ...grpc.CallOption) (*ListWinnersResponse, error)
 	// CONTESTS = LIST = By Region
 	ListContestsByRegion(ctx context.Context, in *ListContestsByRegionRequest, opts ...grpc.CallOption) (*ListContestsByRegionResponse, error)
 	// CONTESTS = UPDATE
@@ -182,26 +177,6 @@ func (c *contestClient) ListContestsByCategory(ctx context.Context, in *ListCont
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListContestsByCategoryResponse)
 	err := c.cc.Invoke(ctx, Contest_ListContestsByCategory_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *contestClient) ListContestsByCategoryTop3(ctx context.Context, in *ListContestsByCategoryTop3Request, opts ...grpc.CallOption) (*ListContestsByCategoryTop3Response, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListContestsByCategoryTop3Response)
-	err := c.cc.Invoke(ctx, Contest_ListContestsByCategoryTop3_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *contestClient) ListWinners(ctx context.Context, in *ListWinnersRequest, opts ...grpc.CallOption) (*ListWinnersResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListWinnersResponse)
-	err := c.cc.Invoke(ctx, Contest_ListWinners_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -427,9 +402,6 @@ type ContestServer interface {
 	ListContests(context.Context, *ListContestsRequest) (*ListContestsResponse, error)
 	// CONTESTS = LIST = By Category \\ с категорией
 	ListContestsByCategory(context.Context, *ListContestsByCategoryRequest) (*ListContestsByCategoryResponse, error)
-	ListContestsByCategoryTop3(context.Context, *ListContestsByCategoryTop3Request) (*ListContestsByCategoryTop3Response, error)
-	// CONTESTS = LIST = Winners \\ победители
-	ListWinners(context.Context, *ListWinnersRequest) (*ListWinnersResponse, error)
 	// CONTESTS = LIST = By Region
 	ListContestsByRegion(context.Context, *ListContestsByRegionRequest) (*ListContestsByRegionResponse, error)
 	// CONTESTS = UPDATE
@@ -502,12 +474,6 @@ func (UnimplementedContestServer) ListContests(context.Context, *ListContestsReq
 }
 func (UnimplementedContestServer) ListContestsByCategory(context.Context, *ListContestsByCategoryRequest) (*ListContestsByCategoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListContestsByCategory not implemented")
-}
-func (UnimplementedContestServer) ListContestsByCategoryTop3(context.Context, *ListContestsByCategoryTop3Request) (*ListContestsByCategoryTop3Response, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListContestsByCategoryTop3 not implemented")
-}
-func (UnimplementedContestServer) ListWinners(context.Context, *ListWinnersRequest) (*ListWinnersResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListWinners not implemented")
 }
 func (UnimplementedContestServer) ListContestsByRegion(context.Context, *ListContestsByRegionRequest) (*ListContestsByRegionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListContestsByRegion not implemented")
@@ -694,42 +660,6 @@ func _Contest_ListContestsByCategory_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ContestServer).ListContestsByCategory(ctx, req.(*ListContestsByCategoryRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Contest_ListContestsByCategoryTop3_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListContestsByCategoryTop3Request)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ContestServer).ListContestsByCategoryTop3(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Contest_ListContestsByCategoryTop3_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContestServer).ListContestsByCategoryTop3(ctx, req.(*ListContestsByCategoryTop3Request))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Contest_ListWinners_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListWinnersRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ContestServer).ListWinners(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Contest_ListWinners_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContestServer).ListWinners(ctx, req.(*ListWinnersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1124,14 +1054,6 @@ var Contest_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListContestsByCategory",
 			Handler:    _Contest_ListContestsByCategory_Handler,
-		},
-		{
-			MethodName: "ListContestsByCategoryTop3",
-			Handler:    _Contest_ListContestsByCategoryTop3_Handler,
-		},
-		{
-			MethodName: "ListWinners",
-			Handler:    _Contest_ListWinners_Handler,
 		},
 		{
 			MethodName: "ListContestsByRegion",
