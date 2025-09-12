@@ -25,6 +25,8 @@ service Contest{
   rpc ListContests(ListContestsRequest) returns (ListContestsResponse); // Используется в grpc_contest.go
   // CONTESTS = LIST = By Category \\ с категорией
   rpc ListContestsByCategory(ListContestsByCategoryRequest) returns (ListContestsByCategoryResponse); // Используется в grpc_contest.go
+  // CONTESTS = LIST = By Category \\ с категорией
+  rpc ListContestsByCategoryForSite(ListContestsByCategoryForSiteRequest) returns (ListContestsByCategoryForSiteResponse); // Используется в grpc_contest.go
 
   // CONTESTS = LIST = By Region
   rpc ListContestsByRegion (ListContestsByRegionRequest) returns (ListContestsByRegionResponse);
@@ -139,6 +141,24 @@ message FullContent {
   int32 status = 16;
   bool active = 17;
   string app_id = 18;
+  string owner_id = 19;
+  google.protobuf.Timestamp created = 31;
+  google.protobuf.Timestamp updated = 32;
+  google.protobuf.Timestamp expires = 33;
+}
+// ContentForSite ... полная заявка
+message ContentForSite {
+  string id = 1;
+  string category = 2;
+  string song_title = 3;
+  string artist_name = 4;
+  string artist_city = 5;
+  string region = 6;
+  repeated Rate rate = 11;
+  repeated Rate rate_top3 = 12;
+  bool top3 = 13;
+  bool winner = 14;
+  bool active = 18;
   string owner_id = 19;
   google.protobuf.Timestamp created = 31;
   google.protobuf.Timestamp updated = 32;
@@ -322,10 +342,24 @@ message ListContestsByCategoryRequest {
   int32 offset = 4;  // с какой позиции (например, 0, 50, 100)
   string competition = 5; // идентификатор конкурса
 }
+// CONTESTS = LIST = By Category = For site
+message ListContestsByCategoryForSiteRequest {
+  string category = 1;
+  string filter = 2; // в фильтре указываются по каким флагам отфильтровываются заявки (top-100, top-10, top-3, winner)
+  int32 limit = 3;   // сколько заявок за раз (например, 50)
+  int32 offset = 4;  // с какой позиции (например, 0, 50, 100)
+  string competition = 5; // идентификатор конкурса
+}
 message ListContestsByCategoryResponse {
   repeated FullContent contests = 1;
   int32 total = 2; // <-- всего заявок по этому competition
 }
+
+message ListContestsByCategoryForSiteResponse {
+  repeated ContentForSite contests = 1;
+  int32 total = 2; // <-- всего заявок по этому competition
+}
+
 message ListContestsByCategoryTop3Request {
   string category = 1;
   int32 limit = 2;   // сколько заявок за раз (например, 50)

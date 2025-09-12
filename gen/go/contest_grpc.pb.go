@@ -21,32 +21,33 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Contest_AddContest_FullMethodName                  = "/contest.Contest/AddContest"
-	Contest_GetContestByID_FullMethodName              = "/contest.Contest/GetContestByID"
-	Contest_GetContestsByPersonID_FullMethodName       = "/contest.Contest/GetContestsByPersonID"
-	Contest_GetContestWithEmptyCategory_FullMethodName = "/contest.Contest/GetContestWithEmptyCategory"
-	Contest_ListContests_FullMethodName                = "/contest.Contest/ListContests"
-	Contest_ListContestsByCategory_FullMethodName      = "/contest.Contest/ListContestsByCategory"
-	Contest_ListContestsByRegion_FullMethodName        = "/contest.Contest/ListContestsByRegion"
-	Contest_UpdateContest_FullMethodName               = "/contest.Contest/UpdateContest"
-	Contest_UpdateContestAddRate_FullMethodName        = "/contest.Contest/UpdateContestAddRate"
-	Contest_AddPerson_FullMethodName                   = "/contest.Contest/AddPerson"
-	Contest_GetPersonByID_FullMethodName               = "/contest.Contest/GetPersonByID"
-	Contest_ListPersons_FullMethodName                 = "/contest.Contest/ListPersons"
-	Contest_ListPersonsByRegion_FullMethodName         = "/contest.Contest/ListPersonsByRegion"
-	Contest_UpdatePerson_FullMethodName                = "/contest.Contest/UpdatePerson"
-	Contest_AddArtist_FullMethodName                   = "/contest.Contest/AddArtist"
-	Contest_ListArtists_FullMethodName                 = "/contest.Contest/ListArtists"
-	Contest_GetArtistByID_FullMethodName               = "/contest.Contest/GetArtistByID"
-	Contest_UpdateArtist_FullMethodName                = "/contest.Contest/UpdateArtist"
-	Contest_AddSong_FullMethodName                     = "/contest.Contest/AddSong"
-	Contest_ListSongs_FullMethodName                   = "/contest.Contest/ListSongs"
-	Contest_GetSongByID_FullMethodName                 = "/contest.Contest/GetSongByID"
-	Contest_UpdateSong_FullMethodName                  = "/contest.Contest/UpdateSong"
-	Contest_AddLitWork_FullMethodName                  = "/contest.Contest/AddLitWork"
-	Contest_ListLitWorks_FullMethodName                = "/contest.Contest/ListLitWorks"
-	Contest_GetLitWorkByID_FullMethodName              = "/contest.Contest/GetLitWorkByID"
-	Contest_UpdateLitWork_FullMethodName               = "/contest.Contest/UpdateLitWork"
+	Contest_AddContest_FullMethodName                    = "/contest.Contest/AddContest"
+	Contest_GetContestByID_FullMethodName                = "/contest.Contest/GetContestByID"
+	Contest_GetContestsByPersonID_FullMethodName         = "/contest.Contest/GetContestsByPersonID"
+	Contest_GetContestWithEmptyCategory_FullMethodName   = "/contest.Contest/GetContestWithEmptyCategory"
+	Contest_ListContests_FullMethodName                  = "/contest.Contest/ListContests"
+	Contest_ListContestsByCategory_FullMethodName        = "/contest.Contest/ListContestsByCategory"
+	Contest_ListContestsByCategoryForSite_FullMethodName = "/contest.Contest/ListContestsByCategoryForSite"
+	Contest_ListContestsByRegion_FullMethodName          = "/contest.Contest/ListContestsByRegion"
+	Contest_UpdateContest_FullMethodName                 = "/contest.Contest/UpdateContest"
+	Contest_UpdateContestAddRate_FullMethodName          = "/contest.Contest/UpdateContestAddRate"
+	Contest_AddPerson_FullMethodName                     = "/contest.Contest/AddPerson"
+	Contest_GetPersonByID_FullMethodName                 = "/contest.Contest/GetPersonByID"
+	Contest_ListPersons_FullMethodName                   = "/contest.Contest/ListPersons"
+	Contest_ListPersonsByRegion_FullMethodName           = "/contest.Contest/ListPersonsByRegion"
+	Contest_UpdatePerson_FullMethodName                  = "/contest.Contest/UpdatePerson"
+	Contest_AddArtist_FullMethodName                     = "/contest.Contest/AddArtist"
+	Contest_ListArtists_FullMethodName                   = "/contest.Contest/ListArtists"
+	Contest_GetArtistByID_FullMethodName                 = "/contest.Contest/GetArtistByID"
+	Contest_UpdateArtist_FullMethodName                  = "/contest.Contest/UpdateArtist"
+	Contest_AddSong_FullMethodName                       = "/contest.Contest/AddSong"
+	Contest_ListSongs_FullMethodName                     = "/contest.Contest/ListSongs"
+	Contest_GetSongByID_FullMethodName                   = "/contest.Contest/GetSongByID"
+	Contest_UpdateSong_FullMethodName                    = "/contest.Contest/UpdateSong"
+	Contest_AddLitWork_FullMethodName                    = "/contest.Contest/AddLitWork"
+	Contest_ListLitWorks_FullMethodName                  = "/contest.Contest/ListLitWorks"
+	Contest_GetLitWorkByID_FullMethodName                = "/contest.Contest/GetLitWorkByID"
+	Contest_UpdateLitWork_FullMethodName                 = "/contest.Contest/UpdateLitWork"
 )
 
 // ContestClient is the client API for Contest service.
@@ -68,6 +69,8 @@ type ContestClient interface {
 	ListContests(ctx context.Context, in *ListContestsRequest, opts ...grpc.CallOption) (*ListContestsResponse, error)
 	// CONTESTS = LIST = By Category \\ с категорией
 	ListContestsByCategory(ctx context.Context, in *ListContestsByCategoryRequest, opts ...grpc.CallOption) (*ListContestsByCategoryResponse, error)
+	// CONTESTS = LIST = By Category \\ с категорией
+	ListContestsByCategoryForSite(ctx context.Context, in *ListContestsByCategoryForSiteRequest, opts ...grpc.CallOption) (*ListContestsByCategoryForSiteResponse, error)
 	// CONTESTS = LIST = By Region
 	ListContestsByRegion(ctx context.Context, in *ListContestsByRegionRequest, opts ...grpc.CallOption) (*ListContestsByRegionResponse, error)
 	// CONTESTS = UPDATE
@@ -177,6 +180,16 @@ func (c *contestClient) ListContestsByCategory(ctx context.Context, in *ListCont
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListContestsByCategoryResponse)
 	err := c.cc.Invoke(ctx, Contest_ListContestsByCategory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contestClient) ListContestsByCategoryForSite(ctx context.Context, in *ListContestsByCategoryForSiteRequest, opts ...grpc.CallOption) (*ListContestsByCategoryForSiteResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListContestsByCategoryForSiteResponse)
+	err := c.cc.Invoke(ctx, Contest_ListContestsByCategoryForSite_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -402,6 +415,8 @@ type ContestServer interface {
 	ListContests(context.Context, *ListContestsRequest) (*ListContestsResponse, error)
 	// CONTESTS = LIST = By Category \\ с категорией
 	ListContestsByCategory(context.Context, *ListContestsByCategoryRequest) (*ListContestsByCategoryResponse, error)
+	// CONTESTS = LIST = By Category \\ с категорией
+	ListContestsByCategoryForSite(context.Context, *ListContestsByCategoryForSiteRequest) (*ListContestsByCategoryForSiteResponse, error)
 	// CONTESTS = LIST = By Region
 	ListContestsByRegion(context.Context, *ListContestsByRegionRequest) (*ListContestsByRegionResponse, error)
 	// CONTESTS = UPDATE
@@ -474,6 +489,9 @@ func (UnimplementedContestServer) ListContests(context.Context, *ListContestsReq
 }
 func (UnimplementedContestServer) ListContestsByCategory(context.Context, *ListContestsByCategoryRequest) (*ListContestsByCategoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListContestsByCategory not implemented")
+}
+func (UnimplementedContestServer) ListContestsByCategoryForSite(context.Context, *ListContestsByCategoryForSiteRequest) (*ListContestsByCategoryForSiteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListContestsByCategoryForSite not implemented")
 }
 func (UnimplementedContestServer) ListContestsByRegion(context.Context, *ListContestsByRegionRequest) (*ListContestsByRegionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListContestsByRegion not implemented")
@@ -660,6 +678,24 @@ func _Contest_ListContestsByCategory_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ContestServer).ListContestsByCategory(ctx, req.(*ListContestsByCategoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Contest_ListContestsByCategoryForSite_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListContestsByCategoryForSiteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).ListContestsByCategoryForSite(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_ListContestsByCategoryForSite_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).ListContestsByCategoryForSite(ctx, req.(*ListContestsByCategoryForSiteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1054,6 +1090,10 @@ var Contest_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListContestsByCategory",
 			Handler:    _Contest_ListContestsByCategory_Handler,
+		},
+		{
+			MethodName: "ListContestsByCategoryForSite",
+			Handler:    _Contest_ListContestsByCategoryForSite_Handler,
 		},
 		{
 			MethodName: "ListContestsByRegion",
