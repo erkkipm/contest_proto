@@ -575,7 +575,7 @@ type ContentForSite struct {
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Category      string                 `protobuf:"bytes,2,opt,name=category,proto3" json:"category,omitempty"`
 	Songs         []*Song                `protobuf:"bytes,3,rep,name=songs,proto3" json:"songs,omitempty"`
-	Artist        []*Artist              `protobuf:"bytes,4,rep,name=artist,proto3" json:"artist,omitempty"`
+	Artists       []*Artist              `protobuf:"bytes,4,rep,name=artists,proto3" json:"artists,omitempty"`
 	Rate          []*Rate                `protobuf:"bytes,11,rep,name=rate,proto3" json:"rate,omitempty"`
 	RateTop3      []*Rate                `protobuf:"bytes,12,rep,name=rate_top3,json=rateTop3,proto3" json:"rate_top3,omitempty"`
 	Top3          bool                   `protobuf:"varint,13,opt,name=top3,proto3" json:"top3,omitempty"`
@@ -640,9 +640,9 @@ func (x *ContentForSite) GetSongs() []*Song {
 	return nil
 }
 
-func (x *ContentForSite) GetArtist() []*Artist {
+func (x *ContentForSite) GetArtists() []*Artist {
 	if x != nil {
-		return x.Artist
+		return x.Artists
 	}
 	return nil
 }
@@ -5862,12 +5862,12 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\x13 \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\x1f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18  \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18! \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xda\x03\n" +
+	"\aexpires\x18! \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xdc\x03\n" +
 	"\x0eContentForSite\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1a\n" +
 	"\bcategory\x18\x02 \x01(\tR\bcategory\x12#\n" +
-	"\x05songs\x18\x03 \x03(\v2\r.contest.SongR\x05songs\x12'\n" +
-	"\x06artist\x18\x04 \x03(\v2\x0f.contest.ArtistR\x06artist\x12!\n" +
+	"\x05songs\x18\x03 \x03(\v2\r.contest.SongR\x05songs\x12)\n" +
+	"\aartists\x18\x04 \x03(\v2\x0f.contest.ArtistR\aartists\x12!\n" +
 	"\x04rate\x18\v \x03(\v2\r.contest.RateR\x04rate\x12*\n" +
 	"\trate_top3\x18\f \x03(\v2\r.contest.RateR\brateTop3\x12\x12\n" +
 	"\x04top3\x18\r \x01(\bR\x04top3\x12\x16\n" +
@@ -6449,7 +6449,7 @@ var file_contest_proto_depIdxs = []int32{
 	68,  // 15: contest.FullContent.updated:type_name -> google.protobuf.Timestamp
 	68,  // 16: contest.FullContent.expires:type_name -> google.protobuf.Timestamp
 	5,   // 17: contest.ContentForSite.songs:type_name -> contest.Song
-	6,   // 18: contest.ContentForSite.artist:type_name -> contest.Artist
+	6,   // 18: contest.ContentForSite.artists:type_name -> contest.Artist
 	7,   // 19: contest.ContentForSite.rate:type_name -> contest.Rate
 	7,   // 20: contest.ContentForSite.rate_top3:type_name -> contest.Rate
 	68,  // 21: contest.ContentForSite.created:type_name -> google.protobuf.Timestamp

@@ -151,7 +151,7 @@ message ContentForSite {
   string id = 1;
   string category = 2;
   repeated Song songs = 3;
-  repeated Artist artist = 4;
+  repeated Artist artists = 4;
   repeated Rate rate = 11;
   repeated Rate rate_top3 = 12;
   bool top3 = 13;
