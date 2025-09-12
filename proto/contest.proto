@@ -25,7 +25,7 @@ service Contest{
   rpc ListContests(ListContestsRequest) returns (ListContestsResponse); // Используется в grpc_contest.go
   // CONTESTS = LIST = By Category \\ с категорией
   rpc ListContestsByCategory(ListContestsByCategoryRequest) returns (ListContestsByCategoryResponse); // Используется в grpc_contest.go
-  // CONTESTS = LIST = By Category \\ с категорией
+  // CONTESTS = LIST = By Category = For Site \\ с категорией
   rpc ListContestsByCategoryForSite(ListContestsByCategoryForSiteRequest) returns (ListContestsByCategoryForSiteResponse); // Используется в grpc_contest.go
 
   // CONTESTS = LIST = By Region
@@ -146,14 +146,12 @@ message FullContent {
   google.protobuf.Timestamp updated = 32;
   google.protobuf.Timestamp expires = 33;
 }
-// ContentForSite ... полная заявка
+// ContentForSite ... заявка для
 message ContentForSite {
   string id = 1;
   string category = 2;
-  string song_title = 3;
-  string artist_name = 4;
-  string artist_city = 5;
-  string region = 6;
+  repeated Song songs = 3;
+  repeated Artist artist = 4;
   repeated Rate rate = 11;
   repeated Rate rate_top3 = 12;
   bool top3 = 13;
@@ -183,7 +181,7 @@ message Person {
   google.protobuf.Timestamp updated = 14;
   google.protobuf.Timestamp expires = 15;
   }
-// Song
+  // Song
 message Song {
   string id = 1;
   repeated string artist = 2;

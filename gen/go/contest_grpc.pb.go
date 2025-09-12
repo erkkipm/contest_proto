@@ -69,7 +69,7 @@ type ContestClient interface {
 	ListContests(ctx context.Context, in *ListContestsRequest, opts ...grpc.CallOption) (*ListContestsResponse, error)
 	// CONTESTS = LIST = By Category \\ с категорией
 	ListContestsByCategory(ctx context.Context, in *ListContestsByCategoryRequest, opts ...grpc.CallOption) (*ListContestsByCategoryResponse, error)
-	// CONTESTS = LIST = By Category \\ с категорией
+	// CONTESTS = LIST = By Category = For Site \\ с категорией
 	ListContestsByCategoryForSite(ctx context.Context, in *ListContestsByCategoryForSiteRequest, opts ...grpc.CallOption) (*ListContestsByCategoryForSiteResponse, error)
 	// CONTESTS = LIST = By Region
 	ListContestsByRegion(ctx context.Context, in *ListContestsByRegionRequest, opts ...grpc.CallOption) (*ListContestsByRegionResponse, error)
@@ -415,7 +415,7 @@ type ContestServer interface {
 	ListContests(context.Context, *ListContestsRequest) (*ListContestsResponse, error)
 	// CONTESTS = LIST = By Category \\ с категорией
 	ListContestsByCategory(context.Context, *ListContestsByCategoryRequest) (*ListContestsByCategoryResponse, error)
-	// CONTESTS = LIST = By Category \\ с категорией
+	// CONTESTS = LIST = By Category = For Site \\ с категорией
 	ListContestsByCategoryForSite(context.Context, *ListContestsByCategoryForSiteRequest) (*ListContestsByCategoryForSiteResponse, error)
 	// CONTESTS = LIST = By Region
 	ListContestsByRegion(context.Context, *ListContestsByRegionRequest) (*ListContestsByRegionResponse, error)
