@@ -64,8 +64,10 @@ service Contest{
   rpc ListSongs (ListSongsRequest) returns (ListSongsResponse);
   //  ПОЛУЧИТЬ
   rpc GetSongByID (GetSongByIDRequest) returns (GetSongByIDResponse);
-  //  PERSON = UPDATE
+  //  ОБНОВИТЬ
   rpc UpdateSong (UpdateSongRequest) returns (UpdateSongResponse);
+  //  ОБНОВИТЬ СТАТУС КОНВЕРТАЦИИ 720p
+  rpc UpdateSong720p (UpdateSong720pRequest) returns (UpdateSong720pResponse);
 
   // ===== ЛИТЕРАТУРНОЕ ПРОИЗВЕДЕНИЕ ====
   // ДОБАВИТЬ
@@ -181,7 +183,7 @@ message Person {
   google.protobuf.Timestamp updated = 14;
   google.protobuf.Timestamp expires = 15;
   }
-  // Song
+// Song
 message Song {
   string id = 1;
   repeated string artist = 2;
@@ -200,6 +202,11 @@ message Song {
   google.protobuf.Timestamp created = 15;
   google.protobuf.Timestamp updated = 16;
   google.protobuf.Timestamp expires = 17;
+  // Конвертация видео в 720p
+  repeated string video_720p = 20;       // пути к 720p версиям видео
+  repeated string clip_720p = 21;        // пути к 720p версиям клипов
+  string convert_status = 22;            // "" | "pending" | "completed" | "failed"
+  string convert_error = 23;             // текст ошибки если failed
 }
 // Artist
 message Artist {
@@ -637,6 +644,18 @@ message UpdateSongRequest {
 }
 message UpdateSongResponse {
   Song song = 1;
+  string message = 2;
+}
+// SONG = UPDATE 720p status
+message UpdateSong720pRequest {
+  string id = 1;                   // ID песни
+  repeated string video_720p = 2;  // пути к 720p версиям видео
+  repeated string clip_720p = 3;   // пути к 720p версиям клипов
+  string convert_status = 4;       // "completed" | "failed"
+  string convert_error = 5;        // текст ошибки если failed
+}
+message UpdateSong720pResponse {
+  string id = 1;
   string message = 2;
 }
 
