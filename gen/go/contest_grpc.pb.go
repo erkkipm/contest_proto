@@ -44,7 +44,7 @@ const (
 	Contest_ListSongs_FullMethodName                     = "/contest.Contest/ListSongs"
 	Contest_GetSongByID_FullMethodName                   = "/contest.Contest/GetSongByID"
 	Contest_UpdateSong_FullMethodName                    = "/contest.Contest/UpdateSong"
-	Contest_UpdateSong720P_FullMethodName                = "/contest.Contest/UpdateSong720p"
+	Contest_UpdateSong720_FullMethodName                 = "/contest.Contest/UpdateSong720"
 	Contest_AddLitWork_FullMethodName                    = "/contest.Contest/AddLitWork"
 	Contest_ListLitWorks_FullMethodName                  = "/contest.Contest/ListLitWorks"
 	Contest_GetLitWorkByID_FullMethodName                = "/contest.Contest/GetLitWorkByID"
@@ -109,7 +109,7 @@ type ContestClient interface {
 	// ОБНОВИТЬ
 	UpdateSong(ctx context.Context, in *UpdateSongRequest, opts ...grpc.CallOption) (*UpdateSongResponse, error)
 	// ОБНОВИТЬ СТАТУС КОНВЕРТАЦИИ 720p
-	UpdateSong720P(ctx context.Context, in *UpdateSong720PRequest, opts ...grpc.CallOption) (*UpdateSong720PResponse, error)
+	UpdateSong720(ctx context.Context, in *UpdateSong720Request, opts ...grpc.CallOption) (*UpdateSong720Response, error)
 	// ===== ЛИТЕРАТУРНОЕ ПРОИЗВЕДЕНИЕ ====
 	// ДОБАВИТЬ
 	AddLitWork(ctx context.Context, in *AddLitWorkRequest, opts ...grpc.CallOption) (*AddLitWorkResponse, error)
@@ -359,10 +359,10 @@ func (c *contestClient) UpdateSong(ctx context.Context, in *UpdateSongRequest, o
 	return out, nil
 }
 
-func (c *contestClient) UpdateSong720P(ctx context.Context, in *UpdateSong720PRequest, opts ...grpc.CallOption) (*UpdateSong720PResponse, error) {
+func (c *contestClient) UpdateSong720(ctx context.Context, in *UpdateSong720Request, opts ...grpc.CallOption) (*UpdateSong720Response, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateSong720PResponse)
-	err := c.cc.Invoke(ctx, Contest_UpdateSong720P_FullMethodName, in, out, cOpts...)
+	out := new(UpdateSong720Response)
+	err := c.cc.Invoke(ctx, Contest_UpdateSong720_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -467,7 +467,7 @@ type ContestServer interface {
 	// ОБНОВИТЬ
 	UpdateSong(context.Context, *UpdateSongRequest) (*UpdateSongResponse, error)
 	// ОБНОВИТЬ СТАТУС КОНВЕРТАЦИИ 720p
-	UpdateSong720P(context.Context, *UpdateSong720PRequest) (*UpdateSong720PResponse, error)
+	UpdateSong720(context.Context, *UpdateSong720Request) (*UpdateSong720Response, error)
 	// ===== ЛИТЕРАТУРНОЕ ПРОИЗВЕДЕНИЕ ====
 	// ДОБАВИТЬ
 	AddLitWork(context.Context, *AddLitWorkRequest) (*AddLitWorkResponse, error)
@@ -556,8 +556,8 @@ func (UnimplementedContestServer) GetSongByID(context.Context, *GetSongByIDReque
 func (UnimplementedContestServer) UpdateSong(context.Context, *UpdateSongRequest) (*UpdateSongResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateSong not implemented")
 }
-func (UnimplementedContestServer) UpdateSong720P(context.Context, *UpdateSong720PRequest) (*UpdateSong720PResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method UpdateSong720P not implemented")
+func (UnimplementedContestServer) UpdateSong720(context.Context, *UpdateSong720Request) (*UpdateSong720Response, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateSong720 not implemented")
 }
 func (UnimplementedContestServer) AddLitWork(context.Context, *AddLitWorkRequest) (*AddLitWorkResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method AddLitWork not implemented")
@@ -1006,20 +1006,20 @@ func _Contest_UpdateSong_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Contest_UpdateSong720P_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateSong720PRequest)
+func _Contest_UpdateSong720_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateSong720Request)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ContestServer).UpdateSong720P(ctx, in)
+		return srv.(ContestServer).UpdateSong720(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Contest_UpdateSong720P_FullMethodName,
+		FullMethod: Contest_UpdateSong720_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContestServer).UpdateSong720P(ctx, req.(*UpdateSong720PRequest))
+		return srv.(ContestServer).UpdateSong720(ctx, req.(*UpdateSong720Request))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1196,8 +1196,8 @@ var Contest_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Contest_UpdateSong_Handler,
 		},
 		{
-			MethodName: "UpdateSong720p",
-			Handler:    _Contest_UpdateSong720P_Handler,
+			MethodName: "UpdateSong720",
+			Handler:    _Contest_UpdateSong720_Handler,
 		},
 		{
 			MethodName: "AddLitWork",

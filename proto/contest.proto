@@ -67,7 +67,7 @@ service Contest{
   //  ОБНОВИТЬ
   rpc UpdateSong (UpdateSongRequest) returns (UpdateSongResponse);
   //  ОБНОВИТЬ СТАТУС КОНВЕРТАЦИИ 720p
-  rpc UpdateSong720p (UpdateSong720pRequest) returns (UpdateSong720pResponse);
+  rpc UpdateSong720 (UpdateSong720Request) returns (UpdateSong720Response);
 
   // ===== ЛИТЕРАТУРНОЕ ПРОИЗВЕДЕНИЕ ====
   // ДОБАВИТЬ
@@ -646,15 +646,15 @@ message UpdateSongResponse {
   Song song = 1;
   string message = 2;
 }
-// SONG = UPDATE 720p status
-message UpdateSong720pRequest {
+// SONG = UPDATE 720 status
+message UpdateSong720Request {
   string id = 1;                   // ID песни
-  repeated string video_720p = 2;  // пути к 720p версиям видео
-  repeated string clip_720p = 3;   // пути к 720p версиям клипов
-  string convert_status = 4;       // "completed" | "failed"
+  repeated string video_720p = 2;  // пути к 720 версиям видео
+  repeated string clip_720p = 3;   // пути к 720 версиям клипов
+  string convert_status = 4;       // "pending" | "completed" | "failed"
   string convert_error = 5;        // текст ошибки если failed
 }
-message UpdateSong720pResponse {
+message UpdateSong720Response {
   string id = 1;
   string message = 2;
 }

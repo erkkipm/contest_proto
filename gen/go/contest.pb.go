@@ -5277,32 +5277,32 @@ func (x *UpdateSongResponse) GetMessage() string {
 	return ""
 }
 
-// SONG = UPDATE 720p status
-type UpdateSong720PRequest struct {
+// SONG = UPDATE 720 status
+type UpdateSong720Request struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`                                            // ID песни
-	Video_720P    []string               `protobuf:"bytes,2,rep,name=video_720p,json=video720p,proto3" json:"video_720p,omitempty"`             // пути к 720p версиям видео
-	Clip_720P     []string               `protobuf:"bytes,3,rep,name=clip_720p,json=clip720p,proto3" json:"clip_720p,omitempty"`                // пути к 720p версиям клипов
-	ConvertStatus string                 `protobuf:"bytes,4,opt,name=convert_status,json=convertStatus,proto3" json:"convert_status,omitempty"` // "completed" | "failed"
+	Video_720P    []string               `protobuf:"bytes,2,rep,name=video_720p,json=video720p,proto3" json:"video_720p,omitempty"`             // пути к 720 версиям видео
+	Clip_720P     []string               `protobuf:"bytes,3,rep,name=clip_720p,json=clip720p,proto3" json:"clip_720p,omitempty"`                // пути к 720 версиям клипов
+	ConvertStatus string                 `protobuf:"bytes,4,opt,name=convert_status,json=convertStatus,proto3" json:"convert_status,omitempty"` // "pending" | "completed" | "failed"
 	ConvertError  string                 `protobuf:"bytes,5,opt,name=convert_error,json=convertError,proto3" json:"convert_error,omitempty"`    // текст ошибки если failed
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UpdateSong720PRequest) Reset() {
-	*x = UpdateSong720PRequest{}
+func (x *UpdateSong720Request) Reset() {
+	*x = UpdateSong720Request{}
 	mi := &file_contest_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpdateSong720PRequest) String() string {
+func (x *UpdateSong720Request) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateSong720PRequest) ProtoMessage() {}
+func (*UpdateSong720Request) ProtoMessage() {}
 
-func (x *UpdateSong720PRequest) ProtoReflect() protoreflect.Message {
+func (x *UpdateSong720Request) ProtoReflect() protoreflect.Message {
 	mi := &file_contest_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5314,47 +5314,47 @@ func (x *UpdateSong720PRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateSong720PRequest.ProtoReflect.Descriptor instead.
-func (*UpdateSong720PRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdateSong720Request.ProtoReflect.Descriptor instead.
+func (*UpdateSong720Request) Descriptor() ([]byte, []int) {
 	return file_contest_proto_rawDescGZIP(), []int{60}
 }
 
-func (x *UpdateSong720PRequest) GetId() string {
+func (x *UpdateSong720Request) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *UpdateSong720PRequest) GetVideo_720P() []string {
+func (x *UpdateSong720Request) GetVideo_720P() []string {
 	if x != nil {
 		return x.Video_720P
 	}
 	return nil
 }
 
-func (x *UpdateSong720PRequest) GetClip_720P() []string {
+func (x *UpdateSong720Request) GetClip_720P() []string {
 	if x != nil {
 		return x.Clip_720P
 	}
 	return nil
 }
 
-func (x *UpdateSong720PRequest) GetConvertStatus() string {
+func (x *UpdateSong720Request) GetConvertStatus() string {
 	if x != nil {
 		return x.ConvertStatus
 	}
 	return ""
 }
 
-func (x *UpdateSong720PRequest) GetConvertError() string {
+func (x *UpdateSong720Request) GetConvertError() string {
 	if x != nil {
 		return x.ConvertError
 	}
 	return ""
 }
 
-type UpdateSong720PResponse struct {
+type UpdateSong720Response struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
@@ -5362,20 +5362,20 @@ type UpdateSong720PResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UpdateSong720PResponse) Reset() {
-	*x = UpdateSong720PResponse{}
+func (x *UpdateSong720Response) Reset() {
+	*x = UpdateSong720Response{}
 	mi := &file_contest_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpdateSong720PResponse) String() string {
+func (x *UpdateSong720Response) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateSong720PResponse) ProtoMessage() {}
+func (*UpdateSong720Response) ProtoMessage() {}
 
-func (x *UpdateSong720PResponse) ProtoReflect() protoreflect.Message {
+func (x *UpdateSong720Response) ProtoReflect() protoreflect.Message {
 	mi := &file_contest_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5387,19 +5387,19 @@ func (x *UpdateSong720PResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateSong720PResponse.ProtoReflect.Descriptor instead.
-func (*UpdateSong720PResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdateSong720Response.ProtoReflect.Descriptor instead.
+func (*UpdateSong720Response) Descriptor() ([]byte, []int) {
 	return file_contest_proto_rawDescGZIP(), []int{61}
 }
 
-func (x *UpdateSong720PResponse) GetId() string {
+func (x *UpdateSong720Response) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *UpdateSong720PResponse) GetMessage() string {
+func (x *UpdateSong720Response) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
@@ -6436,15 +6436,15 @@ const file_contest_proto_rawDesc = "" +
 	"\x04song\x18\x01 \x01(\v2\r.contest.SongR\x04song\"Q\n" +
 	"\x12UpdateSongResponse\x12!\n" +
 	"\x04song\x18\x01 \x01(\v2\r.contest.SongR\x04song\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\xaf\x01\n" +
-	"\x15UpdateSong720pRequest\x12\x0e\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\xae\x01\n" +
+	"\x14UpdateSong720Request\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
 	"video_720p\x18\x02 \x03(\tR\tvideo720p\x12\x1b\n" +
 	"\tclip_720p\x18\x03 \x03(\tR\bclip720p\x12%\n" +
 	"\x0econvert_status\x18\x04 \x01(\tR\rconvertStatus\x12#\n" +
-	"\rconvert_error\x18\x05 \x01(\tR\fconvertError\"B\n" +
-	"\x16UpdateSong720pResponse\x12\x0e\n" +
+	"\rconvert_error\x18\x05 \x01(\tR\fconvertError\"A\n" +
+	"\x15UpdateSong720Response\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"\x8c\x03\n" +
 	"\x11AddLitWorkRequest\x12\x14\n" +
@@ -6488,7 +6488,7 @@ const file_contest_proto_rawDesc = "" +
 	"\blit_work\x18\x01 \x01(\v2\x10.contest.LitWorkR\alitWork\"^\n" +
 	"\x15UpdateLitWorkResponse\x12+\n" +
 	"\blit_work\x18\x01 \x01(\v2\x10.contest.LitWorkR\alitWork\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage2\xab\x12\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage2\xa8\x12\n" +
 	"\aContest\x12E\n" +
 	"\n" +
 	"AddContest\x12\x1a.contest.AddContestRequest\x1a\x1b.contest.AddContestResponse\x12Q\n" +
@@ -6514,8 +6514,8 @@ const file_contest_proto_rawDesc = "" +
 	"\tListSongs\x12\x19.contest.ListSongsRequest\x1a\x1a.contest.ListSongsResponse\x12H\n" +
 	"\vGetSongByID\x12\x1b.contest.GetSongByIDRequest\x1a\x1c.contest.GetSongByIDResponse\x12E\n" +
 	"\n" +
-	"UpdateSong\x12\x1a.contest.UpdateSongRequest\x1a\x1b.contest.UpdateSongResponse\x12Q\n" +
-	"\x0eUpdateSong720p\x12\x1e.contest.UpdateSong720pRequest\x1a\x1f.contest.UpdateSong720pResponse\x12E\n" +
+	"UpdateSong\x12\x1a.contest.UpdateSongRequest\x1a\x1b.contest.UpdateSongResponse\x12N\n" +
+	"\rUpdateSong720\x12\x1d.contest.UpdateSong720Request\x1a\x1e.contest.UpdateSong720Response\x12E\n" +
 	"\n" +
 	"AddLitWork\x12\x1a.contest.AddLitWorkRequest\x1a\x1b.contest.AddLitWorkResponse\x12K\n" +
 	"\fListLitWorks\x12\x1c.contest.ListLitWorksRequest\x1a\x1d.contest.ListLitWorksResponse\x12Q\n" +
@@ -6596,8 +6596,8 @@ var file_contest_proto_goTypes = []any{
 	(*GetSongByIDResponse)(nil),                   // 57: contest.GetSongByIDResponse
 	(*UpdateSongRequest)(nil),                     // 58: contest.UpdateSongRequest
 	(*UpdateSongResponse)(nil),                    // 59: contest.UpdateSongResponse
-	(*UpdateSong720PRequest)(nil),                 // 60: contest.UpdateSong720pRequest
-	(*UpdateSong720PResponse)(nil),                // 61: contest.UpdateSong720pResponse
+	(*UpdateSong720Request)(nil),                  // 60: contest.UpdateSong720Request
+	(*UpdateSong720Response)(nil),                 // 61: contest.UpdateSong720Response
 	(*AddLitWorkRequest)(nil),                     // 62: contest.AddLitWorkRequest
 	(*AddLitWorkResponse)(nil),                    // 63: contest.AddLitWorkResponse
 	(*ListLitWorksRequest)(nil),                   // 64: contest.ListLitWorksRequest
@@ -6746,7 +6746,7 @@ var file_contest_proto_depIdxs = []int32{
 	54,  // 132: contest.Contest.ListSongs:input_type -> contest.ListSongsRequest
 	56,  // 133: contest.Contest.GetSongByID:input_type -> contest.GetSongByIDRequest
 	58,  // 134: contest.Contest.UpdateSong:input_type -> contest.UpdateSongRequest
-	60,  // 135: contest.Contest.UpdateSong720p:input_type -> contest.UpdateSong720pRequest
+	60,  // 135: contest.Contest.UpdateSong720:input_type -> contest.UpdateSong720Request
 	62,  // 136: contest.Contest.AddLitWork:input_type -> contest.AddLitWorkRequest
 	64,  // 137: contest.Contest.ListLitWorks:input_type -> contest.ListLitWorksRequest
 	66,  // 138: contest.Contest.GetLitWorkByID:input_type -> contest.GetLitWorkByIDRequest
@@ -6774,7 +6774,7 @@ var file_contest_proto_depIdxs = []int32{
 	55,  // 160: contest.Contest.ListSongs:output_type -> contest.ListSongsResponse
 	57,  // 161: contest.Contest.GetSongByID:output_type -> contest.GetSongByIDResponse
 	59,  // 162: contest.Contest.UpdateSong:output_type -> contest.UpdateSongResponse
-	61,  // 163: contest.Contest.UpdateSong720p:output_type -> contest.UpdateSong720pResponse
+	61,  // 163: contest.Contest.UpdateSong720:output_type -> contest.UpdateSong720Response
 	63,  // 164: contest.Contest.AddLitWork:output_type -> contest.AddLitWorkResponse
 	65,  // 165: contest.Contest.ListLitWorks:output_type -> contest.ListLitWorksResponse
 	67,  // 166: contest.Contest.GetLitWorkByID:output_type -> contest.GetLitWorkByIDResponse
