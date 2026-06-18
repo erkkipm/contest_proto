@@ -5,7 +5,6 @@ package contest;
 // Настройки для генерации GO кода. Используется при генерации файлов на GO
 option go_package = "github.com/erkkipm/contest_proto/gen/go;contestV1";
 
-
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/field_mask.proto";
@@ -80,10 +79,6 @@ service Contest{
   rpc UpdateLitWork (UpdateLitWorkRequest) returns (UpdateLitWorkResponse);
 }
 
-// ==========
-// ==========
-// ==========
-
 // ContestShort
 message ContestShort {
   string id = 1;
@@ -123,6 +118,7 @@ message OneContest {
   google.protobuf.Timestamp updated = 31;
   google.protobuf.Timestamp expires = 32;
 }
+
 // FullContent ... полная заявка
 message FullContent {
   string id = 1;
@@ -164,6 +160,7 @@ message ContentForSite {
   google.protobuf.Timestamp updated = 32;
   google.protobuf.Timestamp expires = 33;
 }
+
 // Person
 message Person {
   string id = 1;
@@ -183,7 +180,8 @@ message Person {
   google.protobuf.Timestamp updated = 14;
   google.protobuf.Timestamp expires = 15;
   }
-// Song
+
+  // Song
 message Song {
   string id = 1;
   repeated string artist = 2;
@@ -208,6 +206,7 @@ message Song {
   string convert_status = 22;            // "" | "pending" | "completed" | "failed"
   string convert_error = 23;             // текст ошибки если failed
 }
+
 // Artist
 message Artist {
   string id = 1;
@@ -229,6 +228,7 @@ message Artist {
   google.protobuf.Timestamp updated = 17;
   google.protobuf.Timestamp expires = 18;
 }
+
 // Rate
 message Rate {
   string id = 1;
@@ -242,6 +242,7 @@ message Rate {
   google.protobuf.Timestamp updated = 18;
   google.protobuf.Timestamp expires = 19;
 }
+
 // RateBook
 message RateBook {
   string id = 1;
@@ -256,6 +257,7 @@ message RateBook {
   google.protobuf.Timestamp updated = 10;
   google.protobuf.Timestamp expires = 11;
 }
+
 // Litwork - Литературное произведение
 message LitWork {
   string id = 1;
@@ -273,9 +275,6 @@ message LitWork {
   google.protobuf.Timestamp expires = 13;
 }
 
-// ==========
-// ==========
-// ==========
 
 // CONTEST
 
@@ -298,6 +297,7 @@ message AddContestRequest {
     google.protobuf.Timestamp updated = 16;
     google.protobuf.Timestamp expires = 17;
 }
+
 message AddContestResponse {
   string id = 1;
   google.protobuf.Timestamp date = 2;
@@ -316,14 +316,17 @@ message AddContestResponse {
   google.protobuf.Timestamp updated = 16;
   google.protobuf.Timestamp expires = 17;
 }
+
 // CONTEST = GET = ByID
 message GetContestByIDRequest {
   string id = 1;
 }
+
 message GetContestByIDResponse {
   OneContest contest = 1;
   string message = 2;
 }
+
 // CONTEST = GET = ByPersonID
 message GetContestByPersonIDRequest {
   string person_id = 1;
@@ -332,6 +335,7 @@ message GetContestsByPersonIDResponse {
   OneContest contest = 1;
   string message = 2;
 }
+
 // CONTEST = GET = With Empty Category
 message GetContestWithEmptyCategoryRequest {
   string competition_id = 1;
