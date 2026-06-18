@@ -1,7 +1,6 @@
 syntax = "proto3";
 // Текущий пакет - указывает пространство имен для сервиса и сообщений.
 package contest;
-
 // Настройки для генерации GO кода. Используется при генерации файлов на GO
 option go_package = "github.com/erkkipm/contest_proto/gen/go;contestV1";
 
@@ -26,7 +25,6 @@ service Contest{
   rpc ListContestsByCategory(ListContestsByCategoryRequest) returns (ListContestsByCategoryResponse); // Используется в grpc_contest.go
   // CONTESTS = LIST = By Category = For Site \\ с категорией
   rpc ListContestsByCategoryForSite(ListContestsByCategoryForSiteRequest) returns (ListContestsByCategoryForSiteResponse); // Используется в grpc_contest.go
-
   // CONTESTS = LIST = By Region
   rpc ListContestsByRegion (ListContestsByRegionRequest) returns (ListContestsByRegionResponse);
   //  CONTESTS = UPDATE
