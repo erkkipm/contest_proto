@@ -203,6 +203,8 @@ message Song {
   repeated string clip_720p = 21;        // пути к 720p версиям клипов
   string convert_status = 22;            // "" | "pending" | "completed" | "failed"
   string convert_error = 23;             // текст ошибки если failed
+  string language = 24;                  // язык песни, по умолчанию русский
+  string translation = 25;               // перевод текста песни на русский язык (обязателен для песен не на русском)
 }
 
 // Artist
@@ -620,6 +622,8 @@ message AddSongRequest {
   google.protobuf.Timestamp created = 15;
   google.protobuf.Timestamp updated = 16;
   google.protobuf.Timestamp expires = 17;
+  string language = 18;                  // язык песни, по умолчанию русский
+  string translation = 19;               // перевод текста песни на русский язык (обязателен для песен не на русском)
 }
 message AddSongResponse {
   Song song = 1;

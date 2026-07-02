@@ -893,6 +893,8 @@ type Song struct {
 	Clip_720P     []string `protobuf:"bytes,21,rep,name=clip_720p,json=clip720p,proto3" json:"clip_720p,omitempty"`                // пути к 720p версиям клипов
 	ConvertStatus string   `protobuf:"bytes,22,opt,name=convert_status,json=convertStatus,proto3" json:"convert_status,omitempty"` // "" | "pending" | "completed" | "failed"
 	ConvertError  string   `protobuf:"bytes,23,opt,name=convert_error,json=convertError,proto3" json:"convert_error,omitempty"`    // текст ошибки если failed
+	Language      string   `protobuf:"bytes,24,opt,name=language,proto3" json:"language,omitempty"`                                // язык песни, по умолчанию русский
+	Translation   string   `protobuf:"bytes,25,opt,name=translation,proto3" json:"translation,omitempty"`                          // перевод текста песни на русский язык (обязателен для песен не на русском)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1070,6 +1072,20 @@ func (x *Song) GetConvertStatus() string {
 func (x *Song) GetConvertError() string {
 	if x != nil {
 		return x.ConvertError
+	}
+	return ""
+}
+
+func (x *Song) GetLanguage() string {
+	if x != nil {
+		return x.Language
+	}
+	return ""
+}
+
+func (x *Song) GetTranslation() string {
+	if x != nil {
+		return x.Translation
 	}
 	return ""
 }
@@ -4804,6 +4820,8 @@ type AddSongRequest struct {
 	Created       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=created,proto3" json:"created,omitempty"`
 	Updated       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=updated,proto3" json:"updated,omitempty"`
 	Expires       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=expires,proto3" json:"expires,omitempty"`
+	Language      string                 `protobuf:"bytes,18,opt,name=language,proto3" json:"language,omitempty"`       // язык песни, по умолчанию русский
+	Translation   string                 `protobuf:"bytes,19,opt,name=translation,proto3" json:"translation,omitempty"` // перевод текста песни на русский язык (обязателен для песен не на русском)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4948,6 +4966,20 @@ func (x *AddSongRequest) GetExpires() *timestamppb.Timestamp {
 		return x.Expires
 	}
 	return nil
+}
+
+func (x *AddSongRequest) GetLanguage() string {
+	if x != nil {
+		return x.Language
+	}
+	return ""
+}
+
+func (x *AddSongRequest) GetTranslation() string {
+	if x != nil {
+		return x.Translation
+	}
+	return ""
 }
 
 type AddSongResponse struct {
@@ -6057,7 +6089,7 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\f \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\x89\x05\n" +
+	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xc7\x05\n" +
 	"\x04Song\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x16\n" +
 	"\x06artist\x18\x02 \x03(\tR\x06artist\x12\x14\n" +
@@ -6081,7 +6113,9 @@ const file_contest_proto_rawDesc = "" +
 	"video_720p\x18\x14 \x03(\tR\tvideo720p\x12\x1b\n" +
 	"\tclip_720p\x18\x15 \x03(\tR\bclip720p\x12%\n" +
 	"\x0econvert_status\x18\x16 \x01(\tR\rconvertStatus\x12#\n" +
-	"\rconvert_error\x18\x17 \x01(\tR\fconvertError\"\x84\x04\n" +
+	"\rconvert_error\x18\x17 \x01(\tR\fconvertError\x12\x1a\n" +
+	"\blanguage\x18\x18 \x01(\tR\blanguage\x12 \n" +
+	"\vtranslation\x18\x19 \x01(\tR\vtranslation\"\x84\x04\n" +
 	"\x06Artist\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1f\n" +
@@ -6402,7 +6436,7 @@ const file_contest_proto_rawDesc = "" +
 	"\x06artist\x18\x01 \x01(\v2\x0f.contest.ArtistR\x06artist\"Y\n" +
 	"\x14UpdateArtistResponse\x12'\n" +
 	"\x06artist\x18\x01 \x01(\v2\x0f.contest.ArtistR\x06artist\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\xfb\x03\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\xb9\x04\n" +
 	"\x0eAddSongRequest\x12\x16\n" +
 	"\x06artist\x18\x02 \x03(\tR\x06artist\x12\x14\n" +
 	"\x05title\x18\x03 \x01(\tR\x05title\x12#\n" +
@@ -6420,7 +6454,9 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\x0e \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"N\n" +
+	"\aexpires\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\x12\x1a\n" +
+	"\blanguage\x18\x12 \x01(\tR\blanguage\x12 \n" +
+	"\vtranslation\x18\x13 \x01(\tR\vtranslation\"N\n" +
 	"\x0fAddSongResponse\x12!\n" +
 	"\x04song\x18\x01 \x01(\v2\r.contest.SongR\x04song\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"\x12\n" +
