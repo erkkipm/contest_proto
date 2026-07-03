@@ -75,6 +75,24 @@ service Contest{
   rpc GetLitWorkByID (GetLitWorkByIDRequest) returns (GetLitWorkByIDResponse);
   //  PERSON = UPDATE
   rpc UpdateLitWork (UpdateLitWorkRequest) returns (UpdateLitWorkResponse);
+
+  // ==== ИТОГИ ГОЛОСОВАНИЯ ====
+  // Итоги голосования по категории (оценки embedded в заявках: rate[] и rate_top3[])
+  rpc GetResultsByCategory (GetResultsByCategoryRequest) returns (GetResultsByCategoryResponse);
+
+  // ==== ТУРЫ ====
+  // Открыть тур голосования: competition, categories, type, show_participants
+  rpc OpenTour (OpenTourRequest) returns (OpenTourResponse);
+  // Закрыть тур голосования: tour_id
+  rpc CloseTour (CloseTourRequest) returns (CloseTourResponse);
+  // Список туров конкурса: competition -> repeated Tour
+  rpc ListTours (ListToursRequest) returns (ListToursResponse);
+  // Получить открытый тур: competition, category, type -> Tour или NotFound
+  rpc GetOpenTour (GetOpenTourRequest) returns (GetOpenTourResponse);
+
+  // ==== ЖУРНАЛ АУДИТА ====
+  // Список событий журнала для просмотра из админки
+  rpc ListAuditEvents (ListAuditEventsRequest) returns (ListAuditEventsResponse);
 }
 
 // ContestShort
@@ -256,6 +274,36 @@ message RateBook {
   google.protobuf.Timestamp created = 9;
   google.protobuf.Timestamp updated = 10;
   google.protobuf.Timestamp expires = 11;
+}
+
+// ActionMeta - метаданные действия для журнала аудита
+message ActionMeta {
+  string actor_id = 1; // кто выполнил действие
+  string ip = 2;       // IP-адрес, с которого выполнено действие
+}
+
+// Tour - тур голосования
+message Tour {
+  string id = 1;
+  string competition = 2;             // идентификатор конкурса
+  repeated string categories = 3;     // категории тура (пусто = все категории конкурса)
+  string type = 4;                    // тип тура: "main" | "top3"
+  string status = 5;                  // статус тура: "open" | "closed"
+  bool show_participants = 6;         // жюри видит данные участников или только номер/песню/видео
+  google.protobuf.Timestamp opened_at = 7;  // когда открыт
+  google.protobuf.Timestamp closed_at = 8;  // когда закрыт
+}
+
+// AuditEvent - запись журнала аудита
+message AuditEvent {
+  string id = 1;
+  string action = 2;                     // "vote" | "tour_open" | "tour_close" | ...
+  string actor_id = 3;                   // кто выполнил действие
+  string object_id = 4;                  // объект действия (заявка, тур и т.п.)
+  string old_value = 5;                  // старое значение
+  string new_value = 6;                  // новое значение
+  string ip = 7;                         // IP-адрес
+  google.protobuf.Timestamp created = 8;
 }
 
 // Litwork - Литературное произведение
@@ -460,6 +508,7 @@ message UpdateContestAddRateRequest {
   string id = 1;
   Rate rate = 2;
   Rate rate_top3 = 3;
+  ActionMeta meta = 4; // метаданные действия для журнала аудита
 }
 message UpdateContestAddRateResponse {
   string id = 1;
@@ -719,4 +768,81 @@ message UpdateLitWorkRequest {
 message UpdateLitWorkResponse {
   LitWork lit_work = 1;
   string message = 2;
+}
+
+// ИТОГИ ГОЛОСОВАНИЯ
+
+// RESULTS = GET = ByCategory || итоги голосования по категории
+message GetResultsByCategoryRequest {
+  string competition = 1;       // идентификатор конкурса
+  string category = 2;          // категория
+  bool top3 = 3;                // true = по rate_top3 и только заявки top3=true
+  repeated string jury_ids = 4; // белый список жюри; чужие голоса игнорируются
+}
+// ResultRow - итог голосования по одной заявке
+message ResultRow {
+  string contest_id = 1;                // ID заявки
+  int32 total = 2;                      // сумма по уникальным жюри (последняя оценка каждого)
+  int32 jury_count = 3;                 // сколько жюри оценило заявку
+  map<string, int32> rates_by_jury = 4; // juryID -> оценка
+}
+message GetResultsByCategoryResponse {
+  repeated ResultRow rows = 1;             // сортировка: total desc, затем jury_count desc
+  map<string, int32> jury_rated_count = 2; // juryID -> сколько заявок оценил
+}
+
+// ТУРЫ
+
+// TOUR = OPEN || открыть тур голосования
+message OpenTourRequest {
+  string competition = 1;         // идентификатор конкурса
+  repeated string categories = 2; // категории тура (пусто = все категории конкурса)
+  string type = 3;                // тип тура: "main" | "top3"
+  bool show_participants = 4;     // жюри видит данные участников или только номер/песню/видео
+  ActionMeta meta = 5;            // метаданные действия для журнала аудита
+}
+message OpenTourResponse {
+  Tour tour = 1;
+  string message = 2;
+}
+// TOUR = CLOSE || закрыть тур голосования
+message CloseTourRequest {
+  string tour_id = 1;  // ID закрываемого тура
+  ActionMeta meta = 2; // метаданные действия для журнала аудита
+}
+message CloseTourResponse {
+  Tour tour = 1;
+  string message = 2;
+}
+// TOURS = LIST || список туров конкурса
+message ListToursRequest {
+  string competition = 1; // идентификатор конкурса
+}
+message ListToursResponse {
+  repeated Tour tours = 1;
+}
+// TOUR = GET OPEN || получить открытый тур (или NotFound, если открытого нет)
+message GetOpenTourRequest {
+  string competition = 1; // идентификатор конкурса
+  string category = 2;    // категория
+  string type = 3;        // тип тура
+}
+message GetOpenTourResponse {
+  Tour tour = 1;
+  string message = 2;
+}
+
+// ЖУРНАЛ АУДИТА
+
+// AUDIT = LIST || события журнала для админки
+message ListAuditEventsRequest {
+  string competition = 1; // идентификатор конкурса
+  string action = 2;      // фильтр по действию (пусто - все)
+  string actor_id = 3;    // фильтр по актору (пусто - все)
+  int32 limit = 4;        // сколько событий за раз (например, 50)
+  int32 offset = 5;       // с какой позиции (например, 0, 50, 100)
+}
+message ListAuditEventsResponse {
+  repeated AuditEvent rows = 1;
+  int32 total = 2; // всего событий по фильтру
 }

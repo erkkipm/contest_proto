@@ -49,6 +49,12 @@ const (
 	Contest_ListLitWorks_FullMethodName                  = "/contest.Contest/ListLitWorks"
 	Contest_GetLitWorkByID_FullMethodName                = "/contest.Contest/GetLitWorkByID"
 	Contest_UpdateLitWork_FullMethodName                 = "/contest.Contest/UpdateLitWork"
+	Contest_GetResultsByCategory_FullMethodName          = "/contest.Contest/GetResultsByCategory"
+	Contest_OpenTour_FullMethodName                      = "/contest.Contest/OpenTour"
+	Contest_CloseTour_FullMethodName                     = "/contest.Contest/CloseTour"
+	Contest_ListTours_FullMethodName                     = "/contest.Contest/ListTours"
+	Contest_GetOpenTour_FullMethodName                   = "/contest.Contest/GetOpenTour"
+	Contest_ListAuditEvents_FullMethodName               = "/contest.Contest/ListAuditEvents"
 )
 
 // ContestClient is the client API for Contest service.
@@ -119,6 +125,21 @@ type ContestClient interface {
 	GetLitWorkByID(ctx context.Context, in *GetLitWorkByIDRequest, opts ...grpc.CallOption) (*GetLitWorkByIDResponse, error)
 	// PERSON = UPDATE
 	UpdateLitWork(ctx context.Context, in *UpdateLitWorkRequest, opts ...grpc.CallOption) (*UpdateLitWorkResponse, error)
+	// ==== ИТОГИ ГОЛОСОВАНИЯ ====
+	// Итоги голосования по категории (оценки embedded в заявках: rate[] и rate_top3[])
+	GetResultsByCategory(ctx context.Context, in *GetResultsByCategoryRequest, opts ...grpc.CallOption) (*GetResultsByCategoryResponse, error)
+	// ==== ТУРЫ ====
+	// Открыть тур голосования: competition, categories, type, show_participants
+	OpenTour(ctx context.Context, in *OpenTourRequest, opts ...grpc.CallOption) (*OpenTourResponse, error)
+	// Закрыть тур голосования: tour_id
+	CloseTour(ctx context.Context, in *CloseTourRequest, opts ...grpc.CallOption) (*CloseTourResponse, error)
+	// Список туров конкурса: competition -> repeated Tour
+	ListTours(ctx context.Context, in *ListToursRequest, opts ...grpc.CallOption) (*ListToursResponse, error)
+	// Получить открытый тур: competition, category, type -> Tour или NotFound
+	GetOpenTour(ctx context.Context, in *GetOpenTourRequest, opts ...grpc.CallOption) (*GetOpenTourResponse, error)
+	// ==== ЖУРНАЛ АУДИТА ====
+	// Список событий журнала для просмотра из админки
+	ListAuditEvents(ctx context.Context, in *ListAuditEventsRequest, opts ...grpc.CallOption) (*ListAuditEventsResponse, error)
 }
 
 type contestClient struct {
@@ -409,6 +430,66 @@ func (c *contestClient) UpdateLitWork(ctx context.Context, in *UpdateLitWorkRequ
 	return out, nil
 }
 
+func (c *contestClient) GetResultsByCategory(ctx context.Context, in *GetResultsByCategoryRequest, opts ...grpc.CallOption) (*GetResultsByCategoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetResultsByCategoryResponse)
+	err := c.cc.Invoke(ctx, Contest_GetResultsByCategory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contestClient) OpenTour(ctx context.Context, in *OpenTourRequest, opts ...grpc.CallOption) (*OpenTourResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(OpenTourResponse)
+	err := c.cc.Invoke(ctx, Contest_OpenTour_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contestClient) CloseTour(ctx context.Context, in *CloseTourRequest, opts ...grpc.CallOption) (*CloseTourResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CloseTourResponse)
+	err := c.cc.Invoke(ctx, Contest_CloseTour_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contestClient) ListTours(ctx context.Context, in *ListToursRequest, opts ...grpc.CallOption) (*ListToursResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListToursResponse)
+	err := c.cc.Invoke(ctx, Contest_ListTours_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contestClient) GetOpenTour(ctx context.Context, in *GetOpenTourRequest, opts ...grpc.CallOption) (*GetOpenTourResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetOpenTourResponse)
+	err := c.cc.Invoke(ctx, Contest_GetOpenTour_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contestClient) ListAuditEvents(ctx context.Context, in *ListAuditEventsRequest, opts ...grpc.CallOption) (*ListAuditEventsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListAuditEventsResponse)
+	err := c.cc.Invoke(ctx, Contest_ListAuditEvents_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ContestServer is the server API for Contest service.
 // All implementations must embed UnimplementedContestServer
 // for forward compatibility.
@@ -477,6 +558,21 @@ type ContestServer interface {
 	GetLitWorkByID(context.Context, *GetLitWorkByIDRequest) (*GetLitWorkByIDResponse, error)
 	// PERSON = UPDATE
 	UpdateLitWork(context.Context, *UpdateLitWorkRequest) (*UpdateLitWorkResponse, error)
+	// ==== ИТОГИ ГОЛОСОВАНИЯ ====
+	// Итоги голосования по категории (оценки embedded в заявках: rate[] и rate_top3[])
+	GetResultsByCategory(context.Context, *GetResultsByCategoryRequest) (*GetResultsByCategoryResponse, error)
+	// ==== ТУРЫ ====
+	// Открыть тур голосования: competition, categories, type, show_participants
+	OpenTour(context.Context, *OpenTourRequest) (*OpenTourResponse, error)
+	// Закрыть тур голосования: tour_id
+	CloseTour(context.Context, *CloseTourRequest) (*CloseTourResponse, error)
+	// Список туров конкурса: competition -> repeated Tour
+	ListTours(context.Context, *ListToursRequest) (*ListToursResponse, error)
+	// Получить открытый тур: competition, category, type -> Tour или NotFound
+	GetOpenTour(context.Context, *GetOpenTourRequest) (*GetOpenTourResponse, error)
+	// ==== ЖУРНАЛ АУДИТА ====
+	// Список событий журнала для просмотра из админки
+	ListAuditEvents(context.Context, *ListAuditEventsRequest) (*ListAuditEventsResponse, error)
 	mustEmbedUnimplementedContestServer()
 }
 
@@ -570,6 +666,24 @@ func (UnimplementedContestServer) GetLitWorkByID(context.Context, *GetLitWorkByI
 }
 func (UnimplementedContestServer) UpdateLitWork(context.Context, *UpdateLitWorkRequest) (*UpdateLitWorkResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateLitWork not implemented")
+}
+func (UnimplementedContestServer) GetResultsByCategory(context.Context, *GetResultsByCategoryRequest) (*GetResultsByCategoryResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetResultsByCategory not implemented")
+}
+func (UnimplementedContestServer) OpenTour(context.Context, *OpenTourRequest) (*OpenTourResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method OpenTour not implemented")
+}
+func (UnimplementedContestServer) CloseTour(context.Context, *CloseTourRequest) (*CloseTourResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CloseTour not implemented")
+}
+func (UnimplementedContestServer) ListTours(context.Context, *ListToursRequest) (*ListToursResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListTours not implemented")
+}
+func (UnimplementedContestServer) GetOpenTour(context.Context, *GetOpenTourRequest) (*GetOpenTourResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetOpenTour not implemented")
+}
+func (UnimplementedContestServer) ListAuditEvents(context.Context, *ListAuditEventsRequest) (*ListAuditEventsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListAuditEvents not implemented")
 }
 func (UnimplementedContestServer) mustEmbedUnimplementedContestServer() {}
 func (UnimplementedContestServer) testEmbeddedByValue()                 {}
@@ -1096,6 +1210,114 @@ func _Contest_UpdateLitWork_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Contest_GetResultsByCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetResultsByCategoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).GetResultsByCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_GetResultsByCategory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).GetResultsByCategory(ctx, req.(*GetResultsByCategoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Contest_OpenTour_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OpenTourRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).OpenTour(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_OpenTour_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).OpenTour(ctx, req.(*OpenTourRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Contest_CloseTour_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CloseTourRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).CloseTour(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_CloseTour_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).CloseTour(ctx, req.(*CloseTourRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Contest_ListTours_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListToursRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).ListTours(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_ListTours_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).ListTours(ctx, req.(*ListToursRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Contest_GetOpenTour_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOpenTourRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).GetOpenTour(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_GetOpenTour_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).GetOpenTour(ctx, req.(*GetOpenTourRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Contest_ListAuditEvents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAuditEventsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).ListAuditEvents(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_ListAuditEvents_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).ListAuditEvents(ctx, req.(*ListAuditEventsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Contest_ServiceDesc is the grpc.ServiceDesc for Contest service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1214,6 +1436,30 @@ var Contest_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateLitWork",
 			Handler:    _Contest_UpdateLitWork_Handler,
+		},
+		{
+			MethodName: "GetResultsByCategory",
+			Handler:    _Contest_GetResultsByCategory_Handler,
+		},
+		{
+			MethodName: "OpenTour",
+			Handler:    _Contest_OpenTour_Handler,
+		},
+		{
+			MethodName: "CloseTour",
+			Handler:    _Contest_CloseTour_Handler,
+		},
+		{
+			MethodName: "ListTours",
+			Handler:    _Contest_ListTours_Handler,
+		},
+		{
+			MethodName: "GetOpenTour",
+			Handler:    _Contest_GetOpenTour_Handler,
+		},
+		{
+			MethodName: "ListAuditEvents",
+			Handler:    _Contest_ListAuditEvents_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
