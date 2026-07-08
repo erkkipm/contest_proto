@@ -21,6 +21,8 @@ service Contest{
   rpc GetContestWithEmptyCategory(GetContestWithEmptyCategoryRequest) returns (GetContestWithEmptyCategoryResponse); // Используется в grpc_contest.go
   // CONTESTS = LIST || все заявки
   rpc ListContests(ListContestsRequest) returns (ListContestsResponse); // Используется в grpc_contest.go
+  // CONTESTS = LIST = Without Category \\ заявки без номинации (category пустая/отсутствует)
+  rpc ListContestsWithoutCategory(ListContestsWithoutCategoryRequest) returns (ListContestsWithoutCategoryResponse); // Используется в grpc_contest.go
   // CONTESTS = LIST = By Category \\ с категорией
   rpc ListContestsByCategory(ListContestsByCategoryRequest) returns (ListContestsByCategoryResponse); // Используется в grpc_contest.go
   // CONTESTS = LIST = By Category = For Site \\ с категорией
@@ -447,6 +449,16 @@ message ListContestsRequest {
 message ListContestsResponse {
   repeated FullContent contests = 1;
   int32 total = 2; // <-- всего заявок по этому competition
+}
+// CONTESTS = LIST = Without Category || заявки без номинации (category пустая/отсутствует)
+message ListContestsWithoutCategoryRequest {
+  string competition = 1; // идентификатор конкурса
+  int32 limit = 2;   // сколько заявок за раз (например, 50)
+  int32 offset = 3;  // с какой позиции (например, 0, 50, 100)
+}
+message ListContestsWithoutCategoryResponse {
+  repeated FullContent contests = 1;
+  int32 total = 2; // <-- всего заявок без номинации по этому competition
 }
 // CONTESTS = LIST = By Region
 message ListContestsByRegionRequest {
