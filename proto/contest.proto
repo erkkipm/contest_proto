@@ -14,9 +14,9 @@ service Contest{
   // CONTEST = ADD
   rpc AddContest (AddContestRequest) returns (AddContestResponse); // Используется в grpc_contest.go
   // CONTEST = GET = ByID
-  rpc GetContestByID (GetContestByIDRequest) returns (GetContestByIDResponse);
+  rpc GetContestByID (GetContestByIDRequest) returns (GetContestByIDResponse); // Используется в grpc_contest.go — метод реализован на сервере СОФИТ
   // CONTEST = GET = ByPerson
-  rpc GetContestsByPersonID (GetContestByPersonIDRequest) returns (GetContestsByPersonIDResponse);
+  rpc GetContestsByPersonID (GetContestByPersonIDRequest) returns (GetContestsByPersonIDResponse); // НЕ РЕАЛИЗОВАНО на сервере СОФИТ
   // CONTEST = GET = With Empty Category \\ с пустой категорией
   rpc GetContestWithEmptyCategory(GetContestWithEmptyCategoryRequest) returns (GetContestWithEmptyCategoryResponse); // Используется в grpc_contest.go
   // CONTESTS = LIST || все заявки
@@ -28,7 +28,7 @@ service Contest{
   // CONTESTS = LIST = By Category = For Site \\ с категорией
   rpc ListContestsByCategoryForSite(ListContestsByCategoryForSiteRequest) returns (ListContestsByCategoryForSiteResponse); // Используется в grpc_contest.go
   // CONTESTS = LIST = By Region
-  rpc ListContestsByRegion (ListContestsByRegionRequest) returns (ListContestsByRegionResponse);
+  rpc ListContestsByRegion (ListContestsByRegionRequest) returns (ListContestsByRegionResponse); // НЕ РЕАЛИЗОВАНО на сервере СОФИТ
   //  CONTESTS = UPDATE
   rpc UpdateContest (UpdateContestRequest) returns (UpdateContestResponse); // Используется в grpc_contest.go
   //  CONTESTS = SET RATE
@@ -36,65 +36,65 @@ service Contest{
 
   // ==== ПЕРСОНА ====
   // PERSON = ADD
-  rpc AddPerson (AddPersonRequest) returns (AddPersonResponse); // Используется в grpc_person.go
+  rpc AddPerson (AddPersonRequest) returns (AddPersonResponse); // Используется в grpc_contest.go
   //  PERSON = GET = ByID //  Получение данных персоны по ID
-  rpc GetPersonByID (GetPersonByIDRequest) returns (GetPersonByIDResponse);
+  rpc GetPersonByID (GetPersonByIDRequest) returns (GetPersonByIDResponse); // Используется в grpc_contest.go
   //  PERSON = LIST
-  rpc ListPersons (ListPersonsRequest) returns (ListPersonsResponse);
+  rpc ListPersons (ListPersonsRequest) returns (ListPersonsResponse); // НЕ РЕАЛИЗОВАНО на сервере СОФИТ
   //  PERSON = LIST = ByRegion || Получение всех персон в регионе
-  rpc ListPersonsByRegion (ListPersonsByRegionRequest) returns (ListPersonsByRegionResponse);
+  rpc ListPersonsByRegion (ListPersonsByRegionRequest) returns (ListPersonsByRegionResponse); // НЕ РЕАЛИЗОВАНО на сервере СОФИТ
   //  PERSON = UPDATE
-  rpc UpdatePerson (UpdatePersonRequest) returns (UpdatePersonResponse);
+  rpc UpdatePerson (UpdatePersonRequest) returns (UpdatePersonResponse); // НЕ РЕАЛИЗОВАНО на сервере СОФИТ
 
   //  ==== АРТИСТ ====
   // ДОБАВИТЬ
-  rpc AddArtist (AddArtistRequest) returns (AddArtistResponse); // Используется в grpc_artist.go
+  rpc AddArtist (AddArtistRequest) returns (AddArtistResponse); // Используется в grpc_contest.go
   //  СПИСОК
-  rpc ListArtists (ListArtistsRequest) returns (ListArtistsResponse);
+  rpc ListArtists (ListArtistsRequest) returns (ListArtistsResponse); // НЕ РЕАЛИЗОВАНО на сервере СОФИТ
   //  ПОЛУЧИТЬ
-  rpc GetArtistByID (GetArtistByIDRequest) returns (GetArtistByIDResponse);
+  rpc GetArtistByID (GetArtistByIDRequest) returns (GetArtistByIDResponse); // Используется в grpc_contest.go
   //  PERSON = UPDATE
-  rpc UpdateArtist (UpdateArtistRequest) returns (UpdateArtistResponse);
+  rpc UpdateArtist (UpdateArtistRequest) returns (UpdateArtistResponse); // Используется в grpc_contest.go
 
   // ==== ПЕСНЯ =====
   // ДОБАВИТЬ
-  rpc AddSong (AddSongRequest) returns (AddSongResponse); // Используется в grpc_song.go
+  rpc AddSong (AddSongRequest) returns (AddSongResponse); // Используется в grpc_contest.go
   //  СПИСОК
-  rpc ListSongs (ListSongsRequest) returns (ListSongsResponse);
+  rpc ListSongs (ListSongsRequest) returns (ListSongsResponse); // НЕ РЕАЛИЗОВАНО на сервере СОФИТ
   //  ПОЛУЧИТЬ
-  rpc GetSongByID (GetSongByIDRequest) returns (GetSongByIDResponse);
+  rpc GetSongByID (GetSongByIDRequest) returns (GetSongByIDResponse); // Используется в grpc_contest.go
   //  ОБНОВИТЬ
-  rpc UpdateSong (UpdateSongRequest) returns (UpdateSongResponse);
+  rpc UpdateSong (UpdateSongRequest) returns (UpdateSongResponse); // Используется в grpc_contest.go
   //  ОБНОВИТЬ СТАТУС КОНВЕРТАЦИИ 720p
-  rpc UpdateSong720 (UpdateSong720Request) returns (UpdateSong720Response);
+  rpc UpdateSong720 (UpdateSong720Request) returns (UpdateSong720Response); // Используется в grpc_contest.go
 
   // ===== ЛИТЕРАТУРНОЕ ПРОИЗВЕДЕНИЕ ====
   // ДОБАВИТЬ
-  rpc AddLitWork (AddLitWorkRequest) returns (AddLitWorkResponse); // Используется в grpc_song.go
+  rpc AddLitWork (AddLitWorkRequest) returns (AddLitWorkResponse); // Используется в grpc_contest.go
   //  СПИСОК
-  rpc ListLitWorks (ListLitWorksRequest) returns (ListLitWorksResponse);
+  rpc ListLitWorks (ListLitWorksRequest) returns (ListLitWorksResponse); // НЕ РЕАЛИЗОВАНО на сервере СОФИТ
   //  ПОЛУЧИТЬ
-  rpc GetLitWorkByID (GetLitWorkByIDRequest) returns (GetLitWorkByIDResponse);
+  rpc GetLitWorkByID (GetLitWorkByIDRequest) returns (GetLitWorkByIDResponse); // НЕ РЕАЛИЗОВАНО на сервере СОФИТ
   //  PERSON = UPDATE
-  rpc UpdateLitWork (UpdateLitWorkRequest) returns (UpdateLitWorkResponse);
+  rpc UpdateLitWork (UpdateLitWorkRequest) returns (UpdateLitWorkResponse); // НЕ РЕАЛИЗОВАНО на сервере СОФИТ
 
   // ==== ИТОГИ ГОЛОСОВАНИЯ ====
   // Итоги голосования по категории (оценки embedded в заявках: rate[] и rate_top3[])
-  rpc GetResultsByCategory (GetResultsByCategoryRequest) returns (GetResultsByCategoryResponse);
+  rpc GetResultsByCategory (GetResultsByCategoryRequest) returns (GetResultsByCategoryResponse); // Используется в grpc_results.go
 
   // ==== ТУРЫ ====
   // Открыть тур голосования: competition, categories, type, show_participants
-  rpc OpenTour (OpenTourRequest) returns (OpenTourResponse);
+  rpc OpenTour (OpenTourRequest) returns (OpenTourResponse); // Используется в grpc_tour.go
   // Закрыть тур голосования: tour_id
-  rpc CloseTour (CloseTourRequest) returns (CloseTourResponse);
+  rpc CloseTour (CloseTourRequest) returns (CloseTourResponse); // Используется в grpc_tour.go
   // Список туров конкурса: competition -> repeated Tour
-  rpc ListTours (ListToursRequest) returns (ListToursResponse);
+  rpc ListTours (ListToursRequest) returns (ListToursResponse); // Используется в grpc_tour.go
   // Получить открытый тур: competition, category, type -> Tour или NotFound
-  rpc GetOpenTour (GetOpenTourRequest) returns (GetOpenTourResponse);
+  rpc GetOpenTour (GetOpenTourRequest) returns (GetOpenTourResponse); // Используется в grpc_tour.go
 
   // ==== ЖУРНАЛ АУДИТА ====
   // Список событий журнала для просмотра из админки
-  rpc ListAuditEvents (ListAuditEventsRequest) returns (ListAuditEventsResponse);
+  rpc ListAuditEvents (ListAuditEventsRequest) returns (ListAuditEventsResponse); // Используется в grpc_audit.go
 }
 
 // ContestShort
@@ -400,6 +400,8 @@ message ListContestsByCategoryRequest {
   int32 limit = 3;   // сколько заявок за раз (например, 50)
   int32 offset = 4;  // с какой позиции (например, 0, 50, 100)
   string competition = 5; // идентификатор конкурса
+  string sort_by = 6;  // ключ сортировки: artist, song, author, city, category, status, date (пусто = порядок по умолчанию)
+  string sort_dir = 7; // направление: asc | desc (пусто = asc)
 }
 // CONTESTS = LIST = By Category = For site
 message ListContestsByCategoryForSiteRequest {
@@ -455,6 +457,8 @@ message ListContestsWithoutCategoryRequest {
   string competition = 1; // идентификатор конкурса
   int32 limit = 2;   // сколько заявок за раз (например, 50)
   int32 offset = 3;  // с какой позиции (например, 0, 50, 100)
+  string sort_by = 4;  // ключ сортировки: artist, song, author, city, category, status, date (пусто = порядок по умолчанию)
+  string sort_dir = 5; // направление: asc | desc (пусто = asc)
 }
 message ListContestsWithoutCategoryResponse {
   repeated FullContent contests = 1;

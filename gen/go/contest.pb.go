@@ -2525,10 +2525,12 @@ func (x *GetContestWithEmptyCategoryResponse) GetContest() *FullContent {
 type ListContestsByCategoryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Category      string                 `protobuf:"bytes,1,opt,name=category,proto3" json:"category,omitempty"`
-	Filter        string                 `protobuf:"bytes,2,opt,name=filter,proto3" json:"filter,omitempty"`           // в фильтре указываются по каким флагам отфильтровываются заявки (top-100, top-10, top-3, winner)
-	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`            // сколько заявок за раз (например, 50)
-	Offset        int32                  `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty"`          // с какой позиции (например, 0, 50, 100)
-	Competition   string                 `protobuf:"bytes,5,opt,name=competition,proto3" json:"competition,omitempty"` // идентификатор конкурса
+	Filter        string                 `protobuf:"bytes,2,opt,name=filter,proto3" json:"filter,omitempty"`                  // в фильтре указываются по каким флагам отфильтровываются заявки (top-100, top-10, top-3, winner)
+	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`                   // сколько заявок за раз (например, 50)
+	Offset        int32                  `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty"`                 // с какой позиции (например, 0, 50, 100)
+	Competition   string                 `protobuf:"bytes,5,opt,name=competition,proto3" json:"competition,omitempty"`        // идентификатор конкурса
+	SortBy        string                 `protobuf:"bytes,6,opt,name=sort_by,json=sortBy,proto3" json:"sort_by,omitempty"`    // ключ сортировки: artist, song, author, city, category, status, date (пусто = порядок по умолчанию)
+	SortDir       string                 `protobuf:"bytes,7,opt,name=sort_dir,json=sortDir,proto3" json:"sort_dir,omitempty"` // направление: asc | desc (пусто = asc)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2594,6 +2596,20 @@ func (x *ListContestsByCategoryRequest) GetOffset() int32 {
 func (x *ListContestsByCategoryRequest) GetCompetition() string {
 	if x != nil {
 		return x.Competition
+	}
+	return ""
+}
+
+func (x *ListContestsByCategoryRequest) GetSortBy() string {
+	if x != nil {
+		return x.SortBy
+	}
+	return ""
+}
+
+func (x *ListContestsByCategoryRequest) GetSortDir() string {
+	if x != nil {
+		return x.SortDir
 	}
 	return ""
 }
@@ -3135,9 +3151,11 @@ func (x *ListContestsResponse) GetTotal() int32 {
 // CONTESTS = LIST = Without Category || заявки без номинации (category пустая/отсутствует)
 type ListContestsWithoutCategoryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Competition   string                 `protobuf:"bytes,1,opt,name=competition,proto3" json:"competition,omitempty"` // идентификатор конкурса
-	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`            // сколько заявок за раз (например, 50)
-	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`          // с какой позиции (например, 0, 50, 100)
+	Competition   string                 `protobuf:"bytes,1,opt,name=competition,proto3" json:"competition,omitempty"`        // идентификатор конкурса
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`                   // сколько заявок за раз (например, 50)
+	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`                 // с какой позиции (например, 0, 50, 100)
+	SortBy        string                 `protobuf:"bytes,4,opt,name=sort_by,json=sortBy,proto3" json:"sort_by,omitempty"`    // ключ сортировки: artist, song, author, city, category, status, date (пусто = порядок по умолчанию)
+	SortDir       string                 `protobuf:"bytes,5,opt,name=sort_dir,json=sortDir,proto3" json:"sort_dir,omitempty"` // направление: asc | desc (пусто = asc)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3191,6 +3209,20 @@ func (x *ListContestsWithoutCategoryRequest) GetOffset() int32 {
 		return x.Offset
 	}
 	return 0
+}
+
+func (x *ListContestsWithoutCategoryRequest) GetSortBy() string {
+	if x != nil {
+		return x.SortBy
+	}
+	return ""
+}
+
+func (x *ListContestsWithoutCategoryRequest) GetSortDir() string {
+	if x != nil {
+		return x.SortDir
+	}
+	return ""
 }
 
 type ListContestsWithoutCategoryResponse struct {
@@ -7383,13 +7415,15 @@ const file_contest_proto_rawDesc = "" +
 	"\"GetContestWithEmptyCategoryRequest\x12%\n" +
 	"\x0ecompetition_id\x18\x01 \x01(\tR\rcompetitionId\"U\n" +
 	"#GetContestWithEmptyCategoryResponse\x12.\n" +
-	"\acontest\x18\x01 \x01(\v2\x14.contest.FullContentR\acontest\"\xa3\x01\n" +
+	"\acontest\x18\x01 \x01(\v2\x14.contest.FullContentR\acontest\"\xd7\x01\n" +
 	"\x1dListContestsByCategoryRequest\x12\x1a\n" +
 	"\bcategory\x18\x01 \x01(\tR\bcategory\x12\x16\n" +
 	"\x06filter\x18\x02 \x01(\tR\x06filter\x12\x14\n" +
 	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x04 \x01(\x05R\x06offset\x12 \n" +
-	"\vcompetition\x18\x05 \x01(\tR\vcompetition\"\xaa\x01\n" +
+	"\vcompetition\x18\x05 \x01(\tR\vcompetition\x12\x17\n" +
+	"\asort_by\x18\x06 \x01(\tR\x06sortBy\x12\x19\n" +
+	"\bsort_dir\x18\a \x01(\tR\asortDir\"\xaa\x01\n" +
 	"$ListContestsByCategoryForSiteRequest\x12\x1a\n" +
 	"\bcategory\x18\x01 \x01(\tR\bcategory\x12\x16\n" +
 	"\x06filter\x18\x02 \x01(\tR\x06filter\x12\x14\n" +
@@ -7424,11 +7458,13 @@ const file_contest_proto_rawDesc = "" +
 	"\x06offset\x18\x03 \x01(\x05R\x06offset\"^\n" +
 	"\x14ListContestsResponse\x120\n" +
 	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x05R\x05total\"t\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"\xa8\x01\n" +
 	"\"ListContestsWithoutCategoryRequest\x12 \n" +
 	"\vcompetition\x18\x01 \x01(\tR\vcompetition\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x05R\x06offset\"m\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\x12\x17\n" +
+	"\asort_by\x18\x04 \x01(\tR\x06sortBy\x12\x19\n" +
+	"\bsort_dir\x18\x05 \x01(\tR\asortDir\"m\n" +
 	"#ListContestsWithoutCategoryResponse\x120\n" +
 	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x05R\x05total\"\x85\x01\n" +
