@@ -402,6 +402,7 @@ message ListContestsByCategoryRequest {
   string competition = 5; // идентификатор конкурса
   string sort_by = 6;  // ключ сортировки: artist, song, author, city, category, status, date (пусто = порядок по умолчанию)
   string sort_dir = 7; // направление: asc | desc (пусто = asc)
+  string search = 8;   // подстрока по исполнителю/песне/ФИО заявителя/городу, регистронезависимо; пусто = без фильтра
 }
 // CONTESTS = LIST = By Category = For site
 message ListContestsByCategoryForSiteRequest {
@@ -459,6 +460,7 @@ message ListContestsWithoutCategoryRequest {
   int32 offset = 3;  // с какой позиции (например, 0, 50, 100)
   string sort_by = 4;  // ключ сортировки: artist, song, author, city, category, status, date (пусто = порядок по умолчанию)
   string sort_dir = 5; // направление: asc | desc (пусто = asc)
+  string search = 6;   // подстрока по исполнителю/песне/ФИО заявителя/городу, регистронезависимо; пусто = без фильтра
 }
 message ListContestsWithoutCategoryResponse {
   repeated FullContent contests = 1;

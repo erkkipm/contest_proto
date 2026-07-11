@@ -2531,6 +2531,7 @@ type ListContestsByCategoryRequest struct {
 	Competition   string                 `protobuf:"bytes,5,opt,name=competition,proto3" json:"competition,omitempty"`        // идентификатор конкурса
 	SortBy        string                 `protobuf:"bytes,6,opt,name=sort_by,json=sortBy,proto3" json:"sort_by,omitempty"`    // ключ сортировки: artist, song, author, city, category, status, date (пусто = порядок по умолчанию)
 	SortDir       string                 `protobuf:"bytes,7,opt,name=sort_dir,json=sortDir,proto3" json:"sort_dir,omitempty"` // направление: asc | desc (пусто = asc)
+	Search        string                 `protobuf:"bytes,8,opt,name=search,proto3" json:"search,omitempty"`                  // подстрока по исполнителю/песне/ФИО заявителя/городу, регистронезависимо; пусто = без фильтра
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2610,6 +2611,13 @@ func (x *ListContestsByCategoryRequest) GetSortBy() string {
 func (x *ListContestsByCategoryRequest) GetSortDir() string {
 	if x != nil {
 		return x.SortDir
+	}
+	return ""
+}
+
+func (x *ListContestsByCategoryRequest) GetSearch() string {
+	if x != nil {
+		return x.Search
 	}
 	return ""
 }
@@ -3156,6 +3164,7 @@ type ListContestsWithoutCategoryRequest struct {
 	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`                 // с какой позиции (например, 0, 50, 100)
 	SortBy        string                 `protobuf:"bytes,4,opt,name=sort_by,json=sortBy,proto3" json:"sort_by,omitempty"`    // ключ сортировки: artist, song, author, city, category, status, date (пусто = порядок по умолчанию)
 	SortDir       string                 `protobuf:"bytes,5,opt,name=sort_dir,json=sortDir,proto3" json:"sort_dir,omitempty"` // направление: asc | desc (пусто = asc)
+	Search        string                 `protobuf:"bytes,6,opt,name=search,proto3" json:"search,omitempty"`                  // подстрока по исполнителю/песне/ФИО заявителя/городу, регистронезависимо; пусто = без фильтра
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3221,6 +3230,13 @@ func (x *ListContestsWithoutCategoryRequest) GetSortBy() string {
 func (x *ListContestsWithoutCategoryRequest) GetSortDir() string {
 	if x != nil {
 		return x.SortDir
+	}
+	return ""
+}
+
+func (x *ListContestsWithoutCategoryRequest) GetSearch() string {
+	if x != nil {
+		return x.Search
 	}
 	return ""
 }
@@ -7415,7 +7431,7 @@ const file_contest_proto_rawDesc = "" +
 	"\"GetContestWithEmptyCategoryRequest\x12%\n" +
 	"\x0ecompetition_id\x18\x01 \x01(\tR\rcompetitionId\"U\n" +
 	"#GetContestWithEmptyCategoryResponse\x12.\n" +
-	"\acontest\x18\x01 \x01(\v2\x14.contest.FullContentR\acontest\"\xd7\x01\n" +
+	"\acontest\x18\x01 \x01(\v2\x14.contest.FullContentR\acontest\"\xef\x01\n" +
 	"\x1dListContestsByCategoryRequest\x12\x1a\n" +
 	"\bcategory\x18\x01 \x01(\tR\bcategory\x12\x16\n" +
 	"\x06filter\x18\x02 \x01(\tR\x06filter\x12\x14\n" +
@@ -7423,7 +7439,8 @@ const file_contest_proto_rawDesc = "" +
 	"\x06offset\x18\x04 \x01(\x05R\x06offset\x12 \n" +
 	"\vcompetition\x18\x05 \x01(\tR\vcompetition\x12\x17\n" +
 	"\asort_by\x18\x06 \x01(\tR\x06sortBy\x12\x19\n" +
-	"\bsort_dir\x18\a \x01(\tR\asortDir\"\xaa\x01\n" +
+	"\bsort_dir\x18\a \x01(\tR\asortDir\x12\x16\n" +
+	"\x06search\x18\b \x01(\tR\x06search\"\xaa\x01\n" +
 	"$ListContestsByCategoryForSiteRequest\x12\x1a\n" +
 	"\bcategory\x18\x01 \x01(\tR\bcategory\x12\x16\n" +
 	"\x06filter\x18\x02 \x01(\tR\x06filter\x12\x14\n" +
@@ -7458,13 +7475,14 @@ const file_contest_proto_rawDesc = "" +
 	"\x06offset\x18\x03 \x01(\x05R\x06offset\"^\n" +
 	"\x14ListContestsResponse\x120\n" +
 	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x05R\x05total\"\xa8\x01\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"\xc0\x01\n" +
 	"\"ListContestsWithoutCategoryRequest\x12 \n" +
 	"\vcompetition\x18\x01 \x01(\tR\vcompetition\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x03 \x01(\x05R\x06offset\x12\x17\n" +
 	"\asort_by\x18\x04 \x01(\tR\x06sortBy\x12\x19\n" +
-	"\bsort_dir\x18\x05 \x01(\tR\asortDir\"m\n" +
+	"\bsort_dir\x18\x05 \x01(\tR\asortDir\x12\x16\n" +
+	"\x06search\x18\x06 \x01(\tR\x06search\"m\n" +
 	"#ListContestsWithoutCategoryResponse\x120\n" +
 	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x05R\x05total\"\x85\x01\n" +
