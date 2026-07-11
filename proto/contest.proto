@@ -33,6 +33,8 @@ service Contest{
   rpc UpdateContest (UpdateContestRequest) returns (UpdateContestResponse); // Используется в grpc_contest.go
   //  CONTESTS = SET RATE
   rpc UpdateContestAddRate (UpdateContestAddRateRequest) returns (UpdateContestAddRateResponse); // Используется в grpc_contest.go
+  // CONTESTS = DUPLICATES \\ группы заявок-дубликатов по нормализованному "исполнитель + песня"
+  rpc ListContestDuplicates(ListContestDuplicatesRequest) returns (ListContestDuplicatesResponse);
 
   // ==== ПЕРСОНА ====
   // PERSON = ADD
@@ -465,6 +467,20 @@ message ListContestsWithoutCategoryRequest {
 message ListContestsWithoutCategoryResponse {
   repeated FullContent contests = 1;
   int32 total = 2; // <-- всего заявок без номинации по этому competition
+}
+// CONTESTS = DUPLICATES || группы заявок-дубликатов по нормализованному "исполнитель + песня"
+message ListContestDuplicatesRequest {
+  string competition  = 1;  // id конкурса
+  bool   fuzzy        = 2;  // включить нечёткое сравнение (опечатки)
+  int32  max_distance = 3;  // макс. расстояние Левенштейна для fuzzy; 0 = дефолт (2)
+}
+message DuplicateGroup {
+  string key = 1;                    // нормализованный ключ (для отладки/подписи)
+  repeated FullContent contests = 2; // заявки одной группы (всегда >= 2)
+}
+message ListContestDuplicatesResponse {
+  repeated DuplicateGroup groups = 1;
+  int32 total_groups = 2;
 }
 // CONTESTS = LIST = By Region
 message ListContestsByRegionRequest {
