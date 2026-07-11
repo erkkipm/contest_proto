@@ -44,7 +44,7 @@ service Contest{
   //  PERSON = LIST = ByRegion || Получение всех персон в регионе
   rpc ListPersonsByRegion (ListPersonsByRegionRequest) returns (ListPersonsByRegionResponse); // НЕ РЕАЛИЗОВАНО на сервере СОФИТ
   //  PERSON = UPDATE
-  rpc UpdatePerson (UpdatePersonRequest) returns (UpdatePersonResponse); // НЕ РЕАЛИЗОВАНО на сервере СОФИТ
+  rpc UpdatePerson (UpdatePersonRequest) returns (UpdatePersonResponse); // Используется в grpc_contest.go — метод реализован на сервере СОФИТ
 
   //  ==== АРТИСТ ====
   // ДОБАВИТЬ
