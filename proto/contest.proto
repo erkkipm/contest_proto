@@ -35,6 +35,8 @@ service Contest{
   rpc UpdateContestAddRate (UpdateContestAddRateRequest) returns (UpdateContestAddRateResponse); // Используется в grpc_contest.go
   // CONTESTS = DUPLICATES \\ группы заявок-дубликатов по нормализованному "исполнитель + песня"
   rpc ListContestDuplicates(ListContestDuplicatesRequest) returns (ListContestDuplicatesResponse);
+  // CONTESTS = SEARCH \\ сквозной поиск по ВСЕМ заявкам конкурса (и с номинацией, и без)
+  rpc SearchContests(SearchContestsRequest) returns (SearchContestsResponse); // Используется в grpc_contest.go — сквозной поиск по всем заявкам конкурса
 
   // ==== ПЕРСОНА ====
   // PERSON = ADD
@@ -467,6 +469,19 @@ message ListContestsWithoutCategoryRequest {
 message ListContestsWithoutCategoryResponse {
   repeated FullContent contests = 1;
   int32 total = 2; // <-- всего заявок без номинации по этому competition
+}
+// CONTESTS = SEARCH || сквозной поиск по ВСЕМ заявкам конкурса (и с номинацией, и без)
+message SearchContestsRequest {
+  string competition = 1; // идентификатор конкурса
+  string search      = 2; // подстрока; несколько слов через пробел — каждое ищется по всем полям, результаты пересекаются (AND), регистронезависимо; пусто = без фильтра
+  int32  limit       = 3; // сколько заявок за раз (например, 50)
+  int32  offset      = 4; // с какой позиции (например, 0, 50, 100)
+  string sort_by     = 5; // ключ сортировки: artist, song, author, city, category, status, date (пусто = порядок по умолчанию)
+  string sort_dir    = 6; // направление: asc | desc (пусто = asc)
+}
+message SearchContestsResponse {
+  repeated FullContent contests = 1;
+  int32 total = 2; // всего найденных заявок конкурса с учётом search
 }
 // CONTESTS = DUPLICATES || группы заявок-дубликатов по нормализованному "исполнитель + песня"
 message ListContestDuplicatesRequest {

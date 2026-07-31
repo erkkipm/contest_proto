@@ -33,6 +33,7 @@ const (
 	Contest_UpdateContest_FullMethodName                 = "/contest.Contest/UpdateContest"
 	Contest_UpdateContestAddRate_FullMethodName          = "/contest.Contest/UpdateContestAddRate"
 	Contest_ListContestDuplicates_FullMethodName         = "/contest.Contest/ListContestDuplicates"
+	Contest_SearchContests_FullMethodName                = "/contest.Contest/SearchContests"
 	Contest_AddPerson_FullMethodName                     = "/contest.Contest/AddPerson"
 	Contest_GetPersonByID_FullMethodName                 = "/contest.Contest/GetPersonByID"
 	Contest_ListPersons_FullMethodName                   = "/contest.Contest/ListPersons"
@@ -90,6 +91,8 @@ type ContestClient interface {
 	UpdateContestAddRate(ctx context.Context, in *UpdateContestAddRateRequest, opts ...grpc.CallOption) (*UpdateContestAddRateResponse, error)
 	// CONTESTS = DUPLICATES \\ группы заявок-дубликатов по нормализованному "исполнитель + песня"
 	ListContestDuplicates(ctx context.Context, in *ListContestDuplicatesRequest, opts ...grpc.CallOption) (*ListContestDuplicatesResponse, error)
+	// CONTESTS = SEARCH \\ сквозной поиск по ВСЕМ заявкам конкурса (и с номинацией, и без)
+	SearchContests(ctx context.Context, in *SearchContestsRequest, opts ...grpc.CallOption) (*SearchContestsResponse, error)
 	// ==== ПЕРСОНА ====
 	// PERSON = ADD
 	AddPerson(ctx context.Context, in *AddPersonRequest, opts ...grpc.CallOption) (*AddPersonResponse, error)
@@ -270,6 +273,16 @@ func (c *contestClient) ListContestDuplicates(ctx context.Context, in *ListConte
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListContestDuplicatesResponse)
 	err := c.cc.Invoke(ctx, Contest_ListContestDuplicates_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contestClient) SearchContests(ctx context.Context, in *SearchContestsRequest, opts ...grpc.CallOption) (*SearchContestsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SearchContestsResponse)
+	err := c.cc.Invoke(ctx, Contest_SearchContests_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -547,6 +560,8 @@ type ContestServer interface {
 	UpdateContestAddRate(context.Context, *UpdateContestAddRateRequest) (*UpdateContestAddRateResponse, error)
 	// CONTESTS = DUPLICATES \\ группы заявок-дубликатов по нормализованному "исполнитель + песня"
 	ListContestDuplicates(context.Context, *ListContestDuplicatesRequest) (*ListContestDuplicatesResponse, error)
+	// CONTESTS = SEARCH \\ сквозной поиск по ВСЕМ заявкам конкурса (и с номинацией, и без)
+	SearchContests(context.Context, *SearchContestsRequest) (*SearchContestsResponse, error)
 	// ==== ПЕРСОНА ====
 	// PERSON = ADD
 	AddPerson(context.Context, *AddPersonRequest) (*AddPersonResponse, error)
@@ -648,6 +663,9 @@ func (UnimplementedContestServer) UpdateContestAddRate(context.Context, *UpdateC
 }
 func (UnimplementedContestServer) ListContestDuplicates(context.Context, *ListContestDuplicatesRequest) (*ListContestDuplicatesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListContestDuplicates not implemented")
+}
+func (UnimplementedContestServer) SearchContests(context.Context, *SearchContestsRequest) (*SearchContestsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method SearchContests not implemented")
 }
 func (UnimplementedContestServer) AddPerson(context.Context, *AddPersonRequest) (*AddPersonResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method AddPerson not implemented")
@@ -954,6 +972,24 @@ func _Contest_ListContestDuplicates_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ContestServer).ListContestDuplicates(ctx, req.(*ListContestDuplicatesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Contest_SearchContests_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SearchContestsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).SearchContests(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_SearchContests_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).SearchContests(ctx, req.(*SearchContestsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1444,6 +1480,10 @@ var Contest_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListContestDuplicates",
 			Handler:    _Contest_ListContestDuplicates_Handler,
+		},
+		{
+			MethodName: "SearchContests",
+			Handler:    _Contest_SearchContests_Handler,
 		},
 		{
 			MethodName: "AddPerson",
