@@ -99,6 +99,25 @@ service Contest{
   // ==== ЖУРНАЛ АУДИТА ====
   // Список событий журнала для просмотра из админки
   rpc ListAuditEvents (ListAuditEventsRequest) returns (ListAuditEventsResponse); // Используется в grpc_audit.go
+
+  // ==== СПРАВОЧНИК ТЕРРИТОРИЙ ====
+  // Федеральные округа (8 штук, заведены справочником в коде — в ФИАС их нет)
+  rpc ListFederalDistricts (GeoEmpty) returns (FederalDistrictsResponse);
+  // Субъекты РФ округа (federal_district пустой — все 89)
+  rpc ListRegions (ListRegionsRequest) returns (RegionsResponse);
+  // Населённые пункты субъекта: фильтр по query, limit/offset
+  rpc ListSettlements (ListSettlementsRequest) returns (SettlementsResponse);
+  // Автодополнение по всей базе НП (Россия + при include_foreign — весь мир)
+  rpc SuggestSettlements (SuggestRequest) returns (SettlementsResponse);
+  // Список стран: Россия, затем бывший СССР и признанные РФ, затем весь мир —
+  // без городов (стран ~190, эмбедить в один ответ города всех непрактично)
+  rpc ListCountries (GeoEmpty) returns (CountriesResponse);
+  // Города конкретной страны (не Россия): фильтр по query, limit/offset
+  rpc ListForeignSettlements (ListForeignSettlementsRequest) returns (SettlementsResponse);
+  // Спорные записи миграции городов — раздел ручного разбора в админке
+  rpc ListGeoIssues (ListGeoIssuesRequest) returns (ListGeoIssuesResponse);
+  // Ручная привязка спорной записи к населённому пункту
+  rpc ResolveGeoIssue (ResolveGeoIssueRequest) returns (ResolveGeoIssueResponse);
 }
 
 // ContestShort
@@ -201,6 +220,7 @@ message Person {
   google.protobuf.Timestamp created = 13;
   google.protobuf.Timestamp updated = 14;
   google.protobuf.Timestamp expires = 15;
+  string settlement_id = 16; // id населённого пункта в справочнике (OBJECTGUID ФИАС); city/region/country остаются денормализованными для отображения
   }
 
   // Song
@@ -251,6 +271,7 @@ message Artist {
   google.protobuf.Timestamp created = 16;
   google.protobuf.Timestamp updated = 17;
   google.protobuf.Timestamp expires = 18;
+  string settlement_id = 19; // id населённого пункта в справочнике (OBJECTGUID ФИАС); city/region/country остаются денормализованными для отображения
 }
 
 // Rate
@@ -584,6 +605,7 @@ message AddPersonRequest {
   google.protobuf.Timestamp created = 13;
   google.protobuf.Timestamp updated = 14;
   google.protobuf.Timestamp expires = 15;
+  string settlement_id = 16; // id населённого пункта в справочнике (OBJECTGUID ФИАС); city/region/country остаются денормализованными для отображения
 }
 message AddPersonResponse {
   string id = 1;
@@ -601,6 +623,7 @@ message AddPersonResponse {
   google.protobuf.Timestamp created = 13;
   google.protobuf.Timestamp updated = 14;
   google.protobuf.Timestamp expires = 15;
+  string settlement_id = 16; // id населённого пункта в справочнике (OBJECTGUID ФИАС); city/region/country остаются денормализованными для отображения
 }
 // PERSON = GET = ByID
 message GetPersonByIDRequest {
@@ -655,6 +678,7 @@ message AddArtistRequest {
   google.protobuf.Timestamp created = 16;
   google.protobuf.Timestamp updated = 17;
   google.protobuf.Timestamp expires = 18;
+  string settlement_id = 19; // id населённого пункта в справочнике (OBJECTGUID ФИАС); city/region/country остаются денормализованными для отображения
 }
 message AddArtistResponse {
   string id = 1;
@@ -675,6 +699,7 @@ message AddArtistResponse {
   google.protobuf.Timestamp created = 16;
   google.protobuf.Timestamp updated = 17;
   google.protobuf.Timestamp expires = 18;
+  string settlement_id = 19; // id населённого пункта в справочнике (OBJECTGUID ФИАС); city/region/country остаются денормализованными для отображения
 }
 // ARTISTS = LIST
 message ListArtistsRequest {
@@ -894,4 +919,123 @@ message ListAuditEventsRequest {
 message ListAuditEventsResponse {
   repeated AuditEvent rows = 1;
   int32 total = 2; // всего событий по фильтру
+}
+
+// ==== СПРАВОЧНИК ТЕРРИТОРИЙ ====
+
+message GeoEmpty {}
+
+// Федеральный округ
+message FederalDistrict {
+  string code = 1;            // "ЦФО", "СЗФО", ... — стабильный id округа
+  string name = 2;            // "Центральный федеральный округ"
+  string center = 3;          // административный центр
+  int32 regions_count = 4;    // сколько субъектов
+}
+message FederalDistrictsResponse {
+  repeated FederalDistrict districts = 1;
+}
+
+// Субъект РФ
+message Region {
+  string id = 1;                // OBJECTGUID ФИАС — стабильный id субъекта
+  string name = 2;              // "Тамбовская область"
+  string code = 3;              // код субъекта в ГАР: "68"
+  string federal_district = 4;  // "ЦФО"
+}
+message ListRegionsRequest {
+  string federal_district = 1;  // пусто — все субъекты
+}
+message RegionsResponse {
+  repeated Region regions = 1;
+}
+
+// Населённый пункт. id — OBJECTGUID ФИАС, для ближнего зарубежья "gn:<geonameid>".
+message Settlement {
+  string id = 1;
+  string name = 2;               // "Умет"
+  string type = 3;               // "г.", "с.", "д.", "рп."
+  string region_id = 4;          // OBJECTGUID субъекта
+  string region = 5;             // "Тамбовская область"
+  string district = 6;           // "р-н Уметский" — различает тёзок
+  string federal_district = 7;   // "ЦФО"
+  string country = 8;            // "Россия" или страна ближнего зарубежья
+}
+message ListSettlementsRequest {
+  string region_id = 1;   // OBJECTGUID субъекта или его код ("68")
+  string query = 2;       // фильтр по началу названия
+  int64 limit = 3;
+  int64 offset = 4;
+}
+message SuggestRequest {
+  string query = 1;
+  int64 limit = 2;
+  bool include_foreign = 3;  // добавлять города ближнего зарубежья
+}
+message SettlementsResponse {
+  repeated Settlement settlements = 1;
+  int64 total = 2;
+}
+
+// Страна справочника (без городов — их запрашивают отдельно, см. ListForeignSettlements)
+message Country {
+  string code = 1;   // "RU", "BY", "KZ", "AB", "DE", ...
+  string name = 2;   // "Россия", "Беларусь", "Германия"
+}
+message CountriesResponse {
+  repeated Country countries = 1;  // сначала Россия, затем бывший СССР и признанные РФ, затем весь мир по алфавиту
+}
+
+// Города страны (не Россия — для неё используется ListSettlements)
+message ListForeignSettlementsRequest {
+  string country_code = 1;  // "BY", "KZ", "AB", ...
+  string query = 2;         // фильтр по началу названия
+  int64 limit = 3;
+  int64 offset = 4;
+}
+
+// ==== СПОРНЫЕ ЗАПИСИ МИГРАЦИИ ====
+
+message GeoCandidate {
+  string settlement_id = 1;
+  string name = 2;
+  string type = 3;
+  string region = 4;
+  string district = 5;
+  string federal_district = 6;
+  string country = 7;
+}
+// Запись, которую миграция не тронула: тёзки, опечатка, мусор, только регион.
+message GeoIssue {
+  string id = 1;
+  string collection = 2;   // "person" | "artist"
+  string doc_id = 3;
+  string title = 4;        // ФИО или название артиста
+  string raw_city = 5;
+  string raw_region = 6;
+  string raw_country = 7;
+  string reason = 8;       // ambiguous | not_found | garbage | empty | region_only | foreign
+  repeated GeoCandidate candidates = 9;
+  bool resolved = 10;
+}
+message ListGeoIssuesRequest {
+  string collection = 1;
+  string reason = 2;
+  bool include_resolved = 3;
+  int64 limit = 4;
+  int64 offset = 5;
+}
+message ListGeoIssuesResponse {
+  repeated GeoIssue issues = 1;
+  int64 total = 2;
+}
+message ResolveGeoIssueRequest {
+  string collection = 1;
+  string doc_id = 2;
+  string settlement_id = 3;  // выбранный человеком НП
+  string actor_id = 4;       // кто разобрал — для журнала аудита
+}
+message ResolveGeoIssueResponse {
+  bool ok = 1;
+  string message = 2;
 }

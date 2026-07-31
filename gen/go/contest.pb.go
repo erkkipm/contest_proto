@@ -729,6 +729,7 @@ type Person struct {
 	Created       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=created,proto3" json:"created,omitempty"`
 	Updated       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=updated,proto3" json:"updated,omitempty"`
 	Expires       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=expires,proto3" json:"expires,omitempty"`
+	SettlementId  string                 `protobuf:"bytes,16,opt,name=settlement_id,json=settlementId,proto3" json:"settlement_id,omitempty"` // id населённого пункта в справочнике (OBJECTGUID ФИАС); city/region/country остаются денормализованными для отображения
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -866,6 +867,13 @@ func (x *Person) GetExpires() *timestamppb.Timestamp {
 		return x.Expires
 	}
 	return nil
+}
+
+func (x *Person) GetSettlementId() string {
+	if x != nil {
+		return x.SettlementId
+	}
+	return ""
 }
 
 // Song
@@ -1111,6 +1119,7 @@ type Artist struct {
 	Created       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=created,proto3" json:"created,omitempty"`
 	Updated       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=updated,proto3" json:"updated,omitempty"`
 	Expires       *timestamppb.Timestamp `protobuf:"bytes,18,opt,name=expires,proto3" json:"expires,omitempty"`
+	SettlementId  string                 `protobuf:"bytes,19,opt,name=settlement_id,json=settlementId,proto3" json:"settlement_id,omitempty"` // id населённого пункта в справочнике (OBJECTGUID ФИАС); city/region/country остаются денормализованными для отображения
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1269,6 +1278,13 @@ func (x *Artist) GetExpires() *timestamppb.Timestamp {
 		return x.Expires
 	}
 	return nil
+}
+
+func (x *Artist) GetSettlementId() string {
+	if x != nil {
+		return x.SettlementId
+	}
+	return ""
 }
 
 // Rate
@@ -4247,6 +4263,7 @@ type AddPersonRequest struct {
 	Created       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=created,proto3" json:"created,omitempty"`
 	Updated       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=updated,proto3" json:"updated,omitempty"`
 	Expires       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=expires,proto3" json:"expires,omitempty"`
+	SettlementId  string                 `protobuf:"bytes,16,opt,name=settlement_id,json=settlementId,proto3" json:"settlement_id,omitempty"` // id населённого пункта в справочнике (OBJECTGUID ФИАС); city/region/country остаются денормализованными для отображения
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4379,6 +4396,13 @@ func (x *AddPersonRequest) GetExpires() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *AddPersonRequest) GetSettlementId() string {
+	if x != nil {
+		return x.SettlementId
+	}
+	return ""
+}
+
 type AddPersonResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -4396,6 +4420,7 @@ type AddPersonResponse struct {
 	Created       *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=created,proto3" json:"created,omitempty"`
 	Updated       *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=updated,proto3" json:"updated,omitempty"`
 	Expires       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=expires,proto3" json:"expires,omitempty"`
+	SettlementId  string                 `protobuf:"bytes,16,opt,name=settlement_id,json=settlementId,proto3" json:"settlement_id,omitempty"` // id населённого пункта в справочнике (OBJECTGUID ФИАС); city/region/country остаются денормализованными для отображения
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4533,6 +4558,13 @@ func (x *AddPersonResponse) GetExpires() *timestamppb.Timestamp {
 		return x.Expires
 	}
 	return nil
+}
+
+func (x *AddPersonResponse) GetSettlementId() string {
+	if x != nil {
+		return x.SettlementId
+	}
+	return ""
 }
 
 // PERSON = GET = ByID
@@ -4919,6 +4951,7 @@ type AddArtistRequest struct {
 	Created       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=created,proto3" json:"created,omitempty"`
 	Updated       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=updated,proto3" json:"updated,omitempty"`
 	Expires       *timestamppb.Timestamp `protobuf:"bytes,18,opt,name=expires,proto3" json:"expires,omitempty"`
+	SettlementId  string                 `protobuf:"bytes,19,opt,name=settlement_id,json=settlementId,proto3" json:"settlement_id,omitempty"` // id населённого пункта в справочнике (OBJECTGUID ФИАС); city/region/country остаются денормализованными для отображения
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5072,6 +5105,13 @@ func (x *AddArtistRequest) GetExpires() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *AddArtistRequest) GetSettlementId() string {
+	if x != nil {
+		return x.SettlementId
+	}
+	return ""
+}
+
 type AddArtistResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -5092,6 +5132,7 @@ type AddArtistResponse struct {
 	Created       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=created,proto3" json:"created,omitempty"`
 	Updated       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=updated,proto3" json:"updated,omitempty"`
 	Expires       *timestamppb.Timestamp `protobuf:"bytes,18,opt,name=expires,proto3" json:"expires,omitempty"`
+	SettlementId  string                 `protobuf:"bytes,19,opt,name=settlement_id,json=settlementId,proto3" json:"settlement_id,omitempty"` // id населённого пункта в справочнике (OBJECTGUID ФИАС); city/region/country остаются денормализованными для отображения
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5250,6 +5291,13 @@ func (x *AddArtistResponse) GetExpires() *timestamppb.Timestamp {
 		return x.Expires
 	}
 	return nil
+}
+
+func (x *AddArtistResponse) GetSettlementId() string {
+	if x != nil {
+		return x.SettlementId
+	}
+	return ""
 }
 
 // ARTISTS = LIST
@@ -7467,6 +7515,1216 @@ func (x *ListAuditEventsResponse) GetTotal() int32 {
 	return 0
 }
 
+type GeoEmpty struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GeoEmpty) Reset() {
+	*x = GeoEmpty{}
+	mi := &file_contest_proto_msgTypes[93]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GeoEmpty) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GeoEmpty) ProtoMessage() {}
+
+func (x *GeoEmpty) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[93]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GeoEmpty.ProtoReflect.Descriptor instead.
+func (*GeoEmpty) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{93}
+}
+
+// Федеральный округ
+type FederalDistrict struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`                                      // "ЦФО", "СЗФО", ... — стабильный id округа
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`                                      // "Центральный федеральный округ"
+	Center        string                 `protobuf:"bytes,3,opt,name=center,proto3" json:"center,omitempty"`                                  // административный центр
+	RegionsCount  int32                  `protobuf:"varint,4,opt,name=regions_count,json=regionsCount,proto3" json:"regions_count,omitempty"` // сколько субъектов
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FederalDistrict) Reset() {
+	*x = FederalDistrict{}
+	mi := &file_contest_proto_msgTypes[94]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FederalDistrict) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FederalDistrict) ProtoMessage() {}
+
+func (x *FederalDistrict) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[94]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FederalDistrict.ProtoReflect.Descriptor instead.
+func (*FederalDistrict) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{94}
+}
+
+func (x *FederalDistrict) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *FederalDistrict) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *FederalDistrict) GetCenter() string {
+	if x != nil {
+		return x.Center
+	}
+	return ""
+}
+
+func (x *FederalDistrict) GetRegionsCount() int32 {
+	if x != nil {
+		return x.RegionsCount
+	}
+	return 0
+}
+
+type FederalDistrictsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Districts     []*FederalDistrict     `protobuf:"bytes,1,rep,name=districts,proto3" json:"districts,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FederalDistrictsResponse) Reset() {
+	*x = FederalDistrictsResponse{}
+	mi := &file_contest_proto_msgTypes[95]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FederalDistrictsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FederalDistrictsResponse) ProtoMessage() {}
+
+func (x *FederalDistrictsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[95]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FederalDistrictsResponse.ProtoReflect.Descriptor instead.
+func (*FederalDistrictsResponse) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{95}
+}
+
+func (x *FederalDistrictsResponse) GetDistricts() []*FederalDistrict {
+	if x != nil {
+		return x.Districts
+	}
+	return nil
+}
+
+// Субъект РФ
+type Region struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Id              string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`                                                  // OBJECTGUID ФИАС — стабильный id субъекта
+	Name            string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`                                              // "Тамбовская область"
+	Code            string                 `protobuf:"bytes,3,opt,name=code,proto3" json:"code,omitempty"`                                              // код субъекта в ГАР: "68"
+	FederalDistrict string                 `protobuf:"bytes,4,opt,name=federal_district,json=federalDistrict,proto3" json:"federal_district,omitempty"` // "ЦФО"
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *Region) Reset() {
+	*x = Region{}
+	mi := &file_contest_proto_msgTypes[96]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Region) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Region) ProtoMessage() {}
+
+func (x *Region) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[96]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Region.ProtoReflect.Descriptor instead.
+func (*Region) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{96}
+}
+
+func (x *Region) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Region) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Region) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *Region) GetFederalDistrict() string {
+	if x != nil {
+		return x.FederalDistrict
+	}
+	return ""
+}
+
+type ListRegionsRequest struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	FederalDistrict string                 `protobuf:"bytes,1,opt,name=federal_district,json=federalDistrict,proto3" json:"federal_district,omitempty"` // пусто — все субъекты
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *ListRegionsRequest) Reset() {
+	*x = ListRegionsRequest{}
+	mi := &file_contest_proto_msgTypes[97]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListRegionsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRegionsRequest) ProtoMessage() {}
+
+func (x *ListRegionsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[97]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRegionsRequest.ProtoReflect.Descriptor instead.
+func (*ListRegionsRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{97}
+}
+
+func (x *ListRegionsRequest) GetFederalDistrict() string {
+	if x != nil {
+		return x.FederalDistrict
+	}
+	return ""
+}
+
+type RegionsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Regions       []*Region              `protobuf:"bytes,1,rep,name=regions,proto3" json:"regions,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RegionsResponse) Reset() {
+	*x = RegionsResponse{}
+	mi := &file_contest_proto_msgTypes[98]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RegionsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RegionsResponse) ProtoMessage() {}
+
+func (x *RegionsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[98]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RegionsResponse.ProtoReflect.Descriptor instead.
+func (*RegionsResponse) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{98}
+}
+
+func (x *RegionsResponse) GetRegions() []*Region {
+	if x != nil {
+		return x.Regions
+	}
+	return nil
+}
+
+// Населённый пункт. id — OBJECTGUID ФИАС, для ближнего зарубежья "gn:<geonameid>".
+type Settlement struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Id              string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name            string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`                                              // "Умет"
+	Type            string                 `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`                                              // "г.", "с.", "д.", "рп."
+	RegionId        string                 `protobuf:"bytes,4,opt,name=region_id,json=regionId,proto3" json:"region_id,omitempty"`                      // OBJECTGUID субъекта
+	Region          string                 `protobuf:"bytes,5,opt,name=region,proto3" json:"region,omitempty"`                                          // "Тамбовская область"
+	District        string                 `protobuf:"bytes,6,opt,name=district,proto3" json:"district,omitempty"`                                      // "р-н Уметский" — различает тёзок
+	FederalDistrict string                 `protobuf:"bytes,7,opt,name=federal_district,json=federalDistrict,proto3" json:"federal_district,omitempty"` // "ЦФО"
+	Country         string                 `protobuf:"bytes,8,opt,name=country,proto3" json:"country,omitempty"`                                        // "Россия" или страна ближнего зарубежья
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *Settlement) Reset() {
+	*x = Settlement{}
+	mi := &file_contest_proto_msgTypes[99]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Settlement) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Settlement) ProtoMessage() {}
+
+func (x *Settlement) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[99]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Settlement.ProtoReflect.Descriptor instead.
+func (*Settlement) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{99}
+}
+
+func (x *Settlement) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Settlement) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Settlement) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *Settlement) GetRegionId() string {
+	if x != nil {
+		return x.RegionId
+	}
+	return ""
+}
+
+func (x *Settlement) GetRegion() string {
+	if x != nil {
+		return x.Region
+	}
+	return ""
+}
+
+func (x *Settlement) GetDistrict() string {
+	if x != nil {
+		return x.District
+	}
+	return ""
+}
+
+func (x *Settlement) GetFederalDistrict() string {
+	if x != nil {
+		return x.FederalDistrict
+	}
+	return ""
+}
+
+func (x *Settlement) GetCountry() string {
+	if x != nil {
+		return x.Country
+	}
+	return ""
+}
+
+type ListSettlementsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RegionId      string                 `protobuf:"bytes,1,opt,name=region_id,json=regionId,proto3" json:"region_id,omitempty"` // OBJECTGUID субъекта или его код ("68")
+	Query         string                 `protobuf:"bytes,2,opt,name=query,proto3" json:"query,omitempty"`                       // фильтр по началу названия
+	Limit         int64                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int64                  `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListSettlementsRequest) Reset() {
+	*x = ListSettlementsRequest{}
+	mi := &file_contest_proto_msgTypes[100]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListSettlementsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListSettlementsRequest) ProtoMessage() {}
+
+func (x *ListSettlementsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[100]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListSettlementsRequest.ProtoReflect.Descriptor instead.
+func (*ListSettlementsRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{100}
+}
+
+func (x *ListSettlementsRequest) GetRegionId() string {
+	if x != nil {
+		return x.RegionId
+	}
+	return ""
+}
+
+func (x *ListSettlementsRequest) GetQuery() string {
+	if x != nil {
+		return x.Query
+	}
+	return ""
+}
+
+func (x *ListSettlementsRequest) GetLimit() int64 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListSettlementsRequest) GetOffset() int64 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type SuggestRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Query          string                 `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	Limit          int64                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	IncludeForeign bool                   `protobuf:"varint,3,opt,name=include_foreign,json=includeForeign,proto3" json:"include_foreign,omitempty"` // добавлять города ближнего зарубежья
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *SuggestRequest) Reset() {
+	*x = SuggestRequest{}
+	mi := &file_contest_proto_msgTypes[101]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SuggestRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SuggestRequest) ProtoMessage() {}
+
+func (x *SuggestRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[101]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SuggestRequest.ProtoReflect.Descriptor instead.
+func (*SuggestRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{101}
+}
+
+func (x *SuggestRequest) GetQuery() string {
+	if x != nil {
+		return x.Query
+	}
+	return ""
+}
+
+func (x *SuggestRequest) GetLimit() int64 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *SuggestRequest) GetIncludeForeign() bool {
+	if x != nil {
+		return x.IncludeForeign
+	}
+	return false
+}
+
+type SettlementsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Settlements   []*Settlement          `protobuf:"bytes,1,rep,name=settlements,proto3" json:"settlements,omitempty"`
+	Total         int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SettlementsResponse) Reset() {
+	*x = SettlementsResponse{}
+	mi := &file_contest_proto_msgTypes[102]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SettlementsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SettlementsResponse) ProtoMessage() {}
+
+func (x *SettlementsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[102]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SettlementsResponse.ProtoReflect.Descriptor instead.
+func (*SettlementsResponse) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{102}
+}
+
+func (x *SettlementsResponse) GetSettlements() []*Settlement {
+	if x != nil {
+		return x.Settlements
+	}
+	return nil
+}
+
+func (x *SettlementsResponse) GetTotal() int64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+// Страна справочника (без городов — их запрашивают отдельно, см. ListForeignSettlements)
+type Country struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"` // "RU", "BY", "KZ", "AB", "DE", ...
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"` // "Россия", "Беларусь", "Германия"
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Country) Reset() {
+	*x = Country{}
+	mi := &file_contest_proto_msgTypes[103]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Country) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Country) ProtoMessage() {}
+
+func (x *Country) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[103]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Country.ProtoReflect.Descriptor instead.
+func (*Country) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{103}
+}
+
+func (x *Country) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *Country) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type CountriesResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Countries     []*Country             `protobuf:"bytes,1,rep,name=countries,proto3" json:"countries,omitempty"` // сначала Россия, затем бывший СССР и признанные РФ, затем весь мир по алфавиту
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CountriesResponse) Reset() {
+	*x = CountriesResponse{}
+	mi := &file_contest_proto_msgTypes[104]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CountriesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CountriesResponse) ProtoMessage() {}
+
+func (x *CountriesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[104]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CountriesResponse.ProtoReflect.Descriptor instead.
+func (*CountriesResponse) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{104}
+}
+
+func (x *CountriesResponse) GetCountries() []*Country {
+	if x != nil {
+		return x.Countries
+	}
+	return nil
+}
+
+// Города страны (не Россия — для неё используется ListSettlements)
+type ListForeignSettlementsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CountryCode   string                 `protobuf:"bytes,1,opt,name=country_code,json=countryCode,proto3" json:"country_code,omitempty"` // "BY", "KZ", "AB", ...
+	Query         string                 `protobuf:"bytes,2,opt,name=query,proto3" json:"query,omitempty"`                                // фильтр по началу названия
+	Limit         int64                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int64                  `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListForeignSettlementsRequest) Reset() {
+	*x = ListForeignSettlementsRequest{}
+	mi := &file_contest_proto_msgTypes[105]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListForeignSettlementsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListForeignSettlementsRequest) ProtoMessage() {}
+
+func (x *ListForeignSettlementsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[105]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListForeignSettlementsRequest.ProtoReflect.Descriptor instead.
+func (*ListForeignSettlementsRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{105}
+}
+
+func (x *ListForeignSettlementsRequest) GetCountryCode() string {
+	if x != nil {
+		return x.CountryCode
+	}
+	return ""
+}
+
+func (x *ListForeignSettlementsRequest) GetQuery() string {
+	if x != nil {
+		return x.Query
+	}
+	return ""
+}
+
+func (x *ListForeignSettlementsRequest) GetLimit() int64 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListForeignSettlementsRequest) GetOffset() int64 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type GeoCandidate struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	SettlementId    string                 `protobuf:"bytes,1,opt,name=settlement_id,json=settlementId,proto3" json:"settlement_id,omitempty"`
+	Name            string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Type            string                 `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
+	Region          string                 `protobuf:"bytes,4,opt,name=region,proto3" json:"region,omitempty"`
+	District        string                 `protobuf:"bytes,5,opt,name=district,proto3" json:"district,omitempty"`
+	FederalDistrict string                 `protobuf:"bytes,6,opt,name=federal_district,json=federalDistrict,proto3" json:"federal_district,omitempty"`
+	Country         string                 `protobuf:"bytes,7,opt,name=country,proto3" json:"country,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *GeoCandidate) Reset() {
+	*x = GeoCandidate{}
+	mi := &file_contest_proto_msgTypes[106]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GeoCandidate) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GeoCandidate) ProtoMessage() {}
+
+func (x *GeoCandidate) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[106]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GeoCandidate.ProtoReflect.Descriptor instead.
+func (*GeoCandidate) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{106}
+}
+
+func (x *GeoCandidate) GetSettlementId() string {
+	if x != nil {
+		return x.SettlementId
+	}
+	return ""
+}
+
+func (x *GeoCandidate) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *GeoCandidate) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *GeoCandidate) GetRegion() string {
+	if x != nil {
+		return x.Region
+	}
+	return ""
+}
+
+func (x *GeoCandidate) GetDistrict() string {
+	if x != nil {
+		return x.District
+	}
+	return ""
+}
+
+func (x *GeoCandidate) GetFederalDistrict() string {
+	if x != nil {
+		return x.FederalDistrict
+	}
+	return ""
+}
+
+func (x *GeoCandidate) GetCountry() string {
+	if x != nil {
+		return x.Country
+	}
+	return ""
+}
+
+// Запись, которую миграция не тронула: тёзки, опечатка, мусор, только регион.
+type GeoIssue struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Collection    string                 `protobuf:"bytes,2,opt,name=collection,proto3" json:"collection,omitempty"` // "person" | "artist"
+	DocId         string                 `protobuf:"bytes,3,opt,name=doc_id,json=docId,proto3" json:"doc_id,omitempty"`
+	Title         string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"` // ФИО или название артиста
+	RawCity       string                 `protobuf:"bytes,5,opt,name=raw_city,json=rawCity,proto3" json:"raw_city,omitempty"`
+	RawRegion     string                 `protobuf:"bytes,6,opt,name=raw_region,json=rawRegion,proto3" json:"raw_region,omitempty"`
+	RawCountry    string                 `protobuf:"bytes,7,opt,name=raw_country,json=rawCountry,proto3" json:"raw_country,omitempty"`
+	Reason        string                 `protobuf:"bytes,8,opt,name=reason,proto3" json:"reason,omitempty"` // ambiguous | not_found | garbage | empty | region_only | foreign
+	Candidates    []*GeoCandidate        `protobuf:"bytes,9,rep,name=candidates,proto3" json:"candidates,omitempty"`
+	Resolved      bool                   `protobuf:"varint,10,opt,name=resolved,proto3" json:"resolved,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GeoIssue) Reset() {
+	*x = GeoIssue{}
+	mi := &file_contest_proto_msgTypes[107]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GeoIssue) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GeoIssue) ProtoMessage() {}
+
+func (x *GeoIssue) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[107]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GeoIssue.ProtoReflect.Descriptor instead.
+func (*GeoIssue) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{107}
+}
+
+func (x *GeoIssue) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *GeoIssue) GetCollection() string {
+	if x != nil {
+		return x.Collection
+	}
+	return ""
+}
+
+func (x *GeoIssue) GetDocId() string {
+	if x != nil {
+		return x.DocId
+	}
+	return ""
+}
+
+func (x *GeoIssue) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *GeoIssue) GetRawCity() string {
+	if x != nil {
+		return x.RawCity
+	}
+	return ""
+}
+
+func (x *GeoIssue) GetRawRegion() string {
+	if x != nil {
+		return x.RawRegion
+	}
+	return ""
+}
+
+func (x *GeoIssue) GetRawCountry() string {
+	if x != nil {
+		return x.RawCountry
+	}
+	return ""
+}
+
+func (x *GeoIssue) GetReason() string {
+	if x != nil {
+		return x.Reason
+	}
+	return ""
+}
+
+func (x *GeoIssue) GetCandidates() []*GeoCandidate {
+	if x != nil {
+		return x.Candidates
+	}
+	return nil
+}
+
+func (x *GeoIssue) GetResolved() bool {
+	if x != nil {
+		return x.Resolved
+	}
+	return false
+}
+
+type ListGeoIssuesRequest struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Collection      string                 `protobuf:"bytes,1,opt,name=collection,proto3" json:"collection,omitempty"`
+	Reason          string                 `protobuf:"bytes,2,opt,name=reason,proto3" json:"reason,omitempty"`
+	IncludeResolved bool                   `protobuf:"varint,3,opt,name=include_resolved,json=includeResolved,proto3" json:"include_resolved,omitempty"`
+	Limit           int64                  `protobuf:"varint,4,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset          int64                  `protobuf:"varint,5,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *ListGeoIssuesRequest) Reset() {
+	*x = ListGeoIssuesRequest{}
+	mi := &file_contest_proto_msgTypes[108]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListGeoIssuesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListGeoIssuesRequest) ProtoMessage() {}
+
+func (x *ListGeoIssuesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[108]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListGeoIssuesRequest.ProtoReflect.Descriptor instead.
+func (*ListGeoIssuesRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{108}
+}
+
+func (x *ListGeoIssuesRequest) GetCollection() string {
+	if x != nil {
+		return x.Collection
+	}
+	return ""
+}
+
+func (x *ListGeoIssuesRequest) GetReason() string {
+	if x != nil {
+		return x.Reason
+	}
+	return ""
+}
+
+func (x *ListGeoIssuesRequest) GetIncludeResolved() bool {
+	if x != nil {
+		return x.IncludeResolved
+	}
+	return false
+}
+
+func (x *ListGeoIssuesRequest) GetLimit() int64 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListGeoIssuesRequest) GetOffset() int64 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type ListGeoIssuesResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Issues        []*GeoIssue            `protobuf:"bytes,1,rep,name=issues,proto3" json:"issues,omitempty"`
+	Total         int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListGeoIssuesResponse) Reset() {
+	*x = ListGeoIssuesResponse{}
+	mi := &file_contest_proto_msgTypes[109]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListGeoIssuesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListGeoIssuesResponse) ProtoMessage() {}
+
+func (x *ListGeoIssuesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[109]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListGeoIssuesResponse.ProtoReflect.Descriptor instead.
+func (*ListGeoIssuesResponse) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{109}
+}
+
+func (x *ListGeoIssuesResponse) GetIssues() []*GeoIssue {
+	if x != nil {
+		return x.Issues
+	}
+	return nil
+}
+
+func (x *ListGeoIssuesResponse) GetTotal() int64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+type ResolveGeoIssueRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Collection    string                 `protobuf:"bytes,1,opt,name=collection,proto3" json:"collection,omitempty"`
+	DocId         string                 `protobuf:"bytes,2,opt,name=doc_id,json=docId,proto3" json:"doc_id,omitempty"`
+	SettlementId  string                 `protobuf:"bytes,3,opt,name=settlement_id,json=settlementId,proto3" json:"settlement_id,omitempty"` // выбранный человеком НП
+	ActorId       string                 `protobuf:"bytes,4,opt,name=actor_id,json=actorId,proto3" json:"actor_id,omitempty"`                // кто разобрал — для журнала аудита
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ResolveGeoIssueRequest) Reset() {
+	*x = ResolveGeoIssueRequest{}
+	mi := &file_contest_proto_msgTypes[110]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResolveGeoIssueRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResolveGeoIssueRequest) ProtoMessage() {}
+
+func (x *ResolveGeoIssueRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[110]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResolveGeoIssueRequest.ProtoReflect.Descriptor instead.
+func (*ResolveGeoIssueRequest) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{110}
+}
+
+func (x *ResolveGeoIssueRequest) GetCollection() string {
+	if x != nil {
+		return x.Collection
+	}
+	return ""
+}
+
+func (x *ResolveGeoIssueRequest) GetDocId() string {
+	if x != nil {
+		return x.DocId
+	}
+	return ""
+}
+
+func (x *ResolveGeoIssueRequest) GetSettlementId() string {
+	if x != nil {
+		return x.SettlementId
+	}
+	return ""
+}
+
+func (x *ResolveGeoIssueRequest) GetActorId() string {
+	if x != nil {
+		return x.ActorId
+	}
+	return ""
+}
+
+type ResolveGeoIssueResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Ok            bool                   `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ResolveGeoIssueResponse) Reset() {
+	*x = ResolveGeoIssueResponse{}
+	mi := &file_contest_proto_msgTypes[111]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResolveGeoIssueResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResolveGeoIssueResponse) ProtoMessage() {}
+
+func (x *ResolveGeoIssueResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_contest_proto_msgTypes[111]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResolveGeoIssueResponse.ProtoReflect.Descriptor instead.
+func (*ResolveGeoIssueResponse) Descriptor() ([]byte, []int) {
+	return file_contest_proto_rawDescGZIP(), []int{111}
+}
+
+func (x *ResolveGeoIssueResponse) GetOk() bool {
+	if x != nil {
+		return x.Ok
+	}
+	return false
+}
+
+func (x *ResolveGeoIssueResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
 var File_contest_proto protoreflect.FileDescriptor
 
 const file_contest_proto_rawDesc = "" +
@@ -7551,7 +8809,7 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\x13 \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\x1f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18  \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18! \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xce\x03\n" +
+	"\aexpires\x18! \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xf3\x03\n" +
 	"\x06Person\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
@@ -7570,7 +8828,8 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\f \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xc7\x05\n" +
+	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\x12#\n" +
+	"\rsettlement_id\x18\x10 \x01(\tR\fsettlementId\"\xc7\x05\n" +
 	"\x04Song\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x16\n" +
 	"\x06artist\x18\x02 \x03(\tR\x06artist\x12\x14\n" +
@@ -7596,7 +8855,7 @@ const file_contest_proto_rawDesc = "" +
 	"\x0econvert_status\x18\x16 \x01(\tR\rconvertStatus\x12#\n" +
 	"\rconvert_error\x18\x17 \x01(\tR\fconvertError\x12\x1a\n" +
 	"\blanguage\x18\x18 \x01(\tR\blanguage\x12 \n" +
-	"\vtranslation\x18\x19 \x01(\tR\vtranslation\"\x84\x04\n" +
+	"\vtranslation\x18\x19 \x01(\tR\vtranslation\"\xa9\x04\n" +
 	"\x06Artist\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1f\n" +
@@ -7617,7 +8876,8 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\x0f \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xcc\x02\n" +
+	"\aexpires\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\x12#\n" +
+	"\rsettlement_id\x18\x13 \x01(\tR\fsettlementId\"\xcc\x02\n" +
 	"\x04Rate\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12 \n" +
 	"\frate_book_id\x18\x02 \x01(\tR\n" +
@@ -7868,7 +9128,7 @@ const file_contest_proto_rawDesc = "" +
 	"\x1cUpdateContestAddRateResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x127\n" +
 	"\ffull_contest\x18\x02 \x01(\v2\x14.contest.FullContentR\vfullContest\x12\x18\n" +
-	"\amessage\x18\x12 \x01(\tR\amessage\"\xc8\x03\n" +
+	"\amessage\x18\x12 \x01(\tR\amessage\"\xed\x03\n" +
 	"\x10AddPersonRequest\x12\x1d\n" +
 	"\n" +
 	"first_name\x18\x02 \x01(\tR\tfirstName\x12\x1b\n" +
@@ -7886,7 +9146,8 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\f \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xd9\x03\n" +
+	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\x12#\n" +
+	"\rsettlement_id\x18\x10 \x01(\tR\fsettlementId\"\xfe\x03\n" +
 	"\x11AddPersonResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
@@ -7905,7 +9166,8 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\f \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"&\n" +
+	"\aexpires\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\x12#\n" +
+	"\rsettlement_id\x18\x10 \x01(\tR\fsettlementId\"&\n" +
 	"\x14GetPersonByIDRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"Z\n" +
 	"\x15GetPersonByIDResponse\x12'\n" +
@@ -7922,7 +9184,7 @@ const file_contest_proto_rawDesc = "" +
 	"\x06person\x18\x01 \x01(\v2\x0f.contest.PersonR\x06person\"Y\n" +
 	"\x14UpdatePersonResponse\x12'\n" +
 	"\x06person\x18\x01 \x01(\v2\x0f.contest.PersonR\x06person\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\xfe\x03\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\xa3\x04\n" +
 	"\x10AddArtistRequest\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1f\n" +
 	"\vshort_title\x18\x03 \x01(\tR\n" +
@@ -7942,7 +9204,8 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\x0f \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\x8f\x04\n" +
+	"\aexpires\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\x12#\n" +
+	"\rsettlement_id\x18\x13 \x01(\tR\fsettlementId\"\xb4\x04\n" +
 	"\x11AddArtistResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1f\n" +
@@ -7963,7 +9226,8 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\x0f \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\x14\n" +
+	"\aexpires\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\x12#\n" +
+	"\rsettlement_id\x18\x13 \x01(\tR\fsettlementId\"\x14\n" +
 	"\x12ListArtistsRequest\"K\n" +
 	"\x13ListArtistsResponse\x124\n" +
 	"\aartists\x18\x01 \x03(\v2\x1a.contest.AddArtistResponseR\aartists\"&\n" +
@@ -8122,7 +9386,104 @@ const file_contest_proto_rawDesc = "" +
 	"\x06offset\x18\x05 \x01(\x05R\x06offset\"X\n" +
 	"\x17ListAuditEventsResponse\x12'\n" +
 	"\x04rows\x18\x01 \x03(\v2\x13.contest.AuditEventR\x04rows\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x05R\x05total2\xab\x18\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"\n" +
+	"\n" +
+	"\bGeoEmpty\"v\n" +
+	"\x0fFederalDistrict\x12\x12\n" +
+	"\x04code\x18\x01 \x01(\tR\x04code\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x16\n" +
+	"\x06center\x18\x03 \x01(\tR\x06center\x12#\n" +
+	"\rregions_count\x18\x04 \x01(\x05R\fregionsCount\"R\n" +
+	"\x18FederalDistrictsResponse\x126\n" +
+	"\tdistricts\x18\x01 \x03(\v2\x18.contest.FederalDistrictR\tdistricts\"k\n" +
+	"\x06Region\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04code\x18\x03 \x01(\tR\x04code\x12)\n" +
+	"\x10federal_district\x18\x04 \x01(\tR\x0ffederalDistrict\"?\n" +
+	"\x12ListRegionsRequest\x12)\n" +
+	"\x10federal_district\x18\x01 \x01(\tR\x0ffederalDistrict\"<\n" +
+	"\x0fRegionsResponse\x12)\n" +
+	"\aregions\x18\x01 \x03(\v2\x0f.contest.RegionR\aregions\"\xda\x01\n" +
+	"\n" +
+	"Settlement\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04type\x18\x03 \x01(\tR\x04type\x12\x1b\n" +
+	"\tregion_id\x18\x04 \x01(\tR\bregionId\x12\x16\n" +
+	"\x06region\x18\x05 \x01(\tR\x06region\x12\x1a\n" +
+	"\bdistrict\x18\x06 \x01(\tR\bdistrict\x12)\n" +
+	"\x10federal_district\x18\a \x01(\tR\x0ffederalDistrict\x12\x18\n" +
+	"\acountry\x18\b \x01(\tR\acountry\"y\n" +
+	"\x16ListSettlementsRequest\x12\x1b\n" +
+	"\tregion_id\x18\x01 \x01(\tR\bregionId\x12\x14\n" +
+	"\x05query\x18\x02 \x01(\tR\x05query\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\x03R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x04 \x01(\x03R\x06offset\"e\n" +
+	"\x0eSuggestRequest\x12\x14\n" +
+	"\x05query\x18\x01 \x01(\tR\x05query\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x03R\x05limit\x12'\n" +
+	"\x0finclude_foreign\x18\x03 \x01(\bR\x0eincludeForeign\"b\n" +
+	"\x13SettlementsResponse\x125\n" +
+	"\vsettlements\x18\x01 \x03(\v2\x13.contest.SettlementR\vsettlements\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x03R\x05total\"1\n" +
+	"\aCountry\x12\x12\n" +
+	"\x04code\x18\x01 \x01(\tR\x04code\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"C\n" +
+	"\x11CountriesResponse\x12.\n" +
+	"\tcountries\x18\x01 \x03(\v2\x10.contest.CountryR\tcountries\"\x86\x01\n" +
+	"\x1dListForeignSettlementsRequest\x12!\n" +
+	"\fcountry_code\x18\x01 \x01(\tR\vcountryCode\x12\x14\n" +
+	"\x05query\x18\x02 \x01(\tR\x05query\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\x03R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x04 \x01(\x03R\x06offset\"\xd4\x01\n" +
+	"\fGeoCandidate\x12#\n" +
+	"\rsettlement_id\x18\x01 \x01(\tR\fsettlementId\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04type\x18\x03 \x01(\tR\x04type\x12\x16\n" +
+	"\x06region\x18\x04 \x01(\tR\x06region\x12\x1a\n" +
+	"\bdistrict\x18\x05 \x01(\tR\bdistrict\x12)\n" +
+	"\x10federal_district\x18\x06 \x01(\tR\x0ffederalDistrict\x12\x18\n" +
+	"\acountry\x18\a \x01(\tR\acountry\"\xad\x02\n" +
+	"\bGeoIssue\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1e\n" +
+	"\n" +
+	"collection\x18\x02 \x01(\tR\n" +
+	"collection\x12\x15\n" +
+	"\x06doc_id\x18\x03 \x01(\tR\x05docId\x12\x14\n" +
+	"\x05title\x18\x04 \x01(\tR\x05title\x12\x19\n" +
+	"\braw_city\x18\x05 \x01(\tR\arawCity\x12\x1d\n" +
+	"\n" +
+	"raw_region\x18\x06 \x01(\tR\trawRegion\x12\x1f\n" +
+	"\vraw_country\x18\a \x01(\tR\n" +
+	"rawCountry\x12\x16\n" +
+	"\x06reason\x18\b \x01(\tR\x06reason\x125\n" +
+	"\n" +
+	"candidates\x18\t \x03(\v2\x15.contest.GeoCandidateR\n" +
+	"candidates\x12\x1a\n" +
+	"\bresolved\x18\n" +
+	" \x01(\bR\bresolved\"\xa7\x01\n" +
+	"\x14ListGeoIssuesRequest\x12\x1e\n" +
+	"\n" +
+	"collection\x18\x01 \x01(\tR\n" +
+	"collection\x12\x16\n" +
+	"\x06reason\x18\x02 \x01(\tR\x06reason\x12)\n" +
+	"\x10include_resolved\x18\x03 \x01(\bR\x0fincludeResolved\x12\x14\n" +
+	"\x05limit\x18\x04 \x01(\x03R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x05 \x01(\x03R\x06offset\"X\n" +
+	"\x15ListGeoIssuesResponse\x12)\n" +
+	"\x06issues\x18\x01 \x03(\v2\x11.contest.GeoIssueR\x06issues\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x03R\x05total\"\x8f\x01\n" +
+	"\x16ResolveGeoIssueRequest\x12\x1e\n" +
+	"\n" +
+	"collection\x18\x01 \x01(\tR\n" +
+	"collection\x12\x15\n" +
+	"\x06doc_id\x18\x02 \x01(\tR\x05docId\x12#\n" +
+	"\rsettlement_id\x18\x03 \x01(\tR\fsettlementId\x12\x19\n" +
+	"\bactor_id\x18\x04 \x01(\tR\aactorId\"C\n" +
+	"\x17ResolveGeoIssueResponse\x12\x0e\n" +
+	"\x02ok\x18\x01 \x01(\bR\x02ok\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage2\xa4\x1d\n" +
 	"\aContest\x12E\n" +
 	"\n" +
 	"AddContest\x12\x1a.contest.AddContestRequest\x1a\x1b.contest.AddContestResponse\x12Q\n" +
@@ -8163,7 +9524,15 @@ const file_contest_proto_rawDesc = "" +
 	"\tCloseTour\x12\x19.contest.CloseTourRequest\x1a\x1a.contest.CloseTourResponse\x12B\n" +
 	"\tListTours\x12\x19.contest.ListToursRequest\x1a\x1a.contest.ListToursResponse\x12H\n" +
 	"\vGetOpenTour\x12\x1b.contest.GetOpenTourRequest\x1a\x1c.contest.GetOpenTourResponse\x12T\n" +
-	"\x0fListAuditEvents\x12\x1f.contest.ListAuditEventsRequest\x1a .contest.ListAuditEventsResponseB3Z1github.com/erkkipm/contest_proto/gen/go;contestV1b\x06proto3"
+	"\x0fListAuditEvents\x12\x1f.contest.ListAuditEventsRequest\x1a .contest.ListAuditEventsResponse\x12L\n" +
+	"\x14ListFederalDistricts\x12\x11.contest.GeoEmpty\x1a!.contest.FederalDistrictsResponse\x12D\n" +
+	"\vListRegions\x12\x1b.contest.ListRegionsRequest\x1a\x18.contest.RegionsResponse\x12P\n" +
+	"\x0fListSettlements\x12\x1f.contest.ListSettlementsRequest\x1a\x1c.contest.SettlementsResponse\x12K\n" +
+	"\x12SuggestSettlements\x12\x17.contest.SuggestRequest\x1a\x1c.contest.SettlementsResponse\x12>\n" +
+	"\rListCountries\x12\x11.contest.GeoEmpty\x1a\x1a.contest.CountriesResponse\x12^\n" +
+	"\x16ListForeignSettlements\x12&.contest.ListForeignSettlementsRequest\x1a\x1c.contest.SettlementsResponse\x12N\n" +
+	"\rListGeoIssues\x12\x1d.contest.ListGeoIssuesRequest\x1a\x1e.contest.ListGeoIssuesResponse\x12T\n" +
+	"\x0fResolveGeoIssue\x12\x1f.contest.ResolveGeoIssueRequest\x1a .contest.ResolveGeoIssueResponseB3Z1github.com/erkkipm/contest_proto/gen/go;contestV1b\x06proto3"
 
 var (
 	file_contest_proto_rawDescOnce sync.Once
@@ -8177,7 +9546,7 @@ func file_contest_proto_rawDescGZIP() []byte {
 	return file_contest_proto_rawDescData
 }
 
-var file_contest_proto_msgTypes = make([]protoimpl.MessageInfo, 95)
+var file_contest_proto_msgTypes = make([]protoimpl.MessageInfo, 114)
 var file_contest_proto_goTypes = []any{
 	(*ContestShort)(nil),                          // 0: contest.ContestShort
 	(*OneContest)(nil),                            // 1: contest.OneContest
@@ -8272,20 +9641,39 @@ var file_contest_proto_goTypes = []any{
 	(*GetOpenTourResponse)(nil),                   // 90: contest.GetOpenTourResponse
 	(*ListAuditEventsRequest)(nil),                // 91: contest.ListAuditEventsRequest
 	(*ListAuditEventsResponse)(nil),               // 92: contest.ListAuditEventsResponse
-	nil,                                           // 93: contest.ResultRow.RatesByJuryEntry
-	nil,                                           // 94: contest.GetResultsByCategoryResponse.JuryRatedCountEntry
-	(*timestamppb.Timestamp)(nil),                 // 95: google.protobuf.Timestamp
-	(*wrapperspb.BoolValue)(nil),                  // 96: google.protobuf.BoolValue
-	(*fieldmaskpb.FieldMask)(nil),                 // 97: google.protobuf.FieldMask
+	(*GeoEmpty)(nil),                              // 93: contest.GeoEmpty
+	(*FederalDistrict)(nil),                       // 94: contest.FederalDistrict
+	(*FederalDistrictsResponse)(nil),              // 95: contest.FederalDistrictsResponse
+	(*Region)(nil),                                // 96: contest.Region
+	(*ListRegionsRequest)(nil),                    // 97: contest.ListRegionsRequest
+	(*RegionsResponse)(nil),                       // 98: contest.RegionsResponse
+	(*Settlement)(nil),                            // 99: contest.Settlement
+	(*ListSettlementsRequest)(nil),                // 100: contest.ListSettlementsRequest
+	(*SuggestRequest)(nil),                        // 101: contest.SuggestRequest
+	(*SettlementsResponse)(nil),                   // 102: contest.SettlementsResponse
+	(*Country)(nil),                               // 103: contest.Country
+	(*CountriesResponse)(nil),                     // 104: contest.CountriesResponse
+	(*ListForeignSettlementsRequest)(nil),         // 105: contest.ListForeignSettlementsRequest
+	(*GeoCandidate)(nil),                          // 106: contest.GeoCandidate
+	(*GeoIssue)(nil),                              // 107: contest.GeoIssue
+	(*ListGeoIssuesRequest)(nil),                  // 108: contest.ListGeoIssuesRequest
+	(*ListGeoIssuesResponse)(nil),                 // 109: contest.ListGeoIssuesResponse
+	(*ResolveGeoIssueRequest)(nil),                // 110: contest.ResolveGeoIssueRequest
+	(*ResolveGeoIssueResponse)(nil),               // 111: contest.ResolveGeoIssueResponse
+	nil,                                           // 112: contest.ResultRow.RatesByJuryEntry
+	nil,                                           // 113: contest.GetResultsByCategoryResponse.JuryRatedCountEntry
+	(*timestamppb.Timestamp)(nil),                 // 114: google.protobuf.Timestamp
+	(*wrapperspb.BoolValue)(nil),                  // 115: google.protobuf.BoolValue
+	(*fieldmaskpb.FieldMask)(nil),                 // 116: google.protobuf.FieldMask
 }
 var file_contest_proto_depIdxs = []int32{
-	95,  // 0: contest.OneContest.date:type_name -> google.protobuf.Timestamp
+	114, // 0: contest.OneContest.date:type_name -> google.protobuf.Timestamp
 	7,   // 1: contest.OneContest.rate:type_name -> contest.Rate
 	7,   // 2: contest.OneContest.rate_top3:type_name -> contest.Rate
-	95,  // 3: contest.OneContest.created:type_name -> google.protobuf.Timestamp
-	95,  // 4: contest.OneContest.updated:type_name -> google.protobuf.Timestamp
-	95,  // 5: contest.OneContest.expires:type_name -> google.protobuf.Timestamp
-	95,  // 6: contest.FullContent.date:type_name -> google.protobuf.Timestamp
+	114, // 3: contest.OneContest.created:type_name -> google.protobuf.Timestamp
+	114, // 4: contest.OneContest.updated:type_name -> google.protobuf.Timestamp
+	114, // 5: contest.OneContest.expires:type_name -> google.protobuf.Timestamp
+	114, // 6: contest.FullContent.date:type_name -> google.protobuf.Timestamp
 	4,   // 7: contest.FullContent.author:type_name -> contest.Person
 	5,   // 8: contest.FullContent.song:type_name -> contest.Song
 	6,   // 9: contest.FullContent.artist_song_own:type_name -> contest.Artist
@@ -8293,45 +9681,45 @@ var file_contest_proto_depIdxs = []int32{
 	6,   // 11: contest.FullContent.artist_song_remake:type_name -> contest.Artist
 	7,   // 12: contest.FullContent.rate:type_name -> contest.Rate
 	7,   // 13: contest.FullContent.rate_top3:type_name -> contest.Rate
-	95,  // 14: contest.FullContent.created:type_name -> google.protobuf.Timestamp
-	95,  // 15: contest.FullContent.updated:type_name -> google.protobuf.Timestamp
-	95,  // 16: contest.FullContent.expires:type_name -> google.protobuf.Timestamp
+	114, // 14: contest.FullContent.created:type_name -> google.protobuf.Timestamp
+	114, // 15: contest.FullContent.updated:type_name -> google.protobuf.Timestamp
+	114, // 16: contest.FullContent.expires:type_name -> google.protobuf.Timestamp
 	5,   // 17: contest.ContentForSite.songs:type_name -> contest.Song
 	6,   // 18: contest.ContentForSite.artists:type_name -> contest.Artist
 	7,   // 19: contest.ContentForSite.rate:type_name -> contest.Rate
 	7,   // 20: contest.ContentForSite.rate_top3:type_name -> contest.Rate
-	95,  // 21: contest.ContentForSite.created:type_name -> google.protobuf.Timestamp
-	95,  // 22: contest.ContentForSite.updated:type_name -> google.protobuf.Timestamp
-	95,  // 23: contest.ContentForSite.expires:type_name -> google.protobuf.Timestamp
-	95,  // 24: contest.Person.created:type_name -> google.protobuf.Timestamp
-	95,  // 25: contest.Person.updated:type_name -> google.protobuf.Timestamp
-	95,  // 26: contest.Person.expires:type_name -> google.protobuf.Timestamp
-	95,  // 27: contest.Song.created:type_name -> google.protobuf.Timestamp
-	95,  // 28: contest.Song.updated:type_name -> google.protobuf.Timestamp
-	95,  // 29: contest.Song.expires:type_name -> google.protobuf.Timestamp
-	95,  // 30: contest.Artist.created:type_name -> google.protobuf.Timestamp
-	95,  // 31: contest.Artist.updated:type_name -> google.protobuf.Timestamp
-	95,  // 32: contest.Artist.expires:type_name -> google.protobuf.Timestamp
-	95,  // 33: contest.Rate.created:type_name -> google.protobuf.Timestamp
-	95,  // 34: contest.Rate.updated:type_name -> google.protobuf.Timestamp
-	95,  // 35: contest.Rate.expires:type_name -> google.protobuf.Timestamp
-	95,  // 36: contest.RateBook.created:type_name -> google.protobuf.Timestamp
-	95,  // 37: contest.RateBook.updated:type_name -> google.protobuf.Timestamp
-	95,  // 38: contest.RateBook.expires:type_name -> google.protobuf.Timestamp
-	95,  // 39: contest.Tour.opened_at:type_name -> google.protobuf.Timestamp
-	95,  // 40: contest.Tour.closed_at:type_name -> google.protobuf.Timestamp
-	95,  // 41: contest.AuditEvent.created:type_name -> google.protobuf.Timestamp
-	95,  // 42: contest.LitWork.created:type_name -> google.protobuf.Timestamp
-	95,  // 43: contest.LitWork.updated:type_name -> google.protobuf.Timestamp
-	95,  // 44: contest.LitWork.expires:type_name -> google.protobuf.Timestamp
-	95,  // 45: contest.AddContestRequest.date:type_name -> google.protobuf.Timestamp
-	95,  // 46: contest.AddContestRequest.created:type_name -> google.protobuf.Timestamp
-	95,  // 47: contest.AddContestRequest.updated:type_name -> google.protobuf.Timestamp
-	95,  // 48: contest.AddContestRequest.expires:type_name -> google.protobuf.Timestamp
-	95,  // 49: contest.AddContestResponse.date:type_name -> google.protobuf.Timestamp
-	95,  // 50: contest.AddContestResponse.created:type_name -> google.protobuf.Timestamp
-	95,  // 51: contest.AddContestResponse.updated:type_name -> google.protobuf.Timestamp
-	95,  // 52: contest.AddContestResponse.expires:type_name -> google.protobuf.Timestamp
+	114, // 21: contest.ContentForSite.created:type_name -> google.protobuf.Timestamp
+	114, // 22: contest.ContentForSite.updated:type_name -> google.protobuf.Timestamp
+	114, // 23: contest.ContentForSite.expires:type_name -> google.protobuf.Timestamp
+	114, // 24: contest.Person.created:type_name -> google.protobuf.Timestamp
+	114, // 25: contest.Person.updated:type_name -> google.protobuf.Timestamp
+	114, // 26: contest.Person.expires:type_name -> google.protobuf.Timestamp
+	114, // 27: contest.Song.created:type_name -> google.protobuf.Timestamp
+	114, // 28: contest.Song.updated:type_name -> google.protobuf.Timestamp
+	114, // 29: contest.Song.expires:type_name -> google.protobuf.Timestamp
+	114, // 30: contest.Artist.created:type_name -> google.protobuf.Timestamp
+	114, // 31: contest.Artist.updated:type_name -> google.protobuf.Timestamp
+	114, // 32: contest.Artist.expires:type_name -> google.protobuf.Timestamp
+	114, // 33: contest.Rate.created:type_name -> google.protobuf.Timestamp
+	114, // 34: contest.Rate.updated:type_name -> google.protobuf.Timestamp
+	114, // 35: contest.Rate.expires:type_name -> google.protobuf.Timestamp
+	114, // 36: contest.RateBook.created:type_name -> google.protobuf.Timestamp
+	114, // 37: contest.RateBook.updated:type_name -> google.protobuf.Timestamp
+	114, // 38: contest.RateBook.expires:type_name -> google.protobuf.Timestamp
+	114, // 39: contest.Tour.opened_at:type_name -> google.protobuf.Timestamp
+	114, // 40: contest.Tour.closed_at:type_name -> google.protobuf.Timestamp
+	114, // 41: contest.AuditEvent.created:type_name -> google.protobuf.Timestamp
+	114, // 42: contest.LitWork.created:type_name -> google.protobuf.Timestamp
+	114, // 43: contest.LitWork.updated:type_name -> google.protobuf.Timestamp
+	114, // 44: contest.LitWork.expires:type_name -> google.protobuf.Timestamp
+	114, // 45: contest.AddContestRequest.date:type_name -> google.protobuf.Timestamp
+	114, // 46: contest.AddContestRequest.created:type_name -> google.protobuf.Timestamp
+	114, // 47: contest.AddContestRequest.updated:type_name -> google.protobuf.Timestamp
+	114, // 48: contest.AddContestRequest.expires:type_name -> google.protobuf.Timestamp
+	114, // 49: contest.AddContestResponse.date:type_name -> google.protobuf.Timestamp
+	114, // 50: contest.AddContestResponse.created:type_name -> google.protobuf.Timestamp
+	114, // 51: contest.AddContestResponse.updated:type_name -> google.protobuf.Timestamp
+	114, // 52: contest.AddContestResponse.expires:type_name -> google.protobuf.Timestamp
 	1,   // 53: contest.GetContestByIDResponse.contest:type_name -> contest.OneContest
 	1,   // 54: contest.GetContestsByPersonIDResponse.contest:type_name -> contest.OneContest
 	2,   // 55: contest.GetContestWithEmptyCategoryResponse.contest:type_name -> contest.FullContent
@@ -8345,63 +9733,63 @@ var file_contest_proto_depIdxs = []int32{
 	2,   // 63: contest.DuplicateGroup.contests:type_name -> contest.FullContent
 	36,  // 64: contest.ListContestDuplicatesResponse.groups:type_name -> contest.DuplicateGroup
 	2,   // 65: contest.ListContestsByRegionResponse.contests:type_name -> contest.FullContent
-	95,  // 66: contest.UpdateContestRequest.date:type_name -> google.protobuf.Timestamp
-	96,  // 67: contest.UpdateContestRequest.top3:type_name -> google.protobuf.BoolValue
-	96,  // 68: contest.UpdateContestRequest.winner:type_name -> google.protobuf.BoolValue
-	95,  // 69: contest.UpdateContestRequest.created:type_name -> google.protobuf.Timestamp
-	95,  // 70: contest.UpdateContestRequest.updated:type_name -> google.protobuf.Timestamp
-	95,  // 71: contest.UpdateContestRequest.expires:type_name -> google.protobuf.Timestamp
-	97,  // 72: contest.UpdateContestRequest.update_mask:type_name -> google.protobuf.FieldMask
-	95,  // 73: contest.UpdateContestResponse.date:type_name -> google.protobuf.Timestamp
-	95,  // 74: contest.UpdateContestResponse.created:type_name -> google.protobuf.Timestamp
-	95,  // 75: contest.UpdateContestResponse.updated:type_name -> google.protobuf.Timestamp
-	95,  // 76: contest.UpdateContestResponse.expires:type_name -> google.protobuf.Timestamp
+	114, // 66: contest.UpdateContestRequest.date:type_name -> google.protobuf.Timestamp
+	115, // 67: contest.UpdateContestRequest.top3:type_name -> google.protobuf.BoolValue
+	115, // 68: contest.UpdateContestRequest.winner:type_name -> google.protobuf.BoolValue
+	114, // 69: contest.UpdateContestRequest.created:type_name -> google.protobuf.Timestamp
+	114, // 70: contest.UpdateContestRequest.updated:type_name -> google.protobuf.Timestamp
+	114, // 71: contest.UpdateContestRequest.expires:type_name -> google.protobuf.Timestamp
+	116, // 72: contest.UpdateContestRequest.update_mask:type_name -> google.protobuf.FieldMask
+	114, // 73: contest.UpdateContestResponse.date:type_name -> google.protobuf.Timestamp
+	114, // 74: contest.UpdateContestResponse.created:type_name -> google.protobuf.Timestamp
+	114, // 75: contest.UpdateContestResponse.updated:type_name -> google.protobuf.Timestamp
+	114, // 76: contest.UpdateContestResponse.expires:type_name -> google.protobuf.Timestamp
 	7,   // 77: contest.UpdateContestAddRateRequest.rate:type_name -> contest.Rate
 	7,   // 78: contest.UpdateContestAddRateRequest.rate_top3:type_name -> contest.Rate
 	9,   // 79: contest.UpdateContestAddRateRequest.meta:type_name -> contest.ActionMeta
 	2,   // 80: contest.UpdateContestAddRateResponse.full_contest:type_name -> contest.FullContent
-	95,  // 81: contest.AddPersonRequest.created:type_name -> google.protobuf.Timestamp
-	95,  // 82: contest.AddPersonRequest.updated:type_name -> google.protobuf.Timestamp
-	95,  // 83: contest.AddPersonRequest.expires:type_name -> google.protobuf.Timestamp
-	95,  // 84: contest.AddPersonResponse.created:type_name -> google.protobuf.Timestamp
-	95,  // 85: contest.AddPersonResponse.updated:type_name -> google.protobuf.Timestamp
-	95,  // 86: contest.AddPersonResponse.expires:type_name -> google.protobuf.Timestamp
+	114, // 81: contest.AddPersonRequest.created:type_name -> google.protobuf.Timestamp
+	114, // 82: contest.AddPersonRequest.updated:type_name -> google.protobuf.Timestamp
+	114, // 83: contest.AddPersonRequest.expires:type_name -> google.protobuf.Timestamp
+	114, // 84: contest.AddPersonResponse.created:type_name -> google.protobuf.Timestamp
+	114, // 85: contest.AddPersonResponse.updated:type_name -> google.protobuf.Timestamp
+	114, // 86: contest.AddPersonResponse.expires:type_name -> google.protobuf.Timestamp
 	4,   // 87: contest.GetPersonByIDResponse.person:type_name -> contest.Person
 	4,   // 88: contest.ListPersonsResponse.persons:type_name -> contest.Person
 	4,   // 89: contest.ListPersonsByRegionResponse.persons:type_name -> contest.Person
 	4,   // 90: contest.UpdatePersonRequest.person:type_name -> contest.Person
 	4,   // 91: contest.UpdatePersonResponse.person:type_name -> contest.Person
-	95,  // 92: contest.AddArtistRequest.created:type_name -> google.protobuf.Timestamp
-	95,  // 93: contest.AddArtistRequest.updated:type_name -> google.protobuf.Timestamp
-	95,  // 94: contest.AddArtistRequest.expires:type_name -> google.protobuf.Timestamp
-	95,  // 95: contest.AddArtistResponse.created:type_name -> google.protobuf.Timestamp
-	95,  // 96: contest.AddArtistResponse.updated:type_name -> google.protobuf.Timestamp
-	95,  // 97: contest.AddArtistResponse.expires:type_name -> google.protobuf.Timestamp
+	114, // 92: contest.AddArtistRequest.created:type_name -> google.protobuf.Timestamp
+	114, // 93: contest.AddArtistRequest.updated:type_name -> google.protobuf.Timestamp
+	114, // 94: contest.AddArtistRequest.expires:type_name -> google.protobuf.Timestamp
+	114, // 95: contest.AddArtistResponse.created:type_name -> google.protobuf.Timestamp
+	114, // 96: contest.AddArtistResponse.updated:type_name -> google.protobuf.Timestamp
+	114, // 97: contest.AddArtistResponse.expires:type_name -> google.protobuf.Timestamp
 	55,  // 98: contest.ListArtistsResponse.artists:type_name -> contest.AddArtistResponse
 	6,   // 99: contest.GetArtistByIDResponse.artist:type_name -> contest.Artist
 	6,   // 100: contest.UpdateArtistRequest.artist:type_name -> contest.Artist
 	6,   // 101: contest.UpdateArtistResponse.artist:type_name -> contest.Artist
-	95,  // 102: contest.AddSongRequest.created:type_name -> google.protobuf.Timestamp
-	95,  // 103: contest.AddSongRequest.updated:type_name -> google.protobuf.Timestamp
-	95,  // 104: contest.AddSongRequest.expires:type_name -> google.protobuf.Timestamp
+	114, // 102: contest.AddSongRequest.created:type_name -> google.protobuf.Timestamp
+	114, // 103: contest.AddSongRequest.updated:type_name -> google.protobuf.Timestamp
+	114, // 104: contest.AddSongRequest.expires:type_name -> google.protobuf.Timestamp
 	5,   // 105: contest.AddSongResponse.song:type_name -> contest.Song
 	63,  // 106: contest.ListSongsResponse.songs:type_name -> contest.AddSongResponse
 	5,   // 107: contest.GetSongByIDResponse.song:type_name -> contest.Song
 	5,   // 108: contest.UpdateSongRequest.song:type_name -> contest.Song
 	5,   // 109: contest.UpdateSongResponse.song:type_name -> contest.Song
-	95,  // 110: contest.AddLitWorkRequest.created:type_name -> google.protobuf.Timestamp
-	95,  // 111: contest.AddLitWorkRequest.updated:type_name -> google.protobuf.Timestamp
-	95,  // 112: contest.AddLitWorkRequest.expires:type_name -> google.protobuf.Timestamp
-	95,  // 113: contest.AddLitWorkResponse.created:type_name -> google.protobuf.Timestamp
-	95,  // 114: contest.AddLitWorkResponse.updated:type_name -> google.protobuf.Timestamp
-	95,  // 115: contest.AddLitWorkResponse.expires:type_name -> google.protobuf.Timestamp
+	114, // 110: contest.AddLitWorkRequest.created:type_name -> google.protobuf.Timestamp
+	114, // 111: contest.AddLitWorkRequest.updated:type_name -> google.protobuf.Timestamp
+	114, // 112: contest.AddLitWorkRequest.expires:type_name -> google.protobuf.Timestamp
+	114, // 113: contest.AddLitWorkResponse.created:type_name -> google.protobuf.Timestamp
+	114, // 114: contest.AddLitWorkResponse.updated:type_name -> google.protobuf.Timestamp
+	114, // 115: contest.AddLitWorkResponse.expires:type_name -> google.protobuf.Timestamp
 	73,  // 116: contest.ListLitWorksResponse.lit_works:type_name -> contest.AddLitWorkResponse
 	12,  // 117: contest.GetLitWorkByIDResponse.lit_work:type_name -> contest.LitWork
 	12,  // 118: contest.UpdateLitWorkRequest.lit_work:type_name -> contest.LitWork
 	12,  // 119: contest.UpdateLitWorkResponse.lit_work:type_name -> contest.LitWork
-	93,  // 120: contest.ResultRow.rates_by_jury:type_name -> contest.ResultRow.RatesByJuryEntry
+	112, // 120: contest.ResultRow.rates_by_jury:type_name -> contest.ResultRow.RatesByJuryEntry
 	81,  // 121: contest.GetResultsByCategoryResponse.rows:type_name -> contest.ResultRow
-	94,  // 122: contest.GetResultsByCategoryResponse.jury_rated_count:type_name -> contest.GetResultsByCategoryResponse.JuryRatedCountEntry
+	113, // 122: contest.GetResultsByCategoryResponse.jury_rated_count:type_name -> contest.GetResultsByCategoryResponse.JuryRatedCountEntry
 	9,   // 123: contest.OpenTourRequest.meta:type_name -> contest.ActionMeta
 	10,  // 124: contest.OpenTourResponse.tour:type_name -> contest.Tour
 	9,   // 125: contest.CloseTourRequest.meta:type_name -> contest.ActionMeta
@@ -8409,85 +9797,107 @@ var file_contest_proto_depIdxs = []int32{
 	10,  // 127: contest.ListToursResponse.tours:type_name -> contest.Tour
 	10,  // 128: contest.GetOpenTourResponse.tour:type_name -> contest.Tour
 	11,  // 129: contest.ListAuditEventsResponse.rows:type_name -> contest.AuditEvent
-	13,  // 130: contest.Contest.AddContest:input_type -> contest.AddContestRequest
-	15,  // 131: contest.Contest.GetContestByID:input_type -> contest.GetContestByIDRequest
-	17,  // 132: contest.Contest.GetContestsByPersonID:input_type -> contest.GetContestByPersonIDRequest
-	19,  // 133: contest.Contest.GetContestWithEmptyCategory:input_type -> contest.GetContestWithEmptyCategoryRequest
-	29,  // 134: contest.Contest.ListContests:input_type -> contest.ListContestsRequest
-	31,  // 135: contest.Contest.ListContestsWithoutCategory:input_type -> contest.ListContestsWithoutCategoryRequest
-	21,  // 136: contest.Contest.ListContestsByCategory:input_type -> contest.ListContestsByCategoryRequest
-	22,  // 137: contest.Contest.ListContestsByCategoryForSite:input_type -> contest.ListContestsByCategoryForSiteRequest
-	38,  // 138: contest.Contest.ListContestsByRegion:input_type -> contest.ListContestsByRegionRequest
-	40,  // 139: contest.Contest.UpdateContest:input_type -> contest.UpdateContestRequest
-	42,  // 140: contest.Contest.UpdateContestAddRate:input_type -> contest.UpdateContestAddRateRequest
-	35,  // 141: contest.Contest.ListContestDuplicates:input_type -> contest.ListContestDuplicatesRequest
-	33,  // 142: contest.Contest.SearchContests:input_type -> contest.SearchContestsRequest
-	44,  // 143: contest.Contest.AddPerson:input_type -> contest.AddPersonRequest
-	46,  // 144: contest.Contest.GetPersonByID:input_type -> contest.GetPersonByIDRequest
-	48,  // 145: contest.Contest.ListPersons:input_type -> contest.ListPersonsRequest
-	50,  // 146: contest.Contest.ListPersonsByRegion:input_type -> contest.ListPersonsByRegionRequest
-	52,  // 147: contest.Contest.UpdatePerson:input_type -> contest.UpdatePersonRequest
-	54,  // 148: contest.Contest.AddArtist:input_type -> contest.AddArtistRequest
-	56,  // 149: contest.Contest.ListArtists:input_type -> contest.ListArtistsRequest
-	58,  // 150: contest.Contest.GetArtistByID:input_type -> contest.GetArtistByIDRequest
-	60,  // 151: contest.Contest.UpdateArtist:input_type -> contest.UpdateArtistRequest
-	62,  // 152: contest.Contest.AddSong:input_type -> contest.AddSongRequest
-	64,  // 153: contest.Contest.ListSongs:input_type -> contest.ListSongsRequest
-	66,  // 154: contest.Contest.GetSongByID:input_type -> contest.GetSongByIDRequest
-	68,  // 155: contest.Contest.UpdateSong:input_type -> contest.UpdateSongRequest
-	70,  // 156: contest.Contest.UpdateSong720:input_type -> contest.UpdateSong720Request
-	72,  // 157: contest.Contest.AddLitWork:input_type -> contest.AddLitWorkRequest
-	74,  // 158: contest.Contest.ListLitWorks:input_type -> contest.ListLitWorksRequest
-	76,  // 159: contest.Contest.GetLitWorkByID:input_type -> contest.GetLitWorkByIDRequest
-	78,  // 160: contest.Contest.UpdateLitWork:input_type -> contest.UpdateLitWorkRequest
-	80,  // 161: contest.Contest.GetResultsByCategory:input_type -> contest.GetResultsByCategoryRequest
-	83,  // 162: contest.Contest.OpenTour:input_type -> contest.OpenTourRequest
-	85,  // 163: contest.Contest.CloseTour:input_type -> contest.CloseTourRequest
-	87,  // 164: contest.Contest.ListTours:input_type -> contest.ListToursRequest
-	89,  // 165: contest.Contest.GetOpenTour:input_type -> contest.GetOpenTourRequest
-	91,  // 166: contest.Contest.ListAuditEvents:input_type -> contest.ListAuditEventsRequest
-	14,  // 167: contest.Contest.AddContest:output_type -> contest.AddContestResponse
-	16,  // 168: contest.Contest.GetContestByID:output_type -> contest.GetContestByIDResponse
-	18,  // 169: contest.Contest.GetContestsByPersonID:output_type -> contest.GetContestsByPersonIDResponse
-	20,  // 170: contest.Contest.GetContestWithEmptyCategory:output_type -> contest.GetContestWithEmptyCategoryResponse
-	30,  // 171: contest.Contest.ListContests:output_type -> contest.ListContestsResponse
-	32,  // 172: contest.Contest.ListContestsWithoutCategory:output_type -> contest.ListContestsWithoutCategoryResponse
-	23,  // 173: contest.Contest.ListContestsByCategory:output_type -> contest.ListContestsByCategoryResponse
-	24,  // 174: contest.Contest.ListContestsByCategoryForSite:output_type -> contest.ListContestsByCategoryForSiteResponse
-	39,  // 175: contest.Contest.ListContestsByRegion:output_type -> contest.ListContestsByRegionResponse
-	41,  // 176: contest.Contest.UpdateContest:output_type -> contest.UpdateContestResponse
-	43,  // 177: contest.Contest.UpdateContestAddRate:output_type -> contest.UpdateContestAddRateResponse
-	37,  // 178: contest.Contest.ListContestDuplicates:output_type -> contest.ListContestDuplicatesResponse
-	34,  // 179: contest.Contest.SearchContests:output_type -> contest.SearchContestsResponse
-	45,  // 180: contest.Contest.AddPerson:output_type -> contest.AddPersonResponse
-	47,  // 181: contest.Contest.GetPersonByID:output_type -> contest.GetPersonByIDResponse
-	49,  // 182: contest.Contest.ListPersons:output_type -> contest.ListPersonsResponse
-	51,  // 183: contest.Contest.ListPersonsByRegion:output_type -> contest.ListPersonsByRegionResponse
-	53,  // 184: contest.Contest.UpdatePerson:output_type -> contest.UpdatePersonResponse
-	55,  // 185: contest.Contest.AddArtist:output_type -> contest.AddArtistResponse
-	57,  // 186: contest.Contest.ListArtists:output_type -> contest.ListArtistsResponse
-	59,  // 187: contest.Contest.GetArtistByID:output_type -> contest.GetArtistByIDResponse
-	61,  // 188: contest.Contest.UpdateArtist:output_type -> contest.UpdateArtistResponse
-	63,  // 189: contest.Contest.AddSong:output_type -> contest.AddSongResponse
-	65,  // 190: contest.Contest.ListSongs:output_type -> contest.ListSongsResponse
-	67,  // 191: contest.Contest.GetSongByID:output_type -> contest.GetSongByIDResponse
-	69,  // 192: contest.Contest.UpdateSong:output_type -> contest.UpdateSongResponse
-	71,  // 193: contest.Contest.UpdateSong720:output_type -> contest.UpdateSong720Response
-	73,  // 194: contest.Contest.AddLitWork:output_type -> contest.AddLitWorkResponse
-	75,  // 195: contest.Contest.ListLitWorks:output_type -> contest.ListLitWorksResponse
-	77,  // 196: contest.Contest.GetLitWorkByID:output_type -> contest.GetLitWorkByIDResponse
-	79,  // 197: contest.Contest.UpdateLitWork:output_type -> contest.UpdateLitWorkResponse
-	82,  // 198: contest.Contest.GetResultsByCategory:output_type -> contest.GetResultsByCategoryResponse
-	84,  // 199: contest.Contest.OpenTour:output_type -> contest.OpenTourResponse
-	86,  // 200: contest.Contest.CloseTour:output_type -> contest.CloseTourResponse
-	88,  // 201: contest.Contest.ListTours:output_type -> contest.ListToursResponse
-	90,  // 202: contest.Contest.GetOpenTour:output_type -> contest.GetOpenTourResponse
-	92,  // 203: contest.Contest.ListAuditEvents:output_type -> contest.ListAuditEventsResponse
-	167, // [167:204] is the sub-list for method output_type
-	130, // [130:167] is the sub-list for method input_type
-	130, // [130:130] is the sub-list for extension type_name
-	130, // [130:130] is the sub-list for extension extendee
-	0,   // [0:130] is the sub-list for field type_name
+	94,  // 130: contest.FederalDistrictsResponse.districts:type_name -> contest.FederalDistrict
+	96,  // 131: contest.RegionsResponse.regions:type_name -> contest.Region
+	99,  // 132: contest.SettlementsResponse.settlements:type_name -> contest.Settlement
+	103, // 133: contest.CountriesResponse.countries:type_name -> contest.Country
+	106, // 134: contest.GeoIssue.candidates:type_name -> contest.GeoCandidate
+	107, // 135: contest.ListGeoIssuesResponse.issues:type_name -> contest.GeoIssue
+	13,  // 136: contest.Contest.AddContest:input_type -> contest.AddContestRequest
+	15,  // 137: contest.Contest.GetContestByID:input_type -> contest.GetContestByIDRequest
+	17,  // 138: contest.Contest.GetContestsByPersonID:input_type -> contest.GetContestByPersonIDRequest
+	19,  // 139: contest.Contest.GetContestWithEmptyCategory:input_type -> contest.GetContestWithEmptyCategoryRequest
+	29,  // 140: contest.Contest.ListContests:input_type -> contest.ListContestsRequest
+	31,  // 141: contest.Contest.ListContestsWithoutCategory:input_type -> contest.ListContestsWithoutCategoryRequest
+	21,  // 142: contest.Contest.ListContestsByCategory:input_type -> contest.ListContestsByCategoryRequest
+	22,  // 143: contest.Contest.ListContestsByCategoryForSite:input_type -> contest.ListContestsByCategoryForSiteRequest
+	38,  // 144: contest.Contest.ListContestsByRegion:input_type -> contest.ListContestsByRegionRequest
+	40,  // 145: contest.Contest.UpdateContest:input_type -> contest.UpdateContestRequest
+	42,  // 146: contest.Contest.UpdateContestAddRate:input_type -> contest.UpdateContestAddRateRequest
+	35,  // 147: contest.Contest.ListContestDuplicates:input_type -> contest.ListContestDuplicatesRequest
+	33,  // 148: contest.Contest.SearchContests:input_type -> contest.SearchContestsRequest
+	44,  // 149: contest.Contest.AddPerson:input_type -> contest.AddPersonRequest
+	46,  // 150: contest.Contest.GetPersonByID:input_type -> contest.GetPersonByIDRequest
+	48,  // 151: contest.Contest.ListPersons:input_type -> contest.ListPersonsRequest
+	50,  // 152: contest.Contest.ListPersonsByRegion:input_type -> contest.ListPersonsByRegionRequest
+	52,  // 153: contest.Contest.UpdatePerson:input_type -> contest.UpdatePersonRequest
+	54,  // 154: contest.Contest.AddArtist:input_type -> contest.AddArtistRequest
+	56,  // 155: contest.Contest.ListArtists:input_type -> contest.ListArtistsRequest
+	58,  // 156: contest.Contest.GetArtistByID:input_type -> contest.GetArtistByIDRequest
+	60,  // 157: contest.Contest.UpdateArtist:input_type -> contest.UpdateArtistRequest
+	62,  // 158: contest.Contest.AddSong:input_type -> contest.AddSongRequest
+	64,  // 159: contest.Contest.ListSongs:input_type -> contest.ListSongsRequest
+	66,  // 160: contest.Contest.GetSongByID:input_type -> contest.GetSongByIDRequest
+	68,  // 161: contest.Contest.UpdateSong:input_type -> contest.UpdateSongRequest
+	70,  // 162: contest.Contest.UpdateSong720:input_type -> contest.UpdateSong720Request
+	72,  // 163: contest.Contest.AddLitWork:input_type -> contest.AddLitWorkRequest
+	74,  // 164: contest.Contest.ListLitWorks:input_type -> contest.ListLitWorksRequest
+	76,  // 165: contest.Contest.GetLitWorkByID:input_type -> contest.GetLitWorkByIDRequest
+	78,  // 166: contest.Contest.UpdateLitWork:input_type -> contest.UpdateLitWorkRequest
+	80,  // 167: contest.Contest.GetResultsByCategory:input_type -> contest.GetResultsByCategoryRequest
+	83,  // 168: contest.Contest.OpenTour:input_type -> contest.OpenTourRequest
+	85,  // 169: contest.Contest.CloseTour:input_type -> contest.CloseTourRequest
+	87,  // 170: contest.Contest.ListTours:input_type -> contest.ListToursRequest
+	89,  // 171: contest.Contest.GetOpenTour:input_type -> contest.GetOpenTourRequest
+	91,  // 172: contest.Contest.ListAuditEvents:input_type -> contest.ListAuditEventsRequest
+	93,  // 173: contest.Contest.ListFederalDistricts:input_type -> contest.GeoEmpty
+	97,  // 174: contest.Contest.ListRegions:input_type -> contest.ListRegionsRequest
+	100, // 175: contest.Contest.ListSettlements:input_type -> contest.ListSettlementsRequest
+	101, // 176: contest.Contest.SuggestSettlements:input_type -> contest.SuggestRequest
+	93,  // 177: contest.Contest.ListCountries:input_type -> contest.GeoEmpty
+	105, // 178: contest.Contest.ListForeignSettlements:input_type -> contest.ListForeignSettlementsRequest
+	108, // 179: contest.Contest.ListGeoIssues:input_type -> contest.ListGeoIssuesRequest
+	110, // 180: contest.Contest.ResolveGeoIssue:input_type -> contest.ResolveGeoIssueRequest
+	14,  // 181: contest.Contest.AddContest:output_type -> contest.AddContestResponse
+	16,  // 182: contest.Contest.GetContestByID:output_type -> contest.GetContestByIDResponse
+	18,  // 183: contest.Contest.GetContestsByPersonID:output_type -> contest.GetContestsByPersonIDResponse
+	20,  // 184: contest.Contest.GetContestWithEmptyCategory:output_type -> contest.GetContestWithEmptyCategoryResponse
+	30,  // 185: contest.Contest.ListContests:output_type -> contest.ListContestsResponse
+	32,  // 186: contest.Contest.ListContestsWithoutCategory:output_type -> contest.ListContestsWithoutCategoryResponse
+	23,  // 187: contest.Contest.ListContestsByCategory:output_type -> contest.ListContestsByCategoryResponse
+	24,  // 188: contest.Contest.ListContestsByCategoryForSite:output_type -> contest.ListContestsByCategoryForSiteResponse
+	39,  // 189: contest.Contest.ListContestsByRegion:output_type -> contest.ListContestsByRegionResponse
+	41,  // 190: contest.Contest.UpdateContest:output_type -> contest.UpdateContestResponse
+	43,  // 191: contest.Contest.UpdateContestAddRate:output_type -> contest.UpdateContestAddRateResponse
+	37,  // 192: contest.Contest.ListContestDuplicates:output_type -> contest.ListContestDuplicatesResponse
+	34,  // 193: contest.Contest.SearchContests:output_type -> contest.SearchContestsResponse
+	45,  // 194: contest.Contest.AddPerson:output_type -> contest.AddPersonResponse
+	47,  // 195: contest.Contest.GetPersonByID:output_type -> contest.GetPersonByIDResponse
+	49,  // 196: contest.Contest.ListPersons:output_type -> contest.ListPersonsResponse
+	51,  // 197: contest.Contest.ListPersonsByRegion:output_type -> contest.ListPersonsByRegionResponse
+	53,  // 198: contest.Contest.UpdatePerson:output_type -> contest.UpdatePersonResponse
+	55,  // 199: contest.Contest.AddArtist:output_type -> contest.AddArtistResponse
+	57,  // 200: contest.Contest.ListArtists:output_type -> contest.ListArtistsResponse
+	59,  // 201: contest.Contest.GetArtistByID:output_type -> contest.GetArtistByIDResponse
+	61,  // 202: contest.Contest.UpdateArtist:output_type -> contest.UpdateArtistResponse
+	63,  // 203: contest.Contest.AddSong:output_type -> contest.AddSongResponse
+	65,  // 204: contest.Contest.ListSongs:output_type -> contest.ListSongsResponse
+	67,  // 205: contest.Contest.GetSongByID:output_type -> contest.GetSongByIDResponse
+	69,  // 206: contest.Contest.UpdateSong:output_type -> contest.UpdateSongResponse
+	71,  // 207: contest.Contest.UpdateSong720:output_type -> contest.UpdateSong720Response
+	73,  // 208: contest.Contest.AddLitWork:output_type -> contest.AddLitWorkResponse
+	75,  // 209: contest.Contest.ListLitWorks:output_type -> contest.ListLitWorksResponse
+	77,  // 210: contest.Contest.GetLitWorkByID:output_type -> contest.GetLitWorkByIDResponse
+	79,  // 211: contest.Contest.UpdateLitWork:output_type -> contest.UpdateLitWorkResponse
+	82,  // 212: contest.Contest.GetResultsByCategory:output_type -> contest.GetResultsByCategoryResponse
+	84,  // 213: contest.Contest.OpenTour:output_type -> contest.OpenTourResponse
+	86,  // 214: contest.Contest.CloseTour:output_type -> contest.CloseTourResponse
+	88,  // 215: contest.Contest.ListTours:output_type -> contest.ListToursResponse
+	90,  // 216: contest.Contest.GetOpenTour:output_type -> contest.GetOpenTourResponse
+	92,  // 217: contest.Contest.ListAuditEvents:output_type -> contest.ListAuditEventsResponse
+	95,  // 218: contest.Contest.ListFederalDistricts:output_type -> contest.FederalDistrictsResponse
+	98,  // 219: contest.Contest.ListRegions:output_type -> contest.RegionsResponse
+	102, // 220: contest.Contest.ListSettlements:output_type -> contest.SettlementsResponse
+	102, // 221: contest.Contest.SuggestSettlements:output_type -> contest.SettlementsResponse
+	104, // 222: contest.Contest.ListCountries:output_type -> contest.CountriesResponse
+	102, // 223: contest.Contest.ListForeignSettlements:output_type -> contest.SettlementsResponse
+	109, // 224: contest.Contest.ListGeoIssues:output_type -> contest.ListGeoIssuesResponse
+	111, // 225: contest.Contest.ResolveGeoIssue:output_type -> contest.ResolveGeoIssueResponse
+	181, // [181:226] is the sub-list for method output_type
+	136, // [136:181] is the sub-list for method input_type
+	136, // [136:136] is the sub-list for extension type_name
+	136, // [136:136] is the sub-list for extension extendee
+	0,   // [0:136] is the sub-list for field type_name
 }
 
 func init() { file_contest_proto_init() }
@@ -8501,7 +9911,7 @@ func file_contest_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_contest_proto_rawDesc), len(file_contest_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   95,
+			NumMessages:   114,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

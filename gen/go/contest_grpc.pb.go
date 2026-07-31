@@ -58,6 +58,14 @@ const (
 	Contest_ListTours_FullMethodName                     = "/contest.Contest/ListTours"
 	Contest_GetOpenTour_FullMethodName                   = "/contest.Contest/GetOpenTour"
 	Contest_ListAuditEvents_FullMethodName               = "/contest.Contest/ListAuditEvents"
+	Contest_ListFederalDistricts_FullMethodName          = "/contest.Contest/ListFederalDistricts"
+	Contest_ListRegions_FullMethodName                   = "/contest.Contest/ListRegions"
+	Contest_ListSettlements_FullMethodName               = "/contest.Contest/ListSettlements"
+	Contest_SuggestSettlements_FullMethodName            = "/contest.Contest/SuggestSettlements"
+	Contest_ListCountries_FullMethodName                 = "/contest.Contest/ListCountries"
+	Contest_ListForeignSettlements_FullMethodName        = "/contest.Contest/ListForeignSettlements"
+	Contest_ListGeoIssues_FullMethodName                 = "/contest.Contest/ListGeoIssues"
+	Contest_ResolveGeoIssue_FullMethodName               = "/contest.Contest/ResolveGeoIssue"
 )
 
 // ContestClient is the client API for Contest service.
@@ -149,6 +157,24 @@ type ContestClient interface {
 	// ==== ЖУРНАЛ АУДИТА ====
 	// Список событий журнала для просмотра из админки
 	ListAuditEvents(ctx context.Context, in *ListAuditEventsRequest, opts ...grpc.CallOption) (*ListAuditEventsResponse, error)
+	// ==== СПРАВОЧНИК ТЕРРИТОРИЙ ====
+	// Федеральные округа (8 штук, заведены справочником в коде — в ФИАС их нет)
+	ListFederalDistricts(ctx context.Context, in *GeoEmpty, opts ...grpc.CallOption) (*FederalDistrictsResponse, error)
+	// Субъекты РФ округа (federal_district пустой — все 89)
+	ListRegions(ctx context.Context, in *ListRegionsRequest, opts ...grpc.CallOption) (*RegionsResponse, error)
+	// Населённые пункты субъекта: фильтр по query, limit/offset
+	ListSettlements(ctx context.Context, in *ListSettlementsRequest, opts ...grpc.CallOption) (*SettlementsResponse, error)
+	// Автодополнение по всей базе НП (Россия + при include_foreign — весь мир)
+	SuggestSettlements(ctx context.Context, in *SuggestRequest, opts ...grpc.CallOption) (*SettlementsResponse, error)
+	// Список стран: Россия, затем бывший СССР и признанные РФ, затем весь мир —
+	// без городов (стран ~190, эмбедить в один ответ города всех непрактично)
+	ListCountries(ctx context.Context, in *GeoEmpty, opts ...grpc.CallOption) (*CountriesResponse, error)
+	// Города конкретной страны (не Россия): фильтр по query, limit/offset
+	ListForeignSettlements(ctx context.Context, in *ListForeignSettlementsRequest, opts ...grpc.CallOption) (*SettlementsResponse, error)
+	// Спорные записи миграции городов — раздел ручного разбора в админке
+	ListGeoIssues(ctx context.Context, in *ListGeoIssuesRequest, opts ...grpc.CallOption) (*ListGeoIssuesResponse, error)
+	// Ручная привязка спорной записи к населённому пункту
+	ResolveGeoIssue(ctx context.Context, in *ResolveGeoIssueRequest, opts ...grpc.CallOption) (*ResolveGeoIssueResponse, error)
 }
 
 type contestClient struct {
@@ -529,6 +555,86 @@ func (c *contestClient) ListAuditEvents(ctx context.Context, in *ListAuditEvents
 	return out, nil
 }
 
+func (c *contestClient) ListFederalDistricts(ctx context.Context, in *GeoEmpty, opts ...grpc.CallOption) (*FederalDistrictsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FederalDistrictsResponse)
+	err := c.cc.Invoke(ctx, Contest_ListFederalDistricts_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contestClient) ListRegions(ctx context.Context, in *ListRegionsRequest, opts ...grpc.CallOption) (*RegionsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RegionsResponse)
+	err := c.cc.Invoke(ctx, Contest_ListRegions_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contestClient) ListSettlements(ctx context.Context, in *ListSettlementsRequest, opts ...grpc.CallOption) (*SettlementsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SettlementsResponse)
+	err := c.cc.Invoke(ctx, Contest_ListSettlements_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contestClient) SuggestSettlements(ctx context.Context, in *SuggestRequest, opts ...grpc.CallOption) (*SettlementsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SettlementsResponse)
+	err := c.cc.Invoke(ctx, Contest_SuggestSettlements_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contestClient) ListCountries(ctx context.Context, in *GeoEmpty, opts ...grpc.CallOption) (*CountriesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CountriesResponse)
+	err := c.cc.Invoke(ctx, Contest_ListCountries_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contestClient) ListForeignSettlements(ctx context.Context, in *ListForeignSettlementsRequest, opts ...grpc.CallOption) (*SettlementsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SettlementsResponse)
+	err := c.cc.Invoke(ctx, Contest_ListForeignSettlements_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contestClient) ListGeoIssues(ctx context.Context, in *ListGeoIssuesRequest, opts ...grpc.CallOption) (*ListGeoIssuesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListGeoIssuesResponse)
+	err := c.cc.Invoke(ctx, Contest_ListGeoIssues_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contestClient) ResolveGeoIssue(ctx context.Context, in *ResolveGeoIssueRequest, opts ...grpc.CallOption) (*ResolveGeoIssueResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ResolveGeoIssueResponse)
+	err := c.cc.Invoke(ctx, Contest_ResolveGeoIssue_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ContestServer is the server API for Contest service.
 // All implementations must embed UnimplementedContestServer
 // for forward compatibility.
@@ -618,6 +724,24 @@ type ContestServer interface {
 	// ==== ЖУРНАЛ АУДИТА ====
 	// Список событий журнала для просмотра из админки
 	ListAuditEvents(context.Context, *ListAuditEventsRequest) (*ListAuditEventsResponse, error)
+	// ==== СПРАВОЧНИК ТЕРРИТОРИЙ ====
+	// Федеральные округа (8 штук, заведены справочником в коде — в ФИАС их нет)
+	ListFederalDistricts(context.Context, *GeoEmpty) (*FederalDistrictsResponse, error)
+	// Субъекты РФ округа (federal_district пустой — все 89)
+	ListRegions(context.Context, *ListRegionsRequest) (*RegionsResponse, error)
+	// Населённые пункты субъекта: фильтр по query, limit/offset
+	ListSettlements(context.Context, *ListSettlementsRequest) (*SettlementsResponse, error)
+	// Автодополнение по всей базе НП (Россия + при include_foreign — весь мир)
+	SuggestSettlements(context.Context, *SuggestRequest) (*SettlementsResponse, error)
+	// Список стран: Россия, затем бывший СССР и признанные РФ, затем весь мир —
+	// без городов (стран ~190, эмбедить в один ответ города всех непрактично)
+	ListCountries(context.Context, *GeoEmpty) (*CountriesResponse, error)
+	// Города конкретной страны (не Россия): фильтр по query, limit/offset
+	ListForeignSettlements(context.Context, *ListForeignSettlementsRequest) (*SettlementsResponse, error)
+	// Спорные записи миграции городов — раздел ручного разбора в админке
+	ListGeoIssues(context.Context, *ListGeoIssuesRequest) (*ListGeoIssuesResponse, error)
+	// Ручная привязка спорной записи к населённому пункту
+	ResolveGeoIssue(context.Context, *ResolveGeoIssueRequest) (*ResolveGeoIssueResponse, error)
 	mustEmbedUnimplementedContestServer()
 }
 
@@ -738,6 +862,30 @@ func (UnimplementedContestServer) GetOpenTour(context.Context, *GetOpenTourReque
 }
 func (UnimplementedContestServer) ListAuditEvents(context.Context, *ListAuditEventsRequest) (*ListAuditEventsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListAuditEvents not implemented")
+}
+func (UnimplementedContestServer) ListFederalDistricts(context.Context, *GeoEmpty) (*FederalDistrictsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListFederalDistricts not implemented")
+}
+func (UnimplementedContestServer) ListRegions(context.Context, *ListRegionsRequest) (*RegionsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListRegions not implemented")
+}
+func (UnimplementedContestServer) ListSettlements(context.Context, *ListSettlementsRequest) (*SettlementsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListSettlements not implemented")
+}
+func (UnimplementedContestServer) SuggestSettlements(context.Context, *SuggestRequest) (*SettlementsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method SuggestSettlements not implemented")
+}
+func (UnimplementedContestServer) ListCountries(context.Context, *GeoEmpty) (*CountriesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListCountries not implemented")
+}
+func (UnimplementedContestServer) ListForeignSettlements(context.Context, *ListForeignSettlementsRequest) (*SettlementsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListForeignSettlements not implemented")
+}
+func (UnimplementedContestServer) ListGeoIssues(context.Context, *ListGeoIssuesRequest) (*ListGeoIssuesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListGeoIssues not implemented")
+}
+func (UnimplementedContestServer) ResolveGeoIssue(context.Context, *ResolveGeoIssueRequest) (*ResolveGeoIssueResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ResolveGeoIssue not implemented")
 }
 func (UnimplementedContestServer) mustEmbedUnimplementedContestServer() {}
 func (UnimplementedContestServer) testEmbeddedByValue()                 {}
@@ -1426,6 +1574,150 @@ func _Contest_ListAuditEvents_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Contest_ListFederalDistricts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GeoEmpty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).ListFederalDistricts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_ListFederalDistricts_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).ListFederalDistricts(ctx, req.(*GeoEmpty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Contest_ListRegions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRegionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).ListRegions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_ListRegions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).ListRegions(ctx, req.(*ListRegionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Contest_ListSettlements_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSettlementsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).ListSettlements(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_ListSettlements_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).ListSettlements(ctx, req.(*ListSettlementsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Contest_SuggestSettlements_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SuggestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).SuggestSettlements(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_SuggestSettlements_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).SuggestSettlements(ctx, req.(*SuggestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Contest_ListCountries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GeoEmpty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).ListCountries(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_ListCountries_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).ListCountries(ctx, req.(*GeoEmpty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Contest_ListForeignSettlements_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListForeignSettlementsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).ListForeignSettlements(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_ListForeignSettlements_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).ListForeignSettlements(ctx, req.(*ListForeignSettlementsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Contest_ListGeoIssues_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListGeoIssuesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).ListGeoIssues(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_ListGeoIssues_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).ListGeoIssues(ctx, req.(*ListGeoIssuesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Contest_ResolveGeoIssue_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResolveGeoIssueRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).ResolveGeoIssue(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_ResolveGeoIssue_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).ResolveGeoIssue(ctx, req.(*ResolveGeoIssueRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Contest_ServiceDesc is the grpc.ServiceDesc for Contest service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1580,6 +1872,38 @@ var Contest_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListAuditEvents",
 			Handler:    _Contest_ListAuditEvents_Handler,
+		},
+		{
+			MethodName: "ListFederalDistricts",
+			Handler:    _Contest_ListFederalDistricts_Handler,
+		},
+		{
+			MethodName: "ListRegions",
+			Handler:    _Contest_ListRegions_Handler,
+		},
+		{
+			MethodName: "ListSettlements",
+			Handler:    _Contest_ListSettlements_Handler,
+		},
+		{
+			MethodName: "SuggestSettlements",
+			Handler:    _Contest_SuggestSettlements_Handler,
+		},
+		{
+			MethodName: "ListCountries",
+			Handler:    _Contest_ListCountries_Handler,
+		},
+		{
+			MethodName: "ListForeignSettlements",
+			Handler:    _Contest_ListForeignSettlements_Handler,
+		},
+		{
+			MethodName: "ListGeoIssues",
+			Handler:    _Contest_ListGeoIssues_Handler,
+		},
+		{
+			MethodName: "ResolveGeoIssue",
+			Handler:    _Contest_ResolveGeoIssue_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
