@@ -37,6 +37,8 @@ service Contest{
   rpc ListContestDuplicates(ListContestDuplicatesRequest) returns (ListContestDuplicatesResponse);
   // CONTESTS = SEARCH \\ сквозной поиск по ВСЕМ заявкам конкурса (и с номинацией, и без)
   rpc SearchContests(SearchContestsRequest) returns (SearchContestsResponse); // Используется в grpc_contest.go — сквозной поиск по всем заявкам конкурса
+  // CONTESTS = LIST = Inactive \\ снятые заявки конкурса (active = false)
+  rpc ListInactiveContests(ListInactiveContestsRequest) returns (ListInactiveContestsResponse); // Вкладка «Снятые» в единой админке (супер-пользователь)
 
   // ==== ПЕРСОНА ====
   // PERSON = ADD
@@ -528,6 +530,16 @@ message ListContestsByRegionRequest {
 message ListContestsByRegionResponse {
   repeated FullContent contests = 1;
   int32 total = 2; // <-- всего заявок по этому competition
+}
+// CONTESTS = LIST = Inactive || снятые заявки конкурса (active = false)
+message ListInactiveContestsRequest {
+  string competition = 1; // идентификатор конкурса
+  int32 limit = 2;   // сколько заявок за раз (например, 50)
+  int32 offset = 3;  // с какой позиции (например, 0, 50, 100)
+}
+message ListInactiveContestsResponse {
+  repeated FullContent contests = 1;
+  int32 total = 2; // <-- всего СНЯТЫХ заявок по этому competition
 }
 // CONTESTS = UPDATE
 message UpdateContestRequest {
