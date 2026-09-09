@@ -157,6 +157,7 @@ message OneContest {
   int32 status = 17;
   bool active = 18;
   string owner_id = 19;
+  string winner_description = 20;  // описание для сайта у победителя/ТОП-3; пусто — сайт выводит Artist.bio
   google.protobuf.Timestamp created = 30;
   google.protobuf.Timestamp updated = 31;
   google.protobuf.Timestamp expires = 32;
@@ -183,6 +184,7 @@ message FullContent {
   bool active = 17;
   string app_id = 18;
   string owner_id = 19;
+  string winner_description = 20;  // описание для сайта у победителя/ТОП-3; пусто — сайт выводит Artist.bio
   google.protobuf.Timestamp created = 31;
   google.protobuf.Timestamp updated = 32;
   google.protobuf.Timestamp expires = 33;
@@ -199,6 +201,7 @@ message ContentForSite {
   bool winner = 14;
   bool active = 18;
   string owner_id = 19;
+  string winner_description = 20;  // описание для сайта у победителя/ТОП-3; пусто — сайт выводит Artist.bio
   google.protobuf.Timestamp created = 31;
   google.protobuf.Timestamp updated = 32;
   google.protobuf.Timestamp expires = 33;
@@ -562,6 +565,7 @@ message UpdateContestRequest {
   google.protobuf.Timestamp created = 18;
   google.protobuf.Timestamp updated = 19;
   google.protobuf.Timestamp expires = 20;
+  string winner_description = 21;  // описание для сайта у победителя/ТОП-3; меняется по маске
   google.protobuf.FieldMask update_mask = 30; // какие поля менять
 }
 message UpdateContestResponse {
@@ -584,6 +588,7 @@ message UpdateContestResponse {
   google.protobuf.Timestamp created = 18;
   google.protobuf.Timestamp updated = 19;
   google.protobuf.Timestamp expires = 20;
+  string winner_description = 21;  // описание для сайта у победителя/ТОП-3
 }
 // CONTESTS = SET RATE
 message UpdateContestAddRateRequest {

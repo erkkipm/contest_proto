@@ -145,31 +145,32 @@ func (x *ContestShort) GetWinner() bool {
 
 // Contest
 type OneContest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Date          *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
-	Competition   string                 `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
-	CompetitionId string                 `protobuf:"bytes,4,opt,name=competition_id,json=competitionId,proto3" json:"competition_id,omitempty"`
-	Category      string                 `protobuf:"bytes,5,opt,name=category,proto3" json:"category,omitempty"`
-	AuthorId      string                 `protobuf:"bytes,6,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
-	ArtistId      string                 `protobuf:"bytes,7,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
-	SongOwnId     string                 `protobuf:"bytes,8,opt,name=song_own_id,json=songOwnId,proto3" json:"song_own_id,omitempty"`
-	SongRemakeId  string                 `protobuf:"bytes,9,opt,name=song_remake_id,json=songRemakeId,proto3" json:"song_remake_id,omitempty"`
-	LitWorkId     string                 `protobuf:"bytes,10,opt,name=lit_work_id,json=litWorkId,proto3" json:"lit_work_id,omitempty"`
-	Rate          []*Rate                `protobuf:"bytes,11,rep,name=rate,proto3" json:"rate,omitempty"`
-	RateTop3      []*Rate                `protobuf:"bytes,12,rep,name=rate_top3,json=rateTop3,proto3" json:"rate_top3,omitempty"`
-	Top3          bool                   `protobuf:"varint,13,opt,name=top3,proto3" json:"top3,omitempty"`
-	Winner        bool                   `protobuf:"varint,14,opt,name=winner,proto3" json:"winner,omitempty"`
-	Sort          int32                  `protobuf:"varint,15,opt,name=sort,proto3" json:"sort,omitempty"`
-	RateBook      []string               `protobuf:"bytes,16,rep,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
-	Status        int32                  `protobuf:"varint,17,opt,name=status,proto3" json:"status,omitempty"`
-	Active        bool                   `protobuf:"varint,18,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,19,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,30,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,31,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,32,opt,name=expires,proto3" json:"expires,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	Id                string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Date              *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
+	Competition       string                 `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
+	CompetitionId     string                 `protobuf:"bytes,4,opt,name=competition_id,json=competitionId,proto3" json:"competition_id,omitempty"`
+	Category          string                 `protobuf:"bytes,5,opt,name=category,proto3" json:"category,omitempty"`
+	AuthorId          string                 `protobuf:"bytes,6,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
+	ArtistId          string                 `protobuf:"bytes,7,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
+	SongOwnId         string                 `protobuf:"bytes,8,opt,name=song_own_id,json=songOwnId,proto3" json:"song_own_id,omitempty"`
+	SongRemakeId      string                 `protobuf:"bytes,9,opt,name=song_remake_id,json=songRemakeId,proto3" json:"song_remake_id,omitempty"`
+	LitWorkId         string                 `protobuf:"bytes,10,opt,name=lit_work_id,json=litWorkId,proto3" json:"lit_work_id,omitempty"`
+	Rate              []*Rate                `protobuf:"bytes,11,rep,name=rate,proto3" json:"rate,omitempty"`
+	RateTop3          []*Rate                `protobuf:"bytes,12,rep,name=rate_top3,json=rateTop3,proto3" json:"rate_top3,omitempty"`
+	Top3              bool                   `protobuf:"varint,13,opt,name=top3,proto3" json:"top3,omitempty"`
+	Winner            bool                   `protobuf:"varint,14,opt,name=winner,proto3" json:"winner,omitempty"`
+	Sort              int32                  `protobuf:"varint,15,opt,name=sort,proto3" json:"sort,omitempty"`
+	RateBook          []string               `protobuf:"bytes,16,rep,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
+	Status            int32                  `protobuf:"varint,17,opt,name=status,proto3" json:"status,omitempty"`
+	Active            bool                   `protobuf:"varint,18,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId           string                 `protobuf:"bytes,19,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	WinnerDescription string                 `protobuf:"bytes,20,opt,name=winner_description,json=winnerDescription,proto3" json:"winner_description,omitempty"` // описание для сайта у победителя/ТОП-3; пусто — сайт выводит Artist.bio
+	Created           *timestamppb.Timestamp `protobuf:"bytes,30,opt,name=created,proto3" json:"created,omitempty"`
+	Updated           *timestamppb.Timestamp `protobuf:"bytes,31,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires           *timestamppb.Timestamp `protobuf:"bytes,32,opt,name=expires,proto3" json:"expires,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *OneContest) Reset() {
@@ -335,6 +336,13 @@ func (x *OneContest) GetOwnerId() string {
 	return ""
 }
 
+func (x *OneContest) GetWinnerDescription() string {
+	if x != nil {
+		return x.WinnerDescription
+	}
+	return ""
+}
+
 func (x *OneContest) GetCreated() *timestamppb.Timestamp {
 	if x != nil {
 		return x.Created
@@ -358,31 +366,32 @@ func (x *OneContest) GetExpires() *timestamppb.Timestamp {
 
 // FullContent ... полная заявка
 type FullContent struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	Id               string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Date             *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
-	Competition      string                 `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
-	CompetitionId    string                 `protobuf:"bytes,4,opt,name=competition_id,json=competitionId,proto3" json:"competition_id,omitempty"`
-	Category         string                 `protobuf:"bytes,5,opt,name=category,proto3" json:"category,omitempty"`
-	Author           *Person                `protobuf:"bytes,6,opt,name=author,proto3" json:"author,omitempty"`
-	Song             []*Song                `protobuf:"bytes,7,rep,name=song,proto3" json:"song,omitempty"`
-	ArtistSongOwn    []*Artist              `protobuf:"bytes,8,rep,name=artist_song_own,json=artistSongOwn,proto3" json:"artist_song_own,omitempty"`
-	LitWork          []*LitWork             `protobuf:"bytes,9,rep,name=lit_work,json=litWork,proto3" json:"lit_work,omitempty"`
-	ArtistSongRemake []*Artist              `protobuf:"bytes,10,rep,name=artist_song_remake,json=artistSongRemake,proto3" json:"artist_song_remake,omitempty"`
-	Rate             []*Rate                `protobuf:"bytes,11,rep,name=rate,proto3" json:"rate,omitempty"`
-	RateTop3         []*Rate                `protobuf:"bytes,12,rep,name=rate_top3,json=rateTop3,proto3" json:"rate_top3,omitempty"`
-	Top3             bool                   `protobuf:"varint,13,opt,name=top3,proto3" json:"top3,omitempty"`
-	Winner           bool                   `protobuf:"varint,14,opt,name=winner,proto3" json:"winner,omitempty"`
-	Sort             int32                  `protobuf:"varint,15,opt,name=sort,proto3" json:"sort,omitempty"`
-	Status           int32                  `protobuf:"varint,16,opt,name=status,proto3" json:"status,omitempty"`
-	Active           bool                   `protobuf:"varint,17,opt,name=active,proto3" json:"active,omitempty"`
-	AppId            string                 `protobuf:"bytes,18,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
-	OwnerId          string                 `protobuf:"bytes,19,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created          *timestamppb.Timestamp `protobuf:"bytes,31,opt,name=created,proto3" json:"created,omitempty"`
-	Updated          *timestamppb.Timestamp `protobuf:"bytes,32,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires          *timestamppb.Timestamp `protobuf:"bytes,33,opt,name=expires,proto3" json:"expires,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	Id                string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Date              *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
+	Competition       string                 `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
+	CompetitionId     string                 `protobuf:"bytes,4,opt,name=competition_id,json=competitionId,proto3" json:"competition_id,omitempty"`
+	Category          string                 `protobuf:"bytes,5,opt,name=category,proto3" json:"category,omitempty"`
+	Author            *Person                `protobuf:"bytes,6,opt,name=author,proto3" json:"author,omitempty"`
+	Song              []*Song                `protobuf:"bytes,7,rep,name=song,proto3" json:"song,omitempty"`
+	ArtistSongOwn     []*Artist              `protobuf:"bytes,8,rep,name=artist_song_own,json=artistSongOwn,proto3" json:"artist_song_own,omitempty"`
+	LitWork           []*LitWork             `protobuf:"bytes,9,rep,name=lit_work,json=litWork,proto3" json:"lit_work,omitempty"`
+	ArtistSongRemake  []*Artist              `protobuf:"bytes,10,rep,name=artist_song_remake,json=artistSongRemake,proto3" json:"artist_song_remake,omitempty"`
+	Rate              []*Rate                `protobuf:"bytes,11,rep,name=rate,proto3" json:"rate,omitempty"`
+	RateTop3          []*Rate                `protobuf:"bytes,12,rep,name=rate_top3,json=rateTop3,proto3" json:"rate_top3,omitempty"`
+	Top3              bool                   `protobuf:"varint,13,opt,name=top3,proto3" json:"top3,omitempty"`
+	Winner            bool                   `protobuf:"varint,14,opt,name=winner,proto3" json:"winner,omitempty"`
+	Sort              int32                  `protobuf:"varint,15,opt,name=sort,proto3" json:"sort,omitempty"`
+	Status            int32                  `protobuf:"varint,16,opt,name=status,proto3" json:"status,omitempty"`
+	Active            bool                   `protobuf:"varint,17,opt,name=active,proto3" json:"active,omitempty"`
+	AppId             string                 `protobuf:"bytes,18,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
+	OwnerId           string                 `protobuf:"bytes,19,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	WinnerDescription string                 `protobuf:"bytes,20,opt,name=winner_description,json=winnerDescription,proto3" json:"winner_description,omitempty"` // описание для сайта у победителя/ТОП-3; пусто — сайт выводит Artist.bio
+	Created           *timestamppb.Timestamp `protobuf:"bytes,31,opt,name=created,proto3" json:"created,omitempty"`
+	Updated           *timestamppb.Timestamp `protobuf:"bytes,32,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires           *timestamppb.Timestamp `protobuf:"bytes,33,opt,name=expires,proto3" json:"expires,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *FullContent) Reset() {
@@ -548,6 +557,13 @@ func (x *FullContent) GetOwnerId() string {
 	return ""
 }
 
+func (x *FullContent) GetWinnerDescription() string {
+	if x != nil {
+		return x.WinnerDescription
+	}
+	return ""
+}
+
 func (x *FullContent) GetCreated() *timestamppb.Timestamp {
 	if x != nil {
 		return x.Created
@@ -571,22 +587,23 @@ func (x *FullContent) GetExpires() *timestamppb.Timestamp {
 
 // ContentForSite ... заявка для
 type ContentForSite struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Category      string                 `protobuf:"bytes,2,opt,name=category,proto3" json:"category,omitempty"`
-	Songs         []*Song                `protobuf:"bytes,3,rep,name=songs,proto3" json:"songs,omitempty"`
-	Artists       []*Artist              `protobuf:"bytes,4,rep,name=artists,proto3" json:"artists,omitempty"`
-	Rate          []*Rate                `protobuf:"bytes,11,rep,name=rate,proto3" json:"rate,omitempty"`
-	RateTop3      []*Rate                `protobuf:"bytes,12,rep,name=rate_top3,json=rateTop3,proto3" json:"rate_top3,omitempty"`
-	Top3          bool                   `protobuf:"varint,13,opt,name=top3,proto3" json:"top3,omitempty"`
-	Winner        bool                   `protobuf:"varint,14,opt,name=winner,proto3" json:"winner,omitempty"`
-	Active        bool                   `protobuf:"varint,18,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,19,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,31,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,32,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,33,opt,name=expires,proto3" json:"expires,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	Id                string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Category          string                 `protobuf:"bytes,2,opt,name=category,proto3" json:"category,omitempty"`
+	Songs             []*Song                `protobuf:"bytes,3,rep,name=songs,proto3" json:"songs,omitempty"`
+	Artists           []*Artist              `protobuf:"bytes,4,rep,name=artists,proto3" json:"artists,omitempty"`
+	Rate              []*Rate                `protobuf:"bytes,11,rep,name=rate,proto3" json:"rate,omitempty"`
+	RateTop3          []*Rate                `protobuf:"bytes,12,rep,name=rate_top3,json=rateTop3,proto3" json:"rate_top3,omitempty"`
+	Top3              bool                   `protobuf:"varint,13,opt,name=top3,proto3" json:"top3,omitempty"`
+	Winner            bool                   `protobuf:"varint,14,opt,name=winner,proto3" json:"winner,omitempty"`
+	Active            bool                   `protobuf:"varint,18,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId           string                 `protobuf:"bytes,19,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	WinnerDescription string                 `protobuf:"bytes,20,opt,name=winner_description,json=winnerDescription,proto3" json:"winner_description,omitempty"` // описание для сайта у победителя/ТОП-3; пусто — сайт выводит Artist.bio
+	Created           *timestamppb.Timestamp `protobuf:"bytes,31,opt,name=created,proto3" json:"created,omitempty"`
+	Updated           *timestamppb.Timestamp `protobuf:"bytes,32,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires           *timestamppb.Timestamp `protobuf:"bytes,33,opt,name=expires,proto3" json:"expires,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *ContentForSite) Reset() {
@@ -685,6 +702,13 @@ func (x *ContentForSite) GetActive() bool {
 func (x *ContentForSite) GetOwnerId() string {
 	if x != nil {
 		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *ContentForSite) GetWinnerDescription() string {
+	if x != nil {
+		return x.WinnerDescription
 	}
 	return ""
 }
@@ -3847,29 +3871,30 @@ func (x *ListInactiveContestsResponse) GetTotal() int32 {
 
 // CONTESTS = UPDATE
 type UpdateContestRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Date          *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
-	Competition   string                 `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
-	AuthorId      string                 `protobuf:"bytes,5,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
-	ArtistId      string                 `protobuf:"bytes,6,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
-	SongOwnId     string                 `protobuf:"bytes,7,opt,name=song_own_id,json=songOwnId,proto3" json:"song_own_id,omitempty"`
-	SongRemakeId  string                 `protobuf:"bytes,8,opt,name=song_remake_id,json=songRemakeId,proto3" json:"song_remake_id,omitempty"`
-	LitWorkId     string                 `protobuf:"bytes,9,opt,name=lit_work_id,json=litWorkId,proto3" json:"lit_work_id,omitempty"`
-	Top3          *wrapperspb.BoolValue  `protobuf:"bytes,10,opt,name=top3,proto3" json:"top3,omitempty"`     // признак присутствия
-	Winner        *wrapperspb.BoolValue  `protobuf:"bytes,11,opt,name=winner,proto3" json:"winner,omitempty"` // признак присутствия
-	Sort          int32                  `protobuf:"varint,12,opt,name=sort,proto3" json:"sort,omitempty"`
-	RateBook      []string               `protobuf:"bytes,13,rep,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
-	Status        int32                  `protobuf:"varint,14,opt,name=status,proto3" json:"status,omitempty"`
-	Category      string                 `protobuf:"bytes,15,opt,name=category,proto3" json:"category,omitempty"`
-	Active        bool                   `protobuf:"varint,16,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,17,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,18,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,19,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=expires,proto3" json:"expires,omitempty"`
-	UpdateMask    *fieldmaskpb.FieldMask `protobuf:"bytes,30,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"` // какие поля менять
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	Id                string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Date              *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
+	Competition       string                 `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
+	AuthorId          string                 `protobuf:"bytes,5,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
+	ArtistId          string                 `protobuf:"bytes,6,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
+	SongOwnId         string                 `protobuf:"bytes,7,opt,name=song_own_id,json=songOwnId,proto3" json:"song_own_id,omitempty"`
+	SongRemakeId      string                 `protobuf:"bytes,8,opt,name=song_remake_id,json=songRemakeId,proto3" json:"song_remake_id,omitempty"`
+	LitWorkId         string                 `protobuf:"bytes,9,opt,name=lit_work_id,json=litWorkId,proto3" json:"lit_work_id,omitempty"`
+	Top3              *wrapperspb.BoolValue  `protobuf:"bytes,10,opt,name=top3,proto3" json:"top3,omitempty"`     // признак присутствия
+	Winner            *wrapperspb.BoolValue  `protobuf:"bytes,11,opt,name=winner,proto3" json:"winner,omitempty"` // признак присутствия
+	Sort              int32                  `protobuf:"varint,12,opt,name=sort,proto3" json:"sort,omitempty"`
+	RateBook          []string               `protobuf:"bytes,13,rep,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
+	Status            int32                  `protobuf:"varint,14,opt,name=status,proto3" json:"status,omitempty"`
+	Category          string                 `protobuf:"bytes,15,opt,name=category,proto3" json:"category,omitempty"`
+	Active            bool                   `protobuf:"varint,16,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId           string                 `protobuf:"bytes,17,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created           *timestamppb.Timestamp `protobuf:"bytes,18,opt,name=created,proto3" json:"created,omitempty"`
+	Updated           *timestamppb.Timestamp `protobuf:"bytes,19,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires           *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=expires,proto3" json:"expires,omitempty"`
+	WinnerDescription string                 `protobuf:"bytes,21,opt,name=winner_description,json=winnerDescription,proto3" json:"winner_description,omitempty"` // описание для сайта у победителя/ТОП-3; меняется по маске
+	UpdateMask        *fieldmaskpb.FieldMask `protobuf:"bytes,30,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`                      // какие поля менять
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *UpdateContestRequest) Reset() {
@@ -4035,6 +4060,13 @@ func (x *UpdateContestRequest) GetExpires() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *UpdateContestRequest) GetWinnerDescription() string {
+	if x != nil {
+		return x.WinnerDescription
+	}
+	return ""
+}
+
 func (x *UpdateContestRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
 	if x != nil {
 		return x.UpdateMask
@@ -4043,28 +4075,29 @@ func (x *UpdateContestRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
 }
 
 type UpdateContestResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Date          *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
-	Competition   string                 `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
-	AuthorId      string                 `protobuf:"bytes,5,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
-	ArtistId      string                 `protobuf:"bytes,6,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
-	SongOwnId     string                 `protobuf:"bytes,7,opt,name=song_own_id,json=songOwnId,proto3" json:"song_own_id,omitempty"`
-	SongRemakeId  string                 `protobuf:"bytes,8,opt,name=song_remake_id,json=songRemakeId,proto3" json:"song_remake_id,omitempty"`
-	LitWorkId     string                 `protobuf:"bytes,9,opt,name=lit_work_id,json=litWorkId,proto3" json:"lit_work_id,omitempty"`
-	Top3          bool                   `protobuf:"varint,10,opt,name=top3,proto3" json:"top3,omitempty"`
-	Winner        bool                   `protobuf:"varint,11,opt,name=winner,proto3" json:"winner,omitempty"`
-	Sort          int32                  `protobuf:"varint,12,opt,name=sort,proto3" json:"sort,omitempty"`
-	RateBook      []string               `protobuf:"bytes,13,rep,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
-	Status        int32                  `protobuf:"varint,14,opt,name=status,proto3" json:"status,omitempty"`
-	Category      string                 `protobuf:"bytes,15,opt,name=category,proto3" json:"category,omitempty"`
-	Active        bool                   `protobuf:"varint,16,opt,name=active,proto3" json:"active,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,17,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,18,opt,name=created,proto3" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,19,opt,name=updated,proto3" json:"updated,omitempty"`
-	Expires       *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=expires,proto3" json:"expires,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	Id                string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Date              *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
+	Competition       string                 `protobuf:"bytes,3,opt,name=competition,proto3" json:"competition,omitempty"`
+	AuthorId          string                 `protobuf:"bytes,5,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
+	ArtistId          string                 `protobuf:"bytes,6,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
+	SongOwnId         string                 `protobuf:"bytes,7,opt,name=song_own_id,json=songOwnId,proto3" json:"song_own_id,omitempty"`
+	SongRemakeId      string                 `protobuf:"bytes,8,opt,name=song_remake_id,json=songRemakeId,proto3" json:"song_remake_id,omitempty"`
+	LitWorkId         string                 `protobuf:"bytes,9,opt,name=lit_work_id,json=litWorkId,proto3" json:"lit_work_id,omitempty"`
+	Top3              bool                   `protobuf:"varint,10,opt,name=top3,proto3" json:"top3,omitempty"`
+	Winner            bool                   `protobuf:"varint,11,opt,name=winner,proto3" json:"winner,omitempty"`
+	Sort              int32                  `protobuf:"varint,12,opt,name=sort,proto3" json:"sort,omitempty"`
+	RateBook          []string               `protobuf:"bytes,13,rep,name=rate_book,json=rateBook,proto3" json:"rate_book,omitempty"`
+	Status            int32                  `protobuf:"varint,14,opt,name=status,proto3" json:"status,omitempty"`
+	Category          string                 `protobuf:"bytes,15,opt,name=category,proto3" json:"category,omitempty"`
+	Active            bool                   `protobuf:"varint,16,opt,name=active,proto3" json:"active,omitempty"`
+	OwnerId           string                 `protobuf:"bytes,17,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	Created           *timestamppb.Timestamp `protobuf:"bytes,18,opt,name=created,proto3" json:"created,omitempty"`
+	Updated           *timestamppb.Timestamp `protobuf:"bytes,19,opt,name=updated,proto3" json:"updated,omitempty"`
+	Expires           *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=expires,proto3" json:"expires,omitempty"`
+	WinnerDescription string                 `protobuf:"bytes,21,opt,name=winner_description,json=winnerDescription,proto3" json:"winner_description,omitempty"` // описание для сайта у победителя/ТОП-3
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *UpdateContestResponse) Reset() {
@@ -4228,6 +4261,13 @@ func (x *UpdateContestResponse) GetExpires() *timestamppb.Timestamp {
 		return x.Expires
 	}
 	return nil
+}
+
+func (x *UpdateContestResponse) GetWinnerDescription() string {
+	if x != nil {
+		return x.WinnerDescription
+	}
+	return ""
 }
 
 // CONTESTS = SET RATE
@@ -8859,7 +8899,7 @@ const file_contest_proto_rawDesc = "" +
 	"artistCity\x12!\n" +
 	"\fartist_photo\x18\v \x01(\tR\vartistPhoto\x12\x12\n" +
 	"\x04top3\x18\r \x01(\bR\x04top3\x12\x16\n" +
-	"\x06winner\x18\x0e \x01(\bR\x06winner\"\xea\x05\n" +
+	"\x06winner\x18\x0e \x01(\bR\x06winner\"\x99\x06\n" +
 	"\n" +
 	"OneContest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
@@ -8881,10 +8921,11 @@ const file_contest_proto_rawDesc = "" +
 	"\trate_book\x18\x10 \x03(\tR\brateBook\x12\x16\n" +
 	"\x06status\x18\x11 \x01(\x05R\x06status\x12\x16\n" +
 	"\x06active\x18\x12 \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\x13 \x01(\tR\aownerId\x124\n" +
+	"\bowner_id\x18\x13 \x01(\tR\aownerId\x12-\n" +
+	"\x12winner_description\x18\x14 \x01(\tR\x11winnerDescription\x124\n" +
 	"\acreated\x18\x1e \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x1f \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18  \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xb6\x06\n" +
+	"\aexpires\x18  \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xe5\x06\n" +
 	"\vFullContent\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12 \n" +
@@ -8905,10 +8946,11 @@ const file_contest_proto_rawDesc = "" +
 	"\x06status\x18\x10 \x01(\x05R\x06status\x12\x16\n" +
 	"\x06active\x18\x11 \x01(\bR\x06active\x12\x15\n" +
 	"\x06app_id\x18\x12 \x01(\tR\x05appId\x12\x19\n" +
-	"\bowner_id\x18\x13 \x01(\tR\aownerId\x124\n" +
+	"\bowner_id\x18\x13 \x01(\tR\aownerId\x12-\n" +
+	"\x12winner_description\x18\x14 \x01(\tR\x11winnerDescription\x124\n" +
 	"\acreated\x18\x1f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18  \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18! \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xdc\x03\n" +
+	"\aexpires\x18! \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\x8b\x04\n" +
 	"\x0eContentForSite\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1a\n" +
 	"\bcategory\x18\x02 \x01(\tR\bcategory\x12#\n" +
@@ -8919,7 +8961,8 @@ const file_contest_proto_rawDesc = "" +
 	"\x04top3\x18\r \x01(\bR\x04top3\x12\x16\n" +
 	"\x06winner\x18\x0e \x01(\bR\x06winner\x12\x16\n" +
 	"\x06active\x18\x12 \x01(\bR\x06active\x12\x19\n" +
-	"\bowner_id\x18\x13 \x01(\tR\aownerId\x124\n" +
+	"\bowner_id\x18\x13 \x01(\tR\aownerId\x12-\n" +
+	"\x12winner_description\x18\x14 \x01(\tR\x11winnerDescription\x124\n" +
 	"\acreated\x18\x1f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18  \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
 	"\aexpires\x18! \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xf3\x03\n" +
@@ -9195,7 +9238,7 @@ const file_contest_proto_rawDesc = "" +
 	"\x06offset\x18\x03 \x01(\x05R\x06offset\"f\n" +
 	"\x1cListInactiveContestsResponse\x120\n" +
 	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x05R\x05total\"\xf3\x05\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"\xa2\x06\n" +
 	"\x14UpdateContestRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12 \n" +
@@ -9216,9 +9259,10 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\x11 \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x13 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\x12;\n" +
+	"\aexpires\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\x12-\n" +
+	"\x12winner_description\x18\x15 \x01(\tR\x11winnerDescription\x12;\n" +
 	"\vupdate_mask\x18\x1e \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
-	"updateMask\"\xff\x04\n" +
+	"updateMask\"\xae\x05\n" +
 	"\x15UpdateContestResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12 \n" +
@@ -9239,7 +9283,8 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\x11 \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x13 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xa5\x01\n" +
+	"\aexpires\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\x12-\n" +
+	"\x12winner_description\x18\x15 \x01(\tR\x11winnerDescription\"\xa5\x01\n" +
 	"\x1bUpdateContestAddRateRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12!\n" +
 	"\x04rate\x18\x02 \x01(\v2\r.contest.RateR\x04rate\x12*\n" +
