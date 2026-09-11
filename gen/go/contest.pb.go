@@ -166,6 +166,7 @@ type OneContest struct {
 	Active            bool                   `protobuf:"varint,18,opt,name=active,proto3" json:"active,omitempty"`
 	OwnerId           string                 `protobuf:"bytes,19,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
 	WinnerDescription string                 `protobuf:"bytes,20,opt,name=winner_description,json=winnerDescription,proto3" json:"winner_description,omitempty"` // описание для сайта у победителя/ТОП-3; пусто — сайт выводит Artist.bio
+	Territory         string                 `protobuf:"bytes,21,opt,name=territory,proto3" json:"territory,omitempty"`                                          // ключ территории (город фестиваля / регион тура); пусто — территории не используются
 	Created           *timestamppb.Timestamp `protobuf:"bytes,30,opt,name=created,proto3" json:"created,omitempty"`
 	Updated           *timestamppb.Timestamp `protobuf:"bytes,31,opt,name=updated,proto3" json:"updated,omitempty"`
 	Expires           *timestamppb.Timestamp `protobuf:"bytes,32,opt,name=expires,proto3" json:"expires,omitempty"`
@@ -343,6 +344,13 @@ func (x *OneContest) GetWinnerDescription() string {
 	return ""
 }
 
+func (x *OneContest) GetTerritory() string {
+	if x != nil {
+		return x.Territory
+	}
+	return ""
+}
+
 func (x *OneContest) GetCreated() *timestamppb.Timestamp {
 	if x != nil {
 		return x.Created
@@ -387,6 +395,7 @@ type FullContent struct {
 	AppId             string                 `protobuf:"bytes,18,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
 	OwnerId           string                 `protobuf:"bytes,19,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
 	WinnerDescription string                 `protobuf:"bytes,20,opt,name=winner_description,json=winnerDescription,proto3" json:"winner_description,omitempty"` // описание для сайта у победителя/ТОП-3; пусто — сайт выводит Artist.bio
+	Territory         string                 `protobuf:"bytes,21,opt,name=territory,proto3" json:"territory,omitempty"`                                          // ключ территории (город фестиваля / регион тура); пусто — территории не используются
 	Created           *timestamppb.Timestamp `protobuf:"bytes,31,opt,name=created,proto3" json:"created,omitempty"`
 	Updated           *timestamppb.Timestamp `protobuf:"bytes,32,opt,name=updated,proto3" json:"updated,omitempty"`
 	Expires           *timestamppb.Timestamp `protobuf:"bytes,33,opt,name=expires,proto3" json:"expires,omitempty"`
@@ -564,6 +573,13 @@ func (x *FullContent) GetWinnerDescription() string {
 	return ""
 }
 
+func (x *FullContent) GetTerritory() string {
+	if x != nil {
+		return x.Territory
+	}
+	return ""
+}
+
 func (x *FullContent) GetCreated() *timestamppb.Timestamp {
 	if x != nil {
 		return x.Created
@@ -599,6 +615,7 @@ type ContentForSite struct {
 	Active            bool                   `protobuf:"varint,18,opt,name=active,proto3" json:"active,omitempty"`
 	OwnerId           string                 `protobuf:"bytes,19,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
 	WinnerDescription string                 `protobuf:"bytes,20,opt,name=winner_description,json=winnerDescription,proto3" json:"winner_description,omitempty"` // описание для сайта у победителя/ТОП-3; пусто — сайт выводит Artist.bio
+	Territory         string                 `protobuf:"bytes,21,opt,name=territory,proto3" json:"territory,omitempty"`                                          // ключ территории (город фестиваля / регион тура); пусто — территории не используются
 	Created           *timestamppb.Timestamp `protobuf:"bytes,31,opt,name=created,proto3" json:"created,omitempty"`
 	Updated           *timestamppb.Timestamp `protobuf:"bytes,32,opt,name=updated,proto3" json:"updated,omitempty"`
 	Expires           *timestamppb.Timestamp `protobuf:"bytes,33,opt,name=expires,proto3" json:"expires,omitempty"`
@@ -709,6 +726,13 @@ func (x *ContentForSite) GetOwnerId() string {
 func (x *ContentForSite) GetWinnerDescription() string {
 	if x != nil {
 		return x.WinnerDescription
+	}
+	return ""
+}
+
+func (x *ContentForSite) GetTerritory() string {
+	if x != nil {
+		return x.Territory
 	}
 	return ""
 }
@@ -1617,6 +1641,7 @@ type Tour struct {
 	ShowParticipants bool                   `protobuf:"varint,6,opt,name=show_participants,json=showParticipants,proto3" json:"show_participants,omitempty"` // жюри видит данные участников или только номер/песню/видео
 	OpenedAt         *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=opened_at,json=openedAt,proto3" json:"opened_at,omitempty"`                          // когда открыт
 	ClosedAt         *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=closed_at,json=closedAt,proto3" json:"closed_at,omitempty"`                          // когда закрыт
+	Territories      []string               `protobuf:"bytes,9,rep,name=territories,proto3" json:"territories,omitempty"`                                    // территории тура (пусто = все территории); семантика как у categories
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -1703,6 +1728,13 @@ func (x *Tour) GetOpenedAt() *timestamppb.Timestamp {
 func (x *Tour) GetClosedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.ClosedAt
+	}
+	return nil
+}
+
+func (x *Tour) GetTerritories() []string {
+	if x != nil {
+		return x.Territories
 	}
 	return nil
 }
@@ -1968,6 +2000,7 @@ type AddContestRequest struct {
 	Created       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=created,proto3" json:"created,omitempty"`
 	Updated       *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=updated,proto3" json:"updated,omitempty"`
 	Expires       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=expires,proto3" json:"expires,omitempty"`
+	Territory     string                 `protobuf:"bytes,18,opt,name=territory,proto3" json:"territory,omitempty"` // ключ территории (город фестиваля / регион тура); пусто — территории не используются
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2112,6 +2145,13 @@ func (x *AddContestRequest) GetExpires() *timestamppb.Timestamp {
 		return x.Expires
 	}
 	return nil
+}
+
+func (x *AddContestRequest) GetTerritory() string {
+	if x != nil {
+		return x.Territory
+	}
+	return ""
 }
 
 type AddContestResponse struct {
@@ -2572,6 +2612,7 @@ type ListContestsByCategoryRequest struct {
 	SortBy        string                 `protobuf:"bytes,6,opt,name=sort_by,json=sortBy,proto3" json:"sort_by,omitempty"`    // ключ сортировки: artist, song, author, city, category, status, date (пусто = порядок по умолчанию)
 	SortDir       string                 `protobuf:"bytes,7,opt,name=sort_dir,json=sortDir,proto3" json:"sort_dir,omitempty"` // направление: asc | desc (пусто = asc)
 	Search        string                 `protobuf:"bytes,8,opt,name=search,proto3" json:"search,omitempty"`                  // подстрока по исполнителю/песне/ФИО заявителя/городу, регистронезависимо; пусто = без фильтра
+	Territory     string                 `protobuf:"bytes,9,opt,name=territory,proto3" json:"territory,omitempty"`            // фильтр по территории (пусто = любая)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2662,6 +2703,13 @@ func (x *ListContestsByCategoryRequest) GetSearch() string {
 	return ""
 }
 
+func (x *ListContestsByCategoryRequest) GetTerritory() string {
+	if x != nil {
+		return x.Territory
+	}
+	return ""
+}
+
 // CONTESTS = LIST = By Category = For site
 type ListContestsByCategoryForSiteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -2670,6 +2718,7 @@ type ListContestsByCategoryForSiteRequest struct {
 	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`            // сколько заявок за раз (например, 50)
 	Offset        int32                  `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty"`          // с какой позиции (например, 0, 50, 100)
 	Competition   string                 `protobuf:"bytes,5,opt,name=competition,proto3" json:"competition,omitempty"` // идентификатор конкурса
+	Territory     string                 `protobuf:"bytes,6,opt,name=territory,proto3" json:"territory,omitempty"`     // фильтр по территории (пусто = любая)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2735,6 +2784,13 @@ func (x *ListContestsByCategoryForSiteRequest) GetOffset() int32 {
 func (x *ListContestsByCategoryForSiteRequest) GetCompetition() string {
 	if x != nil {
 		return x.Competition
+	}
+	return ""
+}
+
+func (x *ListContestsByCategoryForSiteRequest) GetTerritory() string {
+	if x != nil {
+		return x.Territory
 	}
 	return ""
 }
@@ -3087,8 +3143,9 @@ func (x *ListWinnersResponse) GetTotal() int32 {
 type ListContestsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Competition   string                 `protobuf:"bytes,1,opt,name=competition,proto3" json:"competition,omitempty"`
-	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`   // сколько заявок за раз (например, 50)
-	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"` // с какой позиции (например, 0, 50, 100)
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`        // сколько заявок за раз (например, 50)
+	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`      // с какой позиции (например, 0, 50, 100)
+	Territory     string                 `protobuf:"bytes,4,opt,name=territory,proto3" json:"territory,omitempty"` // фильтр по территории (пусто = любая)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3142,6 +3199,13 @@ func (x *ListContestsRequest) GetOffset() int32 {
 		return x.Offset
 	}
 	return 0
+}
+
+func (x *ListContestsRequest) GetTerritory() string {
+	if x != nil {
+		return x.Territory
+	}
+	return ""
 }
 
 type ListContestsResponse struct {
@@ -3342,6 +3406,7 @@ type SearchContestsRequest struct {
 	Offset        int32                  `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty"`                 // с какой позиции (например, 0, 50, 100)
 	SortBy        string                 `protobuf:"bytes,5,opt,name=sort_by,json=sortBy,proto3" json:"sort_by,omitempty"`    // ключ сортировки: artist, song, author, city, category, status, date (пусто = порядок по умолчанию)
 	SortDir       string                 `protobuf:"bytes,6,opt,name=sort_dir,json=sortDir,proto3" json:"sort_dir,omitempty"` // направление: asc | desc (пусто = asc)
+	Territory     string                 `protobuf:"bytes,7,opt,name=territory,proto3" json:"territory,omitempty"`            // фильтр по территории (пусто = любая)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3414,6 +3479,13 @@ func (x *SearchContestsRequest) GetSortBy() string {
 func (x *SearchContestsRequest) GetSortDir() string {
 	if x != nil {
 		return x.SortDir
+	}
+	return ""
+}
+
+func (x *SearchContestsRequest) GetTerritory() string {
+	if x != nil {
+		return x.Territory
 	}
 	return ""
 }
@@ -3762,6 +3834,7 @@ type ListInactiveContestsRequest struct {
 	Competition   string                 `protobuf:"bytes,1,opt,name=competition,proto3" json:"competition,omitempty"` // идентификатор конкурса
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`            // сколько заявок за раз (например, 50)
 	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`          // с какой позиции (например, 0, 50, 100)
+	Territory     string                 `protobuf:"bytes,4,opt,name=territory,proto3" json:"territory,omitempty"`     // фильтр по территории (пусто = любая)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3815,6 +3888,13 @@ func (x *ListInactiveContestsRequest) GetOffset() int32 {
 		return x.Offset
 	}
 	return 0
+}
+
+func (x *ListInactiveContestsRequest) GetTerritory() string {
+	if x != nil {
+		return x.Territory
+	}
+	return ""
 }
 
 type ListInactiveContestsResponse struct {
@@ -3892,6 +3972,7 @@ type UpdateContestRequest struct {
 	Updated           *timestamppb.Timestamp `protobuf:"bytes,19,opt,name=updated,proto3" json:"updated,omitempty"`
 	Expires           *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=expires,proto3" json:"expires,omitempty"`
 	WinnerDescription string                 `protobuf:"bytes,21,opt,name=winner_description,json=winnerDescription,proto3" json:"winner_description,omitempty"` // описание для сайта у победителя/ТОП-3; меняется по маске
+	Territory         string                 `protobuf:"bytes,22,opt,name=territory,proto3" json:"territory,omitempty"`                                          // ключ территории (город фестиваля / регион тура); пусто — территории не используются; меняется по маске
 	UpdateMask        *fieldmaskpb.FieldMask `protobuf:"bytes,30,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`                      // какие поля менять
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
@@ -4067,6 +4148,13 @@ func (x *UpdateContestRequest) GetWinnerDescription() string {
 	return ""
 }
 
+func (x *UpdateContestRequest) GetTerritory() string {
+	if x != nil {
+		return x.Territory
+	}
+	return ""
+}
+
 func (x *UpdateContestRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
 	if x != nil {
 		return x.UpdateMask
@@ -4096,6 +4184,7 @@ type UpdateContestResponse struct {
 	Updated           *timestamppb.Timestamp `protobuf:"bytes,19,opt,name=updated,proto3" json:"updated,omitempty"`
 	Expires           *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=expires,proto3" json:"expires,omitempty"`
 	WinnerDescription string                 `protobuf:"bytes,21,opt,name=winner_description,json=winnerDescription,proto3" json:"winner_description,omitempty"` // описание для сайта у победителя/ТОП-3
+	Territory         string                 `protobuf:"bytes,22,opt,name=territory,proto3" json:"territory,omitempty"`                                          // ключ территории (город фестиваля / регион тура); пусто — территории не используются
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -4266,6 +4355,13 @@ func (x *UpdateContestResponse) GetExpires() *timestamppb.Timestamp {
 func (x *UpdateContestResponse) GetWinnerDescription() string {
 	if x != nil {
 		return x.WinnerDescription
+	}
+	return ""
+}
+
+func (x *UpdateContestResponse) GetTerritory() string {
+	if x != nil {
+		return x.Territory
 	}
 	return ""
 }
@@ -6920,6 +7016,7 @@ type GetResultsByCategoryRequest struct {
 	Category      string                 `protobuf:"bytes,2,opt,name=category,proto3" json:"category,omitempty"`              // категория
 	Top3          bool                   `protobuf:"varint,3,opt,name=top3,proto3" json:"top3,omitempty"`                     // true = по rate_top3 и только заявки top3=true
 	JuryIds       []string               `protobuf:"bytes,4,rep,name=jury_ids,json=juryIds,proto3" json:"jury_ids,omitempty"` // белый список жюри; чужие голоса игнорируются
+	Territory     string                 `protobuf:"bytes,5,opt,name=territory,proto3" json:"territory,omitempty"`            // итоги в пределах территории (пусто = без учёта территорий)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -6980,6 +7077,13 @@ func (x *GetResultsByCategoryRequest) GetJuryIds() []string {
 		return x.JuryIds
 	}
 	return nil
+}
+
+func (x *GetResultsByCategoryRequest) GetTerritory() string {
+	if x != nil {
+		return x.Territory
+	}
+	return ""
 }
 
 // ResultRow - итог голосования по одной заявке
@@ -7111,6 +7215,7 @@ type OpenTourRequest struct {
 	Type             string                 `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`                                                  // тип тура: "main" | "top3"
 	ShowParticipants bool                   `protobuf:"varint,4,opt,name=show_participants,json=showParticipants,proto3" json:"show_participants,omitempty"` // жюри видит данные участников или только номер/песню/видео
 	Meta             *ActionMeta            `protobuf:"bytes,5,opt,name=meta,proto3" json:"meta,omitempty"`                                                  // метаданные действия для журнала аудита
+	Territories      []string               `protobuf:"bytes,6,rep,name=territories,proto3" json:"territories,omitempty"`                                    // территории тура (пусто = все территории)
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -7176,6 +7281,13 @@ func (x *OpenTourRequest) GetShowParticipants() bool {
 func (x *OpenTourRequest) GetMeta() *ActionMeta {
 	if x != nil {
 		return x.Meta
+	}
+	return nil
+}
+
+func (x *OpenTourRequest) GetTerritories() []string {
+	if x != nil {
+		return x.Territories
 	}
 	return nil
 }
@@ -8899,7 +9011,7 @@ const file_contest_proto_rawDesc = "" +
 	"artistCity\x12!\n" +
 	"\fartist_photo\x18\v \x01(\tR\vartistPhoto\x12\x12\n" +
 	"\x04top3\x18\r \x01(\bR\x04top3\x12\x16\n" +
-	"\x06winner\x18\x0e \x01(\bR\x06winner\"\x99\x06\n" +
+	"\x06winner\x18\x0e \x01(\bR\x06winner\"\xb7\x06\n" +
 	"\n" +
 	"OneContest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
@@ -8922,10 +9034,11 @@ const file_contest_proto_rawDesc = "" +
 	"\x06status\x18\x11 \x01(\x05R\x06status\x12\x16\n" +
 	"\x06active\x18\x12 \x01(\bR\x06active\x12\x19\n" +
 	"\bowner_id\x18\x13 \x01(\tR\aownerId\x12-\n" +
-	"\x12winner_description\x18\x14 \x01(\tR\x11winnerDescription\x124\n" +
+	"\x12winner_description\x18\x14 \x01(\tR\x11winnerDescription\x12\x1c\n" +
+	"\tterritory\x18\x15 \x01(\tR\tterritory\x124\n" +
 	"\acreated\x18\x1e \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x1f \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18  \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xe5\x06\n" +
+	"\aexpires\x18  \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\x83\a\n" +
 	"\vFullContent\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12 \n" +
@@ -8947,10 +9060,11 @@ const file_contest_proto_rawDesc = "" +
 	"\x06active\x18\x11 \x01(\bR\x06active\x12\x15\n" +
 	"\x06app_id\x18\x12 \x01(\tR\x05appId\x12\x19\n" +
 	"\bowner_id\x18\x13 \x01(\tR\aownerId\x12-\n" +
-	"\x12winner_description\x18\x14 \x01(\tR\x11winnerDescription\x124\n" +
+	"\x12winner_description\x18\x14 \x01(\tR\x11winnerDescription\x12\x1c\n" +
+	"\tterritory\x18\x15 \x01(\tR\tterritory\x124\n" +
 	"\acreated\x18\x1f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18  \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18! \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\x8b\x04\n" +
+	"\aexpires\x18! \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xa9\x04\n" +
 	"\x0eContentForSite\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1a\n" +
 	"\bcategory\x18\x02 \x01(\tR\bcategory\x12#\n" +
@@ -8962,7 +9076,8 @@ const file_contest_proto_rawDesc = "" +
 	"\x06winner\x18\x0e \x01(\bR\x06winner\x12\x16\n" +
 	"\x06active\x18\x12 \x01(\bR\x06active\x12\x19\n" +
 	"\bowner_id\x18\x13 \x01(\tR\aownerId\x12-\n" +
-	"\x12winner_description\x18\x14 \x01(\tR\x11winnerDescription\x124\n" +
+	"\x12winner_description\x18\x14 \x01(\tR\x11winnerDescription\x12\x1c\n" +
+	"\tterritory\x18\x15 \x01(\tR\tterritory\x124\n" +
 	"\acreated\x18\x1f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18  \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
 	"\aexpires\x18! \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xf3\x03\n" +
@@ -9063,7 +9178,7 @@ const file_contest_proto_rawDesc = "" +
 	"\n" +
 	"ActionMeta\x12\x19\n" +
 	"\bactor_id\x18\x01 \x01(\tR\aactorId\x12\x0e\n" +
-	"\x02ip\x18\x02 \x01(\tR\x02ip\"\xa3\x02\n" +
+	"\x02ip\x18\x02 \x01(\tR\x02ip\"\xc5\x02\n" +
 	"\x04Tour\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12 \n" +
 	"\vcompetition\x18\x02 \x01(\tR\vcompetition\x12\x1e\n" +
@@ -9074,7 +9189,8 @@ const file_contest_proto_rawDesc = "" +
 	"\x06status\x18\x05 \x01(\tR\x06status\x12+\n" +
 	"\x11show_participants\x18\x06 \x01(\bR\x10showParticipants\x127\n" +
 	"\topened_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\bopenedAt\x127\n" +
-	"\tclosed_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\bclosedAt\"\xec\x01\n" +
+	"\tclosed_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\bclosedAt\x12 \n" +
+	"\vterritories\x18\t \x03(\tR\vterritories\"\xec\x01\n" +
 	"\n" +
 	"AuditEvent\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x16\n" +
@@ -9099,7 +9215,7 @@ const file_contest_proto_rawDesc = "" +
 	" \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xb3\x04\n" +
+	"\aexpires\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xd1\x04\n" +
 	"\x11AddContestRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12 \n" +
@@ -9117,7 +9233,8 @@ const file_contest_proto_rawDesc = "" +
 	"\bowner_id\x18\x0e \x01(\tR\aownerId\x124\n" +
 	"\acreated\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
-	"\aexpires\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\"\xb4\x04\n" +
+	"\aexpires\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\x12\x1c\n" +
+	"\tterritory\x18\x12 \x01(\tR\tterritory\"\xb4\x04\n" +
 	"\x12AddContestResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12 \n" +
@@ -9149,7 +9266,7 @@ const file_contest_proto_rawDesc = "" +
 	"\"GetContestWithEmptyCategoryRequest\x12%\n" +
 	"\x0ecompetition_id\x18\x01 \x01(\tR\rcompetitionId\"U\n" +
 	"#GetContestWithEmptyCategoryResponse\x12.\n" +
-	"\acontest\x18\x01 \x01(\v2\x14.contest.FullContentR\acontest\"\xef\x01\n" +
+	"\acontest\x18\x01 \x01(\v2\x14.contest.FullContentR\acontest\"\x8d\x02\n" +
 	"\x1dListContestsByCategoryRequest\x12\x1a\n" +
 	"\bcategory\x18\x01 \x01(\tR\bcategory\x12\x16\n" +
 	"\x06filter\x18\x02 \x01(\tR\x06filter\x12\x14\n" +
@@ -9158,13 +9275,15 @@ const file_contest_proto_rawDesc = "" +
 	"\vcompetition\x18\x05 \x01(\tR\vcompetition\x12\x17\n" +
 	"\asort_by\x18\x06 \x01(\tR\x06sortBy\x12\x19\n" +
 	"\bsort_dir\x18\a \x01(\tR\asortDir\x12\x16\n" +
-	"\x06search\x18\b \x01(\tR\x06search\"\xaa\x01\n" +
+	"\x06search\x18\b \x01(\tR\x06search\x12\x1c\n" +
+	"\tterritory\x18\t \x01(\tR\tterritory\"\xc8\x01\n" +
 	"$ListContestsByCategoryForSiteRequest\x12\x1a\n" +
 	"\bcategory\x18\x01 \x01(\tR\bcategory\x12\x16\n" +
 	"\x06filter\x18\x02 \x01(\tR\x06filter\x12\x14\n" +
 	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x04 \x01(\x05R\x06offset\x12 \n" +
-	"\vcompetition\x18\x05 \x01(\tR\vcompetition\"h\n" +
+	"\vcompetition\x18\x05 \x01(\tR\vcompetition\x12\x1c\n" +
+	"\tterritory\x18\x06 \x01(\tR\tterritory\"h\n" +
 	"\x1eListContestsByCategoryResponse\x120\n" +
 	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x05R\x05total\"r\n" +
@@ -9186,11 +9305,12 @@ const file_contest_proto_rawDesc = "" +
 	"\vcompetition\x18\x04 \x01(\tR\vcompetition\"^\n" +
 	"\x13ListWinnersResponse\x121\n" +
 	"\bcontests\x18\x01 \x03(\v2\x15.contest.ContestShortR\bcontests\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x05R\x05total\"e\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"\x83\x01\n" +
 	"\x13ListContestsRequest\x12 \n" +
 	"\vcompetition\x18\x01 \x01(\tR\vcompetition\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x05R\x06offset\"^\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\x12\x1c\n" +
+	"\tterritory\x18\x04 \x01(\tR\tterritory\"^\n" +
 	"\x14ListContestsResponse\x120\n" +
 	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x05R\x05total\"\xc0\x01\n" +
@@ -9203,14 +9323,15 @@ const file_contest_proto_rawDesc = "" +
 	"\x06search\x18\x06 \x01(\tR\x06search\"m\n" +
 	"#ListContestsWithoutCategoryResponse\x120\n" +
 	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x05R\x05total\"\xb3\x01\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"\xd1\x01\n" +
 	"\x15SearchContestsRequest\x12 \n" +
 	"\vcompetition\x18\x01 \x01(\tR\vcompetition\x12\x16\n" +
 	"\x06search\x18\x02 \x01(\tR\x06search\x12\x14\n" +
 	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x04 \x01(\x05R\x06offset\x12\x17\n" +
 	"\asort_by\x18\x05 \x01(\tR\x06sortBy\x12\x19\n" +
-	"\bsort_dir\x18\x06 \x01(\tR\asortDir\"`\n" +
+	"\bsort_dir\x18\x06 \x01(\tR\asortDir\x12\x1c\n" +
+	"\tterritory\x18\a \x01(\tR\tterritory\"`\n" +
 	"\x16SearchContestsResponse\x120\n" +
 	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x05R\x05total\"y\n" +
@@ -9231,14 +9352,15 @@ const file_contest_proto_rawDesc = "" +
 	"\vcompetition\x18\x04 \x01(\tR\vcompetition\"f\n" +
 	"\x1cListContestsByRegionResponse\x120\n" +
 	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x05R\x05total\"m\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"\x8b\x01\n" +
 	"\x1bListInactiveContestsRequest\x12 \n" +
 	"\vcompetition\x18\x01 \x01(\tR\vcompetition\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x05R\x06offset\"f\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\x12\x1c\n" +
+	"\tterritory\x18\x04 \x01(\tR\tterritory\"f\n" +
 	"\x1cListInactiveContestsResponse\x120\n" +
 	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x05R\x05total\"\xa2\x06\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"\xc0\x06\n" +
 	"\x14UpdateContestRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12 \n" +
@@ -9260,9 +9382,10 @@ const file_contest_proto_rawDesc = "" +
 	"\acreated\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x13 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
 	"\aexpires\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\x12-\n" +
-	"\x12winner_description\x18\x15 \x01(\tR\x11winnerDescription\x12;\n" +
+	"\x12winner_description\x18\x15 \x01(\tR\x11winnerDescription\x12\x1c\n" +
+	"\tterritory\x18\x16 \x01(\tR\tterritory\x12;\n" +
 	"\vupdate_mask\x18\x1e \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
-	"updateMask\"\xae\x05\n" +
+	"updateMask\"\xcc\x05\n" +
 	"\x15UpdateContestResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x04date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12 \n" +
@@ -9284,7 +9407,8 @@ const file_contest_proto_rawDesc = "" +
 	"\acreated\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\x13 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\x124\n" +
 	"\aexpires\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\x12-\n" +
-	"\x12winner_description\x18\x15 \x01(\tR\x11winnerDescription\"\xa5\x01\n" +
+	"\x12winner_description\x18\x15 \x01(\tR\x11winnerDescription\x12\x1c\n" +
+	"\tterritory\x18\x16 \x01(\tR\tterritory\"\xa5\x01\n" +
 	"\x1bUpdateContestAddRateRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12!\n" +
 	"\x04rate\x18\x02 \x01(\v2\r.contest.RateR\x04rate\x12*\n" +
@@ -9493,12 +9617,13 @@ const file_contest_proto_rawDesc = "" +
 	"\blit_work\x18\x01 \x01(\v2\x10.contest.LitWorkR\alitWork\"^\n" +
 	"\x15UpdateLitWorkResponse\x12+\n" +
 	"\blit_work\x18\x01 \x01(\v2\x10.contest.LitWorkR\alitWork\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\x8a\x01\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\xa8\x01\n" +
 	"\x1bGetResultsByCategoryRequest\x12 \n" +
 	"\vcompetition\x18\x01 \x01(\tR\vcompetition\x12\x1a\n" +
 	"\bcategory\x18\x02 \x01(\tR\bcategory\x12\x12\n" +
 	"\x04top3\x18\x03 \x01(\bR\x04top3\x12\x19\n" +
-	"\bjury_ids\x18\x04 \x03(\tR\ajuryIds\"\xe8\x01\n" +
+	"\bjury_ids\x18\x04 \x03(\tR\ajuryIds\x12\x1c\n" +
+	"\tterritory\x18\x05 \x01(\tR\tterritory\"\xe8\x01\n" +
 	"\tResultRow\x12\x1d\n" +
 	"\n" +
 	"contest_id\x18\x01 \x01(\tR\tcontestId\x12\x14\n" +
@@ -9514,7 +9639,7 @@ const file_contest_proto_rawDesc = "" +
 	"\x10jury_rated_count\x18\x02 \x03(\v29.contest.GetResultsByCategoryResponse.JuryRatedCountEntryR\x0ejuryRatedCount\x1aA\n" +
 	"\x13JuryRatedCountEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"\xbd\x01\n" +
+	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"\xdf\x01\n" +
 	"\x0fOpenTourRequest\x12 \n" +
 	"\vcompetition\x18\x01 \x01(\tR\vcompetition\x12\x1e\n" +
 	"\n" +
@@ -9522,7 +9647,8 @@ const file_contest_proto_rawDesc = "" +
 	"categories\x12\x12\n" +
 	"\x04type\x18\x03 \x01(\tR\x04type\x12+\n" +
 	"\x11show_participants\x18\x04 \x01(\bR\x10showParticipants\x12'\n" +
-	"\x04meta\x18\x05 \x01(\v2\x13.contest.ActionMetaR\x04meta\"O\n" +
+	"\x04meta\x18\x05 \x01(\v2\x13.contest.ActionMetaR\x04meta\x12 \n" +
+	"\vterritories\x18\x06 \x03(\tR\vterritories\"O\n" +
 	"\x10OpenTourResponse\x12!\n" +
 	"\x04tour\x18\x01 \x01(\v2\r.contest.TourR\x04tour\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"T\n" +

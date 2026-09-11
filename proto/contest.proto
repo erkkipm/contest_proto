@@ -158,6 +158,7 @@ message OneContest {
   bool active = 18;
   string owner_id = 19;
   string winner_description = 20;  // описание для сайта у победителя/ТОП-3; пусто — сайт выводит Artist.bio
+  string territory = 21;  // ключ территории (город фестиваля / регион тура); пусто — территории не используются
   google.protobuf.Timestamp created = 30;
   google.protobuf.Timestamp updated = 31;
   google.protobuf.Timestamp expires = 32;
@@ -185,6 +186,7 @@ message FullContent {
   string app_id = 18;
   string owner_id = 19;
   string winner_description = 20;  // описание для сайта у победителя/ТОП-3; пусто — сайт выводит Artist.bio
+  string territory = 21;  // ключ территории (город фестиваля / регион тура); пусто — территории не используются
   google.protobuf.Timestamp created = 31;
   google.protobuf.Timestamp updated = 32;
   google.protobuf.Timestamp expires = 33;
@@ -202,6 +204,7 @@ message ContentForSite {
   bool active = 18;
   string owner_id = 19;
   string winner_description = 20;  // описание для сайта у победителя/ТОП-3; пусто — сайт выводит Artist.bio
+  string territory = 21;  // ключ территории (город фестиваля / регион тура); пусто — территории не используются
   google.protobuf.Timestamp created = 31;
   google.protobuf.Timestamp updated = 32;
   google.protobuf.Timestamp expires = 33;
@@ -324,6 +327,7 @@ message Tour {
   bool show_participants = 6;         // жюри видит данные участников или только номер/песню/видео
   google.protobuf.Timestamp opened_at = 7;  // когда открыт
   google.protobuf.Timestamp closed_at = 8;  // когда закрыт
+  repeated string territories = 9;    // территории тура (пусто = все территории); семантика как у categories
 }
 
 // AuditEvent - запись журнала аудита
@@ -376,6 +380,7 @@ message AddContestRequest {
     google.protobuf.Timestamp created = 15;
     google.protobuf.Timestamp updated = 16;
     google.protobuf.Timestamp expires = 17;
+    string territory = 18;  // ключ территории (город фестиваля / регион тура); пусто — территории не используются
 }
 
 message AddContestResponse {
@@ -433,6 +438,7 @@ message ListContestsByCategoryRequest {
   string sort_by = 6;  // ключ сортировки: artist, song, author, city, category, status, date (пусто = порядок по умолчанию)
   string sort_dir = 7; // направление: asc | desc (пусто = asc)
   string search = 8;   // подстрока по исполнителю/песне/ФИО заявителя/городу, регистронезависимо; пусто = без фильтра
+  string territory = 9; // фильтр по территории (пусто = любая)
 }
 // CONTESTS = LIST = By Category = For site
 message ListContestsByCategoryForSiteRequest {
@@ -441,6 +447,7 @@ message ListContestsByCategoryForSiteRequest {
   int32 limit = 3;   // сколько заявок за раз (например, 50)
   int32 offset = 4;  // с какой позиции (например, 0, 50, 100)
   string competition = 5; // идентификатор конкурса
+  string territory = 6; // фильтр по территории (пусто = любая)
 }
 message ListContestsByCategoryResponse {
   repeated FullContent contests = 1;
@@ -478,6 +485,7 @@ message ListContestsRequest {
   string competition = 1;
   int32 limit = 2;   // сколько заявок за раз (например, 50)
   int32 offset = 3;  // с какой позиции (например, 0, 50, 100)
+  string territory = 4; // фильтр по территории (пусто = любая)
 }
 message ListContestsResponse {
   repeated FullContent contests = 1;
@@ -504,6 +512,7 @@ message SearchContestsRequest {
   int32  offset      = 4; // с какой позиции (например, 0, 50, 100)
   string sort_by     = 5; // ключ сортировки: artist, song, author, city, category, status, date (пусто = порядок по умолчанию)
   string sort_dir    = 6; // направление: asc | desc (пусто = asc)
+  string territory   = 7; // фильтр по территории (пусто = любая)
 }
 message SearchContestsResponse {
   repeated FullContent contests = 1;
@@ -539,6 +548,7 @@ message ListInactiveContestsRequest {
   string competition = 1; // идентификатор конкурса
   int32 limit = 2;   // сколько заявок за раз (например, 50)
   int32 offset = 3;  // с какой позиции (например, 0, 50, 100)
+  string territory = 4; // фильтр по территории (пусто = любая)
 }
 message ListInactiveContestsResponse {
   repeated FullContent contests = 1;
@@ -566,6 +576,7 @@ message UpdateContestRequest {
   google.protobuf.Timestamp updated = 19;
   google.protobuf.Timestamp expires = 20;
   string winner_description = 21;  // описание для сайта у победителя/ТОП-3; меняется по маске
+  string territory = 22;  // ключ территории (город фестиваля / регион тура); пусто — территории не используются; меняется по маске
   google.protobuf.FieldMask update_mask = 30; // какие поля менять
 }
 message UpdateContestResponse {
@@ -589,6 +600,7 @@ message UpdateContestResponse {
   google.protobuf.Timestamp updated = 19;
   google.protobuf.Timestamp expires = 20;
   string winner_description = 21;  // описание для сайта у победителя/ТОП-3
+  string territory = 22;  // ключ территории (город фестиваля / регион тура); пусто — территории не используются
 }
 // CONTESTS = SET RATE
 message UpdateContestAddRateRequest {
@@ -869,6 +881,7 @@ message GetResultsByCategoryRequest {
   string category = 2;          // категория
   bool top3 = 3;                // true = по rate_top3 и только заявки top3=true
   repeated string jury_ids = 4; // белый список жюри; чужие голоса игнорируются
+  string territory = 5;         // итоги в пределах территории (пусто = без учёта территорий)
 }
 // ResultRow - итог голосования по одной заявке
 message ResultRow {
@@ -891,6 +904,7 @@ message OpenTourRequest {
   string type = 3;                // тип тура: "main" | "top3"
   bool show_participants = 4;     // жюри видит данные участников или только номер/песню/видео
   ActionMeta meta = 5;            // метаданные действия для журнала аудита
+  repeated string territories = 6; // территории тура (пусто = все территории)
 }
 message OpenTourResponse {
   Tour tour = 1;

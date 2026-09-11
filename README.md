@@ -37,10 +37,10 @@ make gen       # генерирует gen/go/ (contest.pb.go, contest_grpc.pb.go
 
 ## Версионирование
 
-Git-теги (`v0.11.0`, ...). Подключение в потребителях:
+Git-теги (`v0.12.0`, ...). Подключение в потребителях:
 
 ```bash
-go get github.com/erkkipm/contest_proto@v0.11.0
+go get github.com/erkkipm/contest_proto@v0.12.0
 ```
 
 Для локальной разработки в `go.mod` потребителя:
@@ -57,6 +57,7 @@ replace github.com/erkkipm/contest_proto => ../contest_proto
 
 | Версия | Изменение |
 |---|---|
+| v0.12.0 | `territory` у заявки и туров, фильтры по территории |
 | v0.11.0 | `winner_description` в `FullContent`, `ContentForSite`, `OneContest`, `UpdateContestRequest`/`UpdateContestResponse` |
 | v0.10.0 | — |
 | v0.9.0 | — |
