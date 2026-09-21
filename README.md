@@ -39,10 +39,10 @@ make gen       # генерирует gen/go/ (contest.pb.go, contest_grpc.pb.go
 
 ## Версионирование
 
-Git-теги (`v0.14.0`, ...). Подключение в потребителях:
+Git-теги (`v0.14.1`, ...). Подключение в потребителях:
 
 ```bash
-go get github.com/erkkipm/contest_proto@v0.14.0
+go get github.com/erkkipm/contest_proto@v0.14.1
 ```
 
 Для локальной разработки в `go.mod` потребителя:
@@ -53,13 +53,23 @@ replace github.com/erkkipm/contest_proto => ../contest_proto
 
 Добавление новых полей обратно совместимо — минорная версия. Номера занятых полей не переиспользуются.
 
+Выпуск версии — одной командой. Сначала добавить строку версии в «Историю версий» (её текст станет сообщением коммита), затем:
+
+```bash
+make release V=v0.15.0               # README → make gen → build/vet → коммит → тег → push
+make release V=v0.15.0 M="описание"  # своё сообщение коммита вместо строки из README
+```
+
+Опубликованный тег не переносить и не удалять: если тег встал не на тот коммит — выпустить следующую patch-версию и отозвать ошибочную через `retract` в `go.mod` (как с v0.14.0).
+
 ## История версий
 
 Восстановлена из git-тегов и сообщений коммитов; где описания в коммите не было — прочерк.
 
 | Версия | Изменение |
 |---|---|
-| v0.14.0 | Фильтр `tour_point` в `ListContestsWithoutCategory` и `ListContestDuplicates` |
+| v0.14.1 | Фильтр `tour_point` в `ListContestsWithoutCategory` и `ListContestDuplicates` (то, что планировалось в v0.14.0) |
+| v0.14.0 | ⚠️ Ошибочный тег: стоит на коммите v0.13.0, нового фильтра нет — не использовать, брать v0.14.1 |
 | v0.13.0 | `territory` переименовано в `tour_point` / `tour_points` (номера полей сохранены, совместимо по протоколу; меняются Go- и JSON-имена) |
 | v0.12.0 | Точка концертного тура у заявки и туров, фильтры по точке тура (вышло под именем `territory`, в v0.13.0 переименовано) |
 | v0.11.0 | `winner_description` в `FullContent`, `ContentForSite`, `OneContest`, `UpdateContestRequest`/`UpdateContestResponse` |

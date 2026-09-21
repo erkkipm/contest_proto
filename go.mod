@@ -13,3 +13,6 @@ require (
 	golang.org/x/text v0.36.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260414002931-afd174a4e478 // indirect
 )
+
+// v0.14.0: тег ошибочно стоит на коммите v0.13.0 — используйте v0.14.1
+retract v0.14.0
