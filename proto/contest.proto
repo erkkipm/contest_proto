@@ -499,6 +499,7 @@ message ListContestsWithoutCategoryRequest {
   string sort_by = 4;  // ключ сортировки: artist, song, author, city, category, status, date (пусто = порядок по умолчанию)
   string sort_dir = 5; // направление: asc | desc (пусто = asc)
   string search = 6;   // подстрока по исполнителю/песне/ФИО заявителя/городу, регистронезависимо; пусто = без фильтра
+  string tour_point = 7; // фильтр по точке тура (пусто = любая)
 }
 message ListContestsWithoutCategoryResponse {
   repeated FullContent contests = 1;
@@ -523,6 +524,7 @@ message ListContestDuplicatesRequest {
   string competition  = 1;  // id конкурса
   bool   fuzzy        = 2;  // включить нечёткое сравнение (опечатки)
   int32  max_distance = 3;  // макс. расстояние Левенштейна для fuzzy; 0 = дефолт (2)
+  string tour_point   = 4;  // фильтр по точке тура (пусто = любая)
 }
 message DuplicateGroup {
   string key = 1;                    // нормализованный ключ (для отладки/подписи)

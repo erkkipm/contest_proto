@@ -39,10 +39,10 @@ make gen       # генерирует gen/go/ (contest.pb.go, contest_grpc.pb.go
 
 ## Версионирование
 
-Git-теги (`v0.13.0`, ...). Подключение в потребителях:
+Git-теги (`v0.14.0`, ...). Подключение в потребителях:
 
 ```bash
-go get github.com/erkkipm/contest_proto@v0.13.0
+go get github.com/erkkipm/contest_proto@v0.14.0
 ```
 
 Для локальной разработки в `go.mod` потребителя:
@@ -59,6 +59,7 @@ replace github.com/erkkipm/contest_proto => ../contest_proto
 
 | Версия | Изменение |
 |---|---|
+| v0.14.0 | Фильтр `tour_point` в `ListContestsWithoutCategory` и `ListContestDuplicates` |
 | v0.13.0 | `territory` переименовано в `tour_point` / `tour_points` (номера полей сохранены, совместимо по протоколу; меняются Go- и JSON-имена) |
 | v0.12.0 | Точка концертного тура у заявки и туров, фильтры по точке тура (вышло под именем `territory`, в v0.13.0 переименовано) |
 | v0.11.0 | `winner_description` в `FullContent`, `ContentForSite`, `OneContest`, `UpdateContestRequest`/`UpdateContestResponse` |

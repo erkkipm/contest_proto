@@ -3263,12 +3263,13 @@ func (x *ListContestsResponse) GetTotal() int32 {
 // CONTESTS = LIST = Without Category || заявки без номинации (category пустая/отсутствует)
 type ListContestsWithoutCategoryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Competition   string                 `protobuf:"bytes,1,opt,name=competition,proto3" json:"competition,omitempty"`        // идентификатор конкурса
-	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`                   // сколько заявок за раз (например, 50)
-	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`                 // с какой позиции (например, 0, 50, 100)
-	SortBy        string                 `protobuf:"bytes,4,opt,name=sort_by,json=sortBy,proto3" json:"sort_by,omitempty"`    // ключ сортировки: artist, song, author, city, category, status, date (пусто = порядок по умолчанию)
-	SortDir       string                 `protobuf:"bytes,5,opt,name=sort_dir,json=sortDir,proto3" json:"sort_dir,omitempty"` // направление: asc | desc (пусто = asc)
-	Search        string                 `protobuf:"bytes,6,opt,name=search,proto3" json:"search,omitempty"`                  // подстрока по исполнителю/песне/ФИО заявителя/городу, регистронезависимо; пусто = без фильтра
+	Competition   string                 `protobuf:"bytes,1,opt,name=competition,proto3" json:"competition,omitempty"`              // идентификатор конкурса
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`                         // сколько заявок за раз (например, 50)
+	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`                       // с какой позиции (например, 0, 50, 100)
+	SortBy        string                 `protobuf:"bytes,4,opt,name=sort_by,json=sortBy,proto3" json:"sort_by,omitempty"`          // ключ сортировки: artist, song, author, city, category, status, date (пусто = порядок по умолчанию)
+	SortDir       string                 `protobuf:"bytes,5,opt,name=sort_dir,json=sortDir,proto3" json:"sort_dir,omitempty"`       // направление: asc | desc (пусто = asc)
+	Search        string                 `protobuf:"bytes,6,opt,name=search,proto3" json:"search,omitempty"`                        // подстрока по исполнителю/песне/ФИО заявителя/городу, регистронезависимо; пусто = без фильтра
+	TourPoint     string                 `protobuf:"bytes,7,opt,name=tour_point,json=tourPoint,proto3" json:"tour_point,omitempty"` // фильтр по точке тура (пусто = любая)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3341,6 +3342,13 @@ func (x *ListContestsWithoutCategoryRequest) GetSortDir() string {
 func (x *ListContestsWithoutCategoryRequest) GetSearch() string {
 	if x != nil {
 		return x.Search
+	}
+	return ""
+}
+
+func (x *ListContestsWithoutCategoryRequest) GetTourPoint() string {
+	if x != nil {
+		return x.TourPoint
 	}
 	return ""
 }
@@ -3548,6 +3556,7 @@ type ListContestDuplicatesRequest struct {
 	Competition   string                 `protobuf:"bytes,1,opt,name=competition,proto3" json:"competition,omitempty"`                     // id конкурса
 	Fuzzy         bool                   `protobuf:"varint,2,opt,name=fuzzy,proto3" json:"fuzzy,omitempty"`                                // включить нечёткое сравнение (опечатки)
 	MaxDistance   int32                  `protobuf:"varint,3,opt,name=max_distance,json=maxDistance,proto3" json:"max_distance,omitempty"` // макс. расстояние Левенштейна для fuzzy; 0 = дефолт (2)
+	TourPoint     string                 `protobuf:"bytes,4,opt,name=tour_point,json=tourPoint,proto3" json:"tour_point,omitempty"`        // фильтр по точке тура (пусто = любая)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3601,6 +3610,13 @@ func (x *ListContestDuplicatesRequest) GetMaxDistance() int32 {
 		return x.MaxDistance
 	}
 	return 0
+}
+
+func (x *ListContestDuplicatesRequest) GetTourPoint() string {
+	if x != nil {
+		return x.TourPoint
+	}
+	return ""
 }
 
 type DuplicateGroup struct {
@@ -9321,14 +9337,16 @@ const file_contest_proto_rawDesc = "" +
 	"tour_point\x18\x04 \x01(\tR\ttourPoint\"^\n" +
 	"\x14ListContestsResponse\x120\n" +
 	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x05R\x05total\"\xc0\x01\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"\xdf\x01\n" +
 	"\"ListContestsWithoutCategoryRequest\x12 \n" +
 	"\vcompetition\x18\x01 \x01(\tR\vcompetition\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x03 \x01(\x05R\x06offset\x12\x17\n" +
 	"\asort_by\x18\x04 \x01(\tR\x06sortBy\x12\x19\n" +
 	"\bsort_dir\x18\x05 \x01(\tR\asortDir\x12\x16\n" +
-	"\x06search\x18\x06 \x01(\tR\x06search\"m\n" +
+	"\x06search\x18\x06 \x01(\tR\x06search\x12\x1d\n" +
+	"\n" +
+	"tour_point\x18\a \x01(\tR\ttourPoint\"m\n" +
 	"#ListContestsWithoutCategoryResponse\x120\n" +
 	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x05R\x05total\"\xd2\x01\n" +
@@ -9343,11 +9361,13 @@ const file_contest_proto_rawDesc = "" +
 	"tour_point\x18\a \x01(\tR\ttourPoint\"`\n" +
 	"\x16SearchContestsResponse\x120\n" +
 	"\bcontests\x18\x01 \x03(\v2\x14.contest.FullContentR\bcontests\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x05R\x05total\"y\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"\x98\x01\n" +
 	"\x1cListContestDuplicatesRequest\x12 \n" +
 	"\vcompetition\x18\x01 \x01(\tR\vcompetition\x12\x14\n" +
 	"\x05fuzzy\x18\x02 \x01(\bR\x05fuzzy\x12!\n" +
-	"\fmax_distance\x18\x03 \x01(\x05R\vmaxDistance\"T\n" +
+	"\fmax_distance\x18\x03 \x01(\x05R\vmaxDistance\x12\x1d\n" +
+	"\n" +
+	"tour_point\x18\x04 \x01(\tR\ttourPoint\"T\n" +
 	"\x0eDuplicateGroup\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x120\n" +
 	"\bcontests\x18\x02 \x03(\v2\x14.contest.FullContentR\bcontests\"s\n" +
