@@ -17,28 +17,21 @@ service Contest{
   rpc GetContestByID (GetContestByIDRequest) returns (GetContestByIDResponse); // Используется в grpc_contest.go — метод реализован на сервере СОФИТ
   // CONTEST = GET = ByPerson
   rpc GetContestsByPersonID (GetContestByPersonIDRequest) returns (GetContestsByPersonIDResponse); // НЕ РЕАЛИЗОВАНО на сервере СОФИТ
-  // CONTEST = GET = With Empty Category \\ с пустой категорией
-  rpc GetContestWithEmptyCategory(GetContestWithEmptyCategoryRequest) returns (GetContestWithEmptyCategoryResponse); // Используется в grpc_contest.go
-  // CONTESTS = LIST || все заявки
+  // CONTESTS = LIST || единый списочный метод админки: все фильтры (точка тура, статусы модерации,
+  // номинация, поиск, отбор top3/winner, снятые) и сортировка — в ListContestsRequest
   rpc ListContests(ListContestsRequest) returns (ListContestsResponse); // Используется в grpc_contest.go
-  // CONTESTS = LIST = Without Category \\ заявки без номинации (category пустая/отсутствует)
-  rpc ListContestsWithoutCategory(ListContestsWithoutCategoryRequest) returns (ListContestsWithoutCategoryResponse); // Используется в grpc_contest.go
-  // CONTESTS = LIST = By Category \\ с категорией
-  rpc ListContestsByCategory(ListContestsByCategoryRequest) returns (ListContestsByCategoryResponse); // Используется в grpc_contest.go
-  // CONTESTS = LIST = By Category = For Site \\ с категорией
+  // CONTESTS = LIST = For Site \\ публичный вывод для сайтов (имя историческое: category необязательна)
   rpc ListContestsByCategoryForSite(ListContestsByCategoryForSiteRequest) returns (ListContestsByCategoryForSiteResponse); // Используется в grpc_contest.go
   // CONTESTS = LIST = By Region
   rpc ListContestsByRegion (ListContestsByRegionRequest) returns (ListContestsByRegionResponse); // НЕ РЕАЛИЗОВАНО на сервере СОФИТ
-  //  CONTESTS = UPDATE
+  //  CONTESTS = UPDATE \\ всё, кроме статуса модерации (статус — только через ModerateContest)
   rpc UpdateContest (UpdateContestRequest) returns (UpdateContestResponse); // Используется в grpc_contest.go
+  // CONTESTS = MODERATE \\ ЕДИНСТВЕННЫЙ способ сменить статус модерации заявки (с записью в журнал аудита)
+  rpc ModerateContest(ModerateContestRequest) returns (ModerateContestResponse);
   //  CONTESTS = SET RATE
   rpc UpdateContestAddRate (UpdateContestAddRateRequest) returns (UpdateContestAddRateResponse); // Используется в grpc_contest.go
   // CONTESTS = DUPLICATES \\ группы заявок-дубликатов по нормализованному "исполнитель + песня"
   rpc ListContestDuplicates(ListContestDuplicatesRequest) returns (ListContestDuplicatesResponse);
-  // CONTESTS = SEARCH \\ сквозной поиск по ВСЕМ заявкам конкурса (и с номинацией, и без)
-  rpc SearchContests(SearchContestsRequest) returns (SearchContestsResponse); // Используется в grpc_contest.go — сквозной поиск по всем заявкам конкурса
-  // CONTESTS = LIST = Inactive \\ снятые заявки конкурса (active = false)
-  rpc ListInactiveContests(ListInactiveContestsRequest) returns (ListInactiveContestsResponse); // Вкладка «Снятые» в единой админке (супер-пользователь)
 
   // ==== ПЕРСОНА ====
   // PERSON = ADD
@@ -85,8 +78,8 @@ service Contest{
   rpc UpdateLitWork (UpdateLitWorkRequest) returns (UpdateLitWorkResponse); // НЕ РЕАЛИЗОВАНО на сервере СОФИТ
 
   // ==== ИТОГИ ГОЛОСОВАНИЯ ====
-  // Итоги голосования по категории (оценки embedded в заявках: rate[] и rate_top3[])
-  rpc GetResultsByCategory (GetResultsByCategoryRequest) returns (GetResultsByCategoryResponse); // Используется в grpc_results.go
+  // Итоги голосования по номинации или по всему конкурсу (оценки embedded в заявках: rate[] и rate_top3[])
+  rpc GetResults (GetResultsRequest) returns (GetResultsResponse); // Используется в grpc_results.go
 
   // ==== ТУРЫ ====
   // Открыть тур голосования: competition, categories, type, show_participants
@@ -122,6 +115,17 @@ service Contest{
   rpc ResolveGeoIssue (ResolveGeoIssueRequest) returns (ResolveGeoIssueResponse);
 }
 
+// ModerationStatus — статус модерации заявки.
+// Ставит только сервер: при создании (AddContest) — всегда MODERATION_NEW,
+// дальше — только через ModerateContest (UpdateContest статус не меняет).
+// Жюри, итоги голосования (GetResults) и сайты (ListContestsByCategoryForSite)
+// видят только MODERATION_ACCEPTED; NEW и REJECTED видит лишь админка.
+enum ModerationStatus {
+  MODERATION_NEW = 0;       // на модерации — так создаётся КАЖДАЯ заявка (ставит сервер)
+  MODERATION_ACCEPTED = 1;  // принята: видна жюри, в итогах и на сайте
+  MODERATION_REJECTED = 2;  // отклонена: причина в reject_reason
+}
+
 // ContestShort
 message ContestShort {
   string id = 1;
@@ -154,11 +158,13 @@ message OneContest {
   bool winner = 14;
   int32 sort = 15;
   repeated string rate_book = 16;
-  int32 status = 17;
+  ModerationStatus status = 17;  // статус модерации; меняется только через ModerateContest
   bool active = 18;
   string owner_id = 19;
   string winner_description = 20;  // описание для сайта у победителя/ТОП-3; пусто — сайт выводит Artist.bio
   string tour_point = 21;  // ключ точки концертного тура (город или регион); пусто — тур не используется
+  string reject_reason = 22;  // причина отказа (при MODERATION_REJECTED) — текст, ушедший заявителю
+  string duplicate_of = 23;   // id исходной заявки, если отклонена как повторная; иначе пусто
   google.protobuf.Timestamp created = 30;
   google.protobuf.Timestamp updated = 31;
   google.protobuf.Timestamp expires = 32;
@@ -181,12 +187,14 @@ message FullContent {
   bool top3 = 13;
   bool winner = 14;
   int32 sort = 15;
-  int32 status = 16;
+  ModerationStatus status = 16;  // статус модерации; меняется только через ModerateContest
   bool active = 17;
   string app_id = 18;
   string owner_id = 19;
   string winner_description = 20;  // описание для сайта у победителя/ТОП-3; пусто — сайт выводит Artist.bio
   string tour_point = 21;  // ключ точки концертного тура (город или регион); пусто — тур не используется
+  string reject_reason = 22;  // причина отказа (при MODERATION_REJECTED) — текст, ушедший заявителю
+  string duplicate_of = 23;   // id исходной заявки, если отклонена как повторная; иначе пусто
   google.protobuf.Timestamp created = 31;
   google.protobuf.Timestamp updated = 32;
   google.protobuf.Timestamp expires = 33;
@@ -363,24 +371,18 @@ message LitWork {
 // CONTEST
 
 // CONTEST = ADD
+// Статус (всегда MODERATION_NEW), active=true, даты, id, sort и rate_book ставит сервер —
+// клиент их не передаёт. Исполнитель берётся из песни (song_own_id).
 message AddContestRequest {
-    string id = 1;
-    google.protobuf.Timestamp date = 2;
+    reserved 1, 2, 6, 8, 9, 10, 11, 12, 13, 15, 16, 17;
+    reserved "id", "date", "artist_id", "song_remake_id", "lit_work_id", "sort", "rate_book",
+             "status", "active", "created", "updated", "expires";
     string competition = 3;
     string author_id = 5;
-    string artist_id = 6;
     string song_own_id = 7;
-    string song_remake_id = 8;
-    string lit_work_id = 9;
-    int32 sort = 10;
-    repeated string rate_book = 11;
-    int32 status = 12;
-    bool active = 13;
     string owner_id = 14;
-    google.protobuf.Timestamp created = 15;
-    google.protobuf.Timestamp updated = 16;
-    google.protobuf.Timestamp expires = 17;
     string tour_point = 18;  // ключ точки концертного тура (город или регион); пусто — тур не используется
+    string category = 19;    // номинация, выбранная заявителем; пусто — назначит модератор
 }
 
 message AddContestResponse {
@@ -394,7 +396,7 @@ message AddContestResponse {
   string lit_work_id = 9;
   int32 sort = 10;
   repeated string rate_book = 11;
-  int32 status = 12;
+  ModerationStatus status = 12;  // всегда MODERATION_NEW
   bool active = 13;
   string owner_id = 14;
   google.protobuf.Timestamp created = 15;
@@ -421,54 +423,20 @@ message GetContestsByPersonIDResponse {
   string message = 2;
 }
 
-// CONTEST = GET = With Empty Category
-message GetContestWithEmptyCategoryRequest {
-  string competition_id = 1;
-}
-message GetContestWithEmptyCategoryResponse {
-  FullContent contest = 1;
-}
-// CONTESTS = LIST = By Category
-message ListContestsByCategoryRequest {
-  string category = 1;
-  string filter = 2; // в фильтре указываются по каким флагам отфильтровываются заявки (top-100, top-10, top-3, winner)
-  int32 limit = 3;   // сколько заявок за раз (например, 50)
-  int32 offset = 4;  // с какой позиции (например, 0, 50, 100)
-  string competition = 5; // идентификатор конкурса
-  string sort_by = 6;  // ключ сортировки: artist, song, author, city, category, status, date (пусто = порядок по умолчанию)
-  string sort_dir = 7; // направление: asc | desc (пусто = asc)
-  string search = 8;   // подстрока по исполнителю/песне/ФИО заявителя/городу, регистронезависимо; пусто = без фильтра
-  string tour_point = 9; // фильтр по точке тура (пусто = любая)
-}
-// CONTESTS = LIST = By Category = For site
+// CONTESTS = LIST = For site || публичный вывод: только принятые (MODERATION_ACCEPTED) и активные заявки
 message ListContestsByCategoryForSiteRequest {
-  string category = 1;
-  string filter = 2; // в фильтре указываются по каким флагам отфильтровываются заявки (top-100, top-10, top-3, winner)
+  string category = 1;  // номинация; пусто = все номинации
+  string selection = 2; // отбор по флагам: "" = все | "top3" | "winner"
   int32 limit = 3;   // сколько заявок за раз (например, 50)
   int32 offset = 4;  // с какой позиции (например, 0, 50, 100)
   string competition = 5; // идентификатор конкурса
   string tour_point = 6; // фильтр по точке тура (пусто = любая)
 }
-message ListContestsByCategoryResponse {
-  repeated FullContent contests = 1;
-  int32 total = 2; // <-- всего заявок по этому competition
-}
-
 message ListContestsByCategoryForSiteResponse {
   repeated ContentForSite contests = 1;
   int32 total = 2; // <-- всего заявок по этому competition
 }
 
-message ListContestsByCategoryTop3Request {
-  string category = 1;
-  int32 limit = 2;   // сколько заявок за раз (например, 50)
-  int32 offset = 3;  // с какой позиции (например, 0, 50, 100)
-  string competition = 4;
-}
-message ListContestsByCategoryTop3Response {
-  repeated FullContent contests = 1;
-  int32 total = 2; // <-- всего заявок по этому competition
-}
 message ListWinnersRequest {
   string category = 1;
   int32 limit = 2;   // сколько заявок за раз (например, 50)
@@ -480,44 +448,23 @@ message ListWinnersResponse {
   int32 total = 2; // <-- всего заявок по этому competition
 }
 
-// CONTESTS = LIST
+// CONTESTS = LIST || единый список заявок для админки; все фильтры применяются вместе (AND)
 message ListContestsRequest {
   string competition = 1;
   int32 limit = 2;   // сколько заявок за раз (например, 50)
   int32 offset = 3;  // с какой позиции (например, 0, 50, 100)
-  string tour_point = 4; // фильтр по точке тура (пусто = любая)
+  string tour_point = 4;                  // фильтр по точке тура (пусто = любая)
+  repeated ModerationStatus statuses = 5; // статусы модерации (пусто = любые)
+  string category = 6;                    // номинация (пусто = любая)
+  string search = 7;                      // несколько слов через пробел — каждое ищется по исполнителю/песне/ФИО заявителя/городу, результаты пересекаются (AND), регистронезависимо; пусто = без фильтра
+  string sort_by = 8;                     // ключ сортировки: artist, song, author, city, category, status, date (пусто = порядок по умолчанию)
+  string sort_dir = 9;                    // направление: asc | desc (пусто = asc)
+  string selection = 10;                  // отбор по флагам: "" = все | "top3" | "winner"
+  bool inactive = 11;                     // true = только снятые (active=false), иначе только активные
 }
 message ListContestsResponse {
   repeated FullContent contests = 1;
-  int32 total = 2; // <-- всего заявок по этому competition
-}
-// CONTESTS = LIST = Without Category || заявки без номинации (category пустая/отсутствует)
-message ListContestsWithoutCategoryRequest {
-  string competition = 1; // идентификатор конкурса
-  int32 limit = 2;   // сколько заявок за раз (например, 50)
-  int32 offset = 3;  // с какой позиции (например, 0, 50, 100)
-  string sort_by = 4;  // ключ сортировки: artist, song, author, city, category, status, date (пусто = порядок по умолчанию)
-  string sort_dir = 5; // направление: asc | desc (пусто = asc)
-  string search = 6;   // подстрока по исполнителю/песне/ФИО заявителя/городу, регистронезависимо; пусто = без фильтра
-  string tour_point = 7; // фильтр по точке тура (пусто = любая)
-}
-message ListContestsWithoutCategoryResponse {
-  repeated FullContent contests = 1;
-  int32 total = 2; // <-- всего заявок без номинации по этому competition
-}
-// CONTESTS = SEARCH || сквозной поиск по ВСЕМ заявкам конкурса (и с номинацией, и без)
-message SearchContestsRequest {
-  string competition = 1; // идентификатор конкурса
-  string search      = 2; // подстрока; несколько слов через пробел — каждое ищется по всем полям, результаты пересекаются (AND), регистронезависимо; пусто = без фильтра
-  int32  limit       = 3; // сколько заявок за раз (например, 50)
-  int32  offset      = 4; // с какой позиции (например, 0, 50, 100)
-  string sort_by     = 5; // ключ сортировки: artist, song, author, city, category, status, date (пусто = порядок по умолчанию)
-  string sort_dir    = 6; // направление: asc | desc (пусто = asc)
-  string tour_point   = 7; // фильтр по точке тура (пусто = любая)
-}
-message SearchContestsResponse {
-  repeated FullContent contests = 1;
-  int32 total = 2; // всего найденных заявок конкурса с учётом search
+  int32 total = 2; // всего заявок с учётом всех фильтров
 }
 // CONTESTS = DUPLICATES || группы заявок-дубликатов по нормализованному "исполнитель + песня"
 message ListContestDuplicatesRequest {
@@ -525,6 +472,7 @@ message ListContestDuplicatesRequest {
   bool   fuzzy        = 2;  // включить нечёткое сравнение (опечатки)
   int32  max_distance = 3;  // макс. расстояние Левенштейна для fuzzy; 0 = дефолт (2)
   string tour_point   = 4;  // фильтр по точке тура (пусто = любая)
+  repeated ModerationStatus statuses = 5; // статусы модерации (пусто = любые)
 }
 message DuplicateGroup {
   string key = 1;                    // нормализованный ключ (для отладки/подписи)
@@ -545,17 +493,6 @@ message ListContestsByRegionResponse {
   repeated FullContent contests = 1;
   int32 total = 2; // <-- всего заявок по этому competition
 }
-// CONTESTS = LIST = Inactive || снятые заявки конкурса (active = false)
-message ListInactiveContestsRequest {
-  string competition = 1; // идентификатор конкурса
-  int32 limit = 2;   // сколько заявок за раз (например, 50)
-  int32 offset = 3;  // с какой позиции (например, 0, 50, 100)
-  string tour_point = 4; // фильтр по точке тура (пусто = любая)
-}
-message ListInactiveContestsResponse {
-  repeated FullContent contests = 1;
-  int32 total = 2; // <-- всего СНЯТЫХ заявок по этому competition
-}
 // CONTESTS = UPDATE
 message UpdateContestRequest {
   string id = 1;
@@ -570,7 +507,8 @@ message UpdateContestRequest {
   google.protobuf.BoolValue winner = 11;   // признак присутствия
   int32 sort = 12;
   repeated string rate_book = 13;
-  int32 status = 14;
+  reserved 14;       // был status: статус модерации меняется только через ModerateContest
+  reserved "status";
   string category = 15;
   bool active = 16;
   string owner_id = 17;
@@ -594,7 +532,7 @@ message UpdateContestResponse {
   bool winner = 11;
   int32 sort = 12;
   repeated string rate_book = 13;
-  int32 status = 14;
+  ModerationStatus status = 14;  // текущий статус модерации (только чтение)
   string category = 15;
   bool active = 16;
   string owner_id = 17;
@@ -603,6 +541,17 @@ message UpdateContestResponse {
   google.protobuf.Timestamp expires = 20;
   string winner_description = 21;  // описание для сайта у победителя/ТОП-3
   string tour_point = 22;  // ключ точки концертного тура (город или регион); пусто — тур не используется
+}
+// CONTESTS = MODERATE || смена статуса модерации
+message ModerateContestRequest {
+  string id = 1;
+  ModerationStatus status = 2;  // NEW = вернуть на модерацию, ACCEPTED, REJECTED
+  string reject_reason = 3;     // обязательно при REJECTED, иначе пусто
+  string duplicate_of = 4;      // только при REJECTED: исходная заявка
+  ActionMeta meta = 5;          // журнал аудита: кто и откуда
+}
+message ModerateContestResponse {
+  FullContent contest = 1;
 }
 // CONTESTS = SET RATE
 message UpdateContestAddRateRequest {
@@ -877,10 +826,10 @@ message UpdateLitWorkResponse {
 
 // ИТОГИ ГОЛОСОВАНИЯ
 
-// RESULTS = GET = ByCategory || итоги голосования по категории
-message GetResultsByCategoryRequest {
+// RESULTS = GET || итоги голосования (учитываются только принятые заявки — MODERATION_ACCEPTED)
+message GetResultsRequest {
   string competition = 1;       // идентификатор конкурса
-  string category = 2;          // категория
+  string category = 2;          // номинация; пусто = весь конкурс в пределах tour_point
   bool top3 = 3;                // true = по rate_top3 и только заявки top3=true
   repeated string jury_ids = 4; // белый список жюри; чужие голоса игнорируются
   string tour_point = 5;         // итоги в пределах точки тура (пусто = без учёта тура)
@@ -892,7 +841,7 @@ message ResultRow {
   int32 jury_count = 3;                 // сколько жюри оценило заявку
   map<string, int32> rates_by_jury = 4; // juryID -> оценка
 }
-message GetResultsByCategoryResponse {
+message GetResultsResponse {
   repeated ResultRow rows = 1;             // сортировка: total desc, затем jury_count desc
   map<string, int32> jury_rated_count = 2; // juryID -> сколько заявок оценил
 }

@@ -16,17 +16,21 @@ Proto-контракты микросервиса конкурсных заяв�
 
 | Группа | Методы |
 |---|---|
-| Заявки | `AddContest`, `GetContestByID`, `GetContestsByPersonID`, `GetContestWithEmptyCategory`, `ListContests`, `ListContestsWithoutCategory`, `ListContestsByCategory`, `ListContestsByCategoryForSite`, `ListContestsByRegion`, `ListInactiveContests`, `SearchContests`, `ListContestDuplicates`, `UpdateContest`, `UpdateContestAddRate` |
+| Заявки | `AddContest`, `GetContestByID`, `GetContestsByPersonID`, `ListContests`, `ListContestsByCategoryForSite`, `ListContestsByRegion`, `ListContestDuplicates`, `UpdateContest`, `ModerateContest`, `UpdateContestAddRate` |
 | Персоны | `AddPerson`, `GetPersonByID`, `ListPersons`, `ListPersonsByRegion`, `UpdatePerson` |
 | Артисты | `AddArtist`, `ListArtists`, `GetArtistByID`, `UpdateArtist` |
 | Песни | `AddSong`, `ListSongs`, `GetSongByID`, `UpdateSong`, `UpdateSong720` |
 | Литературные произведения | `AddLitWork`, `ListLitWorks`, `GetLitWorkByID`, `UpdateLitWork` |
-| Итоги голосования | `GetResultsByCategory` |
+| Итоги голосования | `GetResults` |
 | Туры | `OpenTour`, `CloseTour`, `ListTours`, `GetOpenTour` |
 | Журнал аудита | `ListAuditEvents` |
 | Справочник территорий | `ListFederalDistricts`, `ListRegions`, `ListSettlements`, `SuggestSettlements`, `ListCountries`, `ListForeignSettlements`, `ListGeoIssues`, `ResolveGeoIssue` |
 
 Пометки о реализации методов на сервере СОФИТ — в комментариях `proto/contest.proto`.
+
+**Модерация заявок** — `status` типа `ModerationStatus`: `MODERATION_NEW` (на модерации), `MODERATION_ACCEPTED` (принята), `MODERATION_REJECTED` (отклонена, причина в `reject_reason`, для повторной заявки — `duplicate_of`). Каждая новая заявка создаётся сервером со статусом NEW и `active=true`. Сменить статус можно только через `ModerateContest`, `UpdateContest` статус не меняет. Жюри, итоги и сайты видят только принятые заявки.
+
+Все списки заявок для админки получаются через `ListContests`: точка тура, статусы, номинация, поиск, сортировка, отбор `top3`/`winner`, снятые заявки.
 
 **Точка концертного тура** (`tour_point` у заявки, `tour_points` у тура голосования) — город или регион, куда приезжает фестиваль; в каждой точке тура голосование и победители свои. Пусто — тур не используется. Не путать с `Tour` — это тур голосования (ступень отбора main/top3).
 
@@ -51,7 +55,7 @@ go get github.com/erkkipm/contest_proto@v0.14.1
 replace github.com/erkkipm/contest_proto => ../contest_proto
 ```
 
-Добавление новых полей обратно совместимо — минорная версия. Номера занятых полей не переиспользуются.
+Добавление новых полей обратно совместимо — минорная версия. Номера занятых полей не переиспользуются (удалённые помечаются `reserved`). С v1.0.0 несовместимое изменение Go-API потребует нового пути модуля (`/v2`).
 
 Выпуск версии — одной командой. Сначала добавить строку версии в «Историю версий» (её текст станет сообщением коммита), затем:
 
@@ -68,6 +72,7 @@ make release V=v0.15.0 M="описание"  # своё сообщение ко�
 
 | Версия | Изменение |
 |---|---|
+| v1.0.0 | ⚠️ Несовместимо: модерация заявок (`ModerationStatus`, `reject_reason`, `duplicate_of`, RPC `ModerateContest`), единый `ListContests` вместо шести списочных RPC, `GetResults` вместо `GetResultsByCategory`, `selection` вместо `filter` в `ListContestsByCategoryForSite`, в `AddContestRequest` осталось только то, что задаёт заявитель, + `category` |
 | v0.14.1 | Фильтр `tour_point` в `ListContestsWithoutCategory` и `ListContestDuplicates` (то, что планировалось в v0.14.0) |
 | v0.14.0 | ⚠️ Ошибочный тег: стоит на коммите v0.13.0, нового фильтра нет — не использовать, брать v0.14.1 |
 | v0.13.0 | `territory` переименовано в `tour_point` / `tour_points` (номера полей сохранены, совместимо по протоколу; меняются Go- и JSON-имена) |
