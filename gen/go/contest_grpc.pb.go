@@ -24,17 +24,13 @@ const (
 	Contest_AddContest_FullMethodName                    = "/contest.Contest/AddContest"
 	Contest_GetContestByID_FullMethodName                = "/contest.Contest/GetContestByID"
 	Contest_GetContestsByPersonID_FullMethodName         = "/contest.Contest/GetContestsByPersonID"
-	Contest_GetContestWithEmptyCategory_FullMethodName   = "/contest.Contest/GetContestWithEmptyCategory"
 	Contest_ListContests_FullMethodName                  = "/contest.Contest/ListContests"
-	Contest_ListContestsWithoutCategory_FullMethodName   = "/contest.Contest/ListContestsWithoutCategory"
-	Contest_ListContestsByCategory_FullMethodName        = "/contest.Contest/ListContestsByCategory"
 	Contest_ListContestsByCategoryForSite_FullMethodName = "/contest.Contest/ListContestsByCategoryForSite"
 	Contest_ListContestsByRegion_FullMethodName          = "/contest.Contest/ListContestsByRegion"
 	Contest_UpdateContest_FullMethodName                 = "/contest.Contest/UpdateContest"
+	Contest_ModerateContest_FullMethodName               = "/contest.Contest/ModerateContest"
 	Contest_UpdateContestAddRate_FullMethodName          = "/contest.Contest/UpdateContestAddRate"
 	Contest_ListContestDuplicates_FullMethodName         = "/contest.Contest/ListContestDuplicates"
-	Contest_SearchContests_FullMethodName                = "/contest.Contest/SearchContests"
-	Contest_ListInactiveContests_FullMethodName          = "/contest.Contest/ListInactiveContests"
 	Contest_AddPerson_FullMethodName                     = "/contest.Contest/AddPerson"
 	Contest_GetPersonByID_FullMethodName                 = "/contest.Contest/GetPersonByID"
 	Contest_ListPersons_FullMethodName                   = "/contest.Contest/ListPersons"
@@ -53,7 +49,7 @@ const (
 	Contest_ListLitWorks_FullMethodName                  = "/contest.Contest/ListLitWorks"
 	Contest_GetLitWorkByID_FullMethodName                = "/contest.Contest/GetLitWorkByID"
 	Contest_UpdateLitWork_FullMethodName                 = "/contest.Contest/UpdateLitWork"
-	Contest_GetResultsByCategory_FullMethodName          = "/contest.Contest/GetResultsByCategory"
+	Contest_GetResults_FullMethodName                    = "/contest.Contest/GetResults"
 	Contest_OpenTour_FullMethodName                      = "/contest.Contest/OpenTour"
 	Contest_CloseTour_FullMethodName                     = "/contest.Contest/CloseTour"
 	Contest_ListTours_FullMethodName                     = "/contest.Contest/ListTours"
@@ -82,28 +78,21 @@ type ContestClient interface {
 	GetContestByID(ctx context.Context, in *GetContestByIDRequest, opts ...grpc.CallOption) (*GetContestByIDResponse, error)
 	// CONTEST = GET = ByPerson
 	GetContestsByPersonID(ctx context.Context, in *GetContestByPersonIDRequest, opts ...grpc.CallOption) (*GetContestsByPersonIDResponse, error)
-	// CONTEST = GET = With Empty Category \\ с пустой категорией
-	GetContestWithEmptyCategory(ctx context.Context, in *GetContestWithEmptyCategoryRequest, opts ...grpc.CallOption) (*GetContestWithEmptyCategoryResponse, error)
-	// CONTESTS = LIST || все заявки
+	// CONTESTS = LIST || единый списочный метод админки: все фильтры (точка тура, статусы модерации,
+	// номинация, поиск, отбор top3/winner, снятые) и сортировка — в ListContestsRequest
 	ListContests(ctx context.Context, in *ListContestsRequest, opts ...grpc.CallOption) (*ListContestsResponse, error)
-	// CONTESTS = LIST = Without Category \\ заявки без номинации (category пустая/отсутствует)
-	ListContestsWithoutCategory(ctx context.Context, in *ListContestsWithoutCategoryRequest, opts ...grpc.CallOption) (*ListContestsWithoutCategoryResponse, error)
-	// CONTESTS = LIST = By Category \\ с категорией
-	ListContestsByCategory(ctx context.Context, in *ListContestsByCategoryRequest, opts ...grpc.CallOption) (*ListContestsByCategoryResponse, error)
-	// CONTESTS = LIST = By Category = For Site \\ с категорией
+	// CONTESTS = LIST = For Site \\ публичный вывод для сайтов (имя историческое: category необязательна)
 	ListContestsByCategoryForSite(ctx context.Context, in *ListContestsByCategoryForSiteRequest, opts ...grpc.CallOption) (*ListContestsByCategoryForSiteResponse, error)
 	// CONTESTS = LIST = By Region
 	ListContestsByRegion(ctx context.Context, in *ListContestsByRegionRequest, opts ...grpc.CallOption) (*ListContestsByRegionResponse, error)
-	// CONTESTS = UPDATE
+	// CONTESTS = UPDATE \\ всё, кроме статуса модерации (статус — только через ModerateContest)
 	UpdateContest(ctx context.Context, in *UpdateContestRequest, opts ...grpc.CallOption) (*UpdateContestResponse, error)
+	// CONTESTS = MODERATE \\ ЕДИНСТВЕННЫЙ способ сменить статус модерации заявки (с записью в журнал аудита)
+	ModerateContest(ctx context.Context, in *ModerateContestRequest, opts ...grpc.CallOption) (*ModerateContestResponse, error)
 	// CONTESTS = SET RATE
 	UpdateContestAddRate(ctx context.Context, in *UpdateContestAddRateRequest, opts ...grpc.CallOption) (*UpdateContestAddRateResponse, error)
 	// CONTESTS = DUPLICATES \\ группы заявок-дубликатов по нормализованному "исполнитель + песня"
 	ListContestDuplicates(ctx context.Context, in *ListContestDuplicatesRequest, opts ...grpc.CallOption) (*ListContestDuplicatesResponse, error)
-	// CONTESTS = SEARCH \\ сквозной поиск по ВСЕМ заявкам конкурса (и с номинацией, и без)
-	SearchContests(ctx context.Context, in *SearchContestsRequest, opts ...grpc.CallOption) (*SearchContestsResponse, error)
-	// CONTESTS = LIST = Inactive \\ снятые заявки конкурса (active = false)
-	ListInactiveContests(ctx context.Context, in *ListInactiveContestsRequest, opts ...grpc.CallOption) (*ListInactiveContestsResponse, error)
 	// ==== ПЕРСОНА ====
 	// PERSON = ADD
 	AddPerson(ctx context.Context, in *AddPersonRequest, opts ...grpc.CallOption) (*AddPersonResponse, error)
@@ -146,8 +135,8 @@ type ContestClient interface {
 	// PERSON = UPDATE
 	UpdateLitWork(ctx context.Context, in *UpdateLitWorkRequest, opts ...grpc.CallOption) (*UpdateLitWorkResponse, error)
 	// ==== ИТОГИ ГОЛОСОВАНИЯ ====
-	// Итоги голосования по категории (оценки embedded в заявках: rate[] и rate_top3[])
-	GetResultsByCategory(ctx context.Context, in *GetResultsByCategoryRequest, opts ...grpc.CallOption) (*GetResultsByCategoryResponse, error)
+	// Итоги голосования по номинации или по всему конкурсу (оценки embedded в заявках: rate[] и rate_top3[])
+	GetResults(ctx context.Context, in *GetResultsRequest, opts ...grpc.CallOption) (*GetResultsResponse, error)
 	// ==== ТУРЫ ====
 	// Открыть тур голосования: competition, categories, type, show_participants
 	OpenTour(ctx context.Context, in *OpenTourRequest, opts ...grpc.CallOption) (*OpenTourResponse, error)
@@ -218,40 +207,10 @@ func (c *contestClient) GetContestsByPersonID(ctx context.Context, in *GetContes
 	return out, nil
 }
 
-func (c *contestClient) GetContestWithEmptyCategory(ctx context.Context, in *GetContestWithEmptyCategoryRequest, opts ...grpc.CallOption) (*GetContestWithEmptyCategoryResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetContestWithEmptyCategoryResponse)
-	err := c.cc.Invoke(ctx, Contest_GetContestWithEmptyCategory_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *contestClient) ListContests(ctx context.Context, in *ListContestsRequest, opts ...grpc.CallOption) (*ListContestsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListContestsResponse)
 	err := c.cc.Invoke(ctx, Contest_ListContests_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *contestClient) ListContestsWithoutCategory(ctx context.Context, in *ListContestsWithoutCategoryRequest, opts ...grpc.CallOption) (*ListContestsWithoutCategoryResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListContestsWithoutCategoryResponse)
-	err := c.cc.Invoke(ctx, Contest_ListContestsWithoutCategory_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *contestClient) ListContestsByCategory(ctx context.Context, in *ListContestsByCategoryRequest, opts ...grpc.CallOption) (*ListContestsByCategoryResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListContestsByCategoryResponse)
-	err := c.cc.Invoke(ctx, Contest_ListContestsByCategory_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -288,6 +247,16 @@ func (c *contestClient) UpdateContest(ctx context.Context, in *UpdateContestRequ
 	return out, nil
 }
 
+func (c *contestClient) ModerateContest(ctx context.Context, in *ModerateContestRequest, opts ...grpc.CallOption) (*ModerateContestResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ModerateContestResponse)
+	err := c.cc.Invoke(ctx, Contest_ModerateContest_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *contestClient) UpdateContestAddRate(ctx context.Context, in *UpdateContestAddRateRequest, opts ...grpc.CallOption) (*UpdateContestAddRateResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpdateContestAddRateResponse)
@@ -302,26 +271,6 @@ func (c *contestClient) ListContestDuplicates(ctx context.Context, in *ListConte
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListContestDuplicatesResponse)
 	err := c.cc.Invoke(ctx, Contest_ListContestDuplicates_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *contestClient) SearchContests(ctx context.Context, in *SearchContestsRequest, opts ...grpc.CallOption) (*SearchContestsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SearchContestsResponse)
-	err := c.cc.Invoke(ctx, Contest_SearchContests_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *contestClient) ListInactiveContests(ctx context.Context, in *ListInactiveContestsRequest, opts ...grpc.CallOption) (*ListInactiveContestsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListInactiveContestsResponse)
-	err := c.cc.Invoke(ctx, Contest_ListInactiveContests_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -508,10 +457,10 @@ func (c *contestClient) UpdateLitWork(ctx context.Context, in *UpdateLitWorkRequ
 	return out, nil
 }
 
-func (c *contestClient) GetResultsByCategory(ctx context.Context, in *GetResultsByCategoryRequest, opts ...grpc.CallOption) (*GetResultsByCategoryResponse, error) {
+func (c *contestClient) GetResults(ctx context.Context, in *GetResultsRequest, opts ...grpc.CallOption) (*GetResultsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetResultsByCategoryResponse)
-	err := c.cc.Invoke(ctx, Contest_GetResultsByCategory_FullMethodName, in, out, cOpts...)
+	out := new(GetResultsResponse)
+	err := c.cc.Invoke(ctx, Contest_GetResults_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -661,28 +610,21 @@ type ContestServer interface {
 	GetContestByID(context.Context, *GetContestByIDRequest) (*GetContestByIDResponse, error)
 	// CONTEST = GET = ByPerson
 	GetContestsByPersonID(context.Context, *GetContestByPersonIDRequest) (*GetContestsByPersonIDResponse, error)
-	// CONTEST = GET = With Empty Category \\ с пустой категорией
-	GetContestWithEmptyCategory(context.Context, *GetContestWithEmptyCategoryRequest) (*GetContestWithEmptyCategoryResponse, error)
-	// CONTESTS = LIST || все заявки
+	// CONTESTS = LIST || единый списочный метод админки: все фильтры (точка тура, статусы модерации,
+	// номинация, поиск, отбор top3/winner, снятые) и сортировка — в ListContestsRequest
 	ListContests(context.Context, *ListContestsRequest) (*ListContestsResponse, error)
-	// CONTESTS = LIST = Without Category \\ заявки без номинации (category пустая/отсутствует)
-	ListContestsWithoutCategory(context.Context, *ListContestsWithoutCategoryRequest) (*ListContestsWithoutCategoryResponse, error)
-	// CONTESTS = LIST = By Category \\ с категорией
-	ListContestsByCategory(context.Context, *ListContestsByCategoryRequest) (*ListContestsByCategoryResponse, error)
-	// CONTESTS = LIST = By Category = For Site \\ с категорией
+	// CONTESTS = LIST = For Site \\ публичный вывод для сайтов (имя историческое: category необязательна)
 	ListContestsByCategoryForSite(context.Context, *ListContestsByCategoryForSiteRequest) (*ListContestsByCategoryForSiteResponse, error)
 	// CONTESTS = LIST = By Region
 	ListContestsByRegion(context.Context, *ListContestsByRegionRequest) (*ListContestsByRegionResponse, error)
-	// CONTESTS = UPDATE
+	// CONTESTS = UPDATE \\ всё, кроме статуса модерации (статус — только через ModerateContest)
 	UpdateContest(context.Context, *UpdateContestRequest) (*UpdateContestResponse, error)
+	// CONTESTS = MODERATE \\ ЕДИНСТВЕННЫЙ способ сменить статус модерации заявки (с записью в журнал аудита)
+	ModerateContest(context.Context, *ModerateContestRequest) (*ModerateContestResponse, error)
 	// CONTESTS = SET RATE
 	UpdateContestAddRate(context.Context, *UpdateContestAddRateRequest) (*UpdateContestAddRateResponse, error)
 	// CONTESTS = DUPLICATES \\ группы заявок-дубликатов по нормализованному "исполнитель + песня"
 	ListContestDuplicates(context.Context, *ListContestDuplicatesRequest) (*ListContestDuplicatesResponse, error)
-	// CONTESTS = SEARCH \\ сквозной поиск по ВСЕМ заявкам конкурса (и с номинацией, и без)
-	SearchContests(context.Context, *SearchContestsRequest) (*SearchContestsResponse, error)
-	// CONTESTS = LIST = Inactive \\ снятые заявки конкурса (active = false)
-	ListInactiveContests(context.Context, *ListInactiveContestsRequest) (*ListInactiveContestsResponse, error)
 	// ==== ПЕРСОНА ====
 	// PERSON = ADD
 	AddPerson(context.Context, *AddPersonRequest) (*AddPersonResponse, error)
@@ -725,8 +667,8 @@ type ContestServer interface {
 	// PERSON = UPDATE
 	UpdateLitWork(context.Context, *UpdateLitWorkRequest) (*UpdateLitWorkResponse, error)
 	// ==== ИТОГИ ГОЛОСОВАНИЯ ====
-	// Итоги голосования по категории (оценки embedded в заявках: rate[] и rate_top3[])
-	GetResultsByCategory(context.Context, *GetResultsByCategoryRequest) (*GetResultsByCategoryResponse, error)
+	// Итоги голосования по номинации или по всему конкурсу (оценки embedded в заявках: rate[] и rate_top3[])
+	GetResults(context.Context, *GetResultsRequest) (*GetResultsResponse, error)
 	// ==== ТУРЫ ====
 	// Открыть тур голосования: competition, categories, type, show_participants
 	OpenTour(context.Context, *OpenTourRequest) (*OpenTourResponse, error)
@@ -776,17 +718,8 @@ func (UnimplementedContestServer) GetContestByID(context.Context, *GetContestByI
 func (UnimplementedContestServer) GetContestsByPersonID(context.Context, *GetContestByPersonIDRequest) (*GetContestsByPersonIDResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetContestsByPersonID not implemented")
 }
-func (UnimplementedContestServer) GetContestWithEmptyCategory(context.Context, *GetContestWithEmptyCategoryRequest) (*GetContestWithEmptyCategoryResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetContestWithEmptyCategory not implemented")
-}
 func (UnimplementedContestServer) ListContests(context.Context, *ListContestsRequest) (*ListContestsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListContests not implemented")
-}
-func (UnimplementedContestServer) ListContestsWithoutCategory(context.Context, *ListContestsWithoutCategoryRequest) (*ListContestsWithoutCategoryResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method ListContestsWithoutCategory not implemented")
-}
-func (UnimplementedContestServer) ListContestsByCategory(context.Context, *ListContestsByCategoryRequest) (*ListContestsByCategoryResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method ListContestsByCategory not implemented")
 }
 func (UnimplementedContestServer) ListContestsByCategoryForSite(context.Context, *ListContestsByCategoryForSiteRequest) (*ListContestsByCategoryForSiteResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListContestsByCategoryForSite not implemented")
@@ -797,17 +730,14 @@ func (UnimplementedContestServer) ListContestsByRegion(context.Context, *ListCon
 func (UnimplementedContestServer) UpdateContest(context.Context, *UpdateContestRequest) (*UpdateContestResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateContest not implemented")
 }
+func (UnimplementedContestServer) ModerateContest(context.Context, *ModerateContestRequest) (*ModerateContestResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ModerateContest not implemented")
+}
 func (UnimplementedContestServer) UpdateContestAddRate(context.Context, *UpdateContestAddRateRequest) (*UpdateContestAddRateResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateContestAddRate not implemented")
 }
 func (UnimplementedContestServer) ListContestDuplicates(context.Context, *ListContestDuplicatesRequest) (*ListContestDuplicatesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListContestDuplicates not implemented")
-}
-func (UnimplementedContestServer) SearchContests(context.Context, *SearchContestsRequest) (*SearchContestsResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method SearchContests not implemented")
-}
-func (UnimplementedContestServer) ListInactiveContests(context.Context, *ListInactiveContestsRequest) (*ListInactiveContestsResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method ListInactiveContests not implemented")
 }
 func (UnimplementedContestServer) AddPerson(context.Context, *AddPersonRequest) (*AddPersonResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method AddPerson not implemented")
@@ -863,8 +793,8 @@ func (UnimplementedContestServer) GetLitWorkByID(context.Context, *GetLitWorkByI
 func (UnimplementedContestServer) UpdateLitWork(context.Context, *UpdateLitWorkRequest) (*UpdateLitWorkResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateLitWork not implemented")
 }
-func (UnimplementedContestServer) GetResultsByCategory(context.Context, *GetResultsByCategoryRequest) (*GetResultsByCategoryResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetResultsByCategory not implemented")
+func (UnimplementedContestServer) GetResults(context.Context, *GetResultsRequest) (*GetResultsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetResults not implemented")
 }
 func (UnimplementedContestServer) OpenTour(context.Context, *OpenTourRequest) (*OpenTourResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method OpenTour not implemented")
@@ -980,24 +910,6 @@ func _Contest_GetContestsByPersonID_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Contest_GetContestWithEmptyCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetContestWithEmptyCategoryRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ContestServer).GetContestWithEmptyCategory(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Contest_GetContestWithEmptyCategory_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContestServer).GetContestWithEmptyCategory(ctx, req.(*GetContestWithEmptyCategoryRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Contest_ListContests_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListContestsRequest)
 	if err := dec(in); err != nil {
@@ -1012,42 +924,6 @@ func _Contest_ListContests_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ContestServer).ListContests(ctx, req.(*ListContestsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Contest_ListContestsWithoutCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListContestsWithoutCategoryRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ContestServer).ListContestsWithoutCategory(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Contest_ListContestsWithoutCategory_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContestServer).ListContestsWithoutCategory(ctx, req.(*ListContestsWithoutCategoryRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Contest_ListContestsByCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListContestsByCategoryRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ContestServer).ListContestsByCategory(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Contest_ListContestsByCategory_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContestServer).ListContestsByCategory(ctx, req.(*ListContestsByCategoryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1106,6 +982,24 @@ func _Contest_UpdateContest_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Contest_ModerateContest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ModerateContestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestServer).ModerateContest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Contest_ModerateContest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestServer).ModerateContest(ctx, req.(*ModerateContestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Contest_UpdateContestAddRate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateContestAddRateRequest)
 	if err := dec(in); err != nil {
@@ -1138,42 +1032,6 @@ func _Contest_ListContestDuplicates_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ContestServer).ListContestDuplicates(ctx, req.(*ListContestDuplicatesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Contest_SearchContests_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SearchContestsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ContestServer).SearchContests(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Contest_SearchContests_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContestServer).SearchContests(ctx, req.(*SearchContestsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Contest_ListInactiveContests_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListInactiveContestsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ContestServer).ListInactiveContests(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Contest_ListInactiveContests_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContestServer).ListInactiveContests(ctx, req.(*ListInactiveContestsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1502,20 +1360,20 @@ func _Contest_UpdateLitWork_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Contest_GetResultsByCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetResultsByCategoryRequest)
+func _Contest_GetResults_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetResultsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ContestServer).GetResultsByCategory(ctx, in)
+		return srv.(ContestServer).GetResults(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Contest_GetResultsByCategory_FullMethodName,
+		FullMethod: Contest_GetResults_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContestServer).GetResultsByCategory(ctx, req.(*GetResultsByCategoryRequest))
+		return srv.(ContestServer).GetResults(ctx, req.(*GetResultsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1774,20 +1632,8 @@ var Contest_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Contest_GetContestsByPersonID_Handler,
 		},
 		{
-			MethodName: "GetContestWithEmptyCategory",
-			Handler:    _Contest_GetContestWithEmptyCategory_Handler,
-		},
-		{
 			MethodName: "ListContests",
 			Handler:    _Contest_ListContests_Handler,
-		},
-		{
-			MethodName: "ListContestsWithoutCategory",
-			Handler:    _Contest_ListContestsWithoutCategory_Handler,
-		},
-		{
-			MethodName: "ListContestsByCategory",
-			Handler:    _Contest_ListContestsByCategory_Handler,
 		},
 		{
 			MethodName: "ListContestsByCategoryForSite",
@@ -1802,20 +1648,16 @@ var Contest_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Contest_UpdateContest_Handler,
 		},
 		{
+			MethodName: "ModerateContest",
+			Handler:    _Contest_ModerateContest_Handler,
+		},
+		{
 			MethodName: "UpdateContestAddRate",
 			Handler:    _Contest_UpdateContestAddRate_Handler,
 		},
 		{
 			MethodName: "ListContestDuplicates",
 			Handler:    _Contest_ListContestDuplicates_Handler,
-		},
-		{
-			MethodName: "SearchContests",
-			Handler:    _Contest_SearchContests_Handler,
-		},
-		{
-			MethodName: "ListInactiveContests",
-			Handler:    _Contest_ListInactiveContests_Handler,
 		},
 		{
 			MethodName: "AddPerson",
@@ -1890,8 +1732,8 @@ var Contest_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Contest_UpdateLitWork_Handler,
 		},
 		{
-			MethodName: "GetResultsByCategory",
-			Handler:    _Contest_GetResultsByCategory_Handler,
+			MethodName: "GetResults",
+			Handler:    _Contest_GetResults_Handler,
 		},
 		{
 			MethodName: "OpenTour",

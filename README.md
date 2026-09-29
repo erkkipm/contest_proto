@@ -43,10 +43,10 @@ make gen       # генерирует gen/go/ (contest.pb.go, contest_grpc.pb.go
 
 ## Версионирование
 
-Git-теги (`v0.14.1`, ...). Подключение в потребителях:
+Git-теги (`v1.0.0`, ...). Подключение в потребителях:
 
 ```bash
-go get github.com/erkkipm/contest_proto@v0.14.1
+go get github.com/erkkipm/contest_proto@v1.0.0
 ```
 
 Для локальной разработки в `go.mod` потребителя:
